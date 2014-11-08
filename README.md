@@ -1,4 +1,4 @@
-console-wrap (v0.0.3-2)
+console-wrap (v0.0.3)
 =============
 
 __Work in progress.__

@@ -1,14 +1,15 @@
 {
   "name": "console-wrap",
-  "version": "0.0.3-2",
+  "version": "0.0.3",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vows test/* --spec",
+    "watch": "vows test/* -w --spec"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MarkGriffiths/console-wrap"
+    "url": "https://github.com/MarkGriffiths/console-wrap.git"
   },
   "keywords": [
     "text",

@@ -25,11 +25,11 @@ module.exports = (grunt) ->
 			default:
 				options:
 					prefix: 'console-wrap [(]v'
-				src: ['bin/*.js','src/lib/**/*.coffee']
+				src: ['bin/*.js','src/**/*.coffee']
 			index:
 				options:
 					prefix: '_version\\s*=\\s*\''
-				src: ['src/lib/*.coffee']
+				src: ['src/*.coffee']
 			readme:
                 options:
                     prefix: 'console-wrap \\(v'
@@ -44,7 +44,6 @@ module.exports = (grunt) ->
 				commit: true
 				createTag: true
 				push: false
-
 
 	grunt.registerTask 'patch',  ['edits', 'bump-only:patch', 'version', 'bump-commit']
 	grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile']

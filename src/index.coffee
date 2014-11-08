@@ -1,6 +1,6 @@
 'use strict'
 ###
- console-wrap (v0.0.4-579)
+ console-wrap (v0.0.3)
  Smarter text wrapping
 ###
 

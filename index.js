@@ -1,7 +1,7 @@
 'use strict';
 
 /*
- console-wrap (v0.0.4-579)
+ console-wrap (v0.0.3-7)
  Smarter text wrapping
  */
 var ansiRegex, consoleWrap, _package;
