@@ -25,8 +25,7 @@
   },
   "homepage": "https://github.com/MarkGriffiths/console-wrap",
   "dependencies": {
-    "ansi-regex": "^1.1.0",
-    "string-length": "^1.0.0"
+    "ansi-regex": "^1.1.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
