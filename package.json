@@ -29,7 +29,7 @@
   "homepage": "https://github.com/MarkGriffiths/truwrap",
   "dependencies": {
     "ansi-regex": "^1.1.0",
-    "columnify": "*"
+    "columnify": "^1.2.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
