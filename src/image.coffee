@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.0.4)
+	truwrap (v0.0.5-3)
 	Read an image into the console. Currently for iTerm2.
 ###
 fs = require 'fs'
