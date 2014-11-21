@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-	truwrap (v0.0.4-238)
+	truwrap (v0.0.4-239)
 	Read an image into the console. Currently for iTerm2.
  */
 var Image, fs, path;
