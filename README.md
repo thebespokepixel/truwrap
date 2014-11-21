@@ -1,8 +1,7 @@
-truwrap (v0.0.4-240)
+truwrap (v0.0.4)
 =============
 
 [![Build Status](https://travis-ci.org/MarkGriffiths/truwrap.svg?branch=master)](https://travis-ci.org/MarkGriffiths/truwrap) [![Dependency Status](https://david-dm.org/MarkGriffiths/truwrap.svg)](https://david-dm.org/MarkGriffiths/truwrap) [![devDependency Status](https://david-dm.org/MarkGriffiths/truwrap/dev-status.svg)](https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies)
-
 ---
 
 __Work in progress.__
