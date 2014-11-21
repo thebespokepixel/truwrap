@@ -32,7 +32,7 @@ module.exports = (grunt) ->
 				src: ['src/*.coffee']
 			readme:
                 options:
-                    prefix: 'truwrap \\(v'
+                    prefix: 'truwrap v'
                 src: ['README.md']
 		bump:
 			options:
