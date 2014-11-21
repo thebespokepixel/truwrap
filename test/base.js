@@ -1,9 +1,9 @@
 'use strict';
 var vows = require('vows'),
 	assert = require('assert'),
-	consoleWrap = require('../../console-wrap')
+	consoleWrap = require('../../truwrap')
 
-vows.describe('consoleWrap utilities').addBatch({
+vows.describe('truwrap utilities').addBatch({
 	'Get version': {
 		'Short version number?': {
 			topic: consoleWrap.getVersion(),
@@ -13,8 +13,8 @@ vows.describe('consoleWrap utilities').addBatch({
 		},
 		'Long version message?': {
 			topic: consoleWrap.getVersion(true),
-			'Should result in a version message: console-wrap vx.x.x-x': function (topic) {
-				assert.match(topic, /^console-wrap v[0-9]+.[0-9]+.[0-9]+[0-9-]*/)
+			'Should result in a version message: truwrap vx.x.x-x': function (topic) {
+				assert.match(topic, /^truwrap v[0-9]+.[0-9]+.[0-9]+[0-9-]*/)
 			}
 		},
 	}

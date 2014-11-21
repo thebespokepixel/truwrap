@@ -1,15 +1,18 @@
 {
-  "name": "console-wrap",
-  "version": "0.0.3",
+  "name": "truwrap",
+  "version": "0.0.4-238",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
     "test": "vows test/* --spec",
     "watch": "vows test/* -w --spec"
   },
+  "bin": {
+    "wrap": "./bin/cli.js"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MarkGriffiths/console-wrap.git"
+    "url": "https://github.com/MarkGriffiths/truwrap.git"
   },
   "keywords": [
     "text",
@@ -21,11 +24,12 @@
   "author": "Mark Griffiths <mark@thebespokepixel.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MarkGriffiths/console-wrap/issues"
+    "url": "https://github.com/MarkGriffiths/truwrap/issues"
   },
-  "homepage": "https://github.com/MarkGriffiths/console-wrap",
+  "homepage": "https://github.com/MarkGriffiths/truwrap",
   "dependencies": {
-    "ansi-regex": "^1.1.0"
+    "ansi-regex": "^1.1.0",
+    "columnify": "*"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -33,7 +37,7 @@
     "grunt-contrib-coffee": "^0.12.0",
     "grunt-shell": "^1.1.1",
     "grunt-version": "^0.3.0",
-    "load-grunt-tasks": "^0.6.0",
-    "vows": "^0.7.0"
+    "load-grunt-tasks": "^1.0.0",
+    "vows": "^0.8.0"
   }
 }

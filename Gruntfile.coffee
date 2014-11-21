@@ -24,7 +24,7 @@ module.exports = (grunt) ->
 		version:
 			default:
 				options:
-					prefix: 'console-wrap [(]v'
+					prefix: 'truwrap [(]v'
 				src: ['bin/*.js','src/**/*.coffee']
 			index:
 				options:
@@ -32,7 +32,7 @@ module.exports = (grunt) ->
 				src: ['src/*.coffee']
 			readme:
                 options:
-                    prefix: 'console-wrap \\(v'
+                    prefix: 'truwrap \\(v'
                 src: ['README.md']
 		bump:
 			options:
