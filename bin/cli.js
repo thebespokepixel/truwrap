@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 /*
- truwrap (v0.0.4-239)
+ truwrap (v0.0.4-240)
  */
 var renderer = require( "../index.js")({  left: 2,
 										  right: process.stderr.columns - 2,
