@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.0.5-4",
+  "version": "0.0.5-8",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
@@ -39,5 +39,8 @@
     "grunt-version": "^0.3.0",
     "load-grunt-tasks": "^1.0.0",
     "vows": "^0.8.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }

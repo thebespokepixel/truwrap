@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.0.5-4)
+	truwrap (v0.0.5-8)
 	Smarter console text wrapping
 ###
 
@@ -134,4 +134,4 @@ consoleWrap = module.exports = (options) ->
 consoleWrap.getVersion = (isLong) ->
 	return if isLong then _package.name + " v" + _package.version else _package.version
 
-consoleWrap.image = require('./image')
+consoleWrap.image = require('./lib/image')

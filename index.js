@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-	truwrap (v0.0.5-4)
+	truwrap (v0.0.5-8)
 	Smarter console text wrapping
  */
 var ansiRegex, columnify, consoleWrap, _package;
@@ -184,4 +184,4 @@ consoleWrap.getVersion = function(isLong) {
   }
 };
 
-consoleWrap.image = require('./image');
+consoleWrap.image = require('./lib/image');
