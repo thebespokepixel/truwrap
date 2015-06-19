@@ -1,6 +1,6 @@
 {
-  "name": "@thebespokepixel/truwrap",
-  "version": "0.0.5-40",
+  "name": "truwrap",
+  "version": "0.0.5-41",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {

@@ -1,6 +1,6 @@
 'use strict'
 ###
- truwrap (v0.0.5-40) : Smart word wrap
+ truwrap (v0.0.5-41) : Smart word wrap
  Command line help
 ###
 

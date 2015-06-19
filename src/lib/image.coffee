@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.0.5-40)
+	truwrap (v0.0.5-41)
 	Read an image into the console. Currently for iTerm2.9.x nightlies.
 ###
 fs = require 'fs'

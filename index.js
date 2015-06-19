@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-	truwrap (v0.0.5-40)
+	truwrap (v0.0.5-41)
 	Smarter console text wrapping
  */
 var _package, ansiRegex, columnify, consoleWrap;
