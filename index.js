@@ -1,10 +1,10 @@
 'use strict';
 
 /*
-	truwrap (v0.0.5-32)
+	truwrap (v0.0.5-40)
 	Smarter console text wrapping
  */
-var ansiRegex, columnify, consoleWrap, _package;
+var _package, ansiRegex, columnify, consoleWrap;
 
 _package = require("./package.json");
 
@@ -13,7 +13,7 @@ ansiRegex = require("ansi-regex");
 columnify = require('columnify');
 
 consoleWrap = module.exports = function(options) {
-  var left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, right, tabRegex, ttyActive, ttyWidth, width, _ref;
+  var left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, ref, right, tabRegex, ttyActive, ttyWidth, width;
   left = options.left, right = options.right, mode = options.mode, outStream = options.outStream, modeRegex = options.modeRegex;
   if (outStream == null) {
     outStream = process.stdout;
@@ -35,7 +35,7 @@ consoleWrap = module.exports = function(options) {
       };
     })();
   }
-  ttyWidth = (_ref = outStream.columns) != null ? _ref : outStream.getWindowSize()[0];
+  ttyWidth = (ref = outStream.columns) != null ? ref : outStream.getWindowSize()[0];
   if (left == null) {
     left = 0;
   }
@@ -88,7 +88,7 @@ consoleWrap = module.exports = function(options) {
         return columnify(panel_.content, panel_.layout);
       },
       write: function(text_) {
-        var format, indent, line, lineWidth, lines, process, token, tokens, _i, _len;
+        var format, indent, j, len, line, lineWidth, lines, process, token, tokens;
         lines = [];
         line = margin.slice(0, +(left - 1) + 1 || 9e9);
         lineWidth = 0;
@@ -96,15 +96,15 @@ consoleWrap = module.exports = function(options) {
         tokens = text_.toString().replace(tabRegex, '\x00<T>\x00').replace(ansiRegex(), '\x00$&\x00').replace(modeRegex, '\x00$&\x00').split("\x00");
         process = {
           hard: function(token_) {
-            var i, _i, _ref1, _results;
+            var i, j, ref1, ref2, results;
             if (token_.length <= width) {
               return format.line(token_);
             } else {
-              _results = [];
-              for (i = _i = 0, _ref1 = token_.length; width > 0 ? _i <= _ref1 : _i >= _ref1; i = _i += width) {
-                _results.push(format.line(token_.slice(i, +(i + width - 1) + 1 || 9e9)));
+              results = [];
+              for (i = j = 0, ref1 = token_.length, ref2 = width; ref2 > 0 ? j <= ref1 : j >= ref1; i = j += ref2) {
+                results.push(format.line(token_.slice(i, +(i + width - 1) + 1 || 9e9)));
               }
-              return _results;
+              return results;
             }
           },
           soft: function(token_) {
@@ -142,23 +142,23 @@ consoleWrap = module.exports = function(options) {
             return line += token_;
           },
           line: function(token_) {
-            var subtokens, _results;
+            var results, subtokens;
             if (newlineRegex.test(token_)) {
               subtokens = token_.split(newlineRegex);
               format.linefit(subtokens.shift());
               indent = 0;
-              _results = [];
+              results = [];
               while (subtokens.length) {
-                _results.push(format.newline(subtokens.shift()));
+                results.push(format.newline(subtokens.shift()));
               }
-              return _results;
+              return results;
             } else {
               return format.linefit(token_);
             }
           }
         };
-        for (_i = 0, _len = tokens.length; _i < _len; _i++) {
-          token = tokens[_i];
+        for (j = 0, len = tokens.length; j < len; j++) {
+          token = tokens[j];
           if (token !== '') {
             if (ansiRegex().test(token)) {
               format.ansi(token);

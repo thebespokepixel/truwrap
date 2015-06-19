@@ -1,6 +1,6 @@
 'use strict'
 ###
- truwrap (v0.0.5-32) : Smart word wrap
+ truwrap (v0.0.5-40) : Smart word wrap
  Command line help
 ###
 
@@ -18,7 +18,7 @@ img =
 		height: 3
 
 page =
-	header: "#{clr.normal}TruWrap #{clr.grey}v#{_package.version}#{clr.normal}\n"
+	header: "#{clr.normal}TruWrap\n\t#{clr.grey}v#{_package.version}#{clr.normal}\n"
 	usage:
 		"""
 
@@ -55,7 +55,7 @@ page =
 module.exports = (yargs_, helpPage_) ->
 	container = _wrap
 		mode: 'container'
-		outStream: process.stdout
+		outStream: process.stderr
 	windowWidth = container.getWidth()
 
 	renderer = _wrap
@@ -66,7 +66,7 @@ module.exports = (yargs_, helpPage_) ->
 	contentWidth = renderer.getWidth()
 
 	container.write "\n"
-	container.write img.cc.render(nobreak: true)
+	container.write img.cc.render(nobreak: true, align: 1)
 	container.write page.header
 	# container.write spectrum windowWidth, "━"
 
