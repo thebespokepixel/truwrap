@@ -9,18 +9,15 @@ charset = utf8
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
-indent_style = tabs
-indent_size = 4
+indent_style = tab
 
 [*.md]
-trim_trailing_whitespace = true
+trim_trailing_whitespace = false
 
 [*.coffee]
-indent_style = tabs
+indent_style = space
 indent_size = 3
 
-[*.js]
-
-[{package.json,.travis.yml,.jshintrc}]
+[{package.json,*.yml,.jshintrc}]
 indent_style = space
 indent_size = 2

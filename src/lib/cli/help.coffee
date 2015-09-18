@@ -1,31 +1,37 @@
 'use strict'
 ###
- truwrap (v0.0.5-41) : Smart word wrap
+ truwrap (v0.0.5) : Smart word wrap
  Command line help
 ###
 
-_package = require '../../package.json'
-_wrap = require '../../index'
+_truwrap = require '../../index'
 
 clr =
 	grey:		"\x1b[38;2;100;100;100m"
 	normal:	"\x1b[0;38;2;200;200;200m"
 
 img =
-	cc: new _wrap.image
+	cc: new _truwrap.image
 		name: 'logo'
 		file: __dirname + '/../../media/CCLogo.png'
 		height: 3
 
 page =
-	header: "#{clr.normal}TruWrap\n\t#{clr.grey}v#{_package.version}#{clr.normal}\n"
+	header:
+		"""
+			#{clr.normal}#{ _truwrap.getName() }
+			#{clr.grey}v#{ _truwrap.getVersion() }#{clr.normal}
+		"""
 	usage:
 		"""
+		CLI Usage:
+		  #{ _truwrap.getName() } [OPTIONS]
 
-		Usage:
-
-			wrap [OPTIONS]
-
+		"""
+	epilogue:
+		"""
+			#{ _truwrap.getName() } is an open source component of CryptoComposite\'s toolset.
+			© 2015 CryptoComposite. Released under the MIT License.
 		"""
 
 	examples: (width_) ->
@@ -52,18 +58,27 @@ page =
 
 
 # Actually output a page...
-module.exports = (yargs_, helpPage_) ->
-	container = _wrap
+module.exports = (yargs_) ->
+	is24bit = true if process.env.TERM_COLOR is '24bit'
+
+	container = _truwrap
 		mode: 'container'
 		outStream: process.stderr
 	windowWidth = container.getWidth()
 
-	renderer = _wrap
+	unless is24bit
+		yargs_.usage page.usage
+		yargs_.epilogue page.epilogue
+		yargs_.wrap(windowWidth).showHelp()
+
+	renderer = _truwrap
 		left: 2
 		right: -2
 		mode: 'soft'
 		outStream: process.stderr
 	contentWidth = renderer.getWidth()
+
+
 
 	container.write "\n"
 	container.write img.cc.render(nobreak: true, align: 1)
@@ -73,8 +88,11 @@ module.exports = (yargs_, helpPage_) ->
 	renderer.write page.usage
 	container.write "Examples:\n" + renderer.panel page.examples windowWidth if page.examples?
 	renderer.write "\n"
-	yargs_
-		.wrap (container.isTTY and windowWidth -1 or 0)
-		.showHelp container.write
+	renderer.write yargs_.wrap(container.isTTY and windowWidth -1 or 0).help
+
+#		.wrap (container.isTTY and windowWidth -1 or 0)
+#		.showHelp
+
+	console.dir yargs_.help
 
 	container.write "\n"

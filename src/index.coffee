@@ -1,14 +1,39 @@
 'use strict'
 ###
-	truwrap (v0.0.5-41)
-	Smarter console text wrapping
+	truwrap (v0.0.5)
+	Smarter 24bit console text wrapping
+
+
+	Copyright (c) 2015 CryptoComposite
+
+	Permission is hereby granted, free of charge, to any person
+	obtaining a copy of this software and associated documentation
+	files (the "Software"), to deal in the Software without
+	restriction, including without limitation the rights to use, copy,
+	modify, merge, publish, distribute, sublicense, and/or sell copies
+	of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be
+	included in all copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+	CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+	TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ###
 
 _package = require "./package.json"
+StringDecoder = require('string_decoder').StringDecoder
+_utf8 = new StringDecoder('utf8')
+
 ansiRegex = require "ansi-regex"
 columnify = require 'columnify'
 
-consoleWrap = module.exports = (options) ->
+truwrap = module.exports = (options) ->
 
 	#  Options:
 	#    left      : left hand margin
@@ -21,6 +46,7 @@ consoleWrap = module.exports = (options) ->
 
 	{left, right, mode, outStream, modeRegex} = options
 
+
 	outStream ?= process.stdout
 	ttyActive = Boolean outStream.isTTY
 
@@ -29,7 +55,7 @@ consoleWrap = module.exports = (options) ->
 			isTTY: false
 			end: -> outStream._isStdio or outStream.end()
 			getWidth: -> Infinity
-			write: (text_) -> outStream.write text_
+			write: (buffer_) -> outStream.write _utf8 buffer_
 
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
 
@@ -44,7 +70,7 @@ consoleWrap = module.exports = (options) ->
 		return do ->
 			end: -> outStream._isStdio or outStream.end()
 			getWidth: -> ttyWidth
-			write: (text_) -> outStream.write text_
+			write: (buffer_) -> outStream.write _utf8 buffer_
 
 	modeRegex ?= do ->
 		if mode is 'hard'
@@ -64,13 +90,13 @@ consoleWrap = module.exports = (options) ->
 		getWidth: -> width
 		panel: (panel_) ->
 			columnify panel_.content, panel_.layout
-		write: (text_) ->
+		write: (buffer_) ->
 			lines = []
 			line = margin[0..left - 1]
 			lineWidth = 0
 			indent = 0
 
-			tokens = text_.toString()
+			tokens = _utf8 buffer_
 					.replace tabRegex, '\x00<T>\x00'
 					.replace ansiRegex(), '\x00$&\x00'
 					.replace modeRegex, '\x00$&\x00'
@@ -130,8 +156,10 @@ consoleWrap = module.exports = (options) ->
 
 			outStream.write lines.join '\n'
 
+truwrap.getName = ->
+	return _package.name
 
-consoleWrap.getVersion = (isLong) ->
+truwrap.getVersion = (isLong) ->
 	return if isLong then _package.name + " v" + _package.version else _package.version
 
-consoleWrap.image = require('./lib/image')
+truwrap.image = require('./lib/image')

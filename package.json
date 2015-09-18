@@ -1,14 +1,13 @@
 {
   "name": "truwrap",
-  "version": "0.0.5-41",
+  "version": "0.0.5",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
-    "test": "vows test/* --spec",
-    "watch": "vows test/* -w --spec"
+    "test": "vows test/base_test.js --spec"
   },
   "bin": {
-    "wrap": "./bin/cli.js"
+    "truwrap": "./bin/cli.js"
   },
   "repository": {
     "type": "git",
@@ -28,13 +27,13 @@
   },
   "homepage": "https://github.com/MarkGriffiths/truwrap",
   "dependencies": {
-    "ansi-regex": "^1.1.0",
+    "ansi-regex": "^2.0.0",
     "columnify": "^1.2.0",
     "yargs": "^3.11.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-bump": "^0.3.1",
+    "grunt-bump": "^0.5.0",
     "grunt-contrib-coffee": "^0.13.0",
     "grunt-shell": "^1.1.1",
     "grunt-version": "^1.0.0",

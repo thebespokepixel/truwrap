@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.0.5-41)
+ truwrap (v0.0.5)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../../index"
@@ -8,33 +8,35 @@ _truwrap = require "../../index"
 yargs = require 'yargs'
 	.strict()
 	.options
-		help:
-			alias: 'h'
+		h:
+			alias: 'help'
 			describe: 'Display this help.'
-		version:
-			alias: 'v'
+		v:
+			alias: 'version'
 			count: true
-			describe: 'Return a long version decription.'
-		verbose:
-			alias: 'V'
+			describe: 'Return the current version. -vv returns a descriptive string.'
+		V:
+			alias: 'verbose'
 			boolean: true
-			describe: 'Be verbose. Useful for debugging.\n'
-		left:
-			alias: 'l'
+			describe: 'Be verbose. Useful for debugging.'
+		l:
+			alias: 'left'
 			describe: 'Left margin'
-		right:
-			alias: 'r'
+		r:
+			alias: 'right'
 			describe: 'Right margin'
-		width:
-			alias: 'w'
+		w:
+			alias: 'width'
 			describe: 'Width. Sets right margin to [console width - left margin] - width.'
-		mode:
-			alias: 'm'
+		m:
+			alias: 'mode'
 			describe: 'Wrapping mode: hard (break long lines) or Soft (keep white space)'
-		regex:
-			alias: 'x'
+		x:
+			alias: 'regex'
 			describe: 'Character run selection regex.'
-	.showHelpOnFail false, "Use 'wrap --help' for user manual"
+
+	.showHelpOnFail false, "Use 'wrap --help' for help."
+
 argv = yargs.argv
 
 if argv.version
@@ -47,7 +49,8 @@ if argv.verbose
 	global.verbose = true
 
 if argv.help
-	require('./help')(yargs, argv.help)
+#	yargs.wrap(100).showHelp()
+	require('./help')(yargs)
 	process.exit 0
 
 
