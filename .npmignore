@@ -1,0 +1,8 @@
+src/*
+*.sublime*
+*.map
+.editorconfig
+.jshintrc
+.travis.yml
+Gruntfile.coffee
+install_fish.sh
