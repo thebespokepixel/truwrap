@@ -2,7 +2,7 @@
   'use strict';
 
   /*
-  	truwrap (v0.0.5-98)
+  	truwrap (v0.0.8-60)
   	Smarter 24bit console text wrapping
   
   
@@ -57,7 +57,7 @@
             return Infinity;
           },
           write: function(buffer_) {
-            return outStream.write(_utf8(buffer_));
+            return outStream.write(_utf8.write(buffer_));
           }
         };
       })();
@@ -84,7 +84,7 @@
             return ttyWidth;
           },
           write: function(buffer_) {
-            return outStream.write(_utf8(buffer_));
+            return outStream.write(_utf8.write(buffer_));
           }
         };
       })();
@@ -120,7 +120,7 @@
           line = margin.slice(0, +(left - 1) + 1 || 9e9);
           lineWidth = 0;
           indent = 0;
-          tokens = _utf8(buffer_).replace(tabRegex, '\x00<T>\x00').replace(ansiRegex(), '\x00$&\x00').replace(modeRegex, '\x00$&\x00').split("\x00");
+          tokens = _utf8.write(buffer_).replace(tabRegex, '\x00<T>\x00').replace(ansiRegex(), '\x00$&\x00').replace(modeRegex, '\x00$&\x00').split("\x00");
           process = {
             hard: function(token_) {
               var i, j, ref1, ref2, results;

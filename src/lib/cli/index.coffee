@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.0.7)
+ truwrap (v0.0.8)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../../index"
@@ -22,9 +22,11 @@ yargs = require 'yargs'
 		l:
 			alias: 'left'
 			describe: 'Left margin'
+			default: 2
 		r:
 			alias: 'right'
 			describe: 'Right margin'
+			default: -2
 		w:
 			alias: 'width'
 			describe: 'Width. Sets right margin to [console width - left margin] - width.'
@@ -49,29 +51,21 @@ if argv.verbose
 	global.verbose = true
 
 if argv.help
-#	yargs.wrap(100).showHelp()
 	require('./help')(yargs)
 	process.exit 0
 
+renderer = require("../..")
+	left: argv.left
+	right: argv.right
+	mode: 'hard'
+	outStream: process.stderr
 
+process.stdin.setEncoding('utf8');
 
+process.stdin.on 'readable', () ->
+	chunk = process.stdin.read()
+	if chunk? then renderer.write(chunk)
 
-
-# var renderer = require( "../index.js")({  left: 2,
-# 										  right: process.stderr.columns - 2,
-# 										  mode: 'soft',
-# 										  outStream: process.stderr });
-
-# process.stdin.setEncoding('utf8');
-
-# process.stdin.on('readable', function() {
-#   var chunk = process.stdin.read();
-#   if (chunk !== null) {
-#     renderer.write(chunk);
-#   }
-# });
-
-# process.stdin.on('end', function() {
-#   renderer.end();
-# });
+process.stdin.on 'end', () ->
+	renderer.end()
 

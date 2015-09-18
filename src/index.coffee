@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.0.7)
+	truwrap (v0.0.8)
 	Smarter 24bit console text wrapping
 
 
@@ -55,7 +55,7 @@ truwrap = module.exports = (options) ->
 			isTTY: false
 			end: -> outStream._isStdio or outStream.end()
 			getWidth: -> Infinity
-			write: (buffer_) -> outStream.write _utf8 buffer_
+			write: (buffer_) -> outStream.write _utf8.write buffer_
 
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
 
@@ -70,7 +70,7 @@ truwrap = module.exports = (options) ->
 		return do ->
 			end: -> outStream._isStdio or outStream.end()
 			getWidth: -> ttyWidth
-			write: (buffer_) -> outStream.write _utf8 buffer_
+			write: (buffer_) -> outStream.write _utf8.write buffer_
 
 	modeRegex ?= do ->
 		if mode is 'hard'
@@ -96,7 +96,7 @@ truwrap = module.exports = (options) ->
 			lineWidth = 0
 			indent = 0
 
-			tokens = _utf8 buffer_
+			tokens = _utf8.write buffer_
 					.replace tabRegex, '\x00<T>\x00'
 					.replace ansiRegex(), '\x00$&\x00'
 					.replace modeRegex, '\x00$&\x00'

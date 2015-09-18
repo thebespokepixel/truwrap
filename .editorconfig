@@ -15,7 +15,7 @@ indent_style = tab
 trim_trailing_whitespace = false
 
 [*.coffee]
-indent_style = space
+indent_style = tab
 indent_size = 3
 
 [{package.json,*.yml,.jshintrc}]
