@@ -1,6 +1,7 @@
 src/*
 *.sublime*
 *.map
+.npmignore
 .editorconfig
 .jshintrc
 .travis.yml
