@@ -44,7 +44,7 @@ module.exports = (grunt) ->
             gitDescribeOptions: '--tags --always --dirty=-d'
             commit: true
             createTag: true
-            push: false
+            push: true
 
    grunt.registerTask 'patch',  ['edits', 'bump-only:patch', 'version', 'bump-commit']
    grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile']
