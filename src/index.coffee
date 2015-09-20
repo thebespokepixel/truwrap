@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.0.10-alpha.45)
+	truwrap (v0.1.0-alpha.0)
 	Smarter 24bit console text wrapping
 
 
