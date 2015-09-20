@@ -1,10 +1,10 @@
 {
   "name": "truwrap",
-  "version": "0.0.9",
+  "version": "0.0.10-alpha.44",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
-    "test": "vows test/base_test.js --spec"
+    "test": "vows test/*.coffee --spec"
   },
   "bin": {
     "truwrap": "./bin/cli.js"
@@ -32,15 +32,15 @@
     "yargs": "^3.11.0"
   },
   "devDependencies": {
+    "coffee-script": "^1.10.0",
     "grunt": "^0.4.5",
     "grunt-bump": "^0.5.0",
     "grunt-contrib-coffee": "^0.13.0",
-    "grunt-shell": "^1.1.1",
+    "grunt-replace": "^0.11.0",
+    "grunt-standard": "^1.0.2",
+    "grunt-text-replace": "^0.4.0",
     "grunt-version": "^1.0.0",
-    "load-grunt-tasks": "^3.1.0",
-    "vows": "^0.8.0"
-  },
-  "directories": {
-    "test": "test"
+    "load-grunt-tasks": "^3.2.0",
+    "vows": "^0.8.1"
   }
 }

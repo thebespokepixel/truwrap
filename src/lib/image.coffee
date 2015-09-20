@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.0.9)
+	truwrap (v0.0.10-alpha.44)
 	Read an image into the console. Currently for iTerm2.9.x nightlies.
 ###
 fs = require 'fs'
@@ -24,7 +24,7 @@ class Image
 		@config += "height=#{@height};" if @height?
 		@config += "name=" + new Buffer(name or path.basename file).toString 'base64'
 
-	render: (options_ = {}) ->
+	render: (options_) ->
 		{align, stretch, nobreak} = options_
 
 		aspect = 'preserveAspectRatio=0;' if stretch?

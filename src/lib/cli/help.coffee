@@ -1,11 +1,11 @@
 'use strict'
 ###
- truwrap (v0.0.9) : Smart word wrap
+ truwrap (v0.0.10-alpha.44) : Smart word wrap
  Command line help
 ###
 
 _truwrap = require '../../index'
-is24bit = true if process.env.TERM_COLOR is '24 bit'
+# is24bit = true if process.env.TERM_COLOR is '24 bit'
 
 clr =
 	grey:		"\x1b[38;2;100;100;100m"

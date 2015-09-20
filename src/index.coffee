@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.0.9)
+	truwrap (v0.0.10-alpha.44)
 	Smarter 24bit console text wrapping
 
 
@@ -124,6 +124,7 @@ truwrap = module.exports = (options) ->
 						line += margin[0..3]
 						lineWidth += 4
 						indent += 4
+						return
 
 					else if mode is 'soft' and token_.length > width - indent
 						format.linefit token_[0..width - indent - 4] + "..."
@@ -135,9 +136,11 @@ truwrap = module.exports = (options) ->
 					else
 						lineWidth += token_.length
 						line += token_
+						return
 
 				ansi: (token_) ->
 					line += token_
+					return
 
 				line: (token_) ->
 					if newlineRegex.test token_
