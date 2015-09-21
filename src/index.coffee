@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.1.0-alpha.1)
+	truwrap (v0.1.0)
 	Smarter 24bit console text wrapping
 
 
@@ -165,4 +165,4 @@ truwrap.getName = ->
 truwrap.getVersion = (isLong) ->
 	return if isLong then _package.name + " v" + _package.version else _package.version
 
-truwrap.image = require('./lib/image')
+truwrap.Image = require('./lib/image')

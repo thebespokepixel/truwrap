@@ -1,7 +1,7 @@
 'use strict'
 
 /*
-	truwrap (v0.1.0-alpha.1)
+	truwrap (v0.1.0)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -217,4 +217,4 @@ truwrap.getVersion = function (isLong) {
   }
 }
 
-truwrap.image = require('./lib/image')
+truwrap.Image = require('./lib/image')

@@ -29,7 +29,7 @@ module.exports = (grunt) ->
 				'{,lib/**/}*.js'
 			]
 		replace:
-			sequncedCommas:
+			sequencedCommas:
 				src: [
 					'index.js'
 					'lib/**/*.js'
