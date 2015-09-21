@@ -63,14 +63,19 @@ module.exports = (grunt) ->
 				commit: yes
 				createTag: no
 				push: no
+		shell:
+			publish: 'npm publish'
 
-	grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile', 'replace', 'standard']
+
+	grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile', 'replace', 'force:standard']
 	grunt.registerTask 'commit',  ['default', 'bump-commit']
 	grunt.registerTask 'push',    ['default', 'release', 'bump-commit']
-	grunt.registerTask 'patch',   ['bump-only:prepatch', 'version', 'coffee:compile', 'replace', 'standard', 'bump-commit']
-	grunt.registerTask 'minor',   ['bump-only:preminor', 'version', 'coffee:compile', 'replace', 'standard', 'bump-commit']
-	grunt.registerTask 'major',   ['bump-only:premajor', 'version', 'coffee:compile', 'replace', 'standard', 'bump-commit']
-	grunt.registerTask 'final',   ['bump-only', 'version', 'coffee:compile', 'release:final', 'replace', 'standard', 'bump-commit', 'default']
+	grunt.registerTask 'patch',   ['bump-only:prepatch', 'version', 'coffee:compile', 'replace', 'force:standard', 'bump-commit']
+	grunt.registerTask 'minor',   ['bump-only:preminor', 'version', 'coffee:compile', 'replace', 'force:standard', 'bump-commit']
+	grunt.registerTask 'major',   ['bump-only:premajor', 'version', 'coffee:compile', 'replace', 'force:standard', 'bump-commit']
+	grunt.registerTask 'final',   ['bump-only', 'version', 'coffee:compile', 'release:final', 'replace', 'force:standard', 'bump-commit']
+	grunt.registerTask 'publish', ['shell:publish']
+	grunt.registerTask 'shipit', ['final', 'publish']
 
 	grunt.registerTask 'release', 'Construct commit/release logic and messaging.', (phase = 'push') ->
 		pkg = grunt.file.readJSON 'package.json'
