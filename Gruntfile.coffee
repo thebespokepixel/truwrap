@@ -64,7 +64,8 @@ module.exports = (grunt) ->
 				createTag: no
 				push: no
 		shell:
-			publish: 'npm publish'
+			publish:
+				command: 'npm publish'
 
 
 	grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile', 'replace', 'force:standard']
@@ -75,7 +76,7 @@ module.exports = (grunt) ->
 	grunt.registerTask 'major',   ['bump-only:premajor', 'version', 'coffee:compile', 'replace', 'force:standard', 'bump-commit']
 	grunt.registerTask 'final',   ['bump-only', 'version', 'coffee:compile', 'release:final', 'replace', 'force:standard', 'bump-commit']
 	grunt.registerTask 'publish', ['shell:publish']
-	grunt.registerTask 'shipit', ['final', 'publish']
+	grunt.registerTask 'shipit',  ['final', 'publish']
 
 	grunt.registerTask 'release', 'Construct commit/release logic and messaging.', (phase = 'push') ->
 		pkg = grunt.file.readJSON 'package.json'
