@@ -79,7 +79,7 @@ module.exports = (grunt) ->
 	grunt.registerTask 'shipit',  ['final', 'publish']
 
 	grunt.registerTask 'release', 'Construct commit/release logic and messaging.', (phase = 'push') ->
-		pkg = grunt.file.readJSON 'package.json'
+		pkg = grunt.config 'pkg'
 		prName = grunt.config 'bump.options.prereleaseName'
 
 		switch phase
