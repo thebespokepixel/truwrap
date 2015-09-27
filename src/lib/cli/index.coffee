@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.2-alpha.3)
+ truwrap (v0.1.2-alpha.6)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../../index"
@@ -13,12 +13,17 @@ yargs = require 'yargs'
 			describe: 'Display this help.'
 		v:
 			alias: 'version'
-			count: true
+			count: yes
 			describe: 'Return the current version. -vv returns a descriptive string.'
 		V:
 			alias: 'verbose'
-			boolean: true
+			boolean: yes
 			describe: 'Be verbose. Useful for debugging.'
+		o:
+			alias: 'stdout'
+			boolean: yes
+			describe: 'Use stdout rather than stderr'
+			default: false
 		l:
 			alias: 'left'
 			describe: 'Left margin'
@@ -33,6 +38,7 @@ yargs = require 'yargs'
 		m:
 			alias: 'mode'
 			describe: 'Wrapping mode: hard (break long lines) or Soft (keep white space)'
+			default: 'hard'
 		x:
 			alias: 'regex'
 			describe: 'Character run selection regex.'
@@ -40,6 +46,8 @@ yargs = require 'yargs'
 	.showHelpOnFail false, "Use 'wrap --help' for help."
 
 argv = yargs.argv
+outStream = process.stderr
+rightMargin = argv.right
 
 if argv.version
 	console.log _truwrap.getVersion(argv.version > 1)
@@ -50,15 +58,23 @@ if argv.verbose
 	console.dir argv._
 	global.verbose = true
 
+if argv.stdout
+	outStream = process.stdout
+
 if argv.help
 	require('./help')(yargs)
 	process.exit 0
 
+if argv.width
+	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
+	rightMargin = (ttyWidth - argv.right) - argv.width
+
+
 renderer = require("../..")
 	left: argv.left
-	right: argv.right
-	mode: 'hard'
-	outStream: process.stderr
+	right: rightMargin
+	mode: argv.mode
+	outStream: outStream
 
 process.stdin.setEncoding('utf8');
 

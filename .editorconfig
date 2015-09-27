@@ -18,6 +18,6 @@ trim_trailing_whitespace = false
 indent_style = tab
 indent_size = 3
 
-[{package.json,*.yml,.jshintrc}]
+[{*.js,*.json,*.yml,.jshintrc}]
 indent_style = space
 indent_size = 2

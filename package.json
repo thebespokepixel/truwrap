@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.1.2-alpha.3",
+  "version": "0.1.2-alpha.6",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
