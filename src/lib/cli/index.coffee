@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.2)
+ truwrap (v0.1.3)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
@@ -76,7 +76,7 @@ if argv.help
 
 if argv.width
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
-	rightMargin = (ttyWidth - argv.right) - argv.width + argv.left
+	rightMargin = -ttyWidth + argv.width + argv.right + argv.left
 
 if argv.panel
 	renderPanel = yes
