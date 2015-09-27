@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.3)
+ truwrap (v0.1.4)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
@@ -31,7 +31,7 @@ yargs = require 'yargs'
 		r:
 			alias: 'right'
 			describe: 'Right margin'
-			default: -2
+			default: 2
 		w:
 			alias: 'width'
 			describe: 'Width. Sets right margin to [console width - left margin] - width + left margin.'
@@ -56,7 +56,7 @@ yargs = require 'yargs'
 
 argv = yargs.argv
 outStream = process.stderr
-rightMargin = argv.right
+rightMargin = -(argv.right)
 
 if argv.version
 	console.log _truwrap.getVersion(argv.version > 1)
