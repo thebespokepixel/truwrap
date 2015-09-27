@@ -1,9 +1,9 @@
 "use strict";
 ###
- truwrap (v0.1.2-alpha.15)
+ truwrap (v0.1.2)
  Smart word wrap, colums and inline images for the CLI
 ###
-_truwrap = require "../../index"
+_truwrap = require "../.."
 
 yargs = require 'yargs'
 	.strict()
@@ -41,8 +41,13 @@ yargs = require 'yargs'
 			default: 'hard'
 		p:
 			alias: 'panel'
-			describe: 'Render a panel into the available console width using the supplied character to define columns. The default column seperator is a colon (:).'
-			default: ':'
+			describe: 'Render a panel into the available console width.'
+
+		d:
+			alias: 'delimiter'
+			describe: 'The column delimiter when rendering a panel. The default column delimiter is a colon (:).'
+			default: '|'
+
 		x:
 			alias: 'regex'
 			describe: 'Character run selection regex.'
@@ -73,17 +78,42 @@ if argv.width
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
 	rightMargin = (ttyWidth - argv.right) - argv.width + argv.left
 
-renderer = require("../..")
+if argv.panel
+	renderPanel = yes
+
+renderer = (require "../..")
 	left: argv.left
 	right: rightMargin
 	mode: argv.mode
 	outStream: outStream
 
-process.stdin.setEncoding('utf8');
+process.stdin.setEncoding 'utf8' ;
 
 process.stdin.on 'readable', ->
 	chunk = process.stdin.read()
-	if chunk? then renderer.write(chunk)
+	if chunk?
+		unless renderPanel is yes
+			renderer.write chunk
+		else
+			tableData = for line in (chunk.toString().split /\n/)[..-1]
+				columnData = {}
+				for col, i in (line.split argv.delimiter)
+					do (col, i) ->
+						if col is ':space:'
+							columnData["spacer"] = ' '
+						else
+							columnData["c#{i}"] = col
+				columnData
+
+			renderer.write renderer.panel
+				content: tableData
+				layout:
+					showHeaders: false
+					maxLineWidth: renderer.getWidth()
+					config:
+						spacer:
+							minWidth: 8
+
 
 process.stdin.on 'end', ->
 	renderer.write('\r')
