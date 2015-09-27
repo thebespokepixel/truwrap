@@ -1,8 +1,7 @@
 'use strict'
 ###
-	truwrap (v0.1.6)
+	truwrap (v0.1.7)
 	Smarter 24bit console text wrapping
-
 
 	Copyright (c) 2015 CryptoComposite
 
@@ -162,7 +161,9 @@ truwrap = module.exports = (options) ->
 truwrap.getName = ->
 	return _package.name
 
-truwrap.getVersion = (isLong) ->
-	return if isLong then _package.name + " v" + _package.version else _package.version
+truwrap.getVersion = (long) ->
+	switch long
+		when 2 then "#{_package.name} v#{_package.version}"
+		else "#{_package.version}"
 
 truwrap.Image = require('./lib/image')

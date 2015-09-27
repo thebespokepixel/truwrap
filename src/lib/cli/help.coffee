@@ -1,15 +1,26 @@
 'use strict'
 ###
- truwrap (v0.1.6) : Smart word wrap
+ truwrap (v0.1.7) : Smart word wrap
  Command line help
 ###
 
-_truwrap = require '../../index'
-# is24bit = true if process.env.TERM_COLOR is '24 bit'
+_truwrap = require '../..'
+is24bit = true if process.env.TERM_COLOR is '24 bit'
 
 clr =
 	grey:		"\x1b[38;2;100;100;100m"
 	normal:	"\x1b[0;38;2;200;200;200m"
+
+img =
+	cc: new _truwrap.Image
+		name: 'logo'
+		file: __dirname + '/../../media/CCLogo.png'
+		height: 3
+
+if not is24bit
+	clr =
+		grey:	  "\x1b[38;5;247m"
+		normal: "\x1b[37m"
 
 page =
 	header:
@@ -17,17 +28,19 @@ page =
 
 			#{clr.normal}#{ _truwrap.getName() } #{clr.grey}v#{ _truwrap.getVersion() }#{clr.normal}
 
+			Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
+
 		"""
 	usage:
 		"""
 
 			CLI Usage:
-			#{ _truwrap.getName() } [OPTIONS]
+			#{clr.grey}Text stream (i.e cat) | #{clr.normal}#{ _truwrap.getName() } #{clr.grey}[OPTIONS]#{clr.normal}
 		"""
 	epilogue:
 		"""
 			#{ _truwrap.getName() } is an open source component of CryptoComposite\'s toolset.
-			© 2015 CryptoComposite. Released under the MIT License.
+			© 2015 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
 		"""
 
 
@@ -49,3 +62,4 @@ module.exports = (yargs_) ->
 
 	renderer.write page.header
 	renderer.write yargs_.help()
+	renderer.end('\r')

@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.6)
+ truwrap (v0.1.7)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
@@ -23,23 +23,28 @@ yargs = require 'yargs'
 			alias: 'stdout'
 			boolean: yes
 			describe: 'Use stdout rather than stderr'
-			default: false
+			default: no
 		l:
 			alias: 'left'
 			describe: 'Left margin'
+			requiresArg: yes
 			default: 2
 		r:
 			alias: 'right'
 			describe: 'Right margin'
+			requiresArg: yes
 			default: 2
 		w:
 			alias: 'width'
 			describe: 'Width. Sets right margin to [console-width - width - left margin - left margin].'
+			requiresArg: yes
 			nargs: 1
 		m:
 			alias: 'mode'
-			describe: 'Wrapping mode: hard (break long lines) or Soft (keep white space)'
+			describe: 'Wrapping mode: hard (break long lines), soft (keep white space) or regex (use the --regex option)'
 			default: 'hard'
+			requiresArg: yes
+			choices: ['hard', 'soft', 'regex']
 		p:
 			alias: 'panel'
 			describe: 'Render a panel into the available console width.'
@@ -47,13 +52,15 @@ yargs = require 'yargs'
 		d:
 			alias: 'delimiter'
 			describe: 'The column delimiter when rendering a panel. The default column delimiter is | (vertical bar).'
+			requiresArg: yes
 			default: '|'
 
 		x:
 			alias: 'regex'
 			describe: 'Character run selection regex.'
+			requiresArg: yes
 
-	.showHelpOnFail false, "Use 'wrap --help' for help."
+	.showHelpOnFail no, "Use 'wrap --help' for help."
 
 argv = yargs.argv
 outStream = process.stderr

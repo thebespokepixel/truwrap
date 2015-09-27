@@ -1,7 +1,7 @@
 'use strict'
 
 /*
-	truwrap (v0.1.6)
+	truwrap (v0.1.7)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -209,11 +209,12 @@ truwrap.getName = function () {
   return _package.name
 }
 
-truwrap.getVersion = function (isLong) {
-  if (isLong) {
-    return _package.name + ' v' + _package.version
-  } else {
-    return _package.version
+truwrap.getVersion = function (long) {
+  switch (long) {
+    case 2:
+      return _package.name + ' v' + _package.version
+    default:
+      return '' + _package.version
   }
 }
 
