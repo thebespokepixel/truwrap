@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.4)
+ truwrap (v0.1.5)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
@@ -34,7 +34,8 @@ yargs = require 'yargs'
 			default: 2
 		w:
 			alias: 'width'
-			describe: 'Width. Sets right margin to [console width - left margin] - width + left margin.'
+			describe: 'Width. Sets right margin to [console-width - width - left margin - left margin].'
+			nargs: 1
 		m:
 			alias: 'mode'
 			describe: 'Wrapping mode: hard (break long lines) or Soft (keep white space)'
@@ -45,7 +46,7 @@ yargs = require 'yargs'
 
 		d:
 			alias: 'delimiter'
-			describe: 'The column delimiter when rendering a panel. The default column delimiter is a colon (:).'
+			describe: 'The column delimiter when rendering a panel. The default column delimiter is | (vertical bar).'
 			default: '|'
 
 		x:
@@ -64,7 +65,7 @@ if argv.version
 
 if argv.verbose
 	console.log 'Verbose mode:'
-	console.dir argv._
+	console.dir argv
 	global.verbose = true
 
 if argv.stdout
@@ -74,9 +75,9 @@ if argv.help
 	require('./help')(yargs)
 	process.exit 0
 
-if argv.width
+if argv.width > 0
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
-	rightMargin = -ttyWidth + argv.width + argv.right + argv.left
+	rightMargin = -(ttyWidth) + (argv.width + argv.right + argv.left)
 
 if argv.panel
 	renderPanel = yes
