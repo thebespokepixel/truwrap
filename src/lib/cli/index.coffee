@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.2-alpha.8)
+ truwrap (v0.1.2-alpha.9)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../../index"
@@ -83,5 +83,5 @@ process.stdin.on 'readable', () ->
 	if chunk? then renderer.write(chunk)
 
 process.stdin.on 'end', () ->
-	renderer.end('bob')
+	renderer.end()
 
