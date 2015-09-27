@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.2-alpha.10)
+ truwrap (v0.1.2-alpha.11)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../../index"
@@ -34,7 +34,7 @@ yargs = require 'yargs'
 			default: -2
 		w:
 			alias: 'width'
-			describe: 'Width. Sets right margin to [console width - left margin] - width.'
+			describe: 'Width. Sets right margin to [console width - left margin] - width + left margin.'
 		m:
 			alias: 'mode'
 			describe: 'Wrapping mode: hard (break long lines) or Soft (keep white space)'
@@ -67,7 +67,7 @@ if argv.help
 
 if argv.width
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
-	rightMargin = (ttyWidth - argv.right) - argv.width
+	rightMargin = (ttyWidth - argv.right) - argv.width + argv.left
 
 renderer = require("../..")
 	left: argv.left
