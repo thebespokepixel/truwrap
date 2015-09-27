@@ -1,7 +1,7 @@
 'use strict'
 
 /*
-	truwrap (v0.1.2-alpha.13)
+	truwrap (v0.1.2-alpha.14)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
