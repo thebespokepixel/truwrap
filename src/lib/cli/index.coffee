@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.2-alpha.14)
+ truwrap (v0.1.2-alpha.15)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../../index"
@@ -39,6 +39,10 @@ yargs = require 'yargs'
 			alias: 'mode'
 			describe: 'Wrapping mode: hard (break long lines) or Soft (keep white space)'
 			default: 'hard'
+		p:
+			alias: 'panel'
+			describe: 'Render a panel into the available console width using the supplied character to define columns. The default column seperator is a colon (:).'
+			default: ':'
 		x:
 			alias: 'regex'
 			describe: 'Character run selection regex.'
