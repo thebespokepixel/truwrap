@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.2-alpha.9)
+ truwrap (v0.1.2-alpha.10)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../../index"
@@ -69,7 +69,6 @@ if argv.width
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
 	rightMargin = (ttyWidth - argv.right) - argv.width
 
-
 renderer = require("../..")
 	left: argv.left
 	right: rightMargin
@@ -78,10 +77,10 @@ renderer = require("../..")
 
 process.stdin.setEncoding('utf8');
 
-process.stdin.on 'readable', () ->
+process.stdin.on 'readable', ->
 	chunk = process.stdin.read()
 	if chunk? then renderer.write(chunk)
 
-process.stdin.on 'end', () ->
+process.stdin.on 'end', ->
 	renderer.end()
 
