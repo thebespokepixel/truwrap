@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.7)
+ truwrap (v0.1.8)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
@@ -41,10 +41,10 @@ yargs = require 'yargs'
 			nargs: 1
 		m:
 			alias: 'mode'
+			choices: ['hard', 'soft', 'regex']
 			describe: 'Wrapping mode: hard (break long lines), soft (keep white space) or regex (use the --regex option)'
 			default: 'hard'
 			requiresArg: yes
-			choices: ['hard', 'soft', 'regex']
 		p:
 			alias: 'panel'
 			describe: 'Render a panel into the available console width.'

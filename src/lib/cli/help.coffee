@@ -1,32 +1,53 @@
 'use strict'
 ###
- truwrap (v0.1.7) : Smart word wrap
+ truwrap (v0.1.8) : Smart word wrap
  Command line help
 ###
 
 _truwrap = require '../..'
-is24bit = true if process.env.TERM_COLOR is '24 bit'
+_24bit = (process.env.TERM_COLOR is '24 bit') or (process.env.fish_term24bit)
+_iTerm = process.env.ITERM_SESSION_ID and (process.env.TERM_PROGRAM is 'iTerm.app')
 
-clr =
-	grey:		"\x1b[38;2;100;100;100m"
-	normal:	"\x1b[0;38;2;200;200;200m"
-
-img =
-	cc: new _truwrap.Image
-		name: 'logo'
-		file: __dirname + '/../../media/CCLogo.png'
-		height: 3
-
-if not is24bit
+if _24bit
 	clr =
-		grey:	  "\x1b[38;5;247m"
-		normal: "\x1b[37m"
+		example  : "\x1b[38;2;178;98;255m"
+		command  : "\x1b[38;2;65;135;215m"
+		argument : "\x1b[38;2;0;175;255m"
+		option   : "\x1b[38;2;175;175;45m"
+		operator : "\x1b[38;2;255;255;255m"
+		grey     : "\x1b[38;2;100;100;100m"
+		normal   : "\x1b[0;38;2;240;240;240m"
+		cc       : "\x1b[38;2;84;110;83m"
+else
+	clr =
+		example  : "\x1b[38;5;93m"
+		command  : "\x1b[38;5;68m"
+		argument : "\x1b[38;5;39m"
+		option   : "\x1b[38;5;142m"
+		operator : "\x1b[38;5;231m"
+		grey     : "\x1b[38;5;247m"
+		normal   : "\x1b[37m"
+		cc       : "\x1b[38;5;59m"
+
+if _24bit and _iTerm
+	img =
+		space : "\t\t"
+		cc    : new _truwrap.Image
+			name   : 'logo'
+			file   : __dirname + '/../../media/CCLogo.png'
+			height : 3
+else
+	img =
+		space : ""
+		cc    :
+			render: ->
+				""
 
 page =
 	header:
 		"""
 
-			#{clr.normal}#{ _truwrap.getName() } #{clr.grey}v#{ _truwrap.getVersion() }#{clr.normal}
+			#{img.space}#{clr.command}#{ _truwrap.getName() } #{clr.grey}v#{ _truwrap.getVersion() }#{clr.normal}
 
 			Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 
@@ -35,11 +56,11 @@ page =
 		"""
 
 			CLI Usage:
-			#{clr.grey}Text stream (i.e cat) | #{clr.normal}#{ _truwrap.getName() } #{clr.grey}[OPTIONS]#{clr.normal}
+			#{clr.example}Text stream (i.e cat) #{clr.operator}| #{clr.command}#{ _truwrap.getName() } #{clr.option}[OPTIONS]#{clr.normal}
 		"""
 	epilogue:
 		"""
-			#{ _truwrap.getName() } is an open source component of CryptoComposite\'s toolset.
+			#{clr.command}#{ _truwrap.getName() }#{clr.grey} is an open source component of CryptoComposite\'s toolset.
 			© 2015 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
 		"""
 
@@ -47,6 +68,10 @@ page =
 
 # Actually output a page...
 module.exports = (yargs_) ->
+
+	container = _truwrap
+		mode: 'container'
+		outStream: process.stderr
 
 	renderer = _truwrap
 		left: 2
@@ -60,6 +85,11 @@ module.exports = (yargs_) ->
 	yargs_.epilogue page.epilogue
 	yargs_.wrap(contentWidth)
 
-	renderer.write page.header
+
+	container.write img.cc.render
+		nobreak: false
+		align: 2
+	container.write page.header
 	renderer.write yargs_.help()
-	renderer.end('\r')
+	renderer.write "\r"
+	renderer.end()
