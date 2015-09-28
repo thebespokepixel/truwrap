@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.1.8)
+	truwrap (v0.1.9)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -52,24 +52,24 @@ truwrap = module.exports = (options) ->
 	unless ttyActive
 		return do ->
 			isTTY: false
-			end: -> outStream._isStdio or outStream.end()
-			getWidth: -> Infinity
-			write: (buffer_) -> outStream.write _utf8.write buffer_
+			end      : -> outStream._isStdio or outStream.end()
+			getWidth : -> Infinity
+			write    : (buffer_) -> outStream.write _utf8.write buffer_
 
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
 
-	left ?= 0
-	right ?= ttyWidth
+	left                ?= 0
+	right               ?= ttyWidth
 	right < 0 and right = ttyWidth + right
-	width = right - left
+	width               = right - left
 
 	mode ?= 'soft'
 
 	if mode is 'container'
 		return do ->
-			end: -> outStream._isStdio or outStream.end()
-			getWidth: -> ttyWidth
-			write: (buffer_) -> outStream.write _utf8.write buffer_
+			end      : -> outStream._isStdio or outStream.end()
+			getWidth : -> ttyWidth
+			write    : (buffer_) -> outStream.write _utf8.write buffer_
 
 	modeRegex ?= do ->
 		if mode is 'hard'
@@ -120,9 +120,9 @@ truwrap = module.exports = (options) ->
 
 				linefit: (token_) ->
 					if token_ is "<T>"
-						line += margin[0..3]
+						line      += margin[0..3]
 						lineWidth += 4
-						indent += 4
+						indent    += 4
 						return
 
 					else if mode is 'soft' and token_.length > width - indent
@@ -134,7 +134,7 @@ truwrap = module.exports = (options) ->
 
 					else
 						lineWidth += token_.length
-						line += token_
+						line      += token_
 						return
 
 				ansi: (token_) ->

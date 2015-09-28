@@ -1,9 +1,10 @@
 "use strict";
 ###
- truwrap (v0.1.8)
+ truwrap (v0.1.9)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
+ansiRegex = require "ansi-regex"
 
 yargs = require 'yargs'
 	.strict()
@@ -103,24 +104,38 @@ process.stdin.on 'readable', ->
 		unless renderPanel is yes
 			renderer.write chunk
 		else
+			maxSpacers = 0
+			maxContent = 0
+			spacerCols = []
 			tableData = for line in (chunk.toString().split /\n/)[..-1]
 				columnData = {}
+				spacerCount = 0
+				contentCount = 0
 				for col, i in (line.split argv.delimiter)
 					do (col, i) ->
 						if col is ':space:'
-							columnData["spacer"] = ' '
+							spacerCount++
+							spacerCols.push i
+							columnData["spacer#{i}"] = ' '
 						else
+							contentCount += col.replace(ansiRegex(), '').length
 							columnData["c#{i}"] = col
+				maxSpacers = spacerCount if spacerCount > maxSpacers
+				maxContent = contentCount if contentCount > maxContent
 				columnData
 
+			temp = {}
+			for i in spacerCols
+				temp["spacer#{i}"] =
+					maxWidth: Math.floor renderer.getWidth() / (maxSpacers + 1)
+					minWidth: Math.floor (renderer.getWidth() - maxContent) / (maxSpacers + 1)
 			renderer.write renderer.panel
 				content: tableData
 				layout:
 					showHeaders: false
 					maxLineWidth: renderer.getWidth()
 					config:
-						spacer:
-							minWidth: 8
+						temp
 
 
 process.stdin.on 'end', ->

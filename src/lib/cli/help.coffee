@@ -1,6 +1,6 @@
 'use strict'
 ###
- truwrap (v0.1.8) : Smart word wrap
+ truwrap (v0.1.9) : Smart word wrap
  Command line help
 ###
 
@@ -17,7 +17,7 @@ if _24bit
 		operator : "\x1b[38;2;255;255;255m"
 		grey     : "\x1b[38;2;100;100;100m"
 		normal   : "\x1b[0;38;2;240;240;240m"
-		cc       : "\x1b[38;2;84;110;83m"
+		cc       : "\x1b[38;2;128;196;126m"
 else
 	clr =
 		example  : "\x1b[38;5;93m"
@@ -27,11 +27,11 @@ else
 		operator : "\x1b[38;5;231m"
 		grey     : "\x1b[38;5;247m"
 		normal   : "\x1b[37m"
-		cc       : "\x1b[38;5;59m"
+		cc       : "\x1b[38;5;114m"
 
 if _24bit and _iTerm
 	img =
-		space : "\t\t"
+		space : "\t"
 		cc    : new _truwrap.Image
 			name   : 'logo'
 			file   : __dirname + '/../../media/CCLogo.png'
@@ -60,8 +60,8 @@ page =
 		"""
 	epilogue:
 		"""
-			#{clr.command}#{ _truwrap.getName() }#{clr.grey} is an open source component of CryptoComposite\'s toolset.
-			© 2015 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
+			#{clr.command}#{ _truwrap.getName() }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
+			#{clr.cc}© 2015 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
 		"""
 
 
