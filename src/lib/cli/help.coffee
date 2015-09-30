@@ -1,6 +1,6 @@
 'use strict'
 ###
- truwrap (v0.1.9) : Smart word wrap
+ truwrap (v0.1.10) : Smart word wrap
  Command line help
 ###
 
@@ -62,6 +62,7 @@ page =
 		"""
 			#{clr.command}#{ _truwrap.getName() }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
 			#{clr.cc}© 2015 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
+
 		"""
 
 
