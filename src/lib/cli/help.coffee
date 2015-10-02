@@ -1,6 +1,6 @@
 'use strict'
 ###
- truwrap (v0.1.18) : Smart word wrap
+ truwrap (v0.1.19) : Smart word wrap
  Command line help
 ###
 
@@ -56,7 +56,7 @@ page =
 		"""
 
 			CLI Usage:
-			#{clr.example}Text stream (i.e cat) #{clr.operator}| #{clr.command}#{ _truwrap.getName() } #{clr.option}[OPTIONS]#{clr.normal}
+			#{clr.example}Text stream (i.e cat or echo) #{clr.operator}| #{clr.command}#{ _truwrap.getName() } #{clr.option}[OPTIONS]#{clr.normal}
 		"""
 	epilogue:
 		"""

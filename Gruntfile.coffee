@@ -65,7 +65,7 @@ module.exports = (grunt) ->
 				push: no
 		shell:
 			version:
-				command: 'which fish && fish -c "set -U __shoal_update_event <%= pkg.name %> <%= pkg.version %>"'
+				command: 'fish -c "set -U __shoal_update_event <%= pkg.name %> <%= pkg.version %>"'
 			publish:
 				command: 'npm publish'
 
