@@ -1,7 +1,7 @@
 'use strict'
 
 /*
-	truwrap (v0.1.21)
+	truwrap (v0.1.22)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -25,7 +25,13 @@
 	TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-var StringDecoder, _package, ansiRegex, columnify, truwrap
+var StringDecoder, _package, ansiRegex, columnify, console, truwrap, verbosity
+
+verbosity = require('@thebespokepixel/verbosity')
+
+console = verbosity.console({
+  out: process.stderr
+})
 
 _package = require('./package.json')
 

@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.1.21)
+	truwrap (v0.1.22)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -24,6 +24,10 @@
 	TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ###
+
+verbosity = require '@thebespokepixel/verbosity'
+console = verbosity.console
+				out: process.stderr
 
 _package = require './package.json'
 StringDecoder = require('string_decoder').StringDecoder
