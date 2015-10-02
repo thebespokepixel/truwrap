@@ -1,7 +1,7 @@
 'use strict'
 
 /*
-	truwrap (v0.1.15)
+	truwrap (v0.1.16)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -36,14 +36,14 @@ ansiRegex = require('ansi-regex')
 columnify = require('columnify')
 
 truwrap = module.exports = function (options) {
-  var _encoder, encoding, left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, ref, right, tabRegex, ttyActive, ttyWidth, width
+  var _decoder, encoding, left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, ref, right, tabRegex, ttyActive, ttyWidth, width
   left = options.left
   right = options.right
   mode = options.mode
   outStream = options.outStream
   encoding = options.encoding
   modeRegex = options.modeRegex
-  _encoder = new StringDecoder(encoding != null ? encoding : encoding = 'utf8')
+  _decoder = new StringDecoder(encoding != null ? encoding : encoding = 'utf8')
   if (outStream == null) {
     outStream = process.stdout
   }
@@ -60,7 +60,7 @@ truwrap = module.exports = function (options) {
           return Infinity
         },
         write: function (buffer_) {
-          return outStream.write(_encoder.write(buffer_))
+          return outStream.write(_decoder.write(buffer_))
         }
       }
     })()
@@ -87,7 +87,7 @@ truwrap = module.exports = function (options) {
           return ttyWidth
         },
         write: function (buffer_) {
-          return outStream.write(_encoder.write(buffer_))
+          return outStream.write(_decoder.write(buffer_))
         }
       }
     })()
@@ -126,7 +126,7 @@ truwrap = module.exports = function (options) {
         line = margin.slice(0, +(left - 1) + 1 || 9e9)
         lineWidth = 0
         indent = 0
-        tokens = _encoder.write(buffer_).replace(tabRegex, '\x00<T>\x00').replace(ansiRegex(), '\x00$&\x00').replace(modeRegex, '\x00$&\x00').split('\x00')
+        tokens = _decoder.write(buffer_).replace(tabRegex, '\x00<T>\x00').replace(ansiRegex(), '\x00$&\x00').replace(modeRegex, '\x00$&\x00').split('\x00')
         process = {
           hard: function (token_) {
             var i, j, ref1, ref2, results

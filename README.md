@@ -1,6 +1,6 @@
-# truwrap v0.1.15
+# truwrap v0.1.16
 
-![Project status](http://img.shields.io/badge/status-alpha-red.svg?style=flat) [![Build Status](http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat)](https://travis-ci.org/MarkGriffiths/truwrap) [![Dependency Status](http://img.shields.io/david/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap) [![devDependency Status](http://img.shields.io/david/dev/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies) ![npm](https://img.shields.io/npm/v/truwrap.svg?style=flat)
+![Project status](http://img.shields.io/badge/status-alpha-red.svg?style=flat) [![Build Status](http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat)](https://travis-ci.org/MarkGriffiths/truwrap) [![Dependency Status](http://img.shields.io/david/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap) [![devDependency Status](http://img.shields.io/david/dev/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies) [![npm](https://img.shields.io/npm/v/truwrap.svg?style=flat)](https://www.npmjs.com/package/truwrap)
 
 __Work in progress.__
 
@@ -34,7 +34,7 @@ To use simply pipe in a body of text to wrap according to the supplied options.
 
 > truwrap --help
 
-truwrap v0.1.15
+truwrap v0.1.16
 
   Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 
@@ -45,7 +45,7 @@ truwrap v0.1.15
   -h, --help       Display this help.
   -v, --version    Return the current version. -vv Return name & version.
   -V, --verbose    Be verbose. -VV Be loquacious.
-  -o, --stdout     Use stdout rather than stderr [default: false]
+  -o, --stderr     Use stderr rather than stdout
   -l, --left       Left margin [default: 2]
   -r, --right      Right margin [default: 2]
   -w, --width      Width. Overrides right margin.
@@ -86,7 +86,7 @@ To add. Containers, Tables, Panels and Images.
 
 #### Related
 
-For advanced 24bit colour handling see [MarkGriffiths/trucolor](https://github.com/MarkGriffiths/trucolor) [npm @thebespokepixel/trucolor](https://www.npmjs.com/package/@thebespokepixel/trucolor).
+For advanced 24bit colour handling see [MarkGriffiths/trucolor](https://github.com/MarkGriffiths/trucolor) and [npm @thebespokepixel/trucolor](https://www.npmjs.com/package/@thebespokepixel/trucolor).
 
 
 Initially a port of [substack/node-wordwrap](https://github.com/substack/node-wordwrap) to format yargs help output that contained (the very long) ansi 24bit color SGR codes.

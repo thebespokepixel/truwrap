@@ -1,14 +1,14 @@
 "use strict";
 ###
- truwrap (v0.1.15)
+ truwrap (v0.1.16)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
 ansiRegex = require "ansi-regex"
 util = require "util"
 verbosity = require '@thebespokepixel/verbosity'
-global.cli = verbosity.console()
-global.cli.level = 2
+console = verbosity.console
+				out: process.stderr
 
 yargs = require 'yargs'
 	.strict()
@@ -19,15 +19,15 @@ yargs = require 'yargs'
 		v:
 			alias: 'version'
 			count: yes
-			describe: 'Return the current version. -vv Return name & version.'
+			describe: 'Return the current version on stdout. -vv Return name & version.'
 		V:
 			alias: 'verbose'
 			count: yes
 			describe: 'Be verbose. -VV Be loquacious.'
 		o:
-			alias: 'stdout'
+			alias: 'stderr'
 			boolean: yes
-			describe: 'Use stdout rather than stderr'
+			describe: 'Use stderr rather than stdout'
 			default: no
 		l:
 			alias: 'left'
@@ -76,22 +76,22 @@ yargs = require 'yargs'
 	.showHelpOnFail no, "Use 'wrap --help' for help."
 
 argv = yargs.argv
-outStream = process.stderr
+outStream = process.stdout
 rightMargin = -(argv.right)
 
 if argv.version
-	console.log _truwrap.getVersion(argv.version)
+	process.stdout.write _truwrap.getVersion(argv.version)
 	process.exit 0
 
 if argv.verbose
 	switch argv.verbose
 		when 1
-			cli.verbosity 4
-			cli.log ':Verbose mode:'
+			console.verbosity 4
+			console.log ':Verbose mode:'
 		when 2
-			cli.verbosity 5
-			cli.log ':Extra-Verbose mode:'
-			cli.yargs argv
+			console.verbosity 5
+			console.log ':Extra-Verbose mode:'
+			console.yargs argv
 
 if argv.stdout
 	outStream = process.stdout

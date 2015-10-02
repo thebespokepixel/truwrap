@@ -1,6 +1,6 @@
 'use strict'
 ###
- truwrap (v0.1.15) : Smart word wrap
+ truwrap (v0.1.16) : Smart word wrap
  Command line help
 ###
 
@@ -26,7 +26,7 @@ else
 		option   : "\x1b[38;5;142m"
 		operator : "\x1b[38;5;231m"
 		grey     : "\x1b[38;5;247m"
-		normal   : "\x1b[37m"
+		normal   : "\x1b[0m"
 		cc       : "\x1b[38;5;114m"
 
 if _24bit and _iTerm
