@@ -1,4 +1,4 @@
-# truwrap v0.1.19
+# truwrap v0.1.20
 
 ![Project status](http://img.shields.io/badge/status-alpha-red.svg?style=flat) [![Build Status](http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat)](https://travis-ci.org/MarkGriffiths/truwrap) [![Dependency Status](http://img.shields.io/david/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap) [![devDependency Status](http://img.shields.io/david/dev/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies) [![npm](https://img.shields.io/npm/v/truwrap.svg?style=flat)](https://www.npmjs.com/package/truwrap)
 
@@ -34,7 +34,7 @@ To use simply pipe in a body of text to wrap according to the supplied options.
 
 > truwrap --help
 
-truwrap v0.1.19
+truwrap v0.1.20
 
   Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 
