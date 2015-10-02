@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.16)
+ truwrap (v0.1.17)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."

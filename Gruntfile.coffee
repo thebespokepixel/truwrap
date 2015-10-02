@@ -70,7 +70,7 @@ module.exports = (grunt) ->
 				command: 'npm publish'
 
 
-	grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile', 'replace', 'force:standard', 'shell:version']
+	grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile', 'replace', 'force:standard', 'force:shell:version']
 	grunt.registerTask 'commit',  ['default', 'bump-commit']
 	grunt.registerTask 'push',    ['default', 'release', 'bump-commit']
 	grunt.registerTask 'patch',   ['bump-only:prepatch', 'version', 'coffee:compile', 'replace', 'force:standard', 'bump-commit']
