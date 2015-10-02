@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.1.12)
+	truwrap (v0.1.13-alpha.90)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -25,11 +25,10 @@
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ###
 
-_package = require "./package.json"
+_package = require './package.json'
 StringDecoder = require('string_decoder').StringDecoder
 _utf8 = new StringDecoder('utf8')
-
-ansiRegex = require "ansi-regex"
+ansiRegex = require 'ansi-regex'
 columnify = require 'columnify'
 
 truwrap = module.exports = (options) ->
@@ -161,9 +160,9 @@ truwrap = module.exports = (options) ->
 truwrap.getName = ->
 	return _package.name
 
-truwrap.getVersion = (long) ->
+truwrap.getVersion = (long = 1) ->
 	switch long
-		when 2 then "#{_package.name} v#{_package.version}"
-		else "#{_package.version}"
+		when 1 then "#{_package.version}"
+		else "#{_package.name} v#{_package.version}"
 
 truwrap.Image = require('./lib/image')

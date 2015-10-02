@@ -1,6 +1,6 @@
 'use strict'
 ###
- truwrap (v0.1.12) : Smart word wrap
+ truwrap (v0.1.13-alpha.90) : Smart word wrap
  Command line help
 ###
 
@@ -10,8 +10,8 @@ _iTerm = process.env.ITERM_SESSION_ID and (process.env.TERM_PROGRAM is 'iTerm.ap
 
 if _24bit
 	clr =
-		example  : "\x1b[38;2;65;135;215m"
-		command  : "\x1b[38;2;128;196;126m"
+		example  : "\x1b[38;2;178;98;255m"
+		command  : "\x1b[38;2;65;135;215m"
 		argument : "\x1b[38;2;0;175;255m"
 		option   : "\x1b[38;2;175;175;45m"
 		operator : "\x1b[38;2;255;255;255m"
@@ -60,7 +60,7 @@ page =
 		"""
 	epilogue:
 		"""
-			#{clr.command}#{ _truwrap.getName() }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
+			#{clr.cc}#{ _truwrap.getName() }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
 			#{clr.cc}© 2015 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
 
 		"""

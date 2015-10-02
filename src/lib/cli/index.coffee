@@ -1,10 +1,14 @@
 "use strict";
 ###
- truwrap (v0.1.12)
+ truwrap (v0.1.13-alpha.90)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
 ansiRegex = require "ansi-regex"
+util = require "util"
+verbosity = require '@thebespokepixel/verbosity'
+global.cli = verbosity.console()
+global.cli.level = 2
 
 yargs = require 'yargs'
 	.strict()
@@ -15,11 +19,11 @@ yargs = require 'yargs'
 		v:
 			alias: 'version'
 			count: yes
-			describe: 'Return the current version. -vv returns a descriptive string.'
+			describe: 'Return the current version. -vv Return name & version.'
 		V:
 			alias: 'verbose'
-			boolean: yes
-			describe: 'Be verbose. Useful for debugging.'
+			count: yes
+			describe: 'Be verbose. -VV Be loquacious.'
 		o:
 			alias: 'stdout'
 			boolean: yes
@@ -37,28 +41,36 @@ yargs = require 'yargs'
 			default: 2
 		w:
 			alias: 'width'
-			describe: 'Width. Sets right margin to [console-width - width - left margin - left margin].'
+			describe: 'Width. Overrides right margin.'
 			requiresArg: yes
 			nargs: 1
 		m:
 			alias: 'mode'
-			choices: ['hard', 'soft', 'regex']
-			describe: 'Wrapping mode: hard (break long lines), soft (keep white space) or regex (use the --regex option)'
+			choices: ['hard', 'soft']
+			describe: 'Wrapping mode: hard (break long lines), soft (keep white space)'
 			default: 'hard'
 			requiresArg: yes
-		p:
-			alias: 'panel'
-			describe: 'Render a panel into the available console width.'
+		e:
+			alias: 'encoding'
+			describe: 'Set encoding.'
+			default: 'utf8'
+		s:
+			alias: 'stamp'
+			boolean: yes
+			describe: 'Print arguments rather than stdin. printf-style options supported.'
+		t:
+			alias: 'table'
+			describe: 'Render a table into the available console width.'
 
 		d:
 			alias: 'delimiter'
-			describe: 'The column delimiter when rendering a panel. The default column delimiter is | (vertical bar).'
+			describe: 'The column delimiter when rendering a table.'
 			requiresArg: yes
 			default: '|'
 
 		x:
 			alias: 'regex'
-			describe: 'Character run selection regex.'
+			describe: 'Character run selection regex. Overrides --mode'
 			requiresArg: yes
 
 	.showHelpOnFail no, "Use 'wrap --help' for help."
@@ -68,13 +80,18 @@ outStream = process.stderr
 rightMargin = -(argv.right)
 
 if argv.version
-	console.log _truwrap.getVersion(argv.version > 1)
+	console.log _truwrap.getVersion(argv.version)
 	process.exit 0
 
 if argv.verbose
-	console.log 'Verbose mode:'
-	console.dir argv
-	global.verbose = true
+	switch argv.verbose
+		when 1
+			cli.verbosity 4
+			cli.log ':Verbose mode:'
+		when 2
+			cli.verbosity 5
+			cli.log ':Extra-Verbose mode:'
+			cli.yargs argv
 
 if argv.stdout
 	outStream = process.stdout
@@ -91,54 +108,59 @@ if argv.panel
 	renderPanel = yes
 
 renderer = (require "../..")
+	encoding: argv.encoding
 	left: argv.left
 	right: rightMargin
 	mode: argv.mode
 	outStream: outStream
 
-process.stdin.setEncoding 'utf8' ;
+writer = (chunk = new Buffer "\n", argv.encoding) ->
+	unless renderPanel is yes
+		renderer.write chunk
+	else
+		maxSpacers = 0
+		maxContent = 0
+		spacerCols = []
+		tableData = for line in (chunk.toString().split /\n/)[..-1]
+			columnData = {}
+			spacerCount = 0
+			contentCount = 0
+			for col, i in (line.split argv.delimiter)
+				do (col, i) ->
+					if col is ':space:'
+						spacerCount++
+						spacerCols.push i
+						columnData["spacer#{i}"] = ' '
+					else
+						contentCount += col.replace(ansiRegex(), '').length
+						columnData["c#{i}"] = col
+			maxSpacers = spacerCount if spacerCount > maxSpacers
+			maxContent = contentCount if contentCount > maxContent
+			columnData
 
-process.stdin.on 'readable', ->
-	chunk = process.stdin.read()
-	if chunk?
-		unless renderPanel is yes
-			renderer.write chunk
-		else
-			maxSpacers = 0
-			maxContent = 0
-			spacerCols = []
-			tableData = for line in (chunk.toString().split /\n/)[..-1]
-				columnData = {}
-				spacerCount = 0
-				contentCount = 0
-				for col, i in (line.split argv.delimiter)
-					do (col, i) ->
-						if col is ':space:'
-							spacerCount++
-							spacerCols.push i
-							columnData["spacer#{i}"] = ' '
-						else
-							contentCount += col.replace(ansiRegex(), '').length
-							columnData["c#{i}"] = col
-				maxSpacers = spacerCount if spacerCount > maxSpacers
-				maxContent = contentCount if contentCount > maxContent
-				columnData
+		temp = {}
+		for i in spacerCols
+			temp["spacer#{i}"] =
+				maxWidth: Math.floor renderer.getWidth() / (maxSpacers + 1)
+				minWidth: Math.floor (renderer.getWidth() - maxContent) / (maxSpacers + 1)
+		renderer.write renderer.panel
+			content: tableData
+			layout:
+				showHeaders: false
+				maxLineWidth: renderer.getWidth()
+				config: temp
 
-			temp = {}
-			for i in spacerCols
-				temp["spacer#{i}"] =
-					maxWidth: Math.floor renderer.getWidth() / (maxSpacers + 1)
-					minWidth: Math.floor (renderer.getWidth() - maxContent) / (maxSpacers + 1)
-			renderer.write renderer.panel
-				content: tableData
-				layout:
-					showHeaders: false
-					maxLineWidth: renderer.getWidth()
-					config:
-						temp
+if argv.stamp
+	writer util.format.apply @, argv._
+	process.exit 0
 
+process.stdin.setEncoding argv.encoding
+
+process.stdin.on 'readable', -> writer process.stdin.read()
 
 process.stdin.on 'end', ->
 	renderer.write('\r')
 	renderer.end()
+
+
 

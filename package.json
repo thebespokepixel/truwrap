@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.1.12",
+  "version": "0.1.13-alpha.90",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
@@ -30,8 +30,11 @@
     "url": "https://github.com/MarkGriffiths/truwrap/issues"
   },
   "homepage": "https://github.com/MarkGriffiths/truwrap",
+  "engines": {
+    "node": ">=0.12 <5.0.0"
+  },
   "dependencies": {
-    "@thebespokepixel/verbosity": "0.0.6",
+    "@thebespokepixel/verbosity": "0.0.11",
     "ansi-regex": "^2.0.0",
     "columnify": "^1.2.0",
     "yargs": "^3.11.0"
