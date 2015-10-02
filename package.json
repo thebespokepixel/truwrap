@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "node": ">=0.12 <5.0.0"
   },
   "dependencies": {
-    "@thebespokepixel/verbosity": "0.0.19",
+    "@thebespokepixel/verbosity": "0.0.20",
     "ansi-regex": "^2.0.0",
     "columnify": "^1.2.0",
     "yargs": "^3.11.0"
