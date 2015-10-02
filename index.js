@@ -1,7 +1,7 @@
 'use strict'
 
 /*
-	truwrap (v0.1.13-alpha.90)
+	truwrap (v0.1.13)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -25,29 +25,30 @@
 	TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-var StringDecoder, _package, _utf8, ansiRegex, columnify, truwrap
+var StringDecoder, _package, ansiRegex, columnify, truwrap
 
 _package = require('./package.json')
 
 StringDecoder = require('string_decoder').StringDecoder
-
-_utf8 = new StringDecoder('utf8')
 
 ansiRegex = require('ansi-regex')
 
 columnify = require('columnify')
 
 truwrap = module.exports = function (options) {
-  var left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, ref, right, tabRegex, ttyActive, ttyWidth, width
+  var _encoder, encoding, left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, ref, right, tabRegex, ttyActive, ttyWidth, width
   left = options.left
   right = options.right
   mode = options.mode
   outStream = options.outStream
+  encoding = options.encoding
   modeRegex = options.modeRegex
+  _encoder = new StringDecoder(encoding != null ? encoding : encoding = 'utf8')
   if (outStream == null) {
     outStream = process.stdout
   }
   ttyActive = Boolean(outStream.isTTY)
+  outStream.setEncoding(encoding)
   if (!ttyActive) {
     return (function () {
       return {
@@ -59,7 +60,7 @@ truwrap = module.exports = function (options) {
           return Infinity
         },
         write: function (buffer_) {
-          return outStream.write(_utf8.write(buffer_))
+          return outStream.write(_encoder.write(buffer_))
         }
       }
     })()
@@ -86,7 +87,7 @@ truwrap = module.exports = function (options) {
           return ttyWidth
         },
         write: function (buffer_) {
-          return outStream.write(_utf8.write(buffer_))
+          return outStream.write(_encoder.write(buffer_))
         }
       }
     })()
@@ -116,13 +117,16 @@ truwrap = module.exports = function (options) {
       panel: function (panel_) {
         return columnify(panel_.content, panel_.layout)
       },
-      write: function (buffer_) {
+      write: function (buffer_, write_) {
         var format, indent, j, len, line, lineWidth, lines, process, token, tokens
+        if (write_ == null) {
+          write_ = true
+        }
         lines = []
         line = margin.slice(0, +(left - 1) + 1 || 9e9)
         lineWidth = 0
         indent = 0
-        tokens = _utf8.write(buffer_).replace(tabRegex, '\x00<T>\x00').replace(ansiRegex(), '\x00$&\x00').replace(modeRegex, '\x00$&\x00').split('\x00')
+        tokens = _encoder.write(buffer_).replace(tabRegex, '\x00<T>\x00').replace(ansiRegex(), '\x00$&\x00').replace(modeRegex, '\x00$&\x00').split('\x00')
         process = {
           hard: function (token_) {
             var i, j, ref1, ref2, results
@@ -199,7 +203,11 @@ truwrap = module.exports = function (options) {
         if (line !== '') {
           lines.push(line)
         }
-        return outStream.write(lines.join('\n'))
+        if (write_) {
+          return outStream.write(lines.join('\n'))
+        } else {
+          return lines.join('\n')
+        }
       }
     }
   })()

@@ -1,4 +1,4 @@
-# truwrap v0.1.13-alpha.90
+# truwrap v0.1.13
 
 ![Project status](http://img.shields.io/badge/status-alpha-red.svg?style=flat) [![Build Status](http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat)](https://travis-ci.org/MarkGriffiths/truwrap) [![Dependency Status](http://img.shields.io/david/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap) [![devDependency Status](http://img.shields.io/david/dev/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies) ![npm](https://img.shields.io/npm/v/truwrap.svg?style=flat)
 
@@ -34,7 +34,7 @@ To use simply pipe in a body of text to wrap according to the supplied options.
 
 > truwrap --help
 
-truwrap v0.1.13-alpha.90
+truwrap v0.1.13
 
   Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 
@@ -57,5 +57,33 @@ truwrap v0.1.13-alpha.90
   -x, --regex      Character run selection regex. Overrides --mode
 
 ```
+
+## Programmatic usage
+
+#### Basic use
+
+```js
+	var truwrap = require('truwrap')
+
+	writer = truwrap({
+		left: 2
+		right: -2
+		mode: 'soft'
+		encoding: 'utf8'
+		outStream: process.stderr
+	})
+
+	contentWidth = writer.getWidth()
+
+	writer.write("Some text to write...", "...and some more.")
+	writer.write("A new paragraph, if not implicitly present.")
+	writer.end()
+```
+
+#### Advanced use
+
+To add. Containers, Tables, Panels and Images.
+
+
 
 Initially a port of https://github.com/substack/node-wordwrap to format yargs help output that contained (the very long) ansi 24bit color SGR codes.

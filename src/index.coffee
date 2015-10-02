@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.1.13-alpha.90)
+	truwrap (v0.1.13)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -27,7 +27,7 @@
 
 _package = require './package.json'
 StringDecoder = require('string_decoder').StringDecoder
-_utf8 = new StringDecoder('utf8')
+
 ansiRegex = require 'ansi-regex'
 columnify = require 'columnify'
 
@@ -36,24 +36,28 @@ truwrap = module.exports = (options) ->
 	#  Options:
 	#    left      : left hand margin
 	#    right     : right hand margin
-	#    mode      : Hard/soft wrap selector
-	#    outStream : output stream
+	#    mode      : Hard/soft wrap selector (soft)
+	#    outStream : output stream.
+	#    encoding  : Text encoding. (utf8)
 	#    modeRegex : Override the normal wrap pattern.
 	#                This doesn't change the mode's behaviour,
 	#                it just changes how tokens are created.
 
-	{left, right, mode, outStream, modeRegex} = options
+	{left, right, mode, outStream, encoding, modeRegex} = options
 
+	_encoder = new StringDecoder encoding ?= 'utf8'
 
 	outStream ?= process.stdout
 	ttyActive = Boolean outStream.isTTY
+	outStream.setEncoding encoding
 
 	unless ttyActive
 		return do ->
 			isTTY: false
 			end      : -> outStream._isStdio or outStream.end()
 			getWidth : -> Infinity
-			write    : (buffer_) -> outStream.write _utf8.write buffer_
+			write    : (buffer_) -> outStream.write _encoder.write buffer_
+
 
 	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
 
@@ -68,7 +72,7 @@ truwrap = module.exports = (options) ->
 		return do ->
 			end      : -> outStream._isStdio or outStream.end()
 			getWidth : -> ttyWidth
-			write    : (buffer_) -> outStream.write _utf8.write buffer_
+			write    : (buffer_) -> outStream.write _encoder.write buffer_
 
 	modeRegex ?= do ->
 		if mode is 'hard'
@@ -88,13 +92,13 @@ truwrap = module.exports = (options) ->
 		getWidth: -> width
 		panel: (panel_) ->
 			columnify panel_.content, panel_.layout
-		write: (buffer_) ->
+		write: (buffer_, write_ = yes) ->
 			lines = []
 			line = margin[0..left - 1]
 			lineWidth = 0
 			indent = 0
 
-			tokens = _utf8.write buffer_
+			tokens = _encoder.write buffer_
 					.replace tabRegex, '\x00<T>\x00'
 					.replace ansiRegex(), '\x00$&\x00'
 					.replace modeRegex, '\x00$&\x00'
@@ -155,7 +159,10 @@ truwrap = module.exports = (options) ->
 
 			lines.push line if line isnt ''
 
-			outStream.write lines.join '\n'
+			if write_
+				outStream.write lines.join '\n'
+			else
+				lines.join '\n'
 
 truwrap.getName = ->
 	return _package.name

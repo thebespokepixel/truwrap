@@ -1,6 +1,6 @@
 "use strict";
 ###
- truwrap (v0.1.13-alpha.90)
+ truwrap (v0.1.13)
  Smart word wrap, colums and inline images for the CLI
 ###
 _truwrap = require "../.."
@@ -131,9 +131,11 @@ writer = (chunk = new Buffer "\n", argv.encoding) ->
 						spacerCount++
 						spacerCols.push i
 						columnData["spacer#{i}"] = ' '
+						return
 					else
 						contentCount += col.replace(ansiRegex(), '').length
 						columnData["c#{i}"] = col
+						return
 			maxSpacers = spacerCount if spacerCount > maxSpacers
 			maxContent = contentCount if contentCount > maxContent
 			columnData
