@@ -65,7 +65,7 @@ truwrap v0.1.14
 ```js
 	var truwrap = require('truwrap')
 
-	writer = truwrap({
+	var writer = truwrap({
 		left: 2
 		right: -2
 		mode: 'soft'
@@ -73,7 +73,7 @@ truwrap v0.1.14
 		outStream: process.stderr
 	})
 
-	contentWidth = writer.getWidth()
+	var contentWidth = writer.getWidth()
 
 	writer.write("Some text to write...", "...and some more.")
 	writer.write("A new paragraph, if not implicitly present.")
