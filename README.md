@@ -86,7 +86,7 @@ To add. Containers, Tables, Panels and Images.
 
 #### Related
 
-For advanced 24bit colour handling see MarkGriffiths/trucolor
+For advanced 24bit colour handling see [trucolor](MarkGriffiths/trucolor)
 
 
 Initially a port of https://github.com/substack/node-wordwrap to format yargs help output that contained (the very long) ansi 24bit color SGR codes.
