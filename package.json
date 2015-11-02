@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.1.22",
+  "version": "0.1.23-alpha.22",
   "description": "Smarter TTY text wrapping (handles 24bit ansi color)",
   "main": "index.js",
   "scripts": {
@@ -34,20 +34,18 @@
     "node": ">=0.12 <5.0.0"
   },
   "dependencies": {
-    "@thebespokepixel/verbosity": "0.0.20",
+    "@thebespokepixel/verbosity": "*",
     "ansi-regex": "^2.0.0",
     "columnify": "^1.2.0",
     "yargs": "^3.11.0"
   },
   "devDependencies": {
-    "@thebespokepixel/grunt-contrib-coffee": "^0.14.0-beta",
+    "@thebespokepixel/grunt-coffeescript": "^1.1.0",
     "coffee-script": "^1.10.0",
     "grunt": "^0.4.5",
     "grunt-bump": "^0.6.0",
     "grunt-force-task": "^1.0.0",
     "grunt-shell": "^1.1.2",
-    "grunt-standard": "^1.0.2",
-    "grunt-text-replace": "^0.4.0",
     "grunt-version": "^1.0.0",
     "load-grunt-tasks": "^3.2.0",
     "vows": "^0.8.1"

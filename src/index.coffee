@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.1.22)
+	truwrap (v0.1.23-alpha.22)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -25,8 +25,9 @@
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ###
 
+util = require "util"
 verbosity = require '@thebespokepixel/verbosity'
-console = verbosity.console
+global.vconsole ?= verbosity.console
 				out: process.stderr
 
 _package = require './package.json'
@@ -34,6 +35,8 @@ StringDecoder = require('string_decoder').StringDecoder
 
 ansiRegex = require 'ansi-regex'
 columnify = require 'columnify'
+
+console = global.vconsole
 
 truwrap = module.exports = (options) ->
 
@@ -94,8 +97,9 @@ truwrap = module.exports = (options) ->
 	return do ->
 		end: -> outStream._isStdio or outStream.end()
 		getWidth: -> width
-		panel: (panel_) ->
-			columnify panel_.content, panel_.layout
+		panel: (panel_) -> columnify panel_.content, panel_.layout
+		break: -> outStream.write "\n"
+		clear: -> outStream.write "\r"
 		write: (buffer_, write_ = yes) ->
 			lines = []
 			line = margin[0..left - 1]
@@ -133,7 +137,7 @@ truwrap = module.exports = (options) ->
 						return
 
 					else if mode is 'soft' and token_.length > width - indent
-						format.linefit token_[0..width - indent - 4] + "..."
+						format.linefit token_[0..width - indent - 4] + "…"
 
 					else if lineWidth + token_.length > width
 						line.replace postSpaceRegex, ''

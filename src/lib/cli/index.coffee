@@ -1,11 +1,16 @@
 "use strict";
 ###
- truwrap (v0.1.22)
+ truwrap (v0.1.23-alpha.22)
  Smart word wrap, colums and inline images for the CLI
 ###
+
+# util = require "util"
+# verbosity = require '@thebespokepixel/verbosity'
+# console = verbosity.console
+# 				out: process.stderr
 _truwrap = require "../.."
 ansiRegex = require "ansi-regex"
-util = require "util"
+console = global.vconsole
 
 yargs = require 'yargs'
 	.strict()

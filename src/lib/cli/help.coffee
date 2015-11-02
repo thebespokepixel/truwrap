@@ -1,6 +1,6 @@
 'use strict'
 ###
- truwrap (v0.1.22) : Smart word wrap
+ truwrap (v0.1.23-alpha.22) : Smart word wrap
  Command line help
 ###
 
@@ -49,11 +49,11 @@ page =
 
 			#{img.space}#{clr.command}#{ _truwrap.getName() } #{clr.grey}v#{ _truwrap.getVersion() }#{clr.normal}
 
-			Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 
 		"""
 	usage:
 		"""
+			Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 
 			CLI Usage:
 			#{clr.example}Text stream (i.e cat or echo) #{clr.operator}| #{clr.command}#{ _truwrap.getName() } #{clr.option}[OPTIONS]#{clr.normal}
@@ -64,8 +64,6 @@ page =
 			#{clr.cc}© 2015 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
 
 		"""
-
-
 
 # Actually output a page...
 module.exports = (yargs_) ->
@@ -91,6 +89,6 @@ module.exports = (yargs_) ->
 		nobreak: false
 		align: 2
 	container.write page.header
+	renderer.break()
 	renderer.write yargs_.help()
-	renderer.write "\r"
-	renderer.end()
+	renderer.clear()

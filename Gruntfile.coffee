@@ -21,27 +21,6 @@ module.exports = (grunt) ->
 					dest: 'lib/'
 					ext: '.js'
 				]
-		standard:
-			options:
-				format: yes
-				lint: yes
-			src: [
-				'{,lib/**/}*.js'
-			]
-		replace:
-			sequencedCommas:
-				src: [
-					'index.js'
-					'lib/**/*.js'
-				]
-				overwrite: true
-				replacements: [
-					from: /,\s(\w+\s=\soptions)/g
-					to: '\n$1'
-				,
-					from: /,\s(this.)*(\w+\s=\ssource_)/g
-					to: '\n$1$2'
-				]
 		version:
 			default:
 				options:
@@ -70,13 +49,13 @@ module.exports = (grunt) ->
 				command: 'npm publish'
 
 
-	grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile', 'replace', 'force:standard', 'force:shell:version']
+	grunt.registerTask 'default', ['bump-only:prerelease', 'version', 'coffee:compile', 'force:shell:version']
 	grunt.registerTask 'commit',  ['default', 'bump-commit']
 	grunt.registerTask 'push',    ['default', 'release', 'bump-commit']
-	grunt.registerTask 'patch',   ['bump-only:prepatch', 'version', 'coffee:compile', 'replace', 'force:standard', 'bump-commit']
-	grunt.registerTask 'minor',   ['bump-only:preminor', 'version', 'coffee:compile', 'replace', 'force:standard', 'bump-commit']
-	grunt.registerTask 'major',   ['bump-only:premajor', 'version', 'coffee:compile', 'replace', 'force:standard', 'bump-commit']
-	grunt.registerTask 'final',   ['bump-only', 'version', 'coffee:compile', 'release:final', 'replace', 'force:standard', 'bump-commit']
+	grunt.registerTask 'patch',   ['bump-only:prepatch', 'version', 'coffee:compile', 'bump-commit']
+	grunt.registerTask 'minor',   ['bump-only:preminor', 'version', 'coffee:compile', 'bump-commit']
+	grunt.registerTask 'major',   ['bump-only:premajor', 'version', 'coffee:compile', 'bump-commit']
+	grunt.registerTask 'final',   ['bump-only', 'version', 'coffee:compile', 'release:final', 'bump-commit']
 	grunt.registerTask 'publish', ['shell:publish']
 	grunt.registerTask 'shipit',  ['final', 'publish']
 
