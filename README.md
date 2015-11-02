@@ -1,5 +1,7 @@
 # truwrap v0.1.23
 
+[![Join the chat at https://gitter.im/MarkGriffiths/truwrap](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarkGriffiths/truwrap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![Project status](http://img.shields.io/badge/status-alpha-red.svg?style=flat) [![Build Status](http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat)](https://travis-ci.org/MarkGriffiths/truwrap) [![Dependency Status](http://img.shields.io/david/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap) [![devDependency Status](http://img.shields.io/david/dev/MarkGriffiths/truwrap.svg?style=flat)](https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies) [![npm](https://img.shields.io/npm/v/truwrap.svg?style=flat)](https://www.npmjs.com/package/truwrap)
 
 __Work in progress.__
