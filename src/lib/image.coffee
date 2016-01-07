@@ -1,6 +1,6 @@
 'use strict'
 ###
-	truwrap (v0.1.26-alpha.3)
+	truwrap
 	Read an image into the console. Currently for iTerm2.9.x nightlies.
 ###
 fs = require 'fs'
@@ -36,11 +36,7 @@ class Image
 
 		"#{@prefix}#{aspect}#{@config}:#{@data.toString 'base64'}#{@suffix}#{newline}"
 
-	stream: (wStream = process.stdout, options_ = {}) ->
-		# if not wStream.writable
-		# 	throw "Output stream is not writable."
-
-		wStream.write @render options_
+	stream: (wStream = process.stdout, options_ = {}) -> wStream.write @render options_
 
 module.exports = Image
 

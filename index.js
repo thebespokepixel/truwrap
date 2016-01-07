@@ -1,10 +1,10 @@
 'use strict';
 
 /*
-	truwrap (v0.1.26-alpha.3)
+	truwrap
 	Smarter 24bit console text wrapping
 
-	Copyright (c) 2015 CryptoComposite
+	Copyright (c) 2016 Mark Griffiths/CryptoComposite
 
 	Permission is hereby granted, free of charge, to any person
 	obtaining a copy of this software and associated documentation
@@ -29,7 +29,7 @@ var StringDecoder, _package, ansiRegex, columnify, console, truwrap, util, verbo
 
 util = require("util");
 
-verbosity = require('@thebespokepixel/verbosity');
+verbosity = require('verbosity');
 
 if (global.vConsole == null) {
   global.vConsole = verbosity.console({
@@ -231,6 +231,10 @@ truwrap = module.exports = function(options) {
 
 truwrap.getName = function() {
   return _package.name;
+};
+
+truwrap.getDescription = function() {
+  return _package.description;
 };
 
 truwrap.getVersion = function(long) {

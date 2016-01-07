@@ -1,9 +1,9 @@
 'use strict'
 ###
-	truwrap (v0.1.26-alpha.3)
+	truwrap
 	Smarter 24bit console text wrapping
 
-	Copyright (c) 2015 CryptoComposite
+	Copyright (c) 2016 Mark Griffiths/CryptoComposite
 
 	Permission is hereby granted, free of charge, to any person
 	obtaining a copy of this software and associated documentation
@@ -26,9 +26,9 @@
 ###
 
 util = require "util"
-verbosity = require '@thebespokepixel/verbosity'
+verbosity = require 'verbosity'
 global.vConsole ?= verbosity.console
-				out: process.stderr
+	out: process.stderr
 
 _package = require './package.json'
 StringDecoder = require('string_decoder').StringDecoder
@@ -172,8 +172,8 @@ truwrap = module.exports = (options) ->
 			else
 				lines.join '\n'
 
-truwrap.getName = ->
-	return _package.name
+truwrap.getName =        -> return _package.name
+truwrap.getDescription = -> return _package.description
 
 truwrap.getVersion = (long = 1) ->
 	switch long

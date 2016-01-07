@@ -1,14 +1,9 @@
-"use strict";
+"use strict"
 ###
- truwrap (v0.1.26-alpha.3)
- Smart word wrap, colums and inline images for the CLI
+	truwrap
+	Smart word wrap, colums and inline images for the CLI
 ###
-
-# util = require "util"
-# verbosity = require '@thebespokepixel/verbosity'
-# console = verbosity.console
-# 				out: process.stderr
-_truwrap = require "../.."
+truwrap = require "../.."
 ansiRegex = require "ansi-regex"
 console = global.vConsole
 
@@ -81,7 +76,7 @@ outStream = process.stdout
 rightMargin = -(argv.right)
 
 if argv.version
-	process.stdout.write _truwrap.getVersion(argv.version)
+	process.stdout.write truwrap.getVersion(argv.version)
 	process.exit 0
 
 if argv.verbose

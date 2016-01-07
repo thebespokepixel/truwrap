@@ -35,12 +35,13 @@
   },
   "dependencies": {
     "verbosity": "^0.2.1",
-    "trucolor": "*",
+    "trucolor": "^0.1.0",
     "ansi-regex": "^2.0.0",
     "columnify": "^1.2.0",
     "yargs": "^3.11.0"
   },
   "devDependencies": {
+    "deep-assign": "^2.0.0",
     "gulp": "^3.9.0",
     "gulp-coffee": "^2.3.1",
     "gulp-git": "^1.6.1",

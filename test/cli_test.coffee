@@ -3,7 +3,7 @@
 vows = require ('vows')
 assert = require ('assert')
 _package = require '../package.json'
-testSubject = require ('../../truwrap')
+testSubject = require ('..')
 exec = require('child_process').exec
 bin = _package.bin[_package.name]
 

@@ -1,78 +1,66 @@
 'use strict'
 ###
- truwrap (v0.1.26-alpha.3) : Smart word wrap
- Command line help
+	truwrap
+	Command line help
 ###
 
-_truwrap = require '../..'
-_24bit = (process.env.TERM_COLOR is '16m') or (process.env.fish_term24bit)
-_iTerm = process.env.ITERM_SESSION_ID and (process.env.TERM_PROGRAM is 'iTerm.app')
+console = global.vConsole
+trucolor = require 'trucolor'
+truwrap = require '../..'
+deepAssign = require 'deep-assign'
+terminalFeatures = require 'term-ng'
 
-if _24bit
-	clr =
-		example  : "\x1b[38;2;178;98;255m"
-		command  : "\x1b[38;2;65;135;215m"
-		argument : "\x1b[38;2;0;175;255m"
-		option   : "\x1b[38;2;175;175;45m"
-		operator : "\x1b[38;2;255;255;255m"
-		grey     : "\x1b[38;2;100;100;100m"
-		normal   : "\x1b[30m\x1b[m\x1b[38;2;240;240;240m"
-		cc       : "\x1b[38;2;128;196;126m"
-else
-	clr =
-		example  : "\x1b[38;5;93m"
-		command  : "\x1b[38;5;68m"
-		argument : "\x1b[38;5;39m"
-		option   : "\x1b[38;5;142m"
-		operator : "\x1b[38;5;231m"
-		grey     : "\x1b[38;5;247m"
-		normal   : "\x1b[30m\x1b[m"
-		cc       : "\x1b[38;5;114m"
+setupPage = (clr) ->
+	if terminalFeatures.images
+		img =
+			space : "\t"
+			cc    : new truwrap.Image
+				name   : 'logo'
+				file   : __dirname + '/../../media/CCLogo.png'
+				height : 3
+	else
+		img =
+			space : ""
+			cc    :
+				render: ->
+					""
 
-if _24bit and _iTerm
-	img =
-		space : "\t"
-		cc    : new _truwrap.Image
-			name   : 'logo'
-			file   : __dirname + '/../../media/CCLogo.png'
-			height : 3
-else
-	img =
-		space : ""
-		cc    :
-			render: ->
-				""
-
-page =
-	header:
-		"""
-
-			#{img.space}#{clr.command}#{ _truwrap.getName() } #{clr.grey}v#{ _truwrap.getVersion() }#{clr.normal}
-
-
-		"""
-	usage:
-		"""
+	page =
+		images: img
+		header:->
+				[
+					"#{clr.title} #{truwrap.getName()}#{clr.titleOut}"
+					"#{img.space} #{truwrap.getDescription()}"
+					"#{img.space} #{clr.grey}#{trucolor.getVersion()}#{clr.dark}"
+				].join "\n"
+		synopsis:
+			"""
+				#{clr.title}Synopsis:#{clr.titleOut}
+				#{clr.command}#{ truwrap.getName() } #{clr.option}[OPTIONS]
+			"""
+		usage:
+			"""
+			#{clr.title}Usage:#{clr.titleOut}
 			Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
+			"""
+		epilogue:
+			"""
+				#{clr.title}#{ truwrap.getName() }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
+				#{clr.title}© 2014-2016 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
+				#{clr.grey}Documentation/Issues/Contributions @ http://github.com/MarkGriffiths/trucolor#{clr.normal}
 
-			CLI Usage:
-			#{clr.example}Text stream (i.e cat or echo) #{clr.operator}| #{clr.command}#{ _truwrap.getName() } #{clr.option}[OPTIONS]#{clr.normal}
-		"""
-	epilogue:
-		"""
-			#{clr.cc}#{ _truwrap.getName() }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
-			#{clr.cc}© 2015 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
-
-		"""
+			"""
+	return page
 
 # Actually output a page...
-module.exports = (yargs_) ->
-
-	container = _truwrap
+outputPage =  (yargs_, page_) ->
+	container = truwrap
 		mode: 'container'
 		outStream: process.stderr
 
-	renderer = _truwrap
+	windowWidth = container.getWidth()
+
+	renderer = truwrap
 		left: 2
 		right: -2
 		mode: 'soft'
@@ -80,15 +68,30 @@ module.exports = (yargs_) ->
 
 	contentWidth = renderer.getWidth()
 
-	yargs_.usage page.usage
-	yargs_.epilogue page.epilogue
+	yargs_.usage ' '
 	yargs_.wrap(contentWidth)
 
-
-	container.write img.cc.render
+	container.write '\n'
+	container.write page_.images.cc.render
 		nobreak: false
 		align: 2
-	container.write page.header
+	container.write page_.header()
 	renderer.break()
+	container.write "–".repeat windowWidth
+	renderer.break(2)
+	renderer.write page_.synopsis
 	renderer.write yargs_.help()
-	renderer.clear()
+	renderer.break()
+	renderer.write page_.usage
+	renderer.break(2)
+	renderer.write page_.epilogue
+	renderer.break()
+
+
+module.exports = (yargs_) ->
+	trucolor.simplePalette (basic) ->
+		trucolor.bulk
+			bright: 'bold rgb(255,255,255)'
+			dark  : '#333',
+			{}, (clr) ->
+				outputPage yargs_, setupPage(deepAssign clr, basic)
