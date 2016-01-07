@@ -68,21 +68,21 @@ To use simply pipe in a body of text to wrap according to the supplied options.
 ## Programmatic usage
 
 ```js
-	var truwrap = require('truwrap')
+var truwrap = require('truwrap')
 
-	var writer = truwrap({
-		left: 2
-		right: -2
-		mode: 'soft'
-		encoding: 'utf8'
-		outStream: process.stderr
-	})
+var writer = truwrap({
+  left: 2
+  right: -2
+  mode: 'soft'
+  encoding: 'utf8'
+  outStream: process.stderr
+})
 
-	var contentWidth = writer.getWidth()
+var contentWidth = writer.getWidth()
 
-	writer.write("Some text to write...", "...and some more.")
-	writer.write("A new paragraph, if not implicitly present.")
-	writer.end()
+writer.write("Some text to write...", "...and some more.")
+writer.write("A new paragraph, if not implicitly present.")
+writer.end()
 ```
 
 ### Advanced use
@@ -91,6 +91,6 @@ To add. Containers, Tables, Panels and Images.
 
 ### Related
 
-For advanced 24bit colour handling see [MarkGriffiths/trucolor](https://github.com/MarkGriffiths/trucolor) and [npm @thebespokepixel/trucolor](https://www.npmjs.com/package/@thebespokepixel/trucolor).
+For advanced 24bit colour handling see [MarkGriffiths/trucolor](https://github.com/MarkGriffiths/trucolor) and [npm trucolor](https://www.npmjs.com/package/trucolor).
 
 Initially a port of [substack/node-wordwrap](https://github.com/substack/node-wordwrap) to format yargs help output that contained (the very long) ansi 24bit color SGR codes.
