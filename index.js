@@ -27,25 +27,21 @@
  */
 var StringDecoder, _package, ansiRegex, columnify, console, truwrap, util, verbosity;
 
+console = global.vConsole != null ? global.vConsole : global.vConsole = require('verbosity').console({
+  out: process.stderr
+});
+
+_package = require('./package.json');
+
 util = require("util");
 
 verbosity = require('verbosity');
-
-if (global.vConsole == null) {
-  global.vConsole = verbosity.console({
-    out: process.stderr
-  });
-}
-
-_package = require('./package.json');
 
 StringDecoder = require('string_decoder').StringDecoder;
 
 ansiRegex = require('ansi-regex');
 
 columnify = require('columnify');
-
-console = global.vConsole;
 
 truwrap = module.exports = function(options) {
   var _decoder, encoding, left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, ref, right, tabRegex, ttyActive, ttyWidth, width;

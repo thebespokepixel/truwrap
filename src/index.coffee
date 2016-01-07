@@ -25,18 +25,15 @@
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ###
 
-util = require "util"
-verbosity = require 'verbosity'
-global.vConsole ?= verbosity.console
+console = global.vConsole ?= require('verbosity').console
 	out: process.stderr
 
-_package = require './package.json'
+_package =      require './package.json'
+util =          require "util"
+verbosity =     require 'verbosity'
 StringDecoder = require('string_decoder').StringDecoder
-
-ansiRegex = require 'ansi-regex'
-columnify = require 'columnify'
-
-console = global.vConsole
+ansiRegex =     require 'ansi-regex'
+columnify =     require 'columnify'
 
 truwrap = module.exports = (options) ->
 
