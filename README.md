@@ -1,4 +1,4 @@
-# truwrap v0.1.25
+# truwrap v0.1.26-alpha.3
 
 [![Join the chat at https://gitter.im/MarkGriffiths/truwrap](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MarkGriffiths/truwrap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -36,7 +36,7 @@ To use simply pipe in a body of text to wrap according to the supplied options.
 
 > truwrap --help
 
-truwrap v0.1.25
+truwrap v0.1.26-alpha.3
 
   Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 

@@ -1,11 +1,11 @@
 'use strict'
 ###
- truwrap (v0.1.25) : Smart word wrap
+ truwrap (v0.1.26-alpha.3) : Smart word wrap
  Command line help
 ###
 
 _truwrap = require '../..'
-_24bit = (process.env.TERM_COLOR is '24 bit') or (process.env.fish_term24bit)
+_24bit = (process.env.TERM_COLOR is '16m') or (process.env.fish_term24bit)
 _iTerm = process.env.ITERM_SESSION_ID and (process.env.TERM_PROGRAM is 'iTerm.app')
 
 if _24bit

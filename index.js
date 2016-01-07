@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-	truwrap (v0.1.25)
+	truwrap (v0.1.26-alpha.3)
 	Smarter 24bit console text wrapping
 
 	Copyright (c) 2015 CryptoComposite
@@ -31,8 +31,8 @@ util = require("util");
 
 verbosity = require('@thebespokepixel/verbosity');
 
-if (global.vconsole == null) {
-  global.vconsole = verbosity.console({
+if (global.vConsole == null) {
+  global.vConsole = verbosity.console({
     out: process.stderr
   });
 }
@@ -45,7 +45,7 @@ ansiRegex = require('ansi-regex');
 
 columnify = require('columnify');
 
-console = global.vconsole;
+console = global.vConsole;
 
 truwrap = module.exports = function(options) {
   var _decoder, encoding, left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, ref, right, tabRegex, ttyActive, ttyWidth, width;
@@ -124,8 +124,11 @@ truwrap = module.exports = function(options) {
       panel: function(panel_) {
         return columnify(panel_.content, panel_.layout);
       },
-      "break": function() {
-        return outStream.write("\n");
+      "break": function(count) {
+        if (count == null) {
+          count = 1;
+        }
+        return outStream.write("\n".repeat(count));
       },
       clear: function() {
         return outStream.write("\r");
