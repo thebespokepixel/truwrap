@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.1.26-alpha.3",
+  "version": "0.2.0",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "main": "index.js",
   "scripts": {
