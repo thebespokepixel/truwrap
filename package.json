@@ -1,7 +1,11 @@
 {
-  "author": "Mark Griffiths <mark@thebespokepixel.com>",
+  "author": {
+    "name": "Mark Griffiths",
+    "email": "mark@thebespokepixel.com",
+    "url": "http://thebespokepixel.com"
+  },
   "bin": {
-    "truwrap": "./bin/cli.js"
+    "truwrap": "./bin/truwrap.js"
   },
   "bugs": {
     "url": "https://github.com/MarkGriffiths/truwrap/issues"
@@ -9,8 +13,8 @@
   "dependencies": {
     "ansi-regex": "^2.0.0",
     "columnify": "^1.2.0",
-    "trucolor": "^0.1.8",
-    "verbosity": "^0.2.1",
+    "trucolor": "^0.2.0",
+    "verbosity": "^0.2.0",
     "yargs": "^3.25.0"
   },
   "description": "Smarter terminal text wrapping (handles 24bit color)",

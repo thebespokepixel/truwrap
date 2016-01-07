@@ -18,6 +18,13 @@ A node module andCLI for text wrapping, panels & tables that supports 24bit colo
 [![devDependency Status][david-dev-badge]][david-dev]
 [![npm Status][npm-badge]][npm]
 
+## Install
+##### Global version, for CLI use
+`npm install --global truwrap`
+
+##### Module, for programmatic use
+`npm install --save truwrap`
+
 Many current tty text wrapping solutions have issues with the 'long' and currently 'non-standard' RGB SGR codes (i.e ^[[38;2;204;51;66m). This meant that, while it's possible to have wonderful, rich, full gamut colours and the aesthetic data visualisations it entails, it comes at the price of painful typography and corrupted console displays as text is broken up, unnaturally wrapped and becoming unreadable as the SGR codes are dashed against the rocks of 1980's shortsightedness, confusing your terminal and ever so slightly breaking the heart of design aware coders and administrators everywhere.
 
 _Clearly this is unnacceptable!_
@@ -32,51 +39,33 @@ Usable within your own node.js cli projects and an npm module or directly from t
 
 ## CLI usage
 
-#### To install using npm:
+#### Synopsis
 
-    npm install truwrap -g
+```text
+truwrap [OPTIONS]
+
+Options:
+-h, --help       Display this help.
+-v, --version    Return the current version. -vv Return name & version.
+-V, --verbose    Be verbose. -VV Be loquacious.
+-o, --stderr     Use stderr rather than stdout
+-l, --left       Left margin [default: 2]
+-r, --right      Right margin [default: 2]
+-w, --width      Width. Overrides right margin.
+-m, --mode       Wrapping mode: hard (break long lines), soft (keep white space) [default: "hard"]
+-e, --encoding   Set encoding. [default: "utf8"]
+-s, --stamp      Print arguments rather than stdin. printf-style options supported.
+-t, --table      Render a table into the available console width.
+-d, --delimiter  The column delimiter when rendering a table. [default: "|"]
+-x, --regex      Character run selection regex. Overrides --mode
+
+```
 
 To use simply pipe in a body of text to wrap according to the supplied options.
 
     cat README.md | truwrap --left 12 --right 12 --mode soft
 
-#### Options
-
-```console
-
-> truwrap --help
-
-truwrap v0.1.26-alpha.3
-
-  Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
-
-  CLI Usage:
-  Text stream (i.e cat, echo) | truwrap [OPTIONS]
-
-  Options:
-  -h, --help       Display this help.
-  -v, --version    Return the current version. -vv Return name & version.
-  -V, --verbose    Be verbose. -VV Be loquacious.
-  -o, --stderr     Use stderr rather than stdout
-  -l, --left       Left margin [default: 2]
-  -r, --right      Right margin [default: 2]
-  -w, --width      Width. Overrides right margin.
-  -m, --mode       Wrapping mode: hard (break long lines), soft (keep white space) [default: "hard"]
-  -e, --encoding   Set encoding. [default: "utf8"]
-  -s, --stamp      Print arguments rather than stdin. printf-style options supported.
-  -t, --table      Render a table into the available console width.
-  -d, --delimiter  The column delimiter when rendering a table. [default: "|"]
-  -x, --regex      Character run selection regex. Overrides --mode
-
-```
-
 ## Programmatic usage
-
-#### Basic use
-
-    npm install truwrap --save
-
-... and then ...
 
 ```js
 	var truwrap = require('truwrap')
@@ -96,13 +85,12 @@ truwrap v0.1.26-alpha.3
 	writer.end()
 ```
 
-#### Advanced use
+### Advanced use
 
 To add. Containers, Tables, Panels and Images.
 
-#### Related
+### Related
 
 For advanced 24bit colour handling see [MarkGriffiths/trucolor](https://github.com/MarkGriffiths/trucolor) and [npm @thebespokepixel/trucolor](https://www.npmjs.com/package/@thebespokepixel/trucolor).
-
 
 Initially a port of [substack/node-wordwrap](https://github.com/substack/node-wordwrap) to format yargs help output that contained (the very long) ansi 24bit color SGR codes.
