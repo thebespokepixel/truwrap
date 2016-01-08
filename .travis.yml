@@ -1,14 +1,7 @@
 language: node_js
 node_js:
-- 4.2
+- '4.2'
 - stable
 sudo: false
-deploy:
-  provider: npm
-  email: mark@thebespokepixel.com
-  api_key:
-    secure: a2BMT/gNsQQrN1TM38eDmnoPABJHFK2V1kkyU6dh4nHEj+s6Kxh12esjcX1Bszi3Mmp0XLF1LigTWFhTAjEfpR+jbOtCWqS5rBUnqGUiRkqSnE3biES4Dfemx33CCnfP7FApF7MdQ8VsL4k5CEws0XNvQR2Bs01yuuJkViWIgEA=
-  on:
-    tags: true
-    repo: MarkGriffiths/truwrap
-    branch: master
+before_install: npm i -g npm@latest
+
