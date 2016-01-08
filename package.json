@@ -15,7 +15,7 @@
     "columnify": "^1.2.0",
     "term-ng": "^0.2.6",
     "trucolor": "^0.3.1",
-    "verbosity": "^0.2.3",
+    "verbosity": "^0.2.5",
     "yargs": "^3.25.0"
   },
   "description": "Smarter terminal text wrapping (handles 24bit color)",
