@@ -51,4 +51,9 @@ gulp.task 'shipit', (cb) ->
 			else
 				cb err_
 
+gulp.task 'sync', (callback_) ->
+	gutil.log "Syncing all banches"
+	git.push '', '',
+		args: '--all --dry-run', callback_
+
 gulp.task 'default', ['compile']
