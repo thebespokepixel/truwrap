@@ -10,7 +10,7 @@
     "ansi-regex": "^2.0.0",
     "columnify": "^1.2.0",
     "term-ng": "^0.4.0",
-    "trucolor": "*",
+    "trucolor": "^0.4.0",
     "verbosity": "^0.3.0",
     "yargs": "^3.32.0"
   },
