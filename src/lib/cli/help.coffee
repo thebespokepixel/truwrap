@@ -29,21 +29,21 @@ module.exports = (yargs_, helpPage_) ->
 	header =
 		->
 			[
-				   "#{clr.title} #{truwrap.getName()}#{clr.titleOut}"
+				   "#{clr.title} #{truwrap.getName()}#{clr.title.out}"
 				"#{images.space} #{truwrap.getDescription()}"
 				"#{images.space} #{clr.grey}#{truwrap.getVersion()}#{clr.dark}"
 			].join "\n"
 	synopsis = """
-		#{clr.title}Synopsis:#{clr.titleOut}
+		#{clr.title}Synopsis:#{clr.title.out}
 		#{clr.command}#{ truwrap.getName() } #{clr.option}[OPTIONS]
 	"""
 	usage = """
-		#{clr.title}Usage:#{clr.titleOut}
+		#{clr.title}Usage:#{clr.title.out}
 		Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 	"""
 	epilogue = """
 		#{clr.title}#{ truwrap.getName() }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
-		#{clr.title}© 2014-2016 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
+		#{clr.title}© 2014-2016 Mark Griffiths/CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
 		#{clr.grey}Documentation/Issues/Contributions @ http://github.com/MarkGriffiths/trucolor#{clr.normal}
 
 	"""
