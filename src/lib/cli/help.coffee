@@ -43,7 +43,7 @@ module.exports = (yargs_, helpPage_) ->
 	"""
 	epilogue = """
 		#{clr.title}#{ truwrap.getName() }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
-		#{clr.title}© 2014-2016 CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
+		#{clr.title}© 2014-2016 Mark Griffiths/CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
 		#{clr.grey}Documentation/Issues/Contributions @ http://github.com/MarkGriffiths/trucolor#{clr.normal}
 
 	"""
