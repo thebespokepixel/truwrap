@@ -12,7 +12,7 @@ vows
 	.describe("#{_package.name} cli")
 	.addBatch
 		'Binary version':
-			"is semvar?":
+			"is semver?":
 				topic: ->
 					exec "#{bin} -v", @callback
 					return

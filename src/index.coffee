@@ -40,88 +40,87 @@ truwrap = module.exports = (options) ->
 	#  Options:
 	#    left      : left hand margin
 	#    right     : right hand margin
+	#	  width     : override right margin and force wrapping width
 	#    mode      : Hard/soft wrap selector (soft)
 	#    outStream : output stream.
-	#    encoding  : Text encoding. (utf8)
 	#    modeRegex : Override the normal wrap pattern.
 	#                This doesn't change the mode's behaviour,
 	#                it just changes how tokens are created.
 
-	{left, right, mode, outStream, encoding, modeRegex} = options
+	{left = 2, right = 2, width, mode = 'soft', outStream = process.stdout, modeRegex} = options
 
-	_decoder = new StringDecoder encoding ?= 'utf8'
-
-	outStream ?= process.stdout
-	ttyActive = Boolean outStream.isTTY
-	outStream.setEncoding encoding
+	ttyActive = Boolean(outStream.isTTY) or width?
+	_decoder = new StringDecoder
+	outStream.setEncoding 'utf8'
 
 	unless ttyActive
+		console.debug "Non-TTY: width: Infinity"
 		return do ->
 			isTTY: false
-			end      : -> outStream._isStdio or outStream.end()
+			end: -> if outStream._isStdio then -> outStream.write  do _decoder.end
+			else -> outStream.end do _decoder.end
 			getWidth : -> Infinity
+			panel: (panel_) -> columnify panel_.content, panel_.layout
 			write    : (buffer_) -> outStream.write _decoder.write buffer_
 
+	ttyWidth = width ? outStream.columns ? outStream.getWindowSize()[0]
 
-	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
-
-	left                ?= 0
-	right               ?= ttyWidth
-	right < 0 and right = ttyWidth + right
-	width               = right - left
-
-	mode ?= 'soft'
+	width = ttyWidth - right
 
 	if mode is 'container'
+		console.debug "Container: width: #{ttyWidth}, mode: #{mode}"
 		return do ->
-			end      : -> outStream._isStdio or outStream.end()
+			end: -> if outStream._isStdio then -> outStream.write  do _decoder.end
+			else -> outStream.end do _decoder.end
 			getWidth : -> ttyWidth
 			write    : (buffer_) -> outStream.write _decoder.write buffer_
 
-	modeRegex ?= do ->
-		if mode is 'hard'
+	modeRegex ?= if mode is 'hard'
 			/\b(?![<T>]|[0-9;]+m)/g
 		else
 			/\S+\s+/g
 
 	preSpaceRegex	= /^\s+/
-	postSpaceRegex	= /\s+$/
+	postSpaceRegex	= /[\s]+$/
 	tabRegex		   = /\t/g
 	newlineRegex	= /\n/
 
 	margin = new Array(ttyWidth).join(' ')
 
+	console.debug "Renderer: left: #{left}, right: #{right}, width: #{width}, mode: #{mode}"
+
 	return do ->
-		end: -> outStream._isStdio or outStream.end()
+		end: -> if outStream._isStdio then -> outStream.write  do _decoder.end
+		else -> outStream.end do _decoder.end
 		getWidth: -> width
 		panel: (panel_) -> columnify panel_.content, panel_.layout
 		break: (count = 1) -> outStream.write "\n".repeat(count)
-		clear: -> outStream.write "\r"
+		clear: -> outStream.write "\n"
 		write: (buffer_, write_ = yes) ->
 			lines = []
-			line = margin[0..left - 1]
+			line = margin[0...left]
 			lineWidth = 0
 			indent = 0
 
 			tokens = _decoder.write buffer_
-					.replace tabRegex, '\x00<T>\x00'
-					.replace ansiRegex(), '\x00$&\x00'
-					.replace modeRegex, '\x00$&\x00'
-					.split "\x00"
+				.replace tabRegex, '\u0000<T>\u0000'
+				.replace ansiRegex(), '\u0000$&\u0000'
+				.replace modeRegex, '\u0000$&\u0000'
+				.split "\u0000"
 
 			process =
 				hard: (token_) ->
 					if token_.length <= width then format.line token_
 					else for i in [0..token_.length] by width
-						format.line token_[i..i + width - 1]
+						format.line token_[i...i + width]
 
 				soft: (token_) -> format.line token_
 
 			format =
 				newline: (token_) ->
 					lines.push line
-					line = margin[0..left - 1]
-					line += margin[0..indent - 1] if indent > 0
+					line = margin[0...left]
+					line += margin[0...indent]
 					lineWidth = indent
 					if token_?
 						format.linefit token_.replace(preSpaceRegex, '')
@@ -137,7 +136,7 @@ truwrap = module.exports = (options) ->
 						format.linefit token_[0..width - indent - 4] + "…"
 
 					else if lineWidth + token_.length > width
-						line.replace postSpaceRegex, ''
+						line = line.replace postSpaceRegex, ''
 						format.newline token_
 
 					else
@@ -162,12 +161,10 @@ truwrap = module.exports = (options) ->
 				if ansiRegex().test token then format.ansi token
 				else process[mode] token
 
-			lines.push line if line isnt ''
-
-			if write_
-				outStream.write lines.join '\n'
-			else
-				lines.join '\n'
+			line = line.replace postSpaceRegex, ''
+			lines.push line
+			outStream.write _decoder.write lines.join '\n' if write_
+			lines.join '\n'
 
 truwrap.getName =        -> return _package.name
 truwrap.getDescription = -> return _package.description
