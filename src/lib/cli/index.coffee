@@ -3,8 +3,10 @@
 	truwrap
 	Smart word wrap, colums and inline images for the CLI
 ###
-truwrap = require "../.."
-ansiRegex = require "ansi-regex"
+truwrap = require '../..'
+ansiRegex = require 'ansi-regex'
+getStdin = require 'get-stdin'
+util = require 'util'
 console = global.vConsole
 
 yargs = require 'yargs'
@@ -37,33 +39,27 @@ yargs = require 'yargs'
 			default: 2
 		w:
 			alias: 'width'
-			describe: 'Width. Overrides right margin.'
+			describe: 'Set total width. Overrides terminal windows’ width.'
 			requiresArg: yes
 			nargs: 1
 		m:
 			alias: 'mode'
 			choices: ['hard', 'soft']
 			describe: 'Wrapping mode: hard (break long lines), soft (keep white space)'
-			default: 'hard'
+			default: 'soft'
 			requiresArg: yes
-		e:
-			alias: 'encoding'
-			describe: 'Set encoding.'
-			default: 'utf8'
 		s:
 			alias: 'stamp'
 			boolean: yes
 			describe: 'Print arguments rather than stdin. printf-style options supported.'
-		t:
-			alias: 'table'
-			describe: 'Render a table into the available console width.'
-
+		p:
+			alias: 'panel'
+			describe: 'Render a tabular panel into the available console width.'
 		d:
 			alias: 'delimiter'
-			describe: 'The column delimiter when rendering a table.'
+			describe: 'The column delimiter when reading data for a panel.'
 			requiresArg: yes
 			default: '|'
-
 		x:
 			alias: 'regex'
 			describe: 'Character run selection regex. Overrides --mode'
@@ -73,7 +69,6 @@ yargs = require 'yargs'
 
 argv = yargs.argv
 outStream = process.stdout
-rightMargin = -(argv.right)
 
 if argv.version
 	process.stdout.write truwrap.getVersion(argv.version)
@@ -89,76 +84,80 @@ if argv.verbose
 			console.log ':Extra-Verbose mode:'
 			console.yargs argv
 
-if argv.stdout
-	outStream = process.stdout
+if argv.stderr
+	outStream = process.stderr
 
 if argv.help
 	require('./help')(yargs)
 	process.exit 0
 
-if argv.width > 0
-	ttyWidth = outStream.columns ? outStream.getWindowSize()[0]
-	rightMargin = -(ttyWidth) + (argv.width + argv.right + argv.left)
-
 if argv.panel
 	renderPanel = yes
 
-renderer = (require "../..")
+renderSettings =
 	encoding: argv.encoding
 	left: argv.left
-	right: rightMargin
+	right: argv.right
 	mode: argv.mode
 	outStream: outStream
 
-writer = (chunk = new Buffer "\n", argv.encoding) ->
-	unless renderPanel is yes
-		renderer.write chunk
-	else
-		maxSpacers = 0
-		maxContent = 0
-		spacerCols = []
-		tableData = for line in (chunk.toString().split /\n/)[..-1]
-			columnData = {}
-			spacerCount = 0
-			contentCount = 0
-			for col, i in (line.split argv.delimiter)
-				do (col, i) ->
-					if col is ':space:'
-						spacerCount++
-						spacerCols.push i
-						columnData["spacer#{i}"] = ' '
-						return
-					else
-						contentCount += col.replace(ansiRegex(), '').length
-						columnData["c#{i}"] = col
-						return
-			maxSpacers = spacerCount if spacerCount > maxSpacers
-			maxContent = contentCount if contentCount > maxContent
-			columnData
+renderSettings.width = argv.width if argv.width?
 
-		temp = {}
-		for i in spacerCols
-			temp["spacer#{i}"] =
-				maxWidth: Math.floor renderer.getWidth() / (maxSpacers + 1)
-				minWidth: Math.floor (renderer.getWidth() - maxContent) / (maxSpacers + 1)
-		renderer.write renderer.panel
-			content: tableData
-			layout:
-				showHeaders: false
-				maxLineWidth: renderer.getWidth()
-				config: temp
+renderer = (require "../..") renderSettings
+
+writer = (buffer_) ->
+	longIdx = 0
+	maxCols = 0
+	spacerCols = []
+	tableData = for row, rowIdx in (buffer_.toString().split '\n')
+		columnData = {}
+		fieldCount = 0
+		contentCount = 0
+		for col, colIdx in (row.split argv.delimiter)
+			do (col, colIdx) ->
+				if col is ':space:'
+					spacerCols.push colIdx
+					columnData["spacer#{colIdx}"] = ' '
+					return
+				else if colIdx in spacerCols
+					columnData["spacer#{colIdx}"] = ' '
+					return
+				else
+					columnData["c#{colIdx}"] = col
+					return
+		if colIdx > maxCols
+			maxCols = colIdx
+			longIdx = rowIdx
+
+		columnData
+
+	configuration = {}
+
+	Object.keys(tableData[longIdx]).forEach (idx_) ->
+		if idx_.includes 'spacer'
+			configuration[idx_] =
+				maxWidth: 16
+				minWidth: 4
+		else
+			configuration[idx_] =
+				maxWidth: (renderer.getWidth() - spacerCols.length * 16) / (maxCols - spacerCols.length)
+				minWidth: (renderer.getWidth() - spacerCols.length * 4) / (maxCols - spacerCols.length)
+
+	renderer.write renderer.panel
+		content: tableData
+		layout:
+			showHeaders: false
+			config: configuration
+
+getStdin().then (buffer_) ->
+	unless renderPanel is yes
+		renderer.write buffer_
+	else
+		writer buffer_
 
 if argv.stamp
-	writer util.format.apply @, argv._
+	writer util.format.apply this, argv._
 	process.exit 0
-
-process.stdin.setEncoding argv.encoding
-
-process.stdin.on 'readable', -> writer process.stdin.read()
-
-process.stdin.on 'end', ->
-	renderer.write('\r')
-	renderer.end()
 
 
 
