@@ -1,16 +1,5 @@
-[project-badge]: http://img.shields.io/badge/status-beta-blue.svg?style=flat
-[build-badge]: http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat
-[david-badge]: http://img.shields.io/david/MarkGriffiths/truwrap.svg?style=flat
-[david-dev-badge]: http://img.shields.io/david/dev/MarkGriffiths/truwrap.svg?style=flat
-[npm-badge]: https://img.shields.io/npm/v/truwrap.svg?style=flat
-
-[travis]: https://travis-ci.org/MarkGriffiths/truwrap
-[david]: https://david-dm.org/MarkGriffiths/truwrap
-[david-dev]: https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies
-[npm]: https://www.npmjs.com/package/truwrap
-
 # truwrap
-A node module andCLI for text wrapping, panels & tables that supports 24bit color SGR codes.
+> A node module and CLI for text wrapping, panels & tables that supports 24bit color SGR codes.
 
 ![Project status][project-badge]
 [![Build Status][build-badge]][travis]
@@ -37,6 +26,8 @@ Developed as part of our internal data visualisation system, where having the fi
 
 Usable within your own node.js cli projects and an npm module or directly from the command line as a shell scripting command.
 
+![Screengrab][grab]
+
 ## CLI usage
 
 #### Synopsis
@@ -51,11 +42,10 @@ Options:
 -o, --stderr     Use stderr rather than stdout
 -l, --left       Left margin [default: 2]
 -r, --right      Right margin [default: 2]
--w, --width      Width. Overrides right margin.
--m, --mode       Wrapping mode: hard (break long lines), soft (keep white space) [default: "hard"]
--e, --encoding   Set encoding. [default: "utf8"]
+-w, --width      Set total width. Overrides terminal windows’ width.
+-m, --mode       Wrapping mode: hard (break long lines), soft (keep white space)
 -s, --stamp      Print arguments rather than stdin. printf-style options supported.
--t, --table      Render a table into the available console width.
+-p, --panel      Render a table into the available console width.
 -d, --delimiter  The column delimiter when rendering a table. [default: "|"]
 -x, --regex      Character run selection regex. Overrides --mode
 
@@ -63,7 +53,9 @@ Options:
 
 To use simply pipe in a body of text to wrap according to the supplied options.
 
-    cat README.md | truwrap --left 12 --right 12 --mode soft
+    cat readme.md | truwrap --left 6 --right 6 --mode soft
+
+![Example Screengrab][example]
 
 ## Programmatic usage
 
@@ -71,10 +63,9 @@ To use simply pipe in a body of text to wrap according to the supplied options.
 var truwrap = require('truwrap')
 
 var writer = truwrap({
-  left: 2
-  right: -2
-  mode: 'soft'
-  encoding: 'utf8'
+  left: 2,
+  right: 2,
+  mode: 'soft',
   outStream: process.stderr
 })
 
@@ -94,3 +85,16 @@ To add. Containers, Tables, Panels and Images.
 For advanced 24bit colour handling see [MarkGriffiths/trucolor](https://github.com/MarkGriffiths/trucolor) and [npm trucolor](https://www.npmjs.com/package/trucolor).
 
 Initially a port of [substack/node-wordwrap](https://github.com/substack/node-wordwrap) to format yargs help output that contained (the very long) ansi 24bit color SGR codes.
+
+[project-badge]: http://img.shields.io/badge/status-beta-blue.svg?style=flat
+[build-badge]: http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat
+[david-badge]: http://img.shields.io/david/MarkGriffiths/truwrap.svg?style=flat
+[david-dev-badge]: http://img.shields.io/david/dev/MarkGriffiths/truwrap.svg?style=flat
+[npm-badge]: https://img.shields.io/npm/v/truwrap.svg?style=flat
+[grab]: http://markgriffiths.github.io/projects/truwrap/truwrap.png
+[example]: http://markgriffiths.github.io/projects/truwrap/example.png
+
+[travis]: https://travis-ci.org/MarkGriffiths/truwrap
+[david]: https://david-dm.org/MarkGriffiths/truwrap
+[david-dev]: https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies
+[npm]: https://www.npmjs.com/package/truwrap

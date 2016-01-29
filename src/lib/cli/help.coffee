@@ -55,6 +55,8 @@ module.exports = (yargs_, helpPage_) ->
 	windowWidth = container.getWidth()
 
 	renderer = truwrap
+		left: 2
+		right: 0
 		outStream: process.stderr
 
 	contentWidth = renderer.getWidth()

@@ -78,7 +78,7 @@ truwrap = module.exports = function(options) {
     })();
   }
   ttyWidth = (ref4 = width != null ? width : outStream.columns) != null ? ref4 : outStream.getWindowSize()[0];
-  width = ttyWidth - right;
+  width = ttyWidth - right - left;
   if (mode === 'container') {
     console.debug("Container: width: " + ttyWidth + ", mode: " + mode);
     return (function() {
