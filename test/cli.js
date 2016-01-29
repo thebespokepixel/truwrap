@@ -17,82 +17,96 @@ proident, sunt in culpa qui officia
 deserunt mollit anim id est laborum.`
 
 const loremWrapped64 = `      Lorem ipsum dolor sit amet,
-      consectetur adipiscing elit, sed do
-      eiusmod tempor incididunt ut labore
-      et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud
-      exercitation ullamco laboris nisi
-      ut aliquip ex ea commodo consequat.
-      Duis aute irure dolor in
-      reprehenderit in voluptate velit
-      esse cillum dolore eu fugiat nulla
-      pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in
-      culpa qui officia deserunt mollit
-      anim id est laborum.`
+      consectetur adipiscing elit,
+      sed do eiusmod tempor
+      incididunt ut labore et
+      dolore magna aliqua. Ut enim
+      ad minim veniam, quis nostrud
+      exercitation ullamco laboris
+      nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure
+      dolor in reprehenderit in
+      voluptate velit esse cillum
+      dolore eu fugiat nulla
+      pariatur. Excepteur sint
+      occaecat cupidatat non
+      proident, sunt in culpa qui
+      officia deserunt mollit anim
+      id est laborum.`
 
-const loremWrapped88hard = `        Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed
-        do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute
-        irure dolor in reprehenderit in
-        voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur
-        . Excepteur sint occaecat
-        cupidatat non proident, sunt in
-        culpa qui officia deserunt
-        mollit anim id est laborum.`
+const loremWrapped88hard = `        Lorem ipsum dolor sit
+        amet, consectetur
+        adipiscing elit, sed do
+        eiusmod tempor
+        incididunt ut labore et
+        dolore magna aliqua. Ut
+        enim ad minim veniam,
+        quis nostrud
+        exercitation ullamco
+        laboris nisi ut aliquip
+        ex ea commodo consequat
+        . Duis aute irure dolor
+        in reprehenderit in
+        voluptate velit esse
+        cillum dolore eu fugiat
+        nulla pariatur.
+        Excepteur sint occaecat
+        cupidatat non proident,
+        sunt in culpa qui
+        officia deserunt mollit
+        anim id est laborum.`
 
-const loremWrapped22hard = `  Lorem ipsum dolor
-  sit amet,
+const loremWrapped22hard = `  Lorem ipsum
+  dolor sit amet,
   consectetur
-  adipiscing elit,
-  sed do eiusmod
-  tempor incididunt
-  ut labore et
-  dolore magna
-  aliqua. Ut enim ad
-  minim veniam, quis
+  adipiscing elit
+  , sed do eiusmod
+  tempor
+  incididunt ut
+  labore et dolore
+  magna aliqua. Ut
+  enim ad minim
+  veniam, quis
   nostrud
   exercitation
   ullamco laboris
-  nisi ut aliquip ex
-  ea commodo
+  nisi ut aliquip
+  ex ea commodo
   consequat. Duis
   aute irure dolor
   in reprehenderit
-  in voluptate velit
-  esse cillum dolore
-  eu fugiat nulla
+  in voluptate
+  velit esse
+  cillum dolore eu
+  fugiat nulla
   pariatur.
   Excepteur sint
-  occaecat cupidatat
-  non proident, sunt
+  occaecat
+  cupidatat non
+  proident, sunt
   in culpa qui
   officia deserunt
-  mollit anim id est
-  laborum.`
+  mollit anim id
+  est laborum.`
 
-var tableOne = '          One                Two           Three         Four         \n'
-   tableOne += '          test 1             test 3        test 4        test 5       \n'
-   tableOne += '          Longer item 1      Short2        Longer item 3 short4       \n'
-   tableOne += '          Lorem ipsum        Ut enim ad    Duis aute     Excepteur    \n'
-   tableOne += '          dolor sit          minim veniam, irure dolor   sint occaecat\n'
-   tableOne += '          amet,              quis nostrud  in            cupidatat non\n'
-   tableOne += '          consectetur        exercitation  reprehenderit proident,    \n'
-   tableOne += '          adipiscing         ullamco       in voluptate  sunt in culpa\n'
-   tableOne += '          elit, sed do       laboris nisi  velit esse    qui officia  \n'
-   tableOne += '          eiusmod            ut aliquip ex cillum dolore deserunt     \n'
-   tableOne += '          tempor             ea commodo    eu fugiat     mollit anim  \n'
-   tableOne += '          incididunt ut      consequat.    nulla         id est       \n'
-   tableOne += '          labore et                        pariatur.     laborum.     \n'
-   tableOne += '          dolore magna                                                \n'
-   tableOne += '          aliqua.                                                     \n'
-   tableOne += '          ♣                  ♥             ♠             ♦'
+var tableOne = '          One              Two         Three       Four       \n'
+   tableOne += '          test 1           test 3      test 4      test 5     \n'
+   tableOne += '          Longer item      Short2      Longer item short4     \n'
+   tableOne += '          1                            3                      \n'
+   tableOne += '          Lorem ipsum      Ut enim ad  Duis aute   Excepteur  \n'
+   tableOne += '          dolor sit        minim       irure dolor sint       \n'
+   tableOne += '          amet,            veniam,     in          occaecat   \n'
+   tableOne += '          consectetur      quis        reprehende… cupidatat  \n'
+   tableOne += '          adipiscing       nostrud     rit in      non        \n'
+   tableOne += '          elit, sed        exercitati… voluptate   proident,  \n'
+   tableOne += '          do eiusmod       on ullamco  velit esse  sunt in    \n'
+   tableOne += '          tempor           laboris     cillum      culpa qui  \n'
+   tableOne += '          incididunt       nisi ut     dolore eu   officia    \n'
+   tableOne += '          ut labore        aliquip ex  fugiat      deserunt   \n'
+   tableOne += '          et dolore        ea commodo  nulla       mollit anim\n'
+   tableOne += '          magna            consequat.  pariatur.   id est     \n'
+   tableOne += '          aliqua.                                  laborum.   \n'
+   tableOne += '          ♣                ♥           ♠           ♦'
 
 test.cb(`Module name/version is '${pkg.name}'.`, t => {
 	shell.exec('/usr/bin/env node ../lib/cli/index.js -vv', {silent: true}, (code_, out_) => {

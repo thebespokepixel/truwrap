@@ -65,7 +65,7 @@ truwrap = module.exports = (options) ->
 
 	ttyWidth = width ? outStream.columns ? outStream.getWindowSize()[0]
 
-	width = ttyWidth - right
+	width = ttyWidth - right - left
 
 	if mode is 'container'
 		console.debug "Container: width: #{ttyWidth}, mode: #{mode}"
