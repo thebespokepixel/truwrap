@@ -35,7 +35,7 @@ module.exports = (yargs_, helpPage_) ->
 			].join "\n"
 	synopsis = """
 		#{clr.title}Synopsis:#{clr.title.out}
-		#{clr.command}#{ truwrap.getName() } #{clr.option}[OPTIONS]
+		#{clr.command}cat #{clr.argument}inputFile #{clr.operator}| #{clr.command}#{ truwrap.getName() } #{clr.option}[options]#{clr.option}
 	"""
 	usage = """
 		#{clr.title}Usage:#{clr.title.out}
