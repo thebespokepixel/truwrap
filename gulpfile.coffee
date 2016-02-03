@@ -8,7 +8,7 @@ cordial = require '@thebespokepixel/cordial'
 gulp.task 'bump', cordial.version.build.inc
 gulp.task 'resetBuild', ['test'], cordial.version.build.reset
 
-gulp.task 'compile', ['bump'], cordial.coffee.compile './src/**/*.coffee', './'
+gulp.task 'coffee', ['bump'], cordial.compile.coffee ['src/**/*.coffee'], './'
 
 gulp.task 'test', cordial.test.ava 'test/*.js'
 
@@ -23,4 +23,4 @@ gulp.task 'post-flow-release-finish', ['publish', 'push']
 gulp.task 'filter-flow-release-start-version', cordial.flow.release.versionFilter
 gulp.task 'filter-flow-release-finish-tag-message', cordial.flow.release.tagFilter
 
-gulp.task 'default', ['compile']
+gulp.task 'default', ['coffee']
