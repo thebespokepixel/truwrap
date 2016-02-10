@@ -20,7 +20,7 @@
   "devDependencies": {
     "@thebespokepixel/cordial": "*",
     "semver-regex": "^1.0.0",
-    "shelljs": "^0.5.3",
+    "shelljs": "^0.6.0",
     "xo": "^0.12.1"
   },
   "engines": {
