@@ -3,11 +3,13 @@
 	truwrap
 	Smart word wrap, colums and inline images for the CLI
 ###
-truwrap = require '../..'
-ansiRegex = require 'ansi-regex'
-getStdin = require 'get-stdin'
-util = require 'util'
-console = global.vConsole
+truwrap        = require '../..'
+ansiRegex      = require 'ansi-regex'
+getStdin       = require 'get-stdin'
+util           = require 'util'
+updateNotifier = require 'update-notifier'
+console        = global.vConsole
+_package       = require '../../package.json'
 
 yargs = require 'yargs'
 	.options
@@ -84,6 +86,10 @@ if argv.verbose
 			console.log ':Extra-Verbose mode:'
 			console.yargs argv
 
+do updateNotifier
+		pkg: _package
+	.notify
+
 if argv.stderr
 	outStream = process.stderr
 
@@ -158,6 +164,4 @@ getStdin().then (buffer_) ->
 if argv.stamp
 	writer util.format.apply this, argv._
 	process.exit 0
-
-
 

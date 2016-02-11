@@ -10,16 +10,17 @@
     "ansi-regex": "^2.0.0",
     "columnify": "^1.2.0",
     "get-stdin": "^5.0.1",
-    "term-ng": "^0.4.0",
-    "trucolor": "^0.4.0",
-    "verbosity": "^0.3.0",
+    "term-ng": "*",
+    "trucolor": "*",
+    "update-notifier": "^0.6.0",
+    "verbosity": "*",
     "yargs": "^3.32.0"
   },
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "devDependencies": {
-    "@thebespokepixel/cordial": "^0.3.0",
+    "@thebespokepixel/cordial": "*",
     "semver-regex": "^1.0.0",
-    "shelljs": "^0.5.3",
+    "shelljs": "^0.6.0",
     "xo": "^0.12.1"
   },
   "engines": {
@@ -47,8 +48,8 @@
   "scripts": {
     "test": "xo && ava"
   },
-  "version": "0.4.1",
-  "build_number": 0,
+  "version": "0.5.0",
+  "build_number": 40,
   "ava": {
     "files": [
       "test/*.js"
