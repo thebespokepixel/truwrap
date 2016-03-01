@@ -166,9 +166,6 @@ truwrap = module.exports = (options) ->
 			outStream.write _decoder.write lines.join '\n' if write_
 			lines.join '\n'
 
-truwrap.getName =        -> return _package.name
-truwrap.getDescription = -> return _package.description
-
 truwrap.getVersion = (long = 1) ->
 	switch long
 		when 1 then "#{_package.version}"

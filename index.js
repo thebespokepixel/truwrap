@@ -232,14 +232,6 @@ truwrap = module.exports = function(options) {
   })();
 };
 
-truwrap.getName = function() {
-  return _package.name;
-};
-
-truwrap.getDescription = function() {
-  return _package.description;
-};
-
 truwrap.getVersion = function(long) {
   if (long == null) {
     long = 1;
