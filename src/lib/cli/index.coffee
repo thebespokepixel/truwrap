@@ -12,6 +12,7 @@ console        = global.vConsole
 _package       = require '../../package.json'
 
 yargs = require 'yargs'
+	.strict()
 	.options
 		h:
 			alias: 'help'
@@ -66,6 +67,8 @@ yargs = require 'yargs'
 			alias: 'regex'
 			describe: 'Character run selection regex. Overrides --mode'
 			requiresArg: yes
+		color:
+			describe: 'Force color depth --color=256|16m. Disable with --no-color'
 
 	.showHelpOnFail no, "Use 'wrap --help' for help."
 

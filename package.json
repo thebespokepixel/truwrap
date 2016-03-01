@@ -42,12 +42,12 @@
   "name": "truwrap",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MarkGriffiths/truwrap.git"
+    "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
   "scripts": {
     "test": "gulp test --verbose"
   },
-  "version": "0.5.2",
+  "version": "0.5.3",
   "build_number": 0,
   "ava": {
     "files": [
