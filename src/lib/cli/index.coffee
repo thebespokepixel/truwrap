@@ -12,7 +12,6 @@ console        = global.vConsole
 _package       = require '../../package.json'
 
 yargs = require 'yargs'
-	.strict()
 	.options
 		h:
 			alias: 'help'
