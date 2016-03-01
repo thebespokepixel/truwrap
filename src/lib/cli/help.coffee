@@ -73,7 +73,7 @@ module.exports = (yargs_, helpPage_) ->
 	container.write "–".repeat windowWidth
 	renderer.break(2)
 	renderer.write synopsis
-	renderer.write yargs_.help()
+	renderer.write yargs_.getUsageInstance().help()
 	renderer.break()
 	renderer.write usage
 	renderer.break(2)

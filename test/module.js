@@ -8,14 +8,6 @@ import semverRegex from 'semver-regex'
 const StreamProxy = new stream.PassThrough()
 StreamProxy.setEncoding('utf8')
 
-test(`Module name is '${pkg.name}'.`, t => {
-	t.is(`${pkg.name}`, truwrap.getName())
-})
-
-test(`Module description is '${pkg.description}'.`, t => {
-	t.is(`${pkg.description}`, truwrap.getDescription())
-})
-
 test(`Module version is '${pkg.version}'.`, t => {
 	t.is(`${pkg.version}`, truwrap.getVersion())
 })

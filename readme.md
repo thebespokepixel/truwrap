@@ -1,11 +1,12 @@
-# truwrap
+# Truwrap
 > A node module and CLI for text wrapping, panels & tables that supports 24bit color SGR codes.
 
 ![Project status][project-badge]
+[![npm Status][npm-badge]][npm]
+[![Chat on Gitter][gitter-badge]][gitter]  
 [![Build Status][build-badge]][travis]
 [![Dependency Status][david-badge]][david]
 [![devDependency Status][david-dev-badge]][david-dev]
-[![npm Status][npm-badge]][npm]
 
 ## Install
 ##### Global version, for CLI use
@@ -86,15 +87,18 @@ For advanced 24bit colour handling see [MarkGriffiths/trucolor](https://github.c
 
 Initially a port of [substack/node-wordwrap](https://github.com/substack/node-wordwrap) to format yargs help output that contained (the very long) ansi 24bit color SGR codes.
 
+[grab]: http://markgriffiths.github.io/projects/truwrap/truwrap.png
+[example]: http://markgriffiths.github.io/projects/truwrap/example.png
+
 [project-badge]: http://img.shields.io/badge/status-beta-blue.svg?style=flat
 [build-badge]: http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat
 [david-badge]: http://img.shields.io/david/MarkGriffiths/truwrap.svg?style=flat
 [david-dev-badge]: http://img.shields.io/david/dev/MarkGriffiths/truwrap.svg?style=flat
 [npm-badge]: https://img.shields.io/npm/v/truwrap.svg?style=flat
-[grab]: http://markgriffiths.github.io/projects/truwrap/truwrap.png
-[example]: http://markgriffiths.github.io/projects/truwrap/example.png
+[gitter-badge]: https://badges.gitter.im/MarkGriffiths/help.svg
 
 [travis]: https://travis-ci.org/MarkGriffiths/truwrap
 [david]: https://david-dm.org/MarkGriffiths/truwrap
 [david-dev]: https://david-dm.org/MarkGriffiths/truwrap#info=devDependencies
 [npm]: https://www.npmjs.com/package/truwrap
+[gitter]: https://gitter.im/MarkGriffiths/help?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
