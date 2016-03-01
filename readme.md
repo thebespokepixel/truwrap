@@ -1,7 +1,7 @@
 # Truwrap
 > A node module and CLI for text wrapping, panels & tables that supports 24bit color SGR codes.
-
-![Project status][project-badge]
+>
+>![Project status][project-badge]
 [![npm Status][npm-badge]][npm]
 [![Chat on Gitter][gitter-badge]][gitter]  
 [![Build Status][build-badge]][travis]

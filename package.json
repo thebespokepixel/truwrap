@@ -48,7 +48,7 @@
     "test": "gulp test --verbose"
   },
   "version": "0.5.1",
-  "build_number": 0,
+  "build_number": 3,
   "ava": {
     "files": [
       "test/*.js"
