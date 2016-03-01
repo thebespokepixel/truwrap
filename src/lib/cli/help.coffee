@@ -27,16 +27,16 @@ module.exports = (yargs_, helpPage_) ->
 		cc    :
 			render: -> ""
 
-	header =
-		->
-			[
-				   "#{clr.title} #{_package.name}#{clr.title.out}"
-				"#{images.space} #{_package.description}"
-				"#{images.space} #{clr.grey}#{truwrap.getVersion()}#{clr.dark}"
-			].join "\n"
+	header = ->
+		[
+			   "#{clr.title} #{_package.name}#{clr.title.out}"
+			"#{images.space} #{_package.description}"
+			"#{images.space} #{clr.grey}#{truwrap.getVersion()}#{clr.dark}"
+		].join "\n"
+
 	synopsis = """
 		#{clr.title}Synopsis:#{clr.title.out}
-		#{clr.command}cat #{clr.argument}inputFile #{clr.operator}| #{clr.command}#{ _package.name } #{clr.option}[options]#{clr.option}
+		#{clr.command}cat #{clr.argument}inputFile #{clr.operator}| #{clr.command}#{ _package.name } #{clr.option}[options]
 	"""
 	usage = """
 		#{clr.title}Usage:#{clr.title.out}
@@ -44,7 +44,7 @@ module.exports = (yargs_, helpPage_) ->
 	"""
 	epilogue = """
 		#{clr.title}#{ _package.name }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
-		#{clr.title}© 2014-2016 Mark Griffiths/CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
+		#{clr.title}© 2016 Mark Griffiths/CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
 		#{clr.grey}Documentation/Issues/Contributions @ http://github.com/MarkGriffiths/trucolor#{clr.normal}
 
 	"""
@@ -62,7 +62,6 @@ module.exports = (yargs_, helpPage_) ->
 
 	contentWidth = renderer.getWidth()
 
-	yargs_.usage ' '
 	yargs_.wrap(contentWidth)
 
 	container.write '\n'
@@ -74,6 +73,7 @@ module.exports = (yargs_, helpPage_) ->
 	container.write "–".repeat windowWidth
 	renderer.break(2)
 	renderer.write synopsis
+	renderer.break(2)
 	renderer.write yargs_.getUsageInstance().help()
 	renderer.break()
 	renderer.write usage
