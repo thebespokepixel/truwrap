@@ -47,7 +47,7 @@
   "scripts": {
     "test": "gulp test --verbose"
   },
-  "version": "0.5.3",
+  "version": "0.5.4",
   "build_number": 0,
   "ava": {
     "files": [
