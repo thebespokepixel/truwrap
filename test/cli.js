@@ -89,7 +89,7 @@ const loremWrapped22hard = `  Lorem ipsum
   mollit anim id
   est laborum.`
 
-var tableOne = '          One              Two         Three       Four       \n'
+let tableOne = '          One              Two         Three       Four       \n'
    tableOne += '          test 1           test 3      test 4      test 5     \n'
    tableOne += '          Longer item      Short2      Longer item short4     \n'
    tableOne += '          1                            3                      \n'

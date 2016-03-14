@@ -8,11 +8,11 @@
   },
   "dependencies": {
     "ansi-regex": "^2.0.0",
-    "columnify": "^1.2.0",
+    "columnify": "^1.5.4",
     "get-stdin": "^5.0.1",
     "term-ng": "*",
     "trucolor": "*",
-    "update-notifier": "^0.6.0",
+    "update-notifier": "^0.6.1",
     "verbosity": "*",
     "yargs": "^4.2.0"
   },
@@ -47,13 +47,12 @@
   "scripts": {
     "test": "gulp test --verbose"
   },
-  "version": "0.5.4",
+  "version": "0.5.5",
   "build_number": 0,
   "ava": {
     "files": [
       "test/*.js"
     ],
-    "failFast": true,
     "verbose": true
   },
   "xo": {
