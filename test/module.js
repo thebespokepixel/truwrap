@@ -17,7 +17,7 @@ test(`Module version '${pkg.version} is semver'.`, t => {
 })
 
 test(`Returns renderer.`, t => {
-	let tw = truwrap({
+	const tw = truwrap({
 		left: 4,
 		right: -4
 	})
@@ -27,7 +27,7 @@ test(`Returns renderer.`, t => {
 })
 
 test.cb(`Consumes stream.`, t => {
-	let tw = truwrap({
+	const tw = truwrap({
 		left: 4,
 		right: -4,
 		mode: 'soft',

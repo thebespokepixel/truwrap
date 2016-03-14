@@ -41,7 +41,7 @@ yargs = require 'yargs'
 			default: 2
 		w:
 			alias: 'width'
-			describe: 'Set total width. Overrides terminal windows’ width.'
+			describe: 'Set total width. Overrides terminal window’s width.'
 			requiresArg: yes
 			nargs: 1
 		m:

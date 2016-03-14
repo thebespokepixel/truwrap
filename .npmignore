@@ -1,8 +1,8 @@
-src/*
-test/*
+src
+test
 *.sublime*
 *.map
 .editorconfig
 .travis.yml
-gulpfile.coffee
+gulpfile.*
 .npmignore
