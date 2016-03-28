@@ -6,6 +6,10 @@
   "bugs": {
     "url": "https://github.com/MarkGriffiths/truwrap/issues"
   },
+  "copyright": {
+    "year": "2016",
+    "owner": "Mark Griffiths/Cryptocomposite"
+  },
   "dependencies": {
     "ansi-regex": "^2.0.0",
     "columnify": "^1.5.4",
@@ -48,7 +52,7 @@
     "test": "gulp test --verbose"
   },
   "version": "0.5.5",
-  "build_number": 0,
+  "build_number": 5,
   "ava": {
     "files": [
       "test/*.js"

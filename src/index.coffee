@@ -28,7 +28,7 @@
 console = global.vConsole ?= require('verbosity').console
 	out: process.stderr
 
-_package =      require './package.json'
+_package =       require './package.json'
 util =          require "util"
 verbosity =     require 'verbosity'
 StringDecoder = require('string_decoder').StringDecoder
@@ -166,9 +166,19 @@ truwrap = module.exports = (options) ->
 			outStream.write _decoder.write lines.join '\n' if write_
 			lines.join '\n'
 
-truwrap.getVersion = (long = 1) ->
-	switch long
-		when 1 then "#{_package.version}"
-		else "#{_package.name} v#{_package.version}"
+truwrap.getName =                -> _package.name
+truwrap.getBin =                 -> Object.keys(_package.bin)[0]
+truwrap.getDescription =         -> _package.description
+truwrap.getCopyright =           -> "©#{_package.copyright.year} #{_package.copyright.owner}"
+truwrap.getBugs =                -> _package.bugs.url
+truwrap.getVersion = (long_ = 1) ->
+	version = if _package.build_number > 0
+		"#{_package.version}-Δ#{_package.build_number}"
+	else
+		"#{_package.version}"
+
+	switch long_
+		when 2 then "#{_package.name} v#{version}"
+		else "#{version}"
 
 truwrap.Image = require('./lib/image')
