@@ -12,7 +12,7 @@ terminalFeatures = require 'term-ng'
 
 _name = do truwrap.getName
 _bin = do truwrap.getBin
-_version = truwrap.getVersion 2
+_version = truwrap.getVersion 3
 _description = do truwrap.getDescription
 
 clr = deepAssign trucolor.simplePalette(), trucolor.bulk {},

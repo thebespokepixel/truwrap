@@ -259,6 +259,8 @@ truwrap.getVersion = function(long_) {
   }
   version = _package.build_number > 0 ? _package.version + "-Δ" + _package.build_number : "" + _package.version;
   switch (long_) {
+    case 3:
+      return "v" + version;
     case 2:
       return _package.name + " v" + version;
     default:

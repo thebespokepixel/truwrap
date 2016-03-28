@@ -178,6 +178,7 @@ truwrap.getVersion = (long_ = 1) ->
 		"#{_package.version}"
 
 	switch long_
+		when 3 then "v#{version}"
 		when 2 then "#{_package.name} v#{version}"
 		else "#{version}"
 
