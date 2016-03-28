@@ -9,7 +9,11 @@ trucolor = require 'trucolor'
 truwrap = require '../..'
 deepAssign = require 'deep-assign'
 terminalFeatures = require 'term-ng'
-_package       = require '../../package.json'
+
+_name = do truwrap.getName
+_bin = do truwrap.getBin
+_version = truwrap.getVersion 3
+_description = do truwrap.getDescription
 
 clr = deepAssign trucolor.simplePalette(), trucolor.bulk {},
 	bright: 'bold rgb(255,255,255)'
@@ -29,23 +33,23 @@ module.exports = (yargs_, helpPage_) ->
 
 	header = ->
 		[
-			   "#{clr.title} #{_package.name}#{clr.title.out}"
-			"#{images.space} #{_package.description}"
-			"#{images.space} #{clr.grey}#{truwrap.getVersion()}#{clr.dark}"
+			   "#{clr.title} #{_name}#{clr.title.out}"
+			"#{images.space} #{_description}"
+			"#{images.space} #{clr.grey}#{_version}#{clr.dark}"
 		].join "\n"
 
 	synopsis = """
 		#{clr.title}Synopsis:#{clr.title.out}
-		#{clr.command}cat #{clr.argument}inputFile #{clr.operator}| #{clr.command}#{ _package.name } #{clr.option}[options]
+		#{clr.command}cat #{clr.argument}inputFile #{clr.operator}| #{clr.command}#{_bin} #{clr.option}[options]
 	"""
 	usage = """
 		#{clr.title}Usage:#{clr.title.out}
 		Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 	"""
 	epilogue = """
-		#{clr.title}#{ _package.name }#{clr.normal} is an open source component of CryptoComposite\'s toolset.
-		#{clr.title}© 2016 Mark Griffiths/CryptoComposite. #{clr.grey}Released under the MIT License.#{clr.normal}
-		#{clr.grey}Documentation/Issues/Contributions @ http://github.com/MarkGriffiths/trucolor#{clr.normal}
+		#{clr.title}#{_name}#{clr.title.out} is an open source component of CryptoComposite\'s toolset.
+		#{clr.title}#{do truwrap.getCopyright}#{clr.title.out}. #{clr.grey}Released under the MIT License.
+		#{clr.grey}Issues? #{do truwrap.getBugs}#{clr.normal}
 
 	"""
 

@@ -7,7 +7,7 @@ const gulp = require('gulp')
 const cordial = require('@thebespokepixel/cordial')
 
 // Default
-gulp.task('default', ['bump', 'write'])
+gulp.task('default', ['coffee'])
 
 // Versioning
 gulp.task('bump', cordial.version.build.inc)
