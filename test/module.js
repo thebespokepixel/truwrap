@@ -13,7 +13,7 @@ test(`Module version is '${pkg.version}'.`, t => {
 })
 
 test(`Module version '${pkg.version} is semver'.`, t => {
-	t.ok(semverRegex().test(truwrap.getVersion()))
+	t.truthy(semverRegex().test(truwrap.getVersion()))
 })
 
 test(`Returns renderer.`, t => {
