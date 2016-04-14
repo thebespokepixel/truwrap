@@ -11,7 +11,7 @@
     "owner": "Mark Griffiths/Cryptocomposite"
   },
   "scripts": {
-    "test": "gulp test --verbose",
+    "test": "ava",
     "generate-test-fixtures": "scripts/generate-test-fixtures"
   },
   "dependencies": {
@@ -53,18 +53,11 @@
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
   "version": "0.5.7",
-  "build_number": 525,
+  "build_number": 526,
   "ava": {
     "files": [
       "test/*.js"
     ],
     "verbose": true
-  },
-  "xo": {
-    "semicolon": false,
-    "ignores": [
-      "lib/**/*",
-      "index.js"
-    ]
   }
 }

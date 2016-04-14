@@ -18,8 +18,7 @@ gulp.task('write', cordial.version.build.write)
 gulp.task('coffee', ['bump', 'write'], cordial.compile.coffee(['src/**/*.coffee'], './'))
 
 // Tests
-gulp.task('test', ['xo'], cordial.test.ava(['test/*']))
-gulp.task('xo', cordial.test.xo(['bin/*.js', 'test/*.js']))
+gulp.task('test', cordial.test.ava(['test/*']))
 
 // Git
 gulp.task('commit', cordial.git.commitAll)
