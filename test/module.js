@@ -1,9 +1,10 @@
 'use strict'
-import pkg from '../package.json'
+
 import stream from 'stream'
 import test from 'ava'
-import truwrap from '..'
 import semverRegex from 'semver-regex'
+import pkg from '../package.json'
+import truwrap from '..'
 
 const StreamProxy = new stream.PassThrough()
 StreamProxy.setEncoding('utf8')
@@ -23,9 +24,7 @@ test(`Returns renderer.`, t => {
 		left: 4,
 		right: -4
 	})
-	if (tw.write && tw.end) {
-		t.pass('Is renderer')
-	}
+	t.truthy(tw.write && tw.end)
 })
 
 test.cb(`Consumes stream.`, t => {

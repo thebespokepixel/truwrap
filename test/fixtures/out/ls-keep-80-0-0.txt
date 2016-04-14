@@ -1,0 +1,13 @@
+drwx------     7 mark  staff   238B 13 Mar 02:46 Applications/
+drwx------@    8 mark  staff   272B 13 Apr 12:03 Creative Cloud Files/
+drwx------@   13 mark  staff   442B 13 Apr 12:02 Desktop/
+drwx------@   38 mark  staff   1.3K 19 Mar 14:42 Documents/
+drwx------+   11 mark  staff   374B 12 Apr 01:35 Downloads/
+drwx------@   17 mark  staff   578B 13 Apr 12:01 Dropbox/
+drwx------@   87 mark  staff   2.9K  1 Apr 08:34 Library/
+drwx------@   23 mark  staff   782B  3 Jan 22:20 Movies/
+drwx------@   20 mark  staff   680B  5 Apr 21:30 Music/
+drwx------@   22 mark  staff   748B 13 Apr 12:03 Pictures/
+drwxr-xr-x@    9 mark  staff   306B 22 Feb 02:08 Projects/
+drwxr-xr-x+    4 mark  staff   136B  7 Jul  2014 Public/
+drwx------@   20 mark  staff   680B 22 Feb 20:31 bin/

@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "ava",
-    "generate-test-fixtures": "scripts/generate-test-fixtures"
+    "generate-test-fixtures": "scripts/generate-test-fixtures",
+    "generate-test-widths": "scripts/generate-test-widths"
   },
   "dependencies": {
     "ansi-regex": "^2.0.0",
@@ -53,11 +54,18 @@
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
   "version": "0.5.7",
-  "build_number": 526,
+  "build_number": 609,
   "ava": {
     "files": [
       "test/*.js"
     ],
     "verbose": true
+  },
+  "xo": {
+    "semicolon": false,
+    "ignores": [
+      "lib/**/*",
+      "index.js"
+    ]
   }
 }

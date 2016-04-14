@@ -1,0 +1,13 @@
+drwx------     7 ma[0m…
+drwx------@    8 ma[0m…
+drwx------@   13 ma[0m…
+drwx------@   38 ma[0m…
+drwx------+   11 ma[0m…
+drwx------@   17 ma[0m…
+drwx------@   87 ma[0m…
+drwx------@   23 ma[0m…
+drwx------@   20 ma[0m…
+drwx------@   22 ma[0m…
+drwxr-xr-x@    9 ma[0m…
+drwxr-xr-x+    4 ma[0m…
+drwx------@   20 ma[0m…

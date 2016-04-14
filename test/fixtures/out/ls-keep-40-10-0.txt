@@ -1,0 +1,13 @@
+          drwx------     7 mark  staff [0m…
+          drwx------@    8 mark  staff [0m…
+          drwx------@   13 mark  staff [0m…
+          drwx------@   38 mark  staff [0m…
+          drwx------+   11 mark  staff [0m…
+          drwx------@   17 mark  staff [0m…
+          drwx------@   87 mark  staff [0m…
+          drwx------@   23 mark  staff [0m…
+          drwx------@   20 mark  staff [0m…
+          drwx------@   22 mark  staff [0m…
+          drwxr-xr-x@    9 mark  staff [0m…
+          drwxr-xr-x+    4 mark  staff [0m…
+          drwx------@   20 mark  staff [0m…

@@ -1,0 +1,13 @@
+  drwx------     7 mark  staff   238B 1[0m…
+  drwx------@    8 mark  staff   272B 1[0m…
+  drwx------@   13 mark  staff   442B 1[0m…
+  drwx------@   38 mark  staff   1.3K 1[0m…
+  drwx------+   11 mark  staff   374B 1[0m…
+  drwx------@   17 mark  staff   578B 1[0m…
+  drwx------@   87 mark  staff   2.9K  [0m…
+  drwx------@   23 mark  staff   782B  [0m…
+  drwx------@   20 mark  staff   680B  [0m…
+  drwx------@   22 mark  staff   748B 1[0m…
+  drwxr-xr-x@    9 mark  staff   306B 2[0m…
+  drwxr-xr-x+    4 mark  staff   136B  [0m…
+  drwx------@   20 mark  staff   680B 2[0m…
