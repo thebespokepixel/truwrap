@@ -1,18 +1,21 @@
 'use strict'
-import pkg from '../package.json'
+
 import stream from 'stream'
 import test from 'ava'
-import truwrap from '..'
 import semverRegex from 'semver-regex'
+import pkg from '../package.json'
+import truwrap from '..'
 
 const StreamProxy = new stream.PassThrough()
 StreamProxy.setEncoding('utf8')
 
-test(`Module version is '${pkg.version}'.`, t => {
-	t.is(`${pkg.version}`, truwrap.getVersion())
+const expectedVersion = pkg.build_number === 0 && pkg.version || `${pkg.version}-Δ${pkg.build_number}`
+
+test(`Module version is '${expectedVersion}'.`, t => {
+	t.is(`${expectedVersion}`, truwrap.getVersion())
 })
 
-test(`Module version '${pkg.version} is semver'.`, t => {
+test(`Module version '${pkg.version}' is semver.`, t => {
 	t.truthy(semverRegex().test(truwrap.getVersion()))
 })
 
@@ -21,9 +24,7 @@ test(`Returns renderer.`, t => {
 		left: 4,
 		right: -4
 	})
-	if (tw.write && tw.end) {
-		t.pass('Is renderer')
-	}
+	t.truthy(tw.write && tw.end)
 })
 
 test.cb(`Consumes stream.`, t => {

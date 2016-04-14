@@ -25,7 +25,7 @@
 	TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-var StringDecoder, _package, ansiRegex, columnify, console, truwrap, util, verbosity;
+var StringDecoder, _package, ansiRegex, clr, columnify, console, trucolor, truwrap, util, verbosity;
 
 console = global.vConsole != null ? global.vConsole : global.vConsole = require('verbosity').console({
   out: process.stderr
@@ -43,12 +43,15 @@ ansiRegex = require('ansi-regex');
 
 columnify = require('columnify');
 
+trucolor = require('trucolor');
+
+clr = trucolor.simplePalette();
+
 truwrap = module.exports = function(options) {
-  var _decoder, left, margin, mode, modeRegex, newlineRegex, outStream, postSpaceRegex, preSpaceRegex, ref, ref1, ref2, ref3, ref4, right, tabRegex, ttyActive, ttyWidth, width;
+  var _decoder, left, margin, mode, modeRegex, newlineRegex, outStream, ref, ref1, ref2, ref3, ref4, right, tabRegex, ttyActive, ttyWidth, width;
   left = (ref = options.left) != null ? ref : 2, right = (ref1 = options.right) != null ? ref1 : 2, width = options.width, mode = (ref2 = options.mode) != null ? ref2 : 'soft', outStream = (ref3 = options.outStream) != null ? ref3 : process.stdout, modeRegex = options.modeRegex;
-  ttyActive = Boolean(outStream.isTTY) || (width != null);
+  ttyActive = Boolean(outStream.isTTY || (width != null) || mode.match(/keep|container/));
   _decoder = new StringDecoder;
-  outStream.setEncoding('utf8');
   if (!ttyActive) {
     console.debug("Non-TTY: width: Infinity");
     return (function() {
@@ -77,8 +80,11 @@ truwrap = module.exports = function(options) {
       };
     })();
   }
+  if (outStream.isTTY) {
+    outStream.setEncoding('utf8');
+  }
   ttyWidth = (ref4 = width != null ? width : outStream.columns) != null ? ref4 : outStream.getWindowSize()[0];
-  width = ttyWidth - right - left;
+  width = ttyWidth - right - left > 1 ? ttyWidth - right - left : 2;
   if (mode === 'container') {
     console.debug("Container: width: " + ttyWidth + ", mode: " + mode);
     return (function() {
@@ -104,10 +110,17 @@ truwrap = module.exports = function(options) {
     })();
   }
   if (modeRegex == null) {
-    modeRegex = mode === 'hard' ? /\b(?![<T>]|[0-9;]+m)/g : /\S+\s+/g;
+    modeRegex = (function() {
+      switch (mode) {
+        case 'hard':
+          return /\b(?![<T>]|[0-9;]+m)/g;
+        case 'keep':
+          return /^.*$/mg;
+        default:
+          return /\S+\s+/g;
+      }
+    })();
   }
-  preSpaceRegex = /^\s+/;
-  postSpaceRegex = /[\s]+$/;
   tabRegex = /\t/g;
   newlineRegex = /\n/;
   margin = new Array(ttyWidth).join(' ');
@@ -141,14 +154,14 @@ truwrap = module.exports = function(options) {
         return outStream.write("\n");
       },
       write: function(buffer_, write_) {
-        var format, indent, j, len, line, lineWidth, lines, process, token, tokens;
+        var format, j, len, line, lineBlock, lineWidth, lines, process, token, tokens;
         if (write_ == null) {
           write_ = true;
         }
         lines = [];
         line = margin.slice(0, left);
         lineWidth = 0;
-        indent = 0;
+        lineBlock = false;
         tokens = _decoder.write(buffer_).replace(tabRegex, '\u0000<T>\u0000').replace(ansiRegex(), '\u0000$&\u0000').replace(modeRegex, '\u0000$&\u0000').split("\u0000");
         process = {
           hard: function(token_) {
@@ -157,7 +170,7 @@ truwrap = module.exports = function(options) {
               return format.line(token_);
             } else {
               results = [];
-              for (i = j = 0, ref5 = token_.length, ref6 = width; ref6 > 0 ? j <= ref5 : j >= ref5; i = j += ref6) {
+              for (i = j = 0, ref5 = token_.length, ref6 = width; ref6 > 0 ? j < ref5 : j > ref5; i = j += ref6) {
                 results.push(format.line(token_.slice(i, i + width)));
               }
               return results;
@@ -165,28 +178,65 @@ truwrap = module.exports = function(options) {
           },
           soft: function(token_) {
             return format.line(token_);
+          },
+          keep: function(token_) {
+            if (token_.length > width) {
+              console.debug("1st keep fitting: " + token_);
+              format.line(token_.slice(0, width - 1) + clr.normal + "…");
+              return lineBlock = true;
+            } else {
+              return format.line(token_);
+            }
           }
         };
         format = {
           newline: function(token_) {
             lines.push(line);
             line = margin.slice(0, left);
-            line += margin.slice(0, indent);
-            lineWidth = indent;
+            lineWidth = 0;
+            lineBlock = false;
             if (token_ != null) {
-              return format.linefit(token_.replace(preSpaceRegex, ''));
+              return format.linefit(token_.trimLeft());
             }
           },
           linefit: function(token_) {
+            var diff, ref5;
             if (token_ === "<T>") {
-              line += margin.slice(0, 4);
-              lineWidth += 4;
-              indent += 4;
-            } else if (mode === 'soft' && token_.length > width - indent) {
-              return format.linefit(token_.slice(0, +(width - indent - 4) + 1 || 9e9) + "…");
+
+            } else if (lineBlock) {
+
+            } else if (mode === 'hard' && lineWidth + token_.length > width) {
+              line = line.trimLeft();
+              diff = lineWidth - line.length;
+              lineWidth += diff;
+              line = "" + margin.slice(0, left) + line;
+              line += token_.slice(0, width - lineWidth);
+              format.newline(token_.slice(width - lineWidth));
+            } else if (mode === 'soft' && token_.length > width) {
+              console.debug("Soft fitting: " + token_);
+              return format.linefit(token_.slice(0, +(width - 2) + 1 || 9e9) + clr.normal + "…");
+            } else if (mode === 'keep' && lineWidth + token_.length >= width) {
+              switch (width - lineWidth) {
+                case width:
+                  console.debug("2nd keep commit: " + token_ + ".");
+                  line += token_.slice(0, width - lineWidth - 1) + clr.normal + "…";
+                  break;
+                case 0:
+                  console.debug("2nd keep set ellipsis: " + token_ + ".");
+                  [].splice.apply(line, [0, (-1) - 0].concat(ref5 = clr.normal + '…')), ref5;
+                  break;
+                case 1:
+                  console.debug("2nd keep add ellipsis: " + token_ + ".");
+                  line += clr.normal + '…';
+                  break;
+                default:
+                  console.debug("2nd keep fitting: " + token_ + ".");
+                  line += token_.slice(0, width - lineWidth - 1) + clr.normal + "…";
+              }
+              lineBlock = true;
             } else if (lineWidth + token_.length > width) {
-              line = line.replace(postSpaceRegex, '');
-              return format.newline(token_);
+              line = line.trimRight();
+              format.newline(token_);
             } else {
               lineWidth += token_.length;
               line += token_;
@@ -198,9 +248,8 @@ truwrap = module.exports = function(options) {
           line: function(token_) {
             var results, subtokens;
             if (newlineRegex.test(token_)) {
-              subtokens = token_.split(newlineRegex);
+              subtokens = token_.split("\n");
               format.linefit(subtokens.shift());
-              indent = 0;
               results = [];
               while (subtokens.length) {
                 results.push(format.newline(subtokens.shift()));
@@ -221,7 +270,7 @@ truwrap = module.exports = function(options) {
             }
           }
         }
-        line = line.replace(postSpaceRegex, '');
+        line = line.trimRight();
         lines.push(line);
         if (write_) {
           outStream.write(_decoder.write(lines.join('\n')));
