@@ -1,0 +1,61 @@
+#! /bin/sh
+
+ask() {
+    # http://djm.me/ask
+    while true; do
+
+        if [ "${2:-}" = "Y" ]; then
+            prompt="Y/n"
+            default=Y
+        elif [ "${2:-}" = "N" ]; then
+            prompt="y/N"
+            default=N
+        else
+            prompt="y/n"
+            default=
+        fi
+
+        # Ask the question - use /dev/tty in case stdin is redirected from somewhere else
+        read -p "$1 [$prompt] " REPLY </dev/tty
+
+        # Default?
+        if [ -z "$REPLY" ]; then
+            REPLY=$default
+        fi
+
+        # Check if the reply is valid
+        case "$REPLY" in
+            Y*|y*) return 0 ;;
+            N*|n*) return 1 ;;
+        esac
+
+    done
+}
+
+echo "Generate test fixture output."
+echo "Verify truwrap output correctness before regenerating output fixtures."
+if ask "Are you sure?"; then
+	echo "Soft wrap to width = 40, left = 0, right = 0"
+    cat test/fixtures/in/lorem.txt | bin/truwrap.js --left 0 --right 0 --width 40 > test/fixtures/out/lorem-40-0-0.txt
+    echo "Soft tabbed wrap to width = 40, left = 0, right = 0"
+    cat test/fixtures/in/tabbed.txt | bin/truwrap.js --left 0 --right 0 --width 40 > test/fixtures/out/tabbed-40-0-0.txt
+    echo "Soft wrap to width = 40, left = 6, right = 4"
+    cat test/fixtures/in/lorem.txt | bin/truwrap.js --left 6 --right 4 --width 40 > test/fixtures/out/lorem-40-6-4.txt
+    echo "Hard wrap to width = 40, left = 8, right = 8"
+    cat test/fixtures/in/lorem.txt | bin/truwrap.js --left 8 --right 8 --width 40 --mode hard > test/fixtures/out/lorem-40-8-8.txt
+    echo "Hard wrap to width = 20"
+    cat test/fixtures/in/lorem.txt | bin/truwrap.js --width 20 --mode hard > test/fixtures/out/lorem-20.txt
+    echo "Hard tabbed wrap to width = 20"
+    cat test/fixtures/in/tabbed.txt | bin/truwrap.js --width 30 --mode hard > test/fixtures/out/tabbed-30.txt
+    echo "Keep wrap to width = 20, left = 10, right = 0"
+    cat test/fixtures/in/ls.txt | bin/truwrap.js --left 10 --right 0 --width 20 --mode keep > test/fixtures/out/ls-20-10-0.txt
+    echo "Keep wrap to width = 40, left = 0, right = 0"
+    cat test/fixtures/in/ls.txt | bin/truwrap.js --left 0 --right 0 --width 40 --mode keep > test/fixtures/out/ls-40-0-0.txt
+    echo "Keep wrap to width = 80, left = 1, right = 0"
+    cat test/fixtures/in/ls.txt | bin/truwrap.js --left 1 --right 0 --width 80 --mode keep > test/fixtures/out/ls-80-1-0.txt
+	echo 'Stamp: "Hello %s!" World --width 40'
+    bin/truwrap.js -s "Hello %s!" World --width 40 > test/fixtures/out/stamp.txt
+    echo "Panel: width = 70, left = 10"
+    cat test/fixtures/in/panel.txt | bin/truwrap.js --panel --width 70 --left 10 > test/fixtures/out/panel.txt
+    ava --verbose
+fi

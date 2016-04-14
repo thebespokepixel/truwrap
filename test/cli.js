@@ -3,163 +3,135 @@ import shell from 'shelljs'
 import pkg from '../package.json'
 import test from 'ava'
 
-const loremWrapped0 = `Lorem ipsum dolor sit amet, consectetur
-adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna
-aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris
-nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in
-reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia
-deserunt mollit anim id est laborum.`
-
-const loremWrapped64 = `      Lorem ipsum dolor sit amet,
-      consectetur adipiscing elit,
-      sed do eiusmod tempor
-      incididunt ut labore et
-      dolore magna aliqua. Ut enim
-      ad minim veniam, quis nostrud
-      exercitation ullamco laboris
-      nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure
-      dolor in reprehenderit in
-      voluptate velit esse cillum
-      dolore eu fugiat nulla
-      pariatur. Excepteur sint
-      occaecat cupidatat non
-      proident, sunt in culpa qui
-      officia deserunt mollit anim
-      id est laborum.`
-
-const loremWrapped88hard = `        Lorem ipsum dolor sit
-        amet, consectetur
-        adipiscing elit, sed do
-        eiusmod tempor
-        incididunt ut labore et
-        dolore magna aliqua. Ut
-        enim ad minim veniam,
-        quis nostrud
-        exercitation ullamco
-        laboris nisi ut aliquip
-        ex ea commodo consequat
-        . Duis aute irure dolor
-        in reprehenderit in
-        voluptate velit esse
-        cillum dolore eu fugiat
-        nulla pariatur.
-        Excepteur sint occaecat
-        cupidatat non proident,
-        sunt in culpa qui
-        officia deserunt mollit
-        anim id est laborum.`
-
-const loremWrapped22hard = `  Lorem ipsum
-  dolor sit amet,
-  consectetur
-  adipiscing elit
-  , sed do eiusmod
-  tempor
-  incididunt ut
-  labore et dolore
-  magna aliqua. Ut
-  enim ad minim
-  veniam, quis
-  nostrud
-  exercitation
-  ullamco laboris
-  nisi ut aliquip
-  ex ea commodo
-  consequat. Duis
-  aute irure dolor
-  in reprehenderit
-  in voluptate
-  velit esse
-  cillum dolore eu
-  fugiat nulla
-  pariatur.
-  Excepteur sint
-  occaecat
-  cupidatat non
-  proident, sunt
-  in culpa qui
-  officia deserunt
-  mollit anim id
-  est laborum.`
-
-let tableOne = '          One              Two         Three       Four       \n'
-   tableOne += '          test 1           test 3      test 4      test 5     \n'
-   tableOne += '          Longer item      Short2      Longer item short4     \n'
-   tableOne += '          1                            3                      \n'
-   tableOne += '          Lorem ipsum      Ut enim ad  Duis aute   Excepteur  \n'
-   tableOne += '          dolor sit        minim       irure dolor sint       \n'
-   tableOne += '          amet,            veniam,     in          occaecat   \n'
-   tableOne += '          consectetur      quis        reprehende… cupidatat  \n'
-   tableOne += '          adipiscing       nostrud     rit in      non        \n'
-   tableOne += '          elit, sed        exercitati… voluptate   proident,  \n'
-   tableOne += '          do eiusmod       on ullamco  velit esse  sunt in    \n'
-   tableOne += '          tempor           laboris     cillum      culpa qui  \n'
-   tableOne += '          incididunt       nisi ut     dolore eu   officia    \n'
-   tableOne += '          ut labore        aliquip ex  fugiat      deserunt   \n'
-   tableOne += '          et dolore        ea commodo  nulla       mollit anim\n'
-   tableOne += '          magna            consequat.  pariatur.   id est     \n'
-   tableOne += '          aliqua.                                  laborum.   \n'
-   tableOne += '          ♣                ♥           ♠           ♦'
+const expectedVersion = pkg.build_number === 0 && pkg.version || `${pkg.version}-Δ${pkg.build_number}`
 
 test.cb(`Module name/version is '${pkg.name}'.`, t => {
-	shell.exec('/usr/bin/env node ../lib/cli/index.js -vv', {silent: true}, (code_, out_) => {
+	shell.exec('/usr/bin/env node ../lib/cli/index.js -vv', {
+		silent: true
+	}, (code_, out_) => {
 		t.is(code_, 0)
-		t.is(out_, `${pkg.name} v${pkg.version}`)
+		t.is(out_, `${pkg.name} v${expectedVersion}`)
 		t.end()
 	})
 })
 
-test.cb('Soft wrap test to width = 40, left = 0, right = 0', t => {
-	shell.exec('cat ./fixtures/lorem.txt | /usr/bin/env node ../lib/cli/index.js --left 0 --right 0 --width 40', {silent: true}, (code_, out_) => {
+test.cb('Soft wrap to width = 40, left = 0, right = 0', t => {
+	const fixture = shell.cat('fixtures/out/lorem-40-0-0.txt')
+	shell.exec('cat ./fixtures/in/lorem.txt | /usr/bin/env node ../lib/cli/index.js --left 0 --right 0 --width 40', {
+		silent: true
+	}, (code_, out_) => {
 		t.is(code_, 0)
-		t.is(out_, loremWrapped0)
+		t.is(out_, fixture)
 		t.end()
 	})
 })
 
-test.cb('Soft wrap test to width = 40, left = 6, right = 4', t => {
-	shell.exec('cat ./fixtures/lorem.txt | /usr/bin/env node ../lib/cli/index.js --left 6 --right 4 --width 40', {silent: true}, (code_, out_) => {
+test.cb('Soft wrap tabbed source to width = 40, left = 0, right = 0', t => {
+	const fixture = shell.cat('fixtures/out/tabbed-40-0-0.txt')
+	shell.exec('cat ./fixtures/in/tabbed.txt | /usr/bin/env node ../lib/cli/index.js --left 0 --right 0 --width 40', {
+		silent: true
+	}, (code_, out_) => {
 		t.is(code_, 0)
-		t.is(out_, loremWrapped64)
+		t.is(out_, fixture)
 		t.end()
 	})
 })
 
-test.cb('Hard wrap test to width = 40, left = 8, right = 8', t => {
-	shell.exec('cat ./fixtures/lorem.txt | /usr/bin/env node ../lib/cli/index.js --left 8 --right 8 --width 40 --mode hard', {silent: true}, (code_, out_) => {
+test.cb('Soft wrap to width = 40, left = 6, right = 4', t => {
+	const fixture = shell.cat('fixtures/out/lorem-40-6-4.txt')
+	shell.exec('cat ./fixtures/in/lorem.txt | /usr/bin/env node ../lib/cli/index.js --left 6 --right 4 --width 40', {
+		silent: true
+	}, (code_, out_) => {
 		t.is(code_, 0)
-		t.is(out_, loremWrapped88hard)
+		t.is(out_, fixture)
 		t.end()
 	})
 })
 
-test.cb('Hard wrap test to width = 20', t => {
-	shell.exec('cat ./fixtures/lorem.txt | /usr/bin/env node ../lib/cli/index.js --width 20 --mode hard', {silent: true}, (code_, out_) => {
+test.cb('Hard wrap to width = 40, left = 8, right = 8', t => {
+	const fixture = shell.cat('fixtures/out/lorem-40-8-8.txt')
+	shell.exec('cat ./fixtures/in/lorem.txt | /usr/bin/env node ../lib/cli/index.js --left 8 --right 8 --width 40 --mode hard', {
+		silent: true
+	}, (code_, out_) => {
 		t.is(code_, 0)
-		t.is(out_, loremWrapped22hard)
+		t.is(out_, fixture)
 		t.end()
 	})
 })
 
-test.cb('Stamp test: -s "Hello %s!" World --width 40', t => {
-	shell.exec('/usr/bin/env node ../lib/cli/index.js -s "Hello %s!" World --width 40', {silent: true}, (code_, out_) => {
+test.cb('Hard wrap to width = 20', t => {
+	const fixture = shell.cat('fixtures/out/lorem-20.txt')
+	shell.exec('cat ./fixtures/in/lorem.txt | /usr/bin/env node ../lib/cli/index.js --width 20 --mode hard', {
+		silent: true
+	}, (code_, out_) => {
 		t.is(code_, 0)
-		t.is(out_, '  Hello World!')
+		t.is(out_, fixture)
 		t.end()
 	})
 })
 
-test.cb('Panel test: width = 70, left = 10', t => {
-	shell.exec('cat ./fixtures/table.txt | /usr/bin/env node ../lib/cli/index.js --panel --width 70 --left 10', {silent: true}, (code_, out_) => {
+test.cb('Hard wrap tabbed source to width = 30', t => {
+	const fixture = shell.cat('fixtures/out/tabbed-30.txt')
+	shell.exec('cat ./fixtures/in/tabbed.txt | /usr/bin/env node ../lib/cli/index.js --width 30 --mode hard', {
+		silent: true
+	}, (code_, out_) => {
 		t.is(code_, 0)
-		t.is(out_, tableOne)
+		t.is(out_, fixture)
+		t.end()
+	})
+})
+
+test.cb('Keep wrap to width = 20, left = 10, right = 0', t => {
+	const fixture = shell.cat('fixtures/out/ls-20-10-0.txt')
+	shell.exec('cat ./fixtures/in/ls.txt | /usr/bin/env node ../lib/cli/index.js --left 10 --right 0 --width 20 --mode keep', {
+		silent: true
+	}, (code_, out_) => {
+		t.is(code_, 0)
+		t.is(out_, fixture)
+		t.end()
+	})
+})
+
+test.cb('Keep wrap to width = 40, left = 0, right = 0', t => {
+	const fixture = shell.cat('fixtures/out/ls-40-0-0.txt')
+	shell.exec('cat ./fixtures/in/ls.txt | /usr/bin/env node ../lib/cli/index.js --left 0 --right 0 --width 40 --mode keep', {
+		silent: true
+	}, (code_, out_) => {
+		t.is(code_, 0)
+		t.is(out_, fixture)
+		t.end()
+	})
+})
+
+test.cb('Keep wrap to width = 80, left = 1, right = 0', t => {
+	const fixture = shell.cat('fixtures/out/ls-80-1-0.txt')
+	shell.exec('cat ./fixtures/in/ls.txt | /usr/bin/env node ../lib/cli/index.js --left 1 --right 0 --width 80 --mode keep', {
+		silent: true
+	}, (code_, out_) => {
+		t.is(code_, 0)
+		t.is(out_, fixture)
+		t.end()
+	})
+})
+
+test.cb('Stamp: "Hello %s!" World --width 40', t => {
+	const fixture = shell.cat('fixtures/out/stamp.txt')
+	shell.exec('cat ./fixtures/in/lorem.txt | /usr/bin/env node ../lib/cli/index.js -s "Hello %s!" World --width 40', {
+		silent: true
+	}, (code_, out_) => {
+		t.is(code_, 0)
+		t.is(out_, fixture)
+		t.end()
+	})
+})
+
+test.cb('Panel: width = 70, left = 10', t => {
+	const fixture = shell.cat('fixtures/out/panel.txt')
+	shell.exec('cat ./fixtures/in/panel.txt | /usr/bin/env node ../lib/cli/index.js --panel --width 70 --left 10', {
+		silent: true
+	}, (code_, out_) => {
+		t.is(code_, 0)
+		t.is(out_, fixture)
 		t.end()
 	})
 })

@@ -46,8 +46,8 @@ yargs = require 'yargs'
 			nargs: 1
 		m:
 			alias: 'mode'
-			choices: ['hard', 'soft']
-			describe: 'Wrapping mode: hard (break long lines), soft (keep white space)'
+			choices: ['hard', 'soft', 'keep', 'container']
+			describe: 'Wrapping mode'
 			default: 'soft'
 			requiresArg: yes
 		s:
@@ -64,7 +64,7 @@ yargs = require 'yargs'
 			default: '|'
 		x:
 			alias: 'regex'
-			describe: 'Character run selection regex. Overrides --mode'
+			describe: 'Character run selection regex.'
 			requiresArg: yes
 		color:
 			describe: 'Force color depth --color=256|16m. Disable with --no-color'
@@ -109,6 +109,7 @@ renderSettings =
 	mode: argv.mode
 	outStream: outStream
 
+renderSettings.modeRegex = new RegExp(argv.regex, 'g') if argv.regex?
 renderSettings.width = argv.width if argv.width?
 
 renderer = (require "../..") renderSettings

@@ -8,11 +8,13 @@ import semverRegex from 'semver-regex'
 const StreamProxy = new stream.PassThrough()
 StreamProxy.setEncoding('utf8')
 
-test(`Module version is '${pkg.version}'.`, t => {
-	t.is(`${pkg.version}`, truwrap.getVersion())
+const expectedVersion = pkg.build_number === 0 && pkg.version || `${pkg.version}-Δ${pkg.build_number}`
+
+test(`Module version is '${expectedVersion}'.`, t => {
+	t.is(`${expectedVersion}`, truwrap.getVersion())
 })
 
-test(`Module version '${pkg.version} is semver'.`, t => {
+test(`Module version '${pkg.version}' is semver.`, t => {
 	t.truthy(semverRegex().test(truwrap.getVersion()))
 })
 
