@@ -88,7 +88,8 @@ if argv.verbose
 			console.log ':Extra-Verbose mode:'
 			console.yargs argv
 
-do updateNotifier
+unless process.env.USER is 'root' and process.env.SUDO_USER isnt process.env.USER
+	do updateNotifier
 		pkg: _package
 	.notify
 
