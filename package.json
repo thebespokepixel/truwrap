@@ -53,7 +53,7 @@
     "type": "git",
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
-  "version": "0.6.0",
+  "version": "0.6.1",
   "build_number": 0,
   "ava": {
     "files": [
