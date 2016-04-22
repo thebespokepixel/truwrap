@@ -87,8 +87,8 @@ For advanced 24bit colour handling see [MarkGriffiths/trucolor](https://github.c
 
 Initially a port of [substack/node-wordwrap](https://github.com/substack/node-wordwrap) to format yargs help output that contained (the very long) ansi 24bit color SGR codes.
 
-[grab]: https://raw.githubusercontent.com/MarkGriffiths/truwrap/develop/media/truwrap.png
-[example]: https://raw.githubusercontent.com/MarkGriffiths/truwrap/develop/media/example.png
+[grab]: https://raw.githubusercontent.com/MarkGriffiths/truwrap/master/media/truwrap.png
+[example]: https://raw.githubusercontent.com/MarkGriffiths/truwrap/master/media/example.png
 
 [project-badge]: http://img.shields.io/badge/status-beta-blue.svg?style=flat
 [build-badge]: http://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&style=flat
