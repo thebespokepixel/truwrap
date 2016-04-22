@@ -5,4 +5,6 @@ test
 .editorconfig
 .travis.yml
 gulpfile.*
+media/example.png
+media/truwrap.png
 .npmignore
