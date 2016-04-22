@@ -22,7 +22,7 @@
     "term-ng": "*",
     "trucolor": "*",
     "update-notifier": "^0.6.3",
-    "verbosity": "*",
+    "verbosity": "0.5.0",
     "yargs": "^4.4.0"
   },
   "description": "Smarter terminal text wrapping (handles 24bit color)",
