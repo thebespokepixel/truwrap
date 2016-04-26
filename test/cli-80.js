@@ -20,7 +20,7 @@ const width = path.basename(__filename, '.js').split('-')[1] // 10, 20, 40, 60, 
 
 if ([40, 60, 80, 100].indexOf(Number(width)) !== -1) {
 	test.cb(`Panel: width = ${width} left = 0, right = 0`, t => {
-		const fixture = shell.cat(`fixtures/out/panel-${width}-0-0.txt`)
+		const fixture = shell.cat(`fixtures/out/panel-${width}-0-0.txt`).toString()
 		shell.exec(`cat ./fixtures/in/panel.txt | /usr/bin/env node ../lib/cli/index.js --panel --width ${width} --left 0 --right 0`, {
 			silent: true
 		}, (code_, out_) => {
