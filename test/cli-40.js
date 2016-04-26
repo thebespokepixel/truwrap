@@ -34,7 +34,7 @@ if ([40, 60, 80, 100].indexOf(Number(width)) !== -1) {
 [0, 1, 5].forEach(right => {
 	[0, 1, 2, 5, 10].forEach(left => {
 		test.serial.cb(`Soft wrap to width = ${width}, left = ${left}, right = ${right}`, t => {
-			const fixture = shell.cat(`fixtures/out/lorem-soft-${width}-${left}-${right}.txt`)
+			const fixture = shell.cat(`fixtures/out/lorem-soft-${width}-${left}-${right}.txt`).toString()
 			shell.exec(`cat ./fixtures/in/lorem.txt | /usr/bin/env node ../lib/cli/index.js --left ${left} --right ${right} --width ${width}`, {
 				silent: true
 			}, (code_, out_) => {
@@ -45,7 +45,7 @@ if ([40, 60, 80, 100].indexOf(Number(width)) !== -1) {
 		})
 
 		test.serial.cb(`Soft wrap tabbed source to width = ${width}, left = ${left}, right = ${right}`, t => {
-			const fixture = shell.cat(`fixtures/out/tabbed-soft-${width}-${left}-${right}.txt`)
+			const fixture = shell.cat(`fixtures/out/tabbed-soft-${width}-${left}-${right}.txt`).toString()
 			shell.exec(`cat ./fixtures/in/tabbed.txt | /usr/bin/env node ../lib/cli/index.js --left ${left} --right ${right} --width ${width}`, {
 				silent: true
 			}, (code_, out_) => {
@@ -56,7 +56,7 @@ if ([40, 60, 80, 100].indexOf(Number(width)) !== -1) {
 		})
 
 		test.serial.cb(`Hard wrap to width = ${width}, left = ${left}, right = ${right}`, t => {
-			const fixture = shell.cat(`fixtures/out/lorem-hard-${width}-${left}-${right}.txt`)
+			const fixture = shell.cat(`fixtures/out/lorem-hard-${width}-${left}-${right}.txt`).toString()
 			shell.exec(`cat ./fixtures/in/lorem.txt | /usr/bin/env node ../lib/cli/index.js --left ${left} --right ${right} --width ${width} --mode hard`, {
 				silent: true
 			}, (code_, out_) => {
@@ -67,7 +67,7 @@ if ([40, 60, 80, 100].indexOf(Number(width)) !== -1) {
 		})
 
 		test.serial.cb(`Hard wrap tabbed source to width = ${width}, left = ${left}, right = ${right}`, t => {
-			const fixture = shell.cat(`fixtures/out/tabbed-hard-${width}-${left}-${right}.txt`)
+			const fixture = shell.cat(`fixtures/out/tabbed-hard-${width}-${left}-${right}.txt`).toString()
 			shell.exec(`cat ./fixtures/in/tabbed.txt | /usr/bin/env node ../lib/cli/index.js --left ${left} --right ${right} --width ${width} --mode hard`, {
 				silent: true
 			}, (code_, out_) => {
@@ -78,7 +78,7 @@ if ([40, 60, 80, 100].indexOf(Number(width)) !== -1) {
 		})
 
 		test.serial.cb(`Keep wrap to width = ${width}, left = ${left}, right = ${right}`, t => {
-			const fixture = shell.cat(`fixtures/out/ls-keep-${width}-${left}-${right}.txt`)
+			const fixture = shell.cat(`fixtures/out/ls-keep-${width}-${left}-${right}.txt`).toString()
 			shell.exec(`cat ./fixtures/in/ls.txt | /usr/bin/env node ../lib/cli/index.js --left ${left} --right ${right} --width ${width} --mode keep`, {
 				silent: true
 			}, (code_, out_) => {
@@ -89,7 +89,7 @@ if ([40, 60, 80, 100].indexOf(Number(width)) !== -1) {
 		})
 
 		test.serial.cb(`Stamp: "Hello %s!" World width = ${width}, left = ${left}, right = ${right}`, t => {
-			const fixture = shell.cat(`fixtures/out/stamp-${width}-${left}-${right}.txt`)
+			const fixture = shell.cat(`fixtures/out/stamp-${width}-${left}-${right}.txt`).toString()
 			shell.exec(`cat ./fixtures/in/lorem.txt | /usr/bin/env node ../lib/cli/index.js -s "Hello %s!" World --left ${left} --right ${right} --width ${width}`, {
 				silent: true
 			}, (code_, out_) => {
