@@ -21,7 +21,7 @@
     "get-stdin": "^5.0.1",
     "term-ng": "*",
     "trucolor": "*",
-    "update-notifier": "^0.6.3",
+    "update-notifier": "^0.7.0",
     "verbosity": "*",
     "yargs": "^4.4.0"
   },
