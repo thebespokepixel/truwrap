@@ -23,7 +23,7 @@
     "trucolor": "*",
     "update-notifier": "^0.6.3",
     "verbosity": "*",
-    "yargs": "^4.4.0"
+    "yargs": "^5.0.0"
   },
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "devDependencies": {
