@@ -19,7 +19,7 @@
     "ansi-regex": "^2.0.0",
     "columnify": "^1.5.4",
     "get-stdin": "^5.0.1",
-    "term-ng": "*",
+    "term-ng": "0.7.4",
     "trucolor": "*",
     "update-notifier": "^0.6.3",
     "verbosity": "*",
