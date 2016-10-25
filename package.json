@@ -27,7 +27,7 @@
   },
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "devDependencies": {
-    "@thebespokepixel/cordial": "*",
+    "@thebespokepixel/cordial": "0.17.10",
     "semver-regex": "^1.0.0",
     "shelljs": "^0.6.0"
   },
