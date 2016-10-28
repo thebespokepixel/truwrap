@@ -1,6 +1,6 @@
-      Lorem
-  ipsum dolor
-  sit amet,
+    Lorem ipsum
+  dolor sit
+  amet,
   consectetur
   adipiscing
   elit, sed do
@@ -20,7 +20,7 @@
   ea commodo
   consequat.
 
-      Duis aute
+    Duis aute
   irure dolor
   in
   reprehenderit

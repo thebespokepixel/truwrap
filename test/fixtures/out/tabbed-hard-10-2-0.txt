@@ -1,10 +1,10 @@
-      Lorem
-  ipsum dol
-  or sit am
-  et, conse
-  ctetur ad
-  ipiscing
-  elit, sed
+    Lorem i
+  psum dolo
+  r sit ame
+  t, consec
+  tetur adi
+  piscing e
+  lit, sed
   do eiusmo
   d tempor
   incididun
@@ -25,12 +25,12 @@
   o conseq
   uat.
 
-      Duis
-  aute irur
-  e dolor i
-  n reprehe
-  nderit in
-  voluptate
+    Duis au
+  te irure
+  dolor in
+  reprehend
+  erit in v
+  oluptate
   velit ess
   e cillum
   dolore eu

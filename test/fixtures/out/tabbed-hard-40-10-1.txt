@@ -1,16 +1,16 @@
-              Lorem ipsum dolor sit amet
-          , consectetur adipiscing elit,
-          sed do eiusmod tempor incididu
-          nt ut labore et dolore magna a
-          liqua. Ut enim ad minim veniam
-          , quis nostrud exercitation ul
-          lamco laboris nisi ut aliquip
-          ex ea commodo consequat.
+            Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit, s
+          ed do eiusmod tempor incididun
+          t ut labore et dolore magna al
+          iqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ulla
+          mco laboris nisi ut aliquip ex
+          ea commodo consequat.
 
-              Duis aute irure dolor in r
-          eprehenderit in voluptate veli
-          t esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint
+            Duis aute irure dolor in rep
+          rehenderit in voluptate velit
+          esse cillum dolore eu fugiat n
+          ulla pariatur. Excepteur sint
           occaecat cupidatat non proiden
           t, sunt in culpa qui officia d
           eserunt mollit anim id est la

@@ -1,19 +1,19 @@
-      Lore
-  m ipsum
-  dolor si
-  t amet,
-  consecte
-  tur adip
-  iscing e
-  lit, sed
-  do eiusm
-  od tempo
-  r incidi
-  dunt ut
-  labore e
-  t dolore
-  magna al
-  iqua. Ut
+    Lorem
+  ipsum do
+  lor sit
+  amet, co
+  nsectetu
+  r adipis
+  cing eli
+  t, sed d
+  o eiusmo
+  d tempor
+  incididu
+  nt ut la
+  bore et
+  dolore m
+  agna ali
+  qua. Ut
   enim ad
   minim ve
   niam, qu
@@ -29,9 +29,9 @@
   onsequa
   t.
 
-      Duis
-  aute iru
-  re dolor
+    Duis a
+  ute irur
+  e dolor
   in repre
   henderit
   in volup

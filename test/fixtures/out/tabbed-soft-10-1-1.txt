@@ -1,5 +1,4 @@
-
- Lorem
+   Lorem
  ipsum
  dolor
  sit
@@ -31,7 +30,7 @@
  commodo
  consequat.
 
-     Duis
+   Duis
  aute
  irure
  dolor in

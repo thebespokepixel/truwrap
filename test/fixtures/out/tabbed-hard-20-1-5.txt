@@ -1,5 +1,5 @@
-     Lorem ipsum
- dolor sit amet,
+   Lorem ipsum d
+ olor sit amet,
  consectetur adi
  piscing elit, s
  ed do eiusmod t
@@ -15,10 +15,10 @@
  ea commodo con
  sequat.
 
-     Duis aute i
- rure dolor in r
- eprehenderit in
- voluptate velit
+   Duis aute iru
+ re dolor in rep
+ rehenderit in v
+ oluptate velit
  esse cillum dol
  ore eu fugiat n
  ulla pariatur.

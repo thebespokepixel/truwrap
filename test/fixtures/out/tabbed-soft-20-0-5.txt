@@ -1,4 +1,4 @@
-    Lorem ipsum
+  Lorem ipsum
 dolor sit amet,
 consectetur
 adipiscing
@@ -17,7 +17,7 @@ nisi ut aliquip
 ex ea commodo
 consequat.
 
-    Duis aute
+  Duis aute
 irure dolor in
 reprehenderit
 in voluptate

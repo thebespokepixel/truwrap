@@ -1,36 +1,35 @@
-
-  Lore
-  m ip
-  sum
-  dolo
-  r si
-  t am
-  et,
-  cons
-  ecte
-  tur
-  adip
-  isci
-  ng e
-  lit,
-  sed
-  do e
-  iusm
-  od t
-  empo
-  r in
-  cidi
-  dunt
-  ut l
-  abor
-  e et
-  dolo
-  re m
-  agna
-  aliq
-  ua.
-  Ut e
-  nim
+    Lo
+  rem
+  ipsu
+  m do
+  lor
+  sit
+  amet
+  , co
+  nsec
+  tetu
+  r ad
+  ipis
+  cing
+  elit
+  , se
+  d do
+  eius
+  mod
+  temp
+  or i
+  ncid
+  idun
+  t ut
+  labo
+  re e
+  t do
+  lore
+  magn
+  a al
+  iqua
+  . Ut
+  enim
   ad m
   inim
   veni
@@ -57,9 +56,9 @@
   uat
   .
 
-
-  Duis
-  aute
+    Du
+  is a
+  ute
   irur
   e do
   lor

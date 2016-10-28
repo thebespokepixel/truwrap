@@ -1,14 +1,14 @@
-              Lo
-          rem ip
-          sum do
-          lor si
-          t amet
-          , cons
-          ectetu
-          r adip
-          iscing
-          elit,
-          sed do
+            Lore
+          m ipsu
+          m dolo
+          r sit
+          amet,
+          consec
+          tetur
+          adipis
+          cing e
+          lit, s
+          ed do
           eiusmo
           d temp
           or inc
@@ -38,34 +38,34 @@
           onseq
           uat.
 
-              Du
-          is aut
-          e irur
-          e dolo
-          r in r
-          eprehe
-          nderit
-          in vol
-          uptate
-          velit
-          esse c
-          illum
-          dolore
-          eu fug
-          iat nu
-          lla pa
-          riatur
-          . Exce
-          pteur
-          sint o
-          ccaeca
-          t cupi
-          datat
-          non pr
-          oident
-          , sunt
-          in cul
-          pa qui
+            Duis
+          aute i
+          rure d
+          olor i
+          n repr
+          ehende
+          rit in
+          volupt
+          ate ve
+          lit es
+          se cil
+          lum do
+          lore e
+          u fugi
+          at nul
+          la par
+          iatur.
+          Except
+          eur si
+          nt occ
+          aecat
+          cupida
+          tat no
+          n proi
+          dent,
+          sunt i
+          n culp
+          a qui
           offici
           a dese
           runt m
