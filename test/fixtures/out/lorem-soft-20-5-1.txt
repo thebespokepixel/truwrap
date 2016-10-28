@@ -4,8 +4,7 @@
      consectetur
      adipiscing
      elit, sed do
-     eiusmod
-     tempor
+     eiusmod tempor
      incididunt ut
      labore et
      dolore magna
@@ -19,10 +18,9 @@
      ut aliquip ex
      ea commodo
      consequat.
-     
+
      Duis aute
-     irure dolor
-     in
+     irure dolor in
      reprehenderit
      in voluptate
      velit esse
@@ -30,13 +28,12 @@
      eu fugiat
      nulla
      pariatur.
-     Excepteur
-     sint occaecat
+     Excepteur sint
+     occaecat
      cupidatat non
-     proident,
-     sunt in culpa
-     qui officia
+     proident, sunt
+     in culpa qui
+     officia
      deserunt
-     mollit anim
-     id est
-     laborum.
+     mollit anim id
+     est laborum.

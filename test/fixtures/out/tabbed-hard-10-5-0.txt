@@ -1,87 +1,76 @@
-     Lorem
-     ipsum
-     dolor
-     sit a
-     met, 
-     conse
-     ctetu
-     r adi
-     pisci
-     ng el
-     it, s
+       Lore
+     m ipsu
+     m dolo
+     r sit
+     amet,
+     consec
+     tetur
+     adipis
+     cing e
+     lit, s
      ed do
-     eiusm
-     od te
-     mpor 
-     incid
-     idunt
-     ut la
-     bore 
-     et do
-     lore 
-     magna
-     aliqu
-     a. Ut
-     enim 
-     ad mi
-     nim v
-     eniam
-     , qui
-     s nos
-     trud 
-     exerc
-     itati
-     on ul
-     lamco
-     labor
-     is ni
+     eiusmo
+     d temp
+     or inc
+     ididun
+     t ut l
+     abore
+     et dol
+     ore ma
+     gna al
+     iqua.
+     Ut eni
+     m ad m
+     inim v
+     eniam,
+     quis n
+     ostrud
+     exerci
+     tation
+     ullamc
+     o labo
+     ris ni
      si ut
-     aliqu
-     ip ex
-     ea co
-     mmodo
-     conse
-     quat.
-     
-     Duis 
-     aute 
-     irure
-     dolor
-     in re
-     prehe
-     nderi
-     t in 
-     volup
-     tate 
-     velit
-     esse 
-     cillu
-     m dol
-     ore e
-     u fug
-     iat n
-     ulla 
-     paria
-     tur. 
-     Excep
-     teur 
-     sint 
-     occae
-     cat c
-     upida
-     tat n
-     on pr
-     oiden
-     t, su
-     nt in
-     culpa
-     qui o
-     ffici
-     a des
-     erunt
-     molli
-     t ani
-     m id 
-     est l
-     aboru
-     m.
+     aliqui
+     p ex e
+     a comm
+     odo c
+     onseq
+     uat.
+
+       Duis
+     aute i
+     rure d
+     olor i
+     n repr
+     ehende
+     rit in
+     volupt
+     ate ve
+     lit es
+     se cil
+     lum do
+     lore e
+     u fugi
+     at nul
+     la par
+     iatur.
+     Except
+     eur si
+     nt occ
+     aecat
+     cupida
+     tat no
+     n proi
+     dent,
+     sunt i
+     n culp
+     a qui
+     offici
+     a dese
+     runt m
+     ollit
+     anim i
+     d est
+     labor
+     um.

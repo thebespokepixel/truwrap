@@ -1,36 +1,34 @@
-  Lorem ipsum d
-  olor sit amet
+    Lorem ipsum
+  dolor sit amet
   , consectetur
-  adipiscing el
-  it, sed do ei
-  usmod tempor 
-  incididunt ut
-  labore et dol
-  ore magna ali
-  qua. Ut enim 
-  ad minim veni
-  am, quis nost
-  rud exercitat
-  ion ullamco l
-  aboris nisi u
-  t aliquip ex 
-  ea commodo co
-  nsequat.
-  
-  Duis aute iru
-  re dolor in r
-  eprehenderit 
-  in voluptate 
-  velit esse ci
-  llum dolore e
-  u fugiat null
-  a pariatur. E
-  xcepteur sint
-  occaecat cupi
-  datat non pro
-  ident, sunt i
-  n culpa qui o
-  fficia deseru
-  nt mollit ani
-  m id est labo
-  rum.
+  adipiscing eli
+  t, sed do eius
+  mod tempor inc
+  ididunt ut lab
+  ore et dolore
+  magna aliqua.
+  Ut enim ad min
+  im veniam, qui
+  s nostrud exer
+  citation ullam
+  co laboris nis
+  i ut aliquip e
+  x ea commodo
+  consequat.
+
+    Duis aute ir
+  ure dolor in r
+  eprehenderit i
+  n voluptate ve
+  lit esse cillu
+  m dolore eu fu
+  giat nulla par
+  iatur. Excepte
+  ur sint occaec
+  at cupidatat n
+  on proident, s
+  unt in culpa q
+  ui officia des
+  erunt mollit a
+  nim id est la
+  borum.

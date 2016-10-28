@@ -1,18 +1,16 @@
-One              Two         Three       Four       
-test 1           test 3      test 4      test 5     
-Longer item      Short2      Longer item short4     
-1                            3                      
-Lorem ipsum      Ut enim ad  Duis aute   Excepteur  
-dolor sit        minim       irure dolor sint       
-amet,            veniam,     in          occaecat   
-consectetur      quis        reprehende… cupidatat  
-adipiscing       nostrud     rit in      non        
-elit, sed        exercitati… voluptate   proident,  
-do eiusmod       on ullamco  velit esse  sunt in    
-tempor           laboris     cillum      culpa qui  
-incididunt       nisi ut     dolore eu   officia    
-ut labore        aliquip ex  fugiat      deserunt   
-et dolore        ea commodo  nulla       mollit anim
-magna            consequat.  pariatur.   id est     
-aliqua.                                  laborum.   
-♣                ♥           ♠           ♦          
+One                Two           Three         Four
+test 1             test 3        test 4        test 5
+Longer item 1      Short2        Longer item 3 short4
+Lorem ipsum        Ut enim ad    Duis aute     Excepteur
+dolor sit          minim veniam, irure dolor   sint occaecat
+amet,              quis nostrud  in            cupidatat non
+consectetur        exercitation  reprehenderit proident,
+adipiscing         ullamco       in voluptate  sunt in culpa
+elit, sed do       laboris nisi  velit esse    qui officia
+eiusmod            ut aliquip ex cillum dolore deserunt
+tempor             ea commodo    eu fugiat     mollit anim
+incididunt ut      consequat.    nulla         id est
+labore et                        pariatur.     laborum.
+dolore magna
+aliqua.
+♣                  ♥             ♠             ♦

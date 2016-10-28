@@ -1,15 +1,14 @@
-     Lorem ipsum dolor sit amet, consect
-     etur adipiscing elit, sed do eiusmo
-     d tempor incididunt ut labore et do
-     lore magna aliqua. Ut enim ad minim
-     veniam, quis nostrud exercitation u
-     llamco laboris nisi ut aliquip ex e
-     a commodo consequat.
-     
-     Duis aute irure dolor in reprehende
-     rit in voluptate velit esse cillum 
-     dolore eu fugiat nulla pariatur. Ex
-     cepteur sint occaecat cupidatat non
-     proident, sunt in culpa qui officia
-     deserunt mollit anim id est laborum
-     .
+       Lorem ipsum dolor sit amet, consec
+     tetur adipiscing elit, sed do eiusmo
+     d tempor incididunt ut labore et dol
+     ore magna aliqua. Ut enim ad minim v
+     eniam, quis nostrud exercitation ull
+     amco laboris nisi ut aliquip ex ea c
+     ommodo consequat.
+
+       Duis aute irure dolor in reprehend
+     erit in voluptate velit esse cillum
+     dolore eu fugiat nulla pariatur. Exc
+     epteur sint occaecat cupidatat non p
+     roident, sunt in culpa qui officia d
+     eserunt mollit anim id est laborum.
