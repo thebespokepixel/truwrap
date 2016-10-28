@@ -157,6 +157,7 @@ export function truwrap({
 
 			/**
 			 * @name noTTY
+			 * @private
 			 * @returns {api} - A version of the API when no TTY is connected.
 			 */
 			return Object.assign(Object.create(api), {
@@ -180,6 +181,7 @@ export function truwrap({
 
 			/**
 			 * @name container
+			 * @private
 			 * @returns {api} - A zero-margin container that content can be flowed into.
 			 */
 			return Object.assign(Object.create(api), {
@@ -207,6 +209,7 @@ export function truwrap({
 
 			/**
 			 * @name wrap
+			 * @private
 			 * @returns {api} - The wrapping API.
 			 */
 			return Object.assign(Object.create(api), {

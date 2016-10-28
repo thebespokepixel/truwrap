@@ -6,6 +6,7 @@ import _ from 'lodash'
 
 /**
  * Organise a block of delimited text into a panel
+ * @private
  * @param  {string} buffer_ Input plain text
  * @return {object} The columnify configuration.
  */
@@ -53,10 +54,6 @@ export default function (buffer_, delimiter_, width_) {
 			}
 		}
 	})
-
-	// console.dir(tableData)
-	// console.dir(configuration)
-
 	return {
 		content: tableData,
 		configuration

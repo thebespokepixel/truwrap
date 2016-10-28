@@ -829,7 +829,6 @@ const parsePanel = function (buffer_, delimiter_, width_) {
 			}
 		}
 	})
-
 	return {
 		content: tableData,
 		configuration
