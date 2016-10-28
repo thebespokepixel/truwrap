@@ -125,6 +125,7 @@ export function truwrap({
 			if (outStream._isStdio) {
 				outStream.write(columnify(content, configuration))
 			}
+			return this
 		},
 
 		/**
@@ -133,7 +134,10 @@ export function truwrap({
 		 * @param {Number} newlines - number of new lines to add.
 		 * @return {api} has side effect of writing to stream.
 		 */
-		break: unimplemented,
+		break(newlines = 1) {
+			outStream.write('\n'.repeat(newlines))
+			return this
+		},
 
 		/**
 		 * Similar to css' clear. Write a clearing newline to the stream.
@@ -162,10 +166,6 @@ export function truwrap({
 			 */
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth,
-				break(newlines = 1) {
-					outStream.write('\n'.repeat(newlines))
-					return this
-				},
 				clear() {
 					outStream.write('\n')
 					return this
@@ -186,10 +186,6 @@ export function truwrap({
 			 */
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth,
-				break(newlines = 1) {
-					outStream.write('\n'.repeat(newlines))
-					return this
-				},
 				clear() {
 					outStream.write('\n')
 					return this
@@ -214,10 +210,6 @@ export function truwrap({
 			 */
 			return Object.assign(Object.create(api), {
 				getWidth: () => viewWidth,
-				break(newlines = 1) {
-					outStream.write('\n'.repeat(newlines))
-					return this
-				},
 				panel(content, configuration) {
 					outStream.write(viewHandler.wrap(columnify(content, configuration)))
 					return this
