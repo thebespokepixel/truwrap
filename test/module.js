@@ -3,20 +3,20 @@
 import stream from 'stream'
 import test from 'ava'
 import semverRegex from 'semver-regex'
-import pkg from '../package.json'
-import truwrap from '..'
+import pkg from '../package'
+import {truwrap, metadata} from '..'
 
 const StreamProxy = new stream.PassThrough()
 StreamProxy.setEncoding('utf8')
 
-const expectedVersion = pkg.build_number === 0 && pkg.version || `${pkg.version}-Δ${pkg.build_number}`
+const expectedVersion = pkg.buildNumber === (0 && pkg.version) || `${pkg.version}-Δ${pkg.buildNumber}`
 
 test(`Module version is '${expectedVersion}'.`, t => {
-	t.is(`${expectedVersion}`, truwrap.getVersion())
+	t.is(`${expectedVersion}`, metadata.version())
 })
 
 test(`Module version '${pkg.version}' is semver.`, t => {
-	t.truthy(semverRegex().test(truwrap.getVersion()))
+	t.truthy(semverRegex().test(metadata.version()))
 })
 
 test(`Returns renderer.`, t => {

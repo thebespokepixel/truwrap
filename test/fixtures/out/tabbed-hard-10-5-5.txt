@@ -1,211 +1,149 @@
-     <T
-     ><
-     T>
-     Lo
-     re
-     m 
-     ip
-     su
-     m 
-     do
-     lo
-     r 
-     si
-     t 
-     am
-     et
-     , 
-     co
-     ns
-     ec
-     te
-     tu
-     r 
-     ad
-     ip
-     is
-     ci
-     ng
-     el
-     it
-     , 
-     se
-     d 
-     do
-     ei
-     us
-     mo
-     d 
-     te
-     mp
+
+     Lor
+     em
+     ips
+     um
+     dol
      or
-     in
-     ci
-     di
-     du
-     nt
-     ut
-     la
-     bo
+     sit
+     ame
+     t,
+     con
+     sec
+     tet
+     ur
+     adi
+     pis
+     cin
+     g e
+     lit
+     , s
+     ed
+     do
+     eiu
+     smo
+     d t
+     emp
+     or
+     inc
+     idi
+     dun
+     t u
+     t l
+     abo
      re
      et
-     do
-     lo
-     re
-     ma
-     gn
-     a 
-     al
-     iq
-     ua
-     . 
-     Ut
-     en
-     im
+     dol
+     ore
+     mag
+     na
+     ali
+     qua
+     . U
+     t e
+     nim
      ad
-     mi
-     ni
-     m 
-     ve
-     ni
-     am
-     , 
-     qu
-     is
-     no
-     st
-     ru
-     d 
-     ex
-     er
-     ci
-     ta
-     ti
+     min
+     im
+     ven
+     iam
+     , q
+     uis
+     nos
+     tru
+     d e
+     xer
+     cit
+     ati
      on
-     ul
-     la
-     mc
-     o 
-     la
-     bo
-     ri
-     s 
-     ni
-     si
-     ut
-     al
-     iq
-     ui
-     p 
+     ull
+     amc
+     o l
+     abo
+     ris
+     nis
+     i u
+     t a
+     liq
+     uip
      ex
      ea
-     co
-     mm
-     od
-     o 
+     com
+     mod
+     o
      co
      ns
      eq
      ua
      t.
-     
-     <T
-     ><
-     T>
-     Du
-     is
-     au
+
+
+     Dui
+     s a
+     ute
+     iru
+     re
+     dol
+     or
+     in
+     rep
+     reh
+     end
+     eri
+     t i
+     n v
+     olu
+     pta
      te
-     ir
-     ur
-     e 
-     do
-     lo
-     r 
-     in
-     re
-     pr
-     eh
-     en
-     de
-     ri
-     t 
-     in
-     vo
-     lu
-     pt
-     at
-     e 
-     ve
-     li
-     t 
-     es
-     se
-     ci
-     ll
-     um
-     do
-     lo
-     re
-     eu
-     fu
-     gi
-     at
-     nu
-     ll
-     a 
-     pa
-     ri
-     at
-     ur
-     . 
-     Ex
-     ce
-     pt
-     eu
-     r 
-     si
-     nt
-     oc
-     ca
-     ec
-     at
-     cu
-     pi
-     da
-     ta
-     t 
-     no
-     n 
-     pr
-     oi
-     de
-     nt
-     , 
-     su
-     nt
-     in
-     cu
-     lp
-     a 
-     qu
-     i 
-     of
-     fi
-     ci
-     a 
-     de
-     se
-     ru
-     nt
-     mo
-     ll
+     vel
      it
-     an
-     im
-     id
-     es
-     t 
+     ess
+     e c
+     ill
+     um
+     dol
+     ore
+     eu
+     fug
+     iat
+     nul
+     la
+     par
+     iat
+     ur.
+     Exc
+     ept
+     eur
+     sin
+     t o
+     cca
+     eca
+     t c
+     upi
+     dat
+     at
+     non
+     pro
+     ide
+     nt,
+     sun
+     t i
+     n c
+     ulp
+     a q
+     ui
+     off
+     ici
+     a d
+     ese
+     run
+     t m
+     oll
+     it
+     ani
+     m i
+     d e
+     st
      la
      bo
      ru

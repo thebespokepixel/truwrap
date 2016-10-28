@@ -1,108 +1,90 @@
-     Lore
-     m ip
-     sum 
-     dolo
-     r si
-     t am
-     et, 
-     cons
-     ecte
-     tur 
-     adip
-     isci
-     ng e
-     lit,
-     sed 
-     do e
-     iusm
-     od t
-     empo
-     r in
-     cidi
-     dunt
-     ut l
-     abor
-     e et
-     dolo
-     re m
-     agna
-     aliq
-     ua. 
-     Ut e
-     nim 
-     ad m
-     inim
-     veni
-     am, 
-     quis
-     nost
-     rud 
-     exer
-     cita
-     tion
-     ulla
-     mco 
-     labo
-     ris 
-     nisi
-     ut a
-     liqu
-     ip e
-     x ea
-     comm
-     odo 
+         L
+     orem
+     ipsum
+     dolor
+     sit a
+     met,
+     conse
+     ctetu
+     r adi
+     pisci
+     ng el
+     it, s
+     ed do
+     eiusm
+     od te
+     mpor
+     incid
+     idunt
+     ut la
+     bore
+     et do
+     lore
+     magna
+     aliqu
+     a. Ut
+     enim
+     ad mi
+     nim v
+     eniam
+     , qui
+     s nos
+     trud
+     exerc
+     itati
+     on ul
+     lamco
+     labor
+     is ni
+     si ut
+     aliqu
+     ip ex
+     ea co
+     mmodo
      cons
      equa
      t.
-     
-     Duis
-     aute
-     irur
-     e do
-     lor 
-     in r
-     epre
-     hend
-     erit
-     in v
-     olup
+
+         D
+     uis a
+     ute i
+     rure
+     dolor
+     in re
+     prehe
+     nderi
+     t in
+     volup
      tate
-     veli
-     t es
-     se c
-     illu
-     m do
-     lore
-     eu f
-     ugia
-     t nu
-     lla 
-     pari
-     atur
-     . Ex
-     cept
-     eur 
+     velit
+     esse
+     cillu
+     m dol
+     ore e
+     u fug
+     iat n
+     ulla
+     paria
+     tur.
+     Excep
+     teur
      sint
-     occa
-     ecat
-     cupi
-     data
-     t no
-     n pr
-     oide
-     nt, 
-     sunt
-     in c
-     ulpa
-     qui 
-     offi
-     cia 
-     dese
-     runt
-     moll
-     it a
-     nim 
-     id e
-     st l
-     abor
-     um.
+     occae
+     cat c
+     upida
+     tat n
+     on pr
+     oiden
+     t, su
+     nt in
+     culpa
+     qui o
+     ffici
+     a des
+     erunt
+     molli
+     t ani
+     m id
+     est
+     labo
+     rum.

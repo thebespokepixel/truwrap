@@ -1,5 +1,5 @@
      drwx------     7 mark  staff   238B 13 Mar 02:46 Applications/
-     drwx------@    8 mark  staff   272B 13 Apr 12:03 Creative Cloud Files[0m…
+     drwx------@    8 mark  staff   272B 13 Apr 12:03 Creative Cloud Files/
      drwx------@   13 mark  staff   442B 13 Apr 12:02 Desktop/
      drwx------@   38 mark  staff   1.3K 19 Mar 14:42 Documents/
      drwx------+   11 mark  staff   374B 12 Apr 01:35 Downloads/

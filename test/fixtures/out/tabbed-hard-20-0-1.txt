@@ -1,26 +1,24 @@
-Lorem ipsum dolor s
-it amet, consectetu
-r adipiscing elit, 
-sed do eiusmod temp
-or incididunt ut la
-bore et dolore magn
-a aliqua. Ut enim a
-d minim veniam, qui
-s nostrud exercitat
-ion ullamco laboris
-nisi ut aliquip ex 
-ea commodo consequa
-t.
+    Lorem ipsum dolo
+r sit amet, consecte
+tur adipiscing elit,
+sed do eiusmod tempo
+r incididunt ut labo
+re et dolore magna a
+liqua. Ut enim ad mi
+nim veniam, quis nos
+trud exercitation ul
+lamco laboris nisi u
+t aliquip ex ea comm
+odo consequat.
 
-Duis aute irure dol
-or in reprehenderit
-in voluptate velit 
-esse cillum dolore 
-eu fugiat nulla par
-iatur. Excepteur si
-nt occaecat cupidat
-at non proident, su
-nt in culpa qui off
-icia deserunt molli
-t anim id est labor
-um.
+    Duis aute irure
+dolor in reprehender
+it in voluptate veli
+t esse cillum dolore
+eu fugiat nulla pari
+atur. Excepteur sint
+occaecat cupidatat n
+on proident, sunt in
+culpa qui officia de
+serunt mollit anim i
+d est laborum.
