@@ -78,7 +78,7 @@ yargs.strict().options({
 		boolean: true,
 		describe: 'Render a tabular panel into the available console width.'
 	},
-	t: {
+	c: {
 		alias: 'truncate',
 		boolean: true,
 		describe: 'Truncate panel cells.'

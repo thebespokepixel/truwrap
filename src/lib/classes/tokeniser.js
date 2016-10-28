@@ -64,4 +64,4 @@ class Tokeniser {
  * @see {@link Tokeniser}
  * @return {Tokeniser} A tokeniser instance.
  */
-export default (tokenisingRegex) => new Tokeniser(tokenisingRegex)
+export default tokenisingRegex => new Tokeniser(tokenisingRegex)
