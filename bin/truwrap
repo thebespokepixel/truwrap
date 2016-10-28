@@ -920,7 +920,10 @@ function truwrap(_ref) {
 			return this
 		},
 
-		clear: unimplemented,
+		clear() {
+			outStream.write('\n')
+			return this
+		},
 
 		write: unimplemented
 	}
@@ -931,10 +934,6 @@ function truwrap(_ref) {
 
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth,
-				clear() {
-					outStream.write('\n')
-					return this
-				},
 				write(text) {
 					outStream.write(text)
 					return this
@@ -946,10 +945,6 @@ function truwrap(_ref) {
 
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth,
-				clear() {
-					outStream.write('\n')
-					return this
-				},
 				write(text) {
 					outStream.write(text)
 					return this
@@ -967,10 +962,6 @@ function truwrap(_ref) {
 				getWidth: () => viewWidth,
 				panel(content, configuration) {
 					outStream.write(viewHandler.wrap(columnify(content, configuration)))
-					return this
-				},
-				clear() {
-					outStream.write('\n')
 					return this
 				},
 				write(text) {
