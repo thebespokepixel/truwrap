@@ -84,7 +84,7 @@
     "type": "git",
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
-  "version": "0.7.0-beta.2",
+  "version": "0.7.0-beta.3",
   "ava": {
     "files": [
       "test/*.js"
@@ -156,6 +156,6 @@
       ]
     ]
   },
-  "buildNumber": 1,
+  "buildNumber": 0,
   "jsnext:main": "lib/index-es.js"
 }
