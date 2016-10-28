@@ -910,9 +910,15 @@ function truwrap(_ref) {
 			if (outStream._isStdio) {
 				outStream.write(columnify(content, configuration))
 			}
+			return this
 		},
 
-		break: unimplemented,
+		break() {
+			const newlines = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1
+
+			outStream.write('\n'.repeat(newlines))
+			return this
+		},
 
 		clear: unimplemented,
 
@@ -925,12 +931,6 @@ function truwrap(_ref) {
 
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth,
-				break() {
-					const newlines = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1
-
-					outStream.write('\n'.repeat(newlines))
-					return this
-				},
 				clear() {
 					outStream.write('\n')
 					return this
@@ -946,12 +946,6 @@ function truwrap(_ref) {
 
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth,
-				break() {
-					const newlines = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1
-
-					outStream.write('\n'.repeat(newlines))
-					return this
-				},
 				clear() {
 					outStream.write('\n')
 					return this
@@ -971,12 +965,6 @@ function truwrap(_ref) {
 
 			return Object.assign(Object.create(api), {
 				getWidth: () => viewWidth,
-				break() {
-					const newlines = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1
-
-					outStream.write('\n'.repeat(newlines))
-					return this
-				},
 				panel(content, configuration) {
 					outStream.write(viewHandler.wrap(columnify(content, configuration)))
 					return this
