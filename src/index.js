@@ -144,7 +144,10 @@ export function truwrap({
 		 * @function
 		 * @return {api} has side effect of writing to stream.
 		 */
-		clear: unimplemented,
+		clear() {
+			outStream.write('\n')
+			return this
+		},
 
 		/**
 		 * Write text via the wrapping logic
@@ -166,10 +169,6 @@ export function truwrap({
 			 */
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth,
-				clear() {
-					outStream.write('\n')
-					return this
-				},
 				write(text) {
 					outStream.write(text)
 					return this
@@ -186,10 +185,6 @@ export function truwrap({
 			 */
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth,
-				clear() {
-					outStream.write('\n')
-					return this
-				},
 				write(text) {
 					outStream.write(text)
 					return this
@@ -212,10 +207,6 @@ export function truwrap({
 				getWidth: () => viewWidth,
 				panel(content, configuration) {
 					outStream.write(viewHandler.wrap(columnify(content, configuration)))
-					return this
-				},
-				clear() {
-					outStream.write('\n')
 					return this
 				},
 				write(text) {
