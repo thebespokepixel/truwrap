@@ -155,7 +155,10 @@ export function truwrap({
 		 * @param {String} text - The raw, unwrapped test to wrap.
 		 * @return {api} has side effect of writing to stream.
 		 */
-		write: unimplemented
+		write(text) {
+			outStream.write(text)
+			return this
+		}
 	}
 
 	switch (true) {
@@ -168,11 +171,7 @@ export function truwrap({
 			 * @returns {api} - A version of the API when no TTY is connected.
 			 */
 			return Object.assign(Object.create(api), {
-				getWidth: () => ttyWidth,
-				write(text) {
-					outStream.write(text)
-					return this
-				}
+				getWidth: () => ttyWidth
 			})
 
 		case renderMode.selected === 'container':
@@ -184,11 +183,7 @@ export function truwrap({
 			 * @returns {api} - A zero-margin container that content can be flowed into.
 			 */
 			return Object.assign(Object.create(api), {
-				getWidth: () => ttyWidth,
-				write(text) {
-					outStream.write(text)
-					return this
-				}
+				getWidth: () => ttyWidth
 			})
 
 		default:

@@ -925,7 +925,10 @@ function truwrap(_ref) {
 			return this
 		},
 
-		write: unimplemented
+		write(text) {
+			outStream.write(text)
+			return this
+		}
 	}
 
 	switch (true) {
@@ -933,22 +936,14 @@ function truwrap(_ref) {
 			console.info(colorReplacer`${'yellow|Non-TTY'}: width: Infinity`)
 
 			return Object.assign(Object.create(api), {
-				getWidth: () => ttyWidth,
-				write(text) {
-					outStream.write(text)
-					return this
-				}
+				getWidth: () => ttyWidth
 			})
 
 		case renderMode.selected === 'container':
 			console.info(`Container: width: ${width}, render mode: ${renderMode.selected}`)
 
 			return Object.assign(Object.create(api), {
-				getWidth: () => ttyWidth,
-				write(text) {
-					outStream.write(text)
-					return this
-				}
+				getWidth: () => ttyWidth
 			})
 
 		default:
