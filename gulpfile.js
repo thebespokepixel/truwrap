@@ -45,9 +45,6 @@ gulp.task('cli', gulp.series(
 	})
 ))
 
-// Coffee
-gulp.task('coffee', cordial.transpile().coffee('src-coffee/**/*.coffee'))
-
 // Tests
 gulp.task('ava', cordial.test().ava(['test/*.js']))
 gulp.task('xo', cordial.test().xo(['src/**.js']))

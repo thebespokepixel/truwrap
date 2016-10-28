@@ -34,16 +34,6 @@
           
             
             <li><a
-              href="#cli"
-              class="h5 bold black caps">
-              CLI
-              
-            </a>
-            
-            </li>
-          
-            
-            <li><a
               href="#api"
               class="h5 bold black caps">
               API
@@ -200,32 +190,8 @@
 		<h4>Installation</h4>
 <pre><code class="language-shell">npm install --save @thebespokepixel/truwrap
 </code></pre>
-<h4>Example</h4>
-<pre><code class="language-js">/* Require (or import) the module… */
-const badges = require('../../index.js')
-
-/* …then do something with it. */
-function renderBadges() {
-   badges('readme').then(markdown => {
-      /* Output markdown to console... */
-      console.log(markdown)
-   })
-}
-</code></pre>
-<p><img src="https://raw.githubusercontent.com/MarkGriffiths/truwrap/master/media/example.png" alt="Example Screengrab"></p>
-
-	
-</section>
-</div>
-        
-      
-        
-          <div class="keyline-top-not py1"><section class="py0 px2 clearfix note">
-	<h3 id="cli" class="m0">
-		CLI
-	</h3>
-	
-		<pre><code class="language-text">  truwrap
+<h4>CLI</h4>
+<pre><code class="language-text">  truwrap
   Smarter terminal text wrapping (handles 24bit color)
 
   Synopsis:
@@ -253,8 +219,28 @@ function renderBadges() {
 <p>To use, simply pipe in a body of text to wrap according to the supplied options.</p>
 <pre><code class="language-shell">  cat readme.md | truwrap --left 6 --right 6 --mode soft
 </code></pre>
+<h4>Programmatic usage</h4>
+<pre><code class="language-js">var truwrap = require('truwrap')
 
-	
+var writer = truwrap({
+  left: 2,
+  right: 2,
+  mode: 'soft',
+  outStream: process.stderr
+})
+
+var contentWidth = writer.getWidth()
+
+writer.write("Some text to write...", "...and some more.")
+writer.write("A new paragraph, if not implicitly present.")
+writer.end()
+</code></pre>
+<h3>Advanced use</h3>
+<p>To add. Containers, Tables, Panels and Images.</p>
+<h3>Related</h3>
+<p>For advanced 24bit colour handling see <a href="https://github.com/MarkGriffiths/trucolor">MarkGriffiths/trucolor</a> and <a href="https://www.npmjs.com/package/trucolor">npm trucolor</a>.</p>
+<p>Initially a port of <a href="https://github.com/substack/node-wordwrap">substack/node-wordwrap</a> to format yargs help output that contained (the very long) ansi 24bit color SGR codes.</p>
+
 	
 </section>
 </div>
@@ -283,7 +269,7 @@ function renderBadges() {
       truwrap  <span>→ <a href="#api">api</a></span>
     </h3>
     
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/6581de4d9a06c309bf01fc98492cd65bc651c4ed/src/index.js#L52-L232">src/index.js</a>
+      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/f3e21bc2707dbc21fd56a770116c4606113abbed/src/index.js#L52-L232">src/index.js</a>
     
   </div>
   
@@ -417,7 +403,7 @@ soft | hyphen | hard | keep | container
       api  
     </h3>
     
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/6581de4d9a06c309bf01fc98492cd65bc651c4ed/src/index.js#L97-L152">src/index.js</a>
+      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/f3e21bc2707dbc21fd56a770116c4606113abbed/src/index.js#L97-L152">src/index.js</a>
     
   </div>
   
@@ -705,7 +691,7 @@ soft | hyphen | hard | keep | container
       end  <span>→ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span>
     </h3>
     
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/6581de4d9a06c309bf01fc98492cd65bc651c4ed/src/index.js#L104-L110">src/index.js</a>
+      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/f3e21bc2707dbc21fd56a770116c4606113abbed/src/index.js#L104-L110">src/index.js</a>
     
   </div>
   
@@ -759,7 +745,7 @@ soft | hyphen | hard | keep | container
       panel  <span>→ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>
     </h3>
     
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/6581de4d9a06c309bf01fc98492cd65bc651c4ed/src/index.js#L124-L128">src/index.js</a>
+      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/f3e21bc2707dbc21fd56a770116c4606113abbed/src/index.js#L124-L128">src/index.js</a>
     
   </div>
   
@@ -840,7 +826,7 @@ soft | hyphen | hard | keep | container
       panel  <span>→ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>
     </h3>
     
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/6581de4d9a06c309bf01fc98492cd65bc651c4ed/src/lib/classes/panel.js#L12-L64">src/lib/classes/panel.js</a>
+      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/f3e21bc2707dbc21fd56a770116c4606113abbed/src/lib/classes/panel.js#L12-L64">src/lib/classes/panel.js</a>
     
   </div>
   
@@ -921,7 +907,7 @@ soft | hyphen | hard | keep | container
       noTTY  <span>→ <a href="#api">api</a></span>
     </h3>
     
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/6581de4d9a06c309bf01fc98492cd65bc651c4ed/src/index.js#L162-L176">src/index.js</a>
+      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/f3e21bc2707dbc21fd56a770116c4606113abbed/src/index.js#L162-L176">src/index.js</a>
     
   </div>
   
@@ -972,7 +958,7 @@ soft | hyphen | hard | keep | container
       container  <span>→ <a href="#api">api</a></span>
     </h3>
     
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/6581de4d9a06c309bf01fc98492cd65bc651c4ed/src/index.js#L185-L199">src/index.js</a>
+      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/f3e21bc2707dbc21fd56a770116c4606113abbed/src/index.js#L185-L199">src/index.js</a>
     
   </div>
   
@@ -1023,7 +1009,7 @@ soft | hyphen | hard | keep | container
       wrap  <span>→ <a href="#api">api</a></span>
     </h3>
     
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/6581de4d9a06c309bf01fc98492cd65bc651c4ed/src/index.js#L212-L230">src/index.js</a>
+      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/f3e21bc2707dbc21fd56a770116c4606113abbed/src/index.js#L212-L230">src/index.js</a>
     
   </div>
   
