@@ -1,7 +1,6 @@
-'use strict'
-/*
- *  Client Gulp File
- */
+/* ─────────────────────╮
+ │ truwrap gulp/cordial │
+ ╰──────────────────────┴────────────────────────────────────────────────────── */
 
 const gulp = require('gulp')
 const cordial = require('@thebespokepixel/cordial')()

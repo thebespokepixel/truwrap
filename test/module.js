@@ -1,5 +1,3 @@
-'use strict'
-
 import stream from 'stream'
 import test from 'ava'
 import semverRegex from 'semver-regex'
