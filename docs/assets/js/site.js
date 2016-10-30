@@ -23,10 +23,12 @@
 	const o = document.getElementById('toc').getElementsByTagName('li')
 	const i = document.getElementById('filter-input')
 	i.addEventListener('keyup', e => {
-		if (e.keyCode === 13)
-			{for (let n = 0; n < o.length; n++) {
+		if (e.keyCode === 13)			{
+			for (let n = 0; n < o.length; n++) {
 				const t = o[n]
-				if (!t.classList.contains('display-none')) {return location.replace(t.firstChild.href), e.preventDefault()}
+				if (!t.classList.contains('display-none')) {
+					return location.replace(t.firstChild.href), e.preventDefault()
+				}
 			}}
 		let s = function () {
 			return !0
@@ -41,11 +43,17 @@
 			s(l) || d.some(s) ? l.classList.remove('display-none') : l.classList.add('display-none')
 		}
 	})
-	for (let r = document.getElementsByClassName('toggle-step-sibling'), l = 0; l < r.length; l++) {r[l].addEventListener('click', n)}
-	for (let d = document.getElementsByClassName('toggle-sibling'), c = 0; c < d.length; c++) {d[c].addEventListener('click', t)}
+	for (let r = document.getElementsByClassName('toggle-step-sibling'), l = 0; l < r.length; l++) {
+		r[l].addEventListener('click', n)
+	}
+	for (let d = document.getElementsByClassName('toggle-sibling'), c = 0; c < d.length; c++) {
+		d[c].addEventListener('click', t)
+	}
 	window.addEventListener('hashchange', () => {
 		s(location.hash.substring(1))
 	}), s(location.hash.substring(1))
-	for (let g = document.getElementsByClassName('pre-open'), m = 0; m < g.length; m++) {g[m].addEventListener('mousedown', a, !1)}
+	for (let g = document.getElementsByClassName('pre-open'), m = 0; m < g.length; m++) {
+		g[m].addEventListener('mousedown', a, !1)
+	}
 })()
 
