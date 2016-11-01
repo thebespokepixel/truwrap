@@ -2,11 +2,11 @@
  │ truwrap colour │ Colour handling, here for optimisation
  ╰────────────────┴──────────────────────────────────────────────────────────── */
 
-import trucolor from 'trucolor'
+import {simple, palette} from 'trucolor'
 import deepAssign from 'deep-assign'
 import {TemplateTag, replaceSubstitutionTransformer} from 'common-tags'
 
-export const clr = deepAssign(trucolor.simplePalette(), trucolor.bulk({}, {
+export const clr = deepAssign(simple({format: 'sgr'}), palette({format: 'sgr'}, {
 	bright: 'bold rgb(255,255,255)',
 	dark: '#333'
 }))
