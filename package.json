@@ -18,7 +18,7 @@
     "owner": "Mark Griffiths/Cryptocomposite"
   },
   "scripts": {
-    "test": "xo && snyk test && nyc ava",
+    "test": "xo && nyc ava",
     "generate-test-fixtures": "scripts/generate-test-fixtures",
     "generate-test-widths": "scripts/generate-test-widths",
     "doc-serve": "documentation serve --watch --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --name $npm_package_name  --project-version $npm_package_version src/index.js",
@@ -59,7 +59,6 @@
     "nyc": "^8.3.2",
     "semver-regex": "^1.0.0",
     "shelljs": "^0.7.5",
-    "snyk": "^1.19.1",
     "xo": "^0.17.0"
   },
   "engines": {
@@ -153,6 +152,6 @@
       ]
     ]
   },
-  "buildNumber": 0,
+  "buildNumber": 1,
   "jsnext:main": "lib/index-es.js"
 }
