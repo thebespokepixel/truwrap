@@ -7,6 +7,7 @@
   },
   "files": [
     "index.js",
+    "media/",
     "lib/",
     "bin/"
   ],
@@ -80,7 +81,7 @@
     "type": "git",
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
-  "version": "0.7.2",
+  "version": "0.7.3",
   "ava": {
     "files": [
       "test/*.js"
