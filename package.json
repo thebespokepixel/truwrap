@@ -44,18 +44,18 @@
     "term-ng": "^0.7.4",
     "trucolor": "^0.6.2",
     "update-notifier": "^1.0.2",
-    "verbosity": "^0.8.1",
+    "verbosity": "^0.8.2",
     "yargs": "^6.3.0"
   },
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "devDependencies": {
-    "@thebespokepixel/cordial": "^0.17.10",
+    "@thebespokepixel/cordial": "^0.17.12",
     "ava": "^0.16.0",
     "codeclimate-test-reporter": "^0.4.0",
     "documentation": "^4.0.0-beta11",
-    "documentation-theme-bespoke": "^0.3.1",
+    "documentation-theme-bespoke": "^0.3.4",
     "gulp": "github:gulpjs/gulp#4.0",
-    "nyc": "^8.3.2",
+    "nyc": "^8.4.0",
     "semver-regex": "^1.0.0",
     "shelljs": "^0.7.5",
     "xo": "^0.17.0"
@@ -151,6 +151,6 @@
       ]
     ]
   },
-  "buildNumber": 0,
+  "buildNumber": 4,
   "jsnext:main": "lib/index-es.js"
 }
