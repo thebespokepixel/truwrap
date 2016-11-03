@@ -20,7 +20,7 @@ test(`Module version '${pkg.version}' is semver.`, t => {
 test(`Returns renderer.`, t => {
 	const tw = truwrap({
 		left: 4,
-		right: -4
+		right: 4
 	})
 	t.truthy(tw.write && tw.end)
 })
@@ -28,13 +28,13 @@ test(`Returns renderer.`, t => {
 test.cb(`Consumes stream.`, t => {
 	const tw = truwrap({
 		left: 4,
-		right: -4,
+		width: 24,
 		mode: 'soft',
 		outStream: StreamProxy
 	})
 
 	StreamProxy.on('data', buffer_ => {
-		t.is(buffer_, 'Testing.')
+		t.is(buffer_, '    Testing.')
 		t.end()
 	})
 	tw.write('Testing.')

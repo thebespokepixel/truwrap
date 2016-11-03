@@ -16,7 +16,7 @@ gulp.task('master', cordial.macro({
 
 // Clean
 gulp.task('clean', cordial.shell({
-	source: ['bin/*', 'lib', 'npm-debug.*', './.nyc_output', './coverage']
+	source: ['bin/*', 'lib', 'npm-debug.*', './.nyc_output', './coverage', './test/coverage']
 }).trash())
 
 // Docs
