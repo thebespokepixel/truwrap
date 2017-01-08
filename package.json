@@ -31,7 +31,7 @@
   "dependencies": {
     "@thebespokepixel/meta": "^0.1.9",
     "@thebespokepixel/string": "^0.4.4",
-    "@thebespokepixel/n-selector": "^0.1.0",
+    "@thebespokepixel/n-selector": "^0.1.3",
     "ansi-regex": "^2.0.0",
     "columnify": "^1.5.4",
     "common-tags": "^1.3.1",
