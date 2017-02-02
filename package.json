@@ -51,7 +51,7 @@
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "devDependencies": {
     "@thebespokepixel/cordial": "^0.17.12",
-    "ava": "^0.17.0",
+    "ava": "^0.18.0",
     "codeclimate-test-reporter": "^0.4.0",
     "documentation": "^4.0.0-beta11",
     "documentation-theme-bespoke": "^0.3.4",
