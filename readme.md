@@ -1,5 +1,7 @@
 # truwrap
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/MarkGriffiths/truwrap.svg)](https://greenkeeper.io/)
+
 > A node module and CLI for text wrapping, panels & tables that supports 24bit color SGR codes.
 
 ##### Status
