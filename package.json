@@ -81,7 +81,7 @@
     "type": "git",
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
-  "version": "0.7.4",
+  "version": "0.7.5",
   "ava": {
     "files": [
       "test/*.js"
