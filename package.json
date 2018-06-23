@@ -61,7 +61,7 @@
     "read-pkg-up": "^4.0.0",
     "semver": "^5.5.0",
     "term-ng": "^0.8.1",
-    "trucolor": "^0.6.10",
+    "trucolor": "^0.7.0",
     "update-notifier": "^2.5.0",
     "verbosity": "^0.9.1",
     "yargs": "^11.0.0"
