@@ -435,7 +435,9 @@ function panel (buffer_, delimiter_, width_) {
 const console = verbosity.createConsole({
   outStream: process.stderr
 });
-const pkg = readPkg.sync(__dirname).pkg;
+const {
+  pkg
+} = readPkg.sync(__dirname);
 const locale = osLocale.sync();
 const metadata = meta(__dirname);
 const renderMode = nSelector.createSelector(['soft', 'hard', 'keep', 'container'], 0, 'configuration_mode');

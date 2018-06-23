@@ -2,7 +2,6 @@
  │ truwrap │ Smarter 24bit SGR aware console text wrapping
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
 
-import {resolve} from 'path'
 import readPkg from 'read-pkg-up'
 import columnify from 'columnify'
 import osLocale from 'os-locale'
@@ -17,7 +16,7 @@ import createImage from './lib/classes/image'
 import parsePanel from './lib/classes/panel'
 
 export const console = createConsole({outStream: process.stderr})
-export const pkg = readPkg.sync(__dirname).pkg
+export const {pkg} = readPkg.sync(__dirname)
 export const locale = osLocale.sync()
 export const metadata = meta(__dirname)
 

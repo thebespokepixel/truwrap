@@ -429,7 +429,9 @@ function panel (buffer_, delimiter_, width_) {
 const console = createConsole({
   outStream: process.stderr
 });
-const pkg = readPkg.sync(__dirname).pkg;
+const {
+  pkg
+} = readPkg.sync(__dirname);
 const locale = osLocale.sync();
 const metadata = meta(__dirname);
 const renderMode = createSelector(['soft', 'hard', 'keep', 'container'], 0, 'configuration_mode');
