@@ -3,7 +3,7 @@
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
 
 import {resolve} from 'path'
-import readPkg from 'read-pkg'
+import readPkg from 'read-pkg-up'
 import columnify from 'columnify'
 import osLocale from 'os-locale'
 import {createConsole} from 'verbosity'
@@ -17,9 +17,10 @@ import createImage from './lib/classes/image'
 import parsePanel from './lib/classes/panel'
 
 export const console = createConsole({outStream: process.stderr})
-export const pkg = readPkg.sync(resolve(__dirname, '..'))
+export const pkg = readPkg.sync(__dirname).pkg
 export const locale = osLocale.sync()
 export const metadata = meta(__dirname)
+
 export const renderMode = createSelector([
 	'soft',
 	'hard',
@@ -63,9 +64,12 @@ export function truwrap({
 	const ttyWidth = (function () {
 		if (width) {
 			return width
-		} else if (outStream.isTTY) {
+		}
+
+		if (outStream.isTTY) {
 			return outStream.columns || outStream.getWindowSize()[0]
 		}
+
 		return Infinity
 	})()
 
@@ -118,7 +122,8 @@ export function truwrap({
 		/**
 		 * Create a multicolumn panel within this view
 		 * @function
-		 * @param {panelObject} panel - Object for columnify
+		 * @param {panelObject} content - Object for columnify
+		 * @param {Object} configuration - Configuration for columnify
 		 * @return {String} - The rendered panel.
 		 */
 		panel(content, configuration) {

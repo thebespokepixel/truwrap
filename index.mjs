@@ -1,25 +1,19 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var ansiRegex = _interopDefault(require('ansi-regex'));
-var trucolor = require('trucolor');
-var deepAssign = _interopDefault(require('deep-assign'));
-var commonTags = require('common-tags');
-var fs = require('fs');
-var path = require('path');
-var _min = _interopDefault(require('lodash/min'));
-var _max = _interopDefault(require('lodash/max'));
-var _split = _interopDefault(require('lodash/split'));
-var _forEach = _interopDefault(require('lodash/forEach'));
-var readPkg = _interopDefault(require('read-pkg-up'));
-var columnify = _interopDefault(require('columnify'));
-var osLocale = _interopDefault(require('os-locale'));
-var verbosity = require('verbosity');
-var meta = _interopDefault(require('@thebespokepixel/meta'));
-var nSelector = require('@thebespokepixel/n-selector');
+import ansiRegex from 'ansi-regex';
+import { simple, palette } from 'trucolor';
+import deepAssign from 'deep-assign';
+import { TemplateTag, replaceSubstitutionTransformer, stripIndent } from 'common-tags';
+import { readFileSync, statSync } from 'fs';
+import { basename, extname } from 'path';
+import _min from 'lodash/min';
+import _max from 'lodash/max';
+import _split from 'lodash/split';
+import _forEach from 'lodash/forEach';
+import readPkg from 'read-pkg-up';
+import columnify from 'columnify';
+import osLocale from 'os-locale';
+import { createConsole } from 'verbosity';
+import meta from '@thebespokepixel/meta';
+import { createSelector } from '@thebespokepixel/n-selector';
 
 /* ──────────────────╮
  │ truwrap tokeniser │ Handle the tokenisation of source text
@@ -271,15 +265,15 @@ var createWrapTool = (options => new WrapTool(options));
 /* ───────────────╮
  │ truwrap colour │ Colour handling, here for optimisation
  ╰────────────────┴──────────────────────────────────────────────────────────── */
-const clr = deepAssign(trucolor.simple({
+const clr = deepAssign(simple({
   format: 'sgr'
-}), trucolor.palette({
+}), palette({
   format: 'sgr'
 }, {
   bright: 'bold rgb(255,255,255)',
   dark: '#333'
 }));
-const colorReplacer = new commonTags.TemplateTag(commonTags.replaceSubstitutionTransformer(/([a-zA-Z]+?)[:/|](.+)/, (match, colorName, content) => `${clr[colorName]}${content}${clr[colorName].out}`));
+const colorReplacer = new TemplateTag(replaceSubstitutionTransformer(/([a-zA-Z]+?)[:/|](.+)/, (match, colorName, content) => `${clr[colorName]}${content}${clr[colorName].out}`));
 
 /* ───────────────────╮
  │ truwrap cli images │
@@ -309,14 +303,14 @@ class Image {
     width = 'auto',
     height = 'auto'
   }) {
-    const extName = path.extname(file);
-    const fileName = name || path.basename(file, extName);
+    const extName = extname(file);
+    const fileName = name || basename(file, extName);
     const lineNameBase64 = Buffer.from(fileName).toString('base64');
     this.config = `width=${width};height=${height};name=${lineNameBase64}`;
 
     this.filePath = function () {
       try {
-        if (fs.statSync(file).isFile()) {
+        if (statSync(file).isFile()) {
           return file;
         }
       } catch (err) {
@@ -351,7 +345,7 @@ class Image {
       stretch = false,
       nobreak
     } = options;
-    const content = Buffer.from(fs.readFileSync(this.filePath));
+    const content = Buffer.from(readFileSync(this.filePath));
     const aspect = stretch ? 'preserveAspectRatio=0;' : '';
     const linebreak = nobreak ? '' : '\n';
     const newline = align > 1 ? `\u001BH\u001B[${align}A` : linebreak;
@@ -432,13 +426,13 @@ function panel (buffer_, delimiter_, width_) {
 /* ────────╮
  │ truwrap │ Smarter 24bit SGR aware console text wrapping
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
-const console = verbosity.createConsole({
+const console = createConsole({
   outStream: process.stderr
 });
 const pkg = readPkg.sync(__dirname).pkg;
 const locale = osLocale.sync();
 const metadata = meta(__dirname);
-const renderMode = nSelector.createSelector(['soft', 'hard', 'keep', 'container'], 0, 'configuration_mode');
+const renderMode = createSelector(['soft', 'hard', 'keep', 'container'], 0, 'configuration_mode');
 /**
  * Throw a error if a method remains unimplemented
  * @private
@@ -610,7 +604,7 @@ function truwrap({
       });
 
     default:
-      console.info(commonTags.stripIndent(colorReplacer)`
+      console.info(stripIndent(colorReplacer)`
 				${'green|Renderer'}:
 				  mode ▸ ${renderMode.selected} [${locale}]
 				  ┆ ${left} ◂├╌╌╌╌ ${viewWidth} ╌╌╌╌┤▸ ${right} ┆
@@ -638,11 +632,4 @@ function truwrap({
   }
 }
 
-exports.console = console;
-exports.pkg = pkg;
-exports.locale = locale;
-exports.metadata = metadata;
-exports.renderMode = renderMode;
-exports.truwrap = truwrap;
-exports.createImage = image;
-exports.parsePanel = panel;
+export { console, pkg, locale, metadata, renderMode, truwrap, image as createImage, panel as parsePanel };

@@ -8,7 +8,7 @@ import terminalFeatures from 'term-ng'
 import {stripIndent} from 'common-tags'
 
 import {clr, colorReplacer} from '../lib/colour'
-import {truwrap, metadata, createImage} from '../index'
+import {truwrap, metadata, createImage} from '../main'
 
 const images = (function () {
 	if (terminalFeatures.images) {
@@ -49,8 +49,7 @@ export default function help(yargs) {
 		Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
 	`
 	const epilogue = stripIndent(colorReplacer)`
-		${`title|${metadata.name}`} is an open source component of CryptoComposite’s toolset.
-		${`title|${metadata.copyright}`}. ${`grey|Released under the ${metadata.license} License.`}
+		${`title|${metadata.name}`} ${`white|${metadata.copyright}`}. ${`grey|Released under the ${metadata.license} License.`}
 		${`grey|Issues?: ${metadata.bugs}`}
 	`
 

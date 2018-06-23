@@ -4,11 +4,10 @@
 
 import {readFileSync, statSync} from 'fs'
 import {basename, extname} from 'path'
-import {gte} from 'semver'
-import {console} from '../../index'
+import {console} from '../../main'
 
-const prefix = '\x1b]1337;File=inline=1;'
-const suffix = '\x07'
+const prefix = '\u001B]1337;File=inline=1;'
+const suffix = '\u0007'
 
 const broken = `${__dirname}/../media/broken.png`
 
@@ -26,21 +25,17 @@ class Image {
 	 *                              X%(% width of window) or 'auto'
 	 * @param  {String} $0.height - Can be Y(chars), Ypx(pixels),
 	 *                              Y%(% width of window) or 'auto'
-	 * @return {Image}  An image reference ready to be rendered.
 	 */
 	constructor({
-			file,
-			name,
-			width = 'auto',
-			height = 'auto'
-		}) {
+		file,
+		name,
+		width = 'auto',
+		height = 'auto'
+	}) {
 		const extName = extname(file)
 		const fileName = name || basename(file, extName)
 
-		const lineNameBase64 = (gte(process.version, '6.0.0') ?
-			Buffer.from(fileName) :
-			new Buffer(fileName)
-		).toString('base64')
+		const lineNameBase64 = Buffer.from(fileName).toString('base64')
 
 		this.config = `width=${width};height=${height};name=${lineNameBase64}`
 
@@ -75,14 +70,11 @@ class Image {
 	render(options) {
 		const {align, stretch = false, nobreak} = options
 
-		const content = (gte(process.version, '6.0.0') ?
-			Buffer.from(readFileSync(this.filePath)) :
-			new Buffer(readFileSync(this.filePath))
-		)
+		const content = Buffer.from(readFileSync(this.filePath))
 
 		const aspect = stretch ? 'preserveAspectRatio=0;' : ''
 		const linebreak = nobreak ? '' : '\n'
-		const newline = align > 1 ? `\x1bH\x1b[${align}A` : linebreak
+		const newline = align > 1 ? `\u001BH\u001B[${align}A` : linebreak
 
 		return `${prefix}${aspect}size=${content.length}${this.config}:${
 			content.toString('base64')

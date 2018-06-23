@@ -5,18 +5,17 @@
 
 import {format} from 'util'
 
-import _ from 'lodash'
 import yargs from 'yargs'
 import getStdin from 'get-stdin'
 import updateNotifier from 'update-notifier'
 import {stripIndent} from 'common-tags'
 import {box} from '@thebespokepixel/string'
 
-import {truwrap, console, pkg, metadata, parsePanel} from '../index'
+import {truwrap, console, pkg, metadata, parsePanel} from '../main'
 import {colorReplacer} from '../lib/colour'
 import help from './help'
 
-yargs.strict().options({
+yargs.strict().help(false).version(false).options({
 	h: {
 		alias: 'help',
 		describe: 'Display this help.'
@@ -99,7 +98,7 @@ yargs.strict().options({
 	}
 }).showHelpOnFail(false, `Use 'truwrap --help' for help.`)
 
-const argv = yargs.argv
+const {argv} = yargs
 
 const outStream = argv.stderr ? process.stderr : process.stdout
 
@@ -173,7 +172,7 @@ if (argv.width) {
 const renderer = truwrap(viewSettings)
 
 if (argv.stamp) {
-	renderer.write(format.apply(null, argv._))
+	renderer.write(format(...argv._))
 	process.exit(0)
 }
 
