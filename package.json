@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "author": "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)",
   "main": "index.js",
