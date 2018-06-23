@@ -2,7 +2,7 @@
  │ truwrap │ WrapTool
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
 
-import {console} from '../../index'
+import {console} from '../../main'
 import createTokeniser from './tokeniser'
 import createLineFitter from './line-fitter'
 
@@ -17,14 +17,13 @@ class WrapTool {
 	 * @param  {Number} $0.left       - The left margins
 	 * @param  {Number} $0.width      - The width of the view, in chars
 	 * @param  {Regex}  $0.tokenRegex - An optional regex passed to the Tokeniser
-	 * @return {WrapTool} A configured WrapTool.
 	 */
 	constructor({
-			left,
-			width,
-			tabWidth,
-			tokenRegex
-		}) {
+		left,
+		width,
+		tabWidth,
+		tokenRegex
+	}) {
 		this.margin = ' '.repeat(left)
 		this.desiredWidth = width
 		this.tabWidth = tabWidth

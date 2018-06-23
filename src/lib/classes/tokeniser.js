@@ -3,7 +3,7 @@
  ╰───────────────────┴───────────────────────────────────────────────────────── */
 
 import ansiRegex from 'ansi-regex'
-import {renderMode} from '../../index'
+import {renderMode} from '../../main'
 
 const tabRegex = /\t/g
 const newlineRegex	= /\n/g
@@ -16,7 +16,6 @@ class Tokeniser {
 	/**
 	 * Create a new tokeniser
 	 * @param  {Regexp} tokenisingRegex - The regex that forms the word boundaries.
-	 * @return {Tokeniser} A configured tokeniser, waiting for content.
 	 */
 	constructor(tokenisingRegex) {
 		this.tokenisingRegex = tokenisingRegex || (function () {
@@ -59,7 +58,6 @@ class Tokeniser {
 /**
  * Create a new Tokeniser instance
  * @private
- * @param {mode} mode              - (hard | soft | keep) Line break behaviour.
  * @param {Regexp} tokenisingRegex - The regex that forms the word boundaries.
  * @see {@link Tokeniser}
  * @return {Tokeniser} A tokeniser instance.

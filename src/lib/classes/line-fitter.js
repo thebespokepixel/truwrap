@@ -3,7 +3,7 @@
  ╰──────────────────────┴────────────────────────────────────────────────────── */
 
 import ansiRegex from 'ansi-regex'
-import {console, renderMode} from '../../index'
+import {console, renderMode} from '../../main'
 
 const newlineRegex = /^>\/\\\/\/__<$/
 const tabRegex = /^>T\/\\B<$/
@@ -16,7 +16,6 @@ class LineFitter {
 	/**
 	 * Create a LineFitter instance
 	 * @param  {number[]} options [margin, width, tab-width] as an array.
-	 * @return {LineFitter}         [description]
 	 */
 	constructor(options) {
 		[
@@ -45,6 +44,7 @@ class LineFitter {
 	/**
 	 * Add a token to the line.
 	 * @param {string} token The word token to add.
+	 * @returns {Boolean} Causes newline.
 	 */
 	add(token) {
 		if (newlineRegex.test(token)) {

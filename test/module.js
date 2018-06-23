@@ -7,7 +7,7 @@ import {truwrap, metadata} from '..'
 const StreamProxy = new stream.PassThrough()
 StreamProxy.setEncoding('utf8')
 
-const expectedVersion = (pkg.buildNumber === 0 && pkg.version) || `${pkg.version}-Δ${pkg.buildNumber}`
+const expectedVersion = pkg.version
 
 test(`Module version is '${expectedVersion}'.`, t => {
 	t.is(`${expectedVersion}`, metadata.version())

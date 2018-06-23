@@ -7,7 +7,9 @@ import _ from 'lodash'
 /**
  * Organise a block of delimited text into a panel
  * @private
- * @param  {string} buffer_ Input plain text
+ * @param  {string} buffer_ Input plain text.
+ * @param  {string} delimiter_ Field delimiter.
+ * @param  {Number} width_ Panel width.
  * @return {object} The columnify configuration.
  */
 export default function (buffer_, delimiter_, width_) {
