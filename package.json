@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@thebespokepixel/meta": "^0.2.0",
-    "@thebespokepixel/n-selector": "^0.1.0",
+    "@thebespokepixel/n-selector": "^0.2.0",
     "@thebespokepixel/string": "^0.5.0",
     "ansi-regex": "^2.0.0",
     "columnify": "^1.5.4",
