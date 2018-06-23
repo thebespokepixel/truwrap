@@ -13,7 +13,7 @@
 
 ##### Help
 
-[![Inch](https://inch-ci.org/github/MarkGriffiths/truwrap.svg?branch=master&style=shields)](https://inch-ci.org/github/MarkGriffiths/truwrap "Inch") [![Gitter](https://img.shields.io/gitter/room/MarkGriffiths/help.svg?style=flat)](https://gitter.im/MarkGriffiths/help?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge "Gitter")   
+[![Inch](https://inch-ci.org/github/MarkGriffiths/truwrap.svg?branch=master&style=shields)](https://inch-ci.org/github/MarkGriffiths/truwrap "Inch") [![Gitter](https://img.shields.io/gitter/room/MarkGriffiths/help.svg?style=flat)](https://gitter.im/MarkGriffiths/help?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge "Gitter") [![Greenkeeper badge](https://badges.greenkeeper.io/MarkGriffiths/truwrap.svg)](https://greenkeeper.io/)   
 
 Many current tty text wrapping solutions have issues with the 'long' and currently 'non-standard' RGB SGR codes (i.e `^[[38;2;204;51;66m`). This meant that, while it's possible to have wonderful, rich, full gamut colours and the aesthetic data visualisations it entails, it comes at the price of painful typography and corrupted console displays as text is broken up, unnaturally wrapped and becoming unreadable as the SGR codes are dashed against the rocks of 1980's shortsightedness, confusing your terminal and ever so slightly breaking the heart of design aware coders and administrators everywhere.
 
