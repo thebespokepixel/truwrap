@@ -1,5 +1,6 @@
 {
   "name": "truwrap",
+  "version": "0.8.0",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "author": "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)",
   "main": "index.js",
@@ -17,7 +18,7 @@
   },
   "copyright": {
     "year": "2018",
-    "owner": "Mark Griffiths : The Bespoke Pixel"
+    "owner": "The Bespoke Pixel"
   },
   "scripts": {
     "test": "xo && nyc ava",
@@ -86,7 +87,6 @@
     "type": "git",
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
-  "version": "0.8.0",
   "ava": {
     "files": [
       "test/*.js"
