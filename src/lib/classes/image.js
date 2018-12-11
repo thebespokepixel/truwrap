@@ -44,13 +44,13 @@ class Image {
 				if (statSync(file).isFile()) {
 					return file
 				}
-			} catch (err) {
-				switch (err.code) {
+			} catch (error) {
+				switch (error.code) {
 					case 'ENOENT':
 						console.warn('Warning:', `${file} not found.`)
 						break
 					default:
-						console.error(err)
+						console.error(error)
 				}
 				return broken
 			}
