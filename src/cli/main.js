@@ -1,7 +1,7 @@
 /* ────────────╮
  │ truwrap CLI │
  ╰─────────────┴─────────────────────────────────────────────────────────────── */
-/* eslint unicorn/no-process-exit:0 */
+/* eslint unicorn/no-process-exit:0,quotes:0 */
 
 import {format} from 'util'
 

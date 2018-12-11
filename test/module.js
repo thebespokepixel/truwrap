@@ -17,7 +17,7 @@ test(`Module version '${pkg.version}' is semver.`, t => {
 	t.truthy(semverRegex().test(metadata.version()))
 })
 
-test(`Returns renderer.`, t => {
+test('Returns renderer.', t => {
 	const tw = truwrap({
 		left: 4,
 		right: 4
@@ -25,7 +25,7 @@ test(`Returns renderer.`, t => {
 	t.truthy(tw.write && tw.end)
 })
 
-test.cb(`Consumes stream.`, t => {
+test.cb('Consumes stream.', t => {
 	const tw = truwrap({
 		left: 4,
 		width: 24,
