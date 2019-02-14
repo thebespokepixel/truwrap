@@ -36,7 +36,7 @@
     "ava": "^1.2.1",
     "babel-plugin-lodash": "^3.3.4",
     "documentation": "^9.1.1",
-    "documentation-theme-bespoke": "^0.4.5",
+    "documentation-theme-bespoke": "^0.4.7",
     "gulp": "^4.0.0",
     "gulp-better-rollup": "^3.4.0",
     "gulp-chmod": "^2.0.0",
@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@thebespokepixel/meta": "^0.2.4",
-    "@thebespokepixel/n-selector": "^0.2.1",
+    "@thebespokepixel/n-selector": "^0.2.3",
     "@thebespokepixel/string": "^0.5.3",
     "ansi-regex": "^4.0.0",
     "columnify": "^1.5.4",
