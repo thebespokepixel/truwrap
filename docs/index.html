@@ -2,168 +2,146 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>truwrap 0.7.4 | Documentation</title>
+  <title>truwrap 0.8.2 | Documentation</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="assets/css/ace.min.css" rel="stylesheet">
   <link href="assets/fonts/TypoPRO-Hack/TypoPRO-Hack.css" type="text/css" rel="stylesheet" />
   <link href="assets/fonts/TypoPRO-FiraSans/TypoPRO-FiraSans.css" type="text/css" rel="stylesheet" />
   <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+  <meta name='description' content='Smarter terminal text wrapping (handles 24bit color)'>
 </head>
-<body class="m0 documentation">
+<body class='documentation m0'>
   <div class="flex">
-    <div class="flex-column fixed top-0 bottom-0 px2 pt2 max-height-100 sidebar">
-      <h3 class="m0 no-anchor">truwrap</h3>
-      <div class="mb1"><code>v0.7.4</code></div>
-      <input
-        placeholder="Filter"
-        id="filter-input"
-        class="col12 block input"
-        type="text" />
-      <div id="toc">
-        <ul class="list-reset h5 py1-ul">
-
-
-            <li><a
-              href="#usage"
-              class="h5 bold black caps">
-              Usage
-
-            </a>
-
-            </li>
-
-
-            <li><a
-              href="#api"
-              class="h5 bold black caps">
-              API
-
-            </a>
-
-            </li>
-
-
-            <li><a
-              href="#truwrap"
-              class="">
-              truwrap
-
-            </a>
-
-            </li>
-
-
-            <li><a
-              href="#api"
-              class=" toggle-sibling">
-              api
-              <span class="icon">▸</span>
-            </a>
-
-            <div class="toggle-target display-none">
-
-              <ul class="list-reset py1-ul pl1">
-                <li class="h5"><span>Static members</span></li>
-
-                  <li><a
-                    href="#api.getWidth"
-                    class="regular pre-open">
-                    .getWidth
-                  </a></li>
-
-                </ul>
-
-
-
-            </div>
-
-            </li>
-
-
-            <li><a
-              href="#end"
-              class="">
-              end
-
-            </a>
-
-            </li>
-
-
-            <li><a
-              href="#panel"
-              class="">
-              panel
-
-            </a>
-
-            </li>
-
-
-            <li><a
-              href="#break"
-              class="">
-              break
-
-            </a>
-
-            </li>
-
-
-            <li><a
-              href="#clear"
-              class="">
-              clear
-
-            </a>
-
-            </li>
-
-
-            <li><a
-              href="#write"
-              class="">
-              write
-
-            </a>
-
-            </li>
-
-        </ul>
-      </div>
-      <div class="badges"><p><a href="https://github.com/MarkGriffiths/truwrap" title="Github"><img src="https://img.shields.io/badge/github-source-4E73B6.svg?style=flat" alt="Github"></a> <a href="https://travis-ci.org/MarkGriffiths/truwrap" title="Travis"><img src="https://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&#x26;style=flat" alt="Travis"></a> <br>
-</p>
-
-<p><a href="https://codeclimate.com/github/MarkGriffiths/truwrap" title="Code-climate"><img src="https://codeclimate.com/github/MarkGriffiths/truwrap/badges/gpa.svg?style=flat" alt="Code-climate"></a><br><a href="https://codeclimate.com/github/MarkGriffiths/truwrap/coverage" title="Coverage"><img src="https://codeclimate.com/github/MarkGriffiths/truwrap/badges/coverage.svg?style=flat" alt="Coverage"></a> <br>
-</p>
-
-<p><a href="https://david-dm.org/MarkGriffiths/truwrap/master" title="David"><img src="https://img.shields.io/david/MarkGriffiths/truwrap.svg?branch=master&#x26;style=flat" alt="David"></a> <br>
-</p>
-
-<br>
-
-</div>
-      <div class="mt1 h6 quiet">
-        <a href="http://documentation.js.org/reading-documentation.html">Need help reading this?</a>
+    <div id='split-left' class='overflow-auto fs0 height-100 sidebar'>
+      <div class='py1 px2'>
+        <h3 class="m0 no-anchor">truwrap</h3>
+        <div class="mb1"><code>0.8.2</code></div>
+        <input
+          placeholder="Filter"
+          id="filter-input"
+          class="col12 block input"
+          type="text" />
+        <div id="toc">
+          <ul class="list-reset h5 py1-ul">
+            
+              
+              <li><a
+                href="#usage"
+                class="h5 bold black caps">
+                Usage
+                
+              </a>
+              
+              </li>
+            
+              
+              <li><a
+                href="#api"
+                class="h5 bold black caps">
+                API
+                
+              </a>
+              
+              </li>
+            
+              
+              <li><a
+                href="#truwrap"
+                class="">
+                truwrap
+                
+              </a>
+              
+              </li>
+            
+              
+              <li><a
+                href="#api"
+                class=" toggle-sibling">
+                api
+                <span class="icon">▸</span>
+              </a>
+              
+              <div class="toggle-target display-none">
+                
+                <ul class="list-reset py1-ul pl1">
+                  <li class="h5"><span>Static members</span></li>
+                  
+                    <li><a
+                      href="#api.end"
+                      class="regular pre-open">
+                      .end
+                    </a></li>
+                  
+                    <li><a
+                      href="#api.getWidth"
+                      class="regular pre-open">
+                      .getWidth
+                    </a></li>
+                  
+                    <li><a
+                      href="#api.panel"
+                      class="regular pre-open">
+                      .panel
+                    </a></li>
+                  
+                    <li><a
+                      href="#api.break"
+                      class="regular pre-open">
+                      .break
+                    </a></li>
+                  
+                    <li><a
+                      href="#api.clear"
+                      class="regular pre-open">
+                      .clear
+                    </a></li>
+                  
+                    <li><a
+                      href="#api.write"
+                      class="regular pre-open">
+                      .write
+                    </a></li>
+                  
+                  </ul>
+                
+                
+                
+              </div>
+              
+              </li>
+            
+          </ul>
+        </div>
+        <div class="badges"><p><p><a href="https://github.com/MarkGriffiths/truwrap" title="Github"><img src="https://img.shields.io/badge/github-source-4E73B6.svg?style=flat" alt="Github"></a> <a href="https://travis-ci.org/MarkGriffiths/truwrap" title="Travis"><img src="https://img.shields.io/travis/MarkGriffiths/truwrap.svg?branch=master&#x26;style=flat&#x26;logo=travis" alt="Travis"></a> <br>
+</p> <p><a href="https://codeclimate.com/github/MarkGriffiths/truwrap/maintainability" title="Code-climate"><img src="https://api.codeclimate.com/v1/badges/e03a2055456023267873/maintainability?style=flat" alt="Code-climate"></a> <a href="https://codeclimate.com/github/MarkGriffiths/truwrap/test_coverage" title="Coverage"><img src="https://api.codeclimate.com/v1/badges/e03a2055456023267873/test_coverage?style=flat" alt="Coverage"></a> <br>
+</p> <p><a href="https://david-dm.org/MarkGriffiths/truwrap/master" title="David"><img src="https://img.shields.io/david/MarkGriffiths/truwrap.svg?branch=master&#x26;style=flat" alt="David"></a> <br>
+</p> <br>
+</p></div>
+        <div class="mt1 h6 quiet">
+          <a href="http://documentation.js.org/reading-documentation.html">Need help reading this?</a>
+        </div>
       </div>
     </div>
-    <div class="flex-column px2 sidespace">
+    <!-- <div class="flex-column px2 sidespace">
       <h3 class="m0 no-anchor">truwrap</h3>
-    </div>
-    <div class="flex-auto px2 pt1">
-
-
-          <div class="keyline-top-not py1"><section class="py0 px2 clearfix note">
-	<h3 id="usage" class="m0">
+    </div> -->
+    <div id='split-right' class='relative overflow-auto height-viewport-100'>
+      
+        
+          <div class="keyline-top-not py1"><section class="py0 px3 clearfix note">
+	<h2 id="usage" class="m0">
 		Usage
-	</h3>
+	</h2>
+	
+		
 
-
+	
+	
 		<h4>Installation</h4>
-<pre><code class="language-shell">npm install --save @thebespokepixel/truwrap
-</code></pre>
+<pre class='hljs'>npm install --save @thebespokepixel/truwrap</pre>
 <h4>CLI</h4>
-<pre><code class="language-text">  truwrap
+<pre class='hljs'>  truwrap
   Smarter terminal text wrapping (handles 24bit color)
 
   Synopsis:
@@ -171,7 +149,7 @@
 
   Options:
     -h, --help       Display this help.
-    -v, --version    Return the current version on stdout. -vv Return name &#x26; version.
+    -v, --version    Return the current version on stdout. -vv Return name &amp; version.
     -V, --verbose    Be verbose. -VV Be loquacious.
     -o, --stderr     Use stderr rather than stdout
     -l, --left       Left margin
@@ -186,224 +164,329 @@
     --color          Force color depth --color=256|16m. Disable with --no-color
 
   Usage:
-  Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
-</code></pre>
+  Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.</pre>
 <p>To use, simply pipe in a body of text to wrap according to the supplied options.</p>
-<pre><code class="language-shell">  cat readme.md | truwrap --left 6 --right 6 --mode soft
-</code></pre>
+<pre class='hljs'>  cat readme.md | truwrap --left 6 --right 6 --mode soft</pre>
 <h4>Programmatic usage</h4>
-<pre><code class="language-js">var truwrap = require('truwrap')
+<pre class='hljs'><span class="hljs-keyword">var</span> truwrap = <span class="hljs-built_in">require</span>(<span class="hljs-string">'truwrap'</span>)
 
-var writer = truwrap({
-  left: 2,
-  right: 2,
-  mode: 'soft',
-  outStream: process.stderr
+<span class="hljs-keyword">var</span> writer = truwrap({
+  <span class="hljs-attr">left</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">right</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">'soft'</span>,
+  <span class="hljs-attr">outStream</span>: process.stderr
 })
 
-var contentWidth = writer.getWidth()
+<span class="hljs-keyword">var</span> contentWidth = writer.getWidth()
 
-writer.write("Some text to write...", "...and some more.")
-writer.write("A new paragraph, if not implicitly present.")
-writer.end()
-</code></pre>
+writer.write(<span class="hljs-string">"Some text to write..."</span>, <span class="hljs-string">"...and some more."</span>)
+writer.write(<span class="hljs-string">"A new paragraph, if not implicitly present."</span>)
+writer.end()</pre>
 <h3>Advanced use</h3>
 <p>To add. Containers, Tables, Panels and Images.</p>
 <h3>Related</h3>
 <p>For advanced 24bit colour handling see <a href="https://github.com/MarkGriffiths/trucolor">MarkGriffiths/trucolor</a> and <a href="https://www.npmjs.com/package/trucolor">npm trucolor</a>.</p>
 
-
+	
 </section>
 </div>
-
-
-
-          <div class="keyline-top-not py1"><section class="py0 px2 clearfix note">
-	<h3 id="api" class="m0">
+        
+      
+        
+          <div class="keyline-top-not py1"><section class="py0 px3 clearfix note">
+	<h2 id="api" class="m0">
 		API
-	</h3>
+	</h2>
+	
+		
 
-
-
-
-
+	
+	
 </section>
 </div>
+        
+      
+        
+          <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
 
-
-
-          <section class="py2 px3 mb2 clearfix bg-white rounded minishadow">
-
-
-  <div class="clearfix">
-    <h3 class="left m0 panel-title" id="truwrap">
-      truwrap  <span>→ <a href="#api">api</a></span>
+  
+  <div class='clearfix'>
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/MarkGriffiths/truwrap/blob/f5ef179217ba1e8e270a99856cfaab01fae2fcbd/src/index.js#L50-L218'>
+      <span>src/index.js</span>
+      </a>
+    
+    
+    <h3 class='left m0 panel-title' id='truwrap'>
+      truwrap
+      
+      <span> → <a href="#api">api</a></span>
+      
     </h3>
-
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/e455d44579ca0cf00b8904328b1f05399156b4f9/src/index.js#L52-L213">src/index.js</a>
-
+    
   </div>
-
+  
 
   <p>Create a text wrapping instance.</p>
 
 
-  <div class="pre p1 bg-darken-1 mt0 signature">truwrap($0: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>) → <a href="#api">api</a></div>
+  
+    <div class='pre p1 bg-darken-1 mt0 rounded signature'>truwrap(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>) → <a href="#api">api</a></div>
+  
+  
+  
 
+  
+  
+  
+  
+  
+  
 
-
-
-
-
-
-
-
-
-    <div class="py1 quiet mt1 prose-big">Parameters</div>
-    <div class="prose">
-
-        <div class="space-bottom0">
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
           <div>
-            <span class="code bold">$0</span> <code class="quiet">(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code> options object
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+      options object
 
           </div>
-
-          <table class="mt1 mb2 fixed-table h5 col-12">
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
             <colgroup>
-              <col width="30%" />
-              <col width="70%" />
+              <col width='30%' />
+              <col width='70%' />
             </colgroup>
             <thead>
-              <tr class="bold bg-darken-1">
+              <tr class='bold fill-light'>
                 <th>Name</th>
                 <th>Description</th>
               </tr>
             </thead>
-            <tbody class="mt1">
-
+            <tbody class='mt1'>
+              
                 <tr>
-                  <td class="break-word"><span class="code bold">$0.left</span> <code class="quiet">[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default 2)</code>
-                  </td>
-                  <td class="break-word"><span>Left margin.
+  <td class='break-word'><span class='code bold'>options.left</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  
+    (default <code>2</code>)
+  </td>
+  <td class='break-word'><span>Left margin.
 </span></td>
-                </tr>
+</tr>
 
+
+              
                 <tr>
-                  <td class="break-word"><span class="code bold">$0.right</span> <code class="quiet">[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default 2)</code>
-                  </td>
-                  <td class="break-word"><span>Right margin.
+  <td class='break-word'><span class='code bold'>options.right</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  
+    (default <code>2</code>)
+  </td>
+  <td class='break-word'><span>Right margin.
 </span></td>
-                </tr>
+</tr>
 
+
+              
                 <tr>
-                  <td class="break-word"><span class="code bold">$0.width</span> <code class="quiet"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
-                  </td>
-                  <td class="break-word"><span>Manually set view width.
+  <td class='break-word'><span class='code bold'>options.width</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  </td>
+  <td class='break-word'><span>Manually set view width.
 </span></td>
-                </tr>
+</tr>
 
+
+              
                 <tr>
-                  <td class="break-word"><span class="code bold">$0.mode</span> <code class="quiet">[mode](default 'soft')</code>
-                  </td>
-                  <td class="break-word"><span>[
-soft | hyphen | hard | keep | container
-]
+  <td class='break-word'><span class='code bold'>options.mode</span> <code class='quiet'>mode</code>
+  
+    (default <code>&#39;soft&#39;</code>)
+  </td>
+  <td class='break-word'><span>[soft | hyphen | hard | keep | container]
 </span></td>
-                </tr>
+</tr>
 
+
+              
                 <tr>
-                  <td class="break-word"><span class="code bold">$0.tabWidth</span> <code class="quiet">[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default 4)</code>
-                  </td>
-                  <td class="break-word"><span>Desired width of TAB character.
+  <td class='break-word'><span class='code bold'>options.tabWidth</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  
+    (default <code>4</code>)
+  </td>
+  <td class='break-word'><span>Desired width of TAB character.
 </span></td>
-                </tr>
+</tr>
 
+
+              
                 <tr>
-                  <td class="break-word"><span class="code bold">$0.outStream</span> <code class="quiet">[<a href="https://nodejs.org/api/stream.html#stream_class_stream_writable">Stream.writable</a>](default process.stdout)</code>
-                  </td>
-                  <td class="break-word"><span>Where to direct output.
+  <td class='break-word'><span class='code bold'>options.outStream</span> <code class='quiet'><a href="https://nodejs.org/api/stream.html#stream_class_stream_writable">Stream.writable</a></code>
+  
+    (default <code>process.stdout</code>)
+  </td>
+  <td class='break-word'><span>Where to direct output.
 </span></td>
-                </tr>
+</tr>
 
+
+              
                 <tr>
-                  <td class="break-word"><span class="code bold">$0.tokenRegex</span> <code class="quiet"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">Regexp</a></code>
-                  </td>
-                  <td class="break-word"><span>Override the tokenisers regexp.
+  <td class='break-word'><span class='code bold'>options.tokenRegex</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp">Regexp</a></code>
+  </td>
+  <td class='break-word'><span>Override the tokenisers regexp.
 </span></td>
-                </tr>
+</tr>
 
+
+              
             </tbody>
           </table>
-
+          
         </div>
-
+      
     </div>
+  
 
+  
 
-
-
-
-
-      <div class="py1 quiet mt1 prose-big">Returns</div>
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="#api">api</a></code>:
         A truwrap api instance.
 
+      
+    
+  
 
+  
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
+  
 </section>
 
+        
+      
+        
+          <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
 
-
-
-          <section class="py2 px3 mb2 clearfix bg-white rounded minishadow">
-
-
-  <div class="clearfix">
-    <h3 class="left m0 panel-title" id="api">
+  
+  <div class='clearfix'>
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/MarkGriffiths/truwrap/blob/f5ef179217ba1e8e270a99856cfaab01fae2fcbd/src/index.js#L100-L167'>
+      <span>src/index.js</span>
+      </a>
+    
+    
+    <h3 class='left m0 panel-title' id='api'>
       api
+      
     </h3>
-
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/e455d44579ca0cf00b8904328b1f05399156b4f9/src/index.js#L97-L162">src/index.js</a>
-
+    
   </div>
-
+  
 
   <p>Truwap pulic API</p>
 
 
+  
+    <div class='pre p1 bg-darken-1 mt0 rounded signature'>api</div>
+  
+  
+  
 
+  
+  
+  
+  
+  
+  
 
+  
 
+  
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="py1 quiet mt1 prose-big">Static Members</div>
+  
+    <div class='py1 quiet mt1 prose-big'>Static Members</div>
     <div class="clearfix">
+  
+    <div class='border-bottom' id='api.end'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>end()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
 
+  
+  <div class='clearfix'>
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/MarkGriffiths/truwrap/blob/f5ef179217ba1e8e270a99856cfaab01fae2fcbd/src/index.js#L107-L113'>
+      <span>src/index.js</span>
+      </a>
+    
+    
+  </div>
+  
+
+  <p>End a block, setting blocking mode and flushing buffers if needed.</p>
+
+
+  
+    <div class='pre p1 bg-darken-1 mt0 rounded signature'>end() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></div>
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></code>:
+        has side effect of writing to stream
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
     <div class='border-bottom' id='api.getWidth'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
@@ -412,388 +495,390 @@ soft | hyphen | hard | keep | container
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
-        <section class="py2 px3 mb2 clearfix bg-white rounded minishadow">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
 
-
+  
+  <div class='clearfix'>
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/MarkGriffiths/truwrap/blob/f5ef179217ba1e8e270a99856cfaab01fae2fcbd/src/index.js#L119-L119'>
+      <span>src/index.js</span>
+      </a>
+    
+    
+  </div>
+  
 
   <p>Fetch the width in characters of the wrapping view.</p>
 
 
-  <div class="pre p1 bg-darken-1 mt0 signature">getWidth() → <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></div>
+  
+    <div class='pre p1 bg-darken-1 mt0 rounded signature'>getWidth() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></div>
+  
+  
+  
 
+  
+  
+  
+  
+  
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
-
-
-
-      <div class="py1 quiet mt1 prose-big">Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>:
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>:
         wrapping width
 
+      
+    
+  
 
+  
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
+  
 </section>
 
       </div>
     </div>
+  
+    <div class='border-bottom' id='api.panel'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>panel(content, configuration)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
 
-</div>
-
-
-
-
-
-
-</section>
-
-
-
-
-          <section class="py2 px3 mb2 clearfix bg-white rounded minishadow">
-
-
-  <div class="clearfix">
-    <h3 class="left m0 panel-title" id="end">
-      end  <span>→ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span>
-    </h3>
-
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/e455d44579ca0cf00b8904328b1f05399156b4f9/src/index.js#L104-L110">src/index.js</a>
-
+  
+  <div class='clearfix'>
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/MarkGriffiths/truwrap/blob/f5ef179217ba1e8e270a99856cfaab01fae2fcbd/src/index.js#L128-L134'>
+      <span>src/index.js</span>
+      </a>
+    
+    
   </div>
-
-
-  <p>End a block, setting blocking mode and flushing buffers if needed.</p>
-
-
-  <div class="pre p1 bg-darken-1 mt0 signature">end() → <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="py1 quiet mt1 prose-big">Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></code>:
-        has side effect of writing to stream
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</section>
-
-
-
-
-          <section class="py2 px3 mb2 clearfix bg-white rounded minishadow">
-
-
-  <div class="clearfix">
-    <h3 class="left m0 panel-title" id="panel">
-      panel  <span>→ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>
-    </h3>
-
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/e455d44579ca0cf00b8904328b1f05399156b4f9/src/index.js#L124-L129">src/index.js</a>
-
-  </div>
-
+  
 
   <p>Create a multicolumn panel within this view</p>
 
 
-  <div class="pre p1 bg-darken-1 mt0 signature">panel(panel: panelObject, content: any, configuration: any) → <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></div>
+  
+    <div class='pre p1 bg-darken-1 mt0 rounded signature'>panel(content: panelObject, configuration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>) → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></div>
+  
+  
+  
 
+  
+  
+  
+  
+  
+  
 
-
-
-
-
-
-
-
-
-    <div class="py1 quiet mt1 prose-big">Parameters</div>
-    <div class="prose">
-
-        <div class="space-bottom0">
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
           <div>
-            <span class="code bold">panel</span> <code class="quiet">(panelObject)</code> Object for columnify
+            <span class='code bold'>content</span> <code class='quiet'>(panelObject)</code>
+      Object for columnify
 
           </div>
-
+          
         </div>
-
-        <div class="space-bottom0">
+      
+        <div class='space-bottom0'>
           <div>
-            <span class="code bold">content</span> <code class="quiet">(any)</code>
+            <span class='code bold'>configuration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+      Configuration for columnify
+
           </div>
-
+          
         </div>
-
-        <div class="space-bottom0">
-          <div>
-            <span class="code bold">configuration</span> <code class="quiet">(any)</code>
-          </div>
-
-        </div>
-
+      
     </div>
+  
 
+  
 
-
-
-
-
-      <div class="py1 quiet mt1 prose-big">Returns</div>
-      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>:
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>:
         The rendered panel.
 
+      
+    
+  
 
+  
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
+  
 </section>
 
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='api.break'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>break(newlines)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
 
-
-
-          <section class="py2 px3 mb2 clearfix bg-white rounded minishadow">
-
-
-  <div class="clearfix">
-    <h3 class="left m0 panel-title" id="break">
-      break  <span>→ <a href="#api">api</a></span>
-    </h3>
-
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/e455d44579ca0cf00b8904328b1f05399156b4f9/src/index.js#L137-L140">src/index.js</a>
-
+  
+  <div class='clearfix'>
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/MarkGriffiths/truwrap/blob/f5ef179217ba1e8e270a99856cfaab01fae2fcbd/src/index.js#L142-L145'>
+      <span>src/index.js</span>
+      </a>
+    
+    
   </div>
-
+  
 
   <p>Generate linebreaks within this view</p>
 
 
-  <div class="pre p1 bg-darken-1 mt0 signature">break(newlines: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default 1)) → <a href="#api">api</a></div>
+  
+    <div class='pre p1 bg-darken-1 mt0 rounded signature'>break(newlines: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>) → <a href="#api">api</a></div>
+  
+  
+  
 
+  
+  
+  
+  
+  
+  
 
-
-
-
-
-
-
-
-
-    <div class="py1 quiet mt1 prose-big">Parameters</div>
-    <div class="prose">
-
-        <div class="space-bottom0">
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
           <div>
-            <span class="code bold">newlines</span> <code class="quiet">([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>](default 1))</code> number of new lines to add.
+            <span class='code bold'>newlines</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            = <code>1</code>)</code>
+      number of new lines to add.
 
           </div>
-
+          
         </div>
-
+      
     </div>
+  
 
+  
 
-
-
-
-
-      <div class="py1 quiet mt1 prose-big">Returns</div>
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="#api">api</a></code>:
         has side effect of writing to stream.
 
+      
+    
+  
 
+  
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
+  
 </section>
 
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='api.clear'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>clear()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
 
-
-
-          <section class="py2 px3 mb2 clearfix bg-white rounded minishadow">
-
-
-  <div class="clearfix">
-    <h3 class="left m0 panel-title" id="clear">
-      clear  <span>→ <a href="#api">api</a></span>
-    </h3>
-
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/e455d44579ca0cf00b8904328b1f05399156b4f9/src/index.js#L147-L150">src/index.js</a>
-
+  
+  <div class='clearfix'>
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/MarkGriffiths/truwrap/blob/f5ef179217ba1e8e270a99856cfaab01fae2fcbd/src/index.js#L152-L155'>
+      <span>src/index.js</span>
+      </a>
+    
+    
   </div>
-
+  
 
   <p>Similar to css' clear. Write a clearing newline to the stream.</p>
 
 
-  <div class="pre p1 bg-darken-1 mt0 signature">clear() → <a href="#api">api</a></div>
+  
+    <div class='pre p1 bg-darken-1 mt0 rounded signature'>clear() → <a href="#api">api</a></div>
+  
+  
+  
 
+  
+  
+  
+  
+  
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
-
-
-
-      <div class="py1 quiet mt1 prose-big">Returns</div>
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="#api">api</a></code>:
         has side effect of writing to stream.
 
+      
+    
+  
 
+  
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
+  
 </section>
 
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='api.write'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>write(text)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
 
-
-
-          <section class="py2 px3 mb2 clearfix bg-white rounded minishadow">
-
-
-  <div class="clearfix">
-    <h3 class="left m0 panel-title" id="write">
-      write  <span>→ <a href="#api">api</a></span>
-    </h3>
-
-      <a class="pl3 pr1 right rounded github" href="https://github.com/MarkGriffiths/truwrap/blob/e455d44579ca0cf00b8904328b1f05399156b4f9/src/index.js#L158-L161">src/index.js</a>
-
+  
+  <div class='clearfix'>
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/MarkGriffiths/truwrap/blob/f5ef179217ba1e8e270a99856cfaab01fae2fcbd/src/index.js#L163-L166'>
+      <span>src/index.js</span>
+      </a>
+    
+    
   </div>
-
+  
 
   <p>Write text via the wrapping logic</p>
 
 
-  <div class="pre p1 bg-darken-1 mt0 signature">write(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>) → <a href="#api">api</a></div>
+  
+    <div class='pre p1 bg-darken-1 mt0 rounded signature'>write(text: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>) → <a href="#api">api</a></div>
+  
+  
+  
 
+  
+  
+  
+  
+  
+  
 
-
-
-
-
-
-
-
-
-    <div class="py1 quiet mt1 prose-big">Parameters</div>
-    <div class="prose">
-
-        <div class="space-bottom0">
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
           <div>
-            <span class="code bold">text</span> <code class="quiet">(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The raw, unwrapped test to wrap.
+            <span class='code bold'>text</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+      The raw, unwrapped test to wrap.
 
           </div>
-
+          
         </div>
-
+      
     </div>
+  
 
+  
 
-
-
-
-
-      <div class="py1 quiet mt1 prose-big">Returns</div>
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="#api">api</a></code>:
         has side effect of writing to stream.
 
+      
+    
+  
 
+  
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
+  
 </section>
 
+      </div>
+    </div>
+  
+</div>
 
+  
 
+  
+
+  
+</section>
+
+        
+      
     </div>
   </div>
   <script src="assets/js/anchor.min.js"></script>
+  <script src="assets/js/split.min.js"></script>
   <script src="assets/js/site.js"></script>
 </body>
 </html>

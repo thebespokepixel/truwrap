@@ -37,14 +37,14 @@ function unimplemented() {
 /**
  * Create a text wrapping instance.
  *
- * @param  {Object}          $0            options object
- * @param  {Number}          $0.left       Left margin.
- * @param  {Number}          $0.right      Right margin.
- * @param  {Number}          $0.width      Manually set view width.
- * @param  {mode}            $0.mode       [soft | hyphen | hard | keep | container]
- * @param  {Number}          $0.tabWidth   Desired width of TAB character.
- * @param  {Stream.writable} $0.outStream  Where to direct output.
- * @param  {Regexp}          $0.tokenRegex Override the tokenisers regexp.
+ * @param  {Object}          options            options object
+ * @param  {Number}          options.left       Left margin.
+ * @param  {Number}          options.right      Right margin.
+ * @param  {Number}          options.width      Manually set view width.
+ * @param  {mode}            options.mode       [soft | hyphen | hard | keep | container]
+ * @param  {Number}          options.tabWidth   Desired width of TAB character.
+ * @param  {Stream.writable} options.outStream  Where to direct output.
+ * @param  {Regexp}          options.tokenRegex Override the tokenisers regexp.
  * @return {api} A truwrap api instance.
  */
 export function truwrap({
