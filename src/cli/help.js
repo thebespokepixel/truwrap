@@ -74,10 +74,10 @@ export default function help(yargs) {
 		align: 2
 	}))
 	container.write(header()).break()
-	container.write(`${clr.dark}${'–'.repeat(windowWidth)}${clr.dark.out}`).break()
+	container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`).break()
 	renderer.write(synopsis).break(2)
 	renderer.write(yargs.getUsageInstance().help()).break()
 	renderer.write(usage).break(2)
-	container.write(`${clr.dark}${'–'.repeat(windowWidth)}${clr.dark.out}`)
+	container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`)
 	renderer.write(epilogue).end()
 }
