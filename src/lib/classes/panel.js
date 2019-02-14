@@ -30,6 +30,7 @@ export default function (buffer_, delimiter_, width_) {
 			} else {
 				columnData[`c${colIdx}`] = col
 			}
+
 			if (colIdx > maxCols) {
 				maxCols = colIdx
 				longIdx = rowIdx

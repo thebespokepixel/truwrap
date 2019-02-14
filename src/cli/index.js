@@ -10,8 +10,8 @@ import getStdin from 'get-stdin'
 import updateNotifier from 'update-notifier'
 import {stripIndent} from 'common-tags'
 import {box} from '@thebespokepixel/string'
-
-import {truwrap, console, pkg, metadata, parsePanel} from '../main'
+import pkg from '../../package'
+import {truwrap, console, metadata, parsePanel} from '..'
 import {colorReplacer} from '../lib/colour'
 import help from './help'
 

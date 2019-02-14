@@ -2,7 +2,7 @@
  │ truwrap │ WrapTool
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
 
-import {console} from '../../main'
+import {console} from '../..'
 import createTokeniser from './tokeniser'
 import createLineFitter from './line-fitter'
 
@@ -53,6 +53,7 @@ class WrapTool {
 				}
 			}
 		}
+
 		this.lines.push(currentLine.toString())
 		return this.lines.map(this.tokeniser.restore).join('\n')
 	}

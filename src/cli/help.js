@@ -1,6 +1,6 @@
 /* ────────────╮
  │ truwrap CLI │
- ╰─────────────┴─────────────────────────────────────────────────────────────── */
+ ╰─────────────┴──────────────────────────────────────────────────────────────── */
 
 /** @module module:truwrap/cli/help */
 
@@ -8,7 +8,7 @@ import terminalFeatures from 'term-ng'
 import {stripIndent} from 'common-tags'
 
 import {clr, colorReplacer} from '../lib/colour'
-import {truwrap, metadata, createImage} from '../main'
+import {truwrap, metadata, createImage} from '..'
 
 const images = (function () {
 	if (terminalFeatures.images) {
@@ -21,6 +21,7 @@ const images = (function () {
 			})
 		}
 	}
+
 	return {
 		space: '',
 		cc: {

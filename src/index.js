@@ -2,7 +2,6 @@
  │ truwrap │ Smarter 24bit SGR aware console text wrapping
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
 
-import readPkg from 'read-pkg-up'
 import columnify from 'columnify'
 import osLocale from 'os-locale'
 import {createConsole} from 'verbosity'
@@ -16,7 +15,6 @@ import createImage from './lib/classes/image'
 import parsePanel from './lib/classes/panel'
 
 export const console = createConsole({outStream: process.stderr})
-export const {pkg} = readPkg.sync(__dirname)
 export const locale = osLocale.sync()
 export const metadata = meta(__dirname)
 
@@ -76,6 +74,7 @@ export function truwrap({
 		if (ttyWidth - left - right > 1) {
 			return ttyWidth - left - right
 		}
+
 		return 2
 	})()
 
@@ -90,6 +89,7 @@ export function truwrap({
 				tokenRegex
 			})
 		}
+
 		return {}
 	})()
 
@@ -129,6 +129,7 @@ export function truwrap({
 			if (outStream._isStdio) {
 				outStream.write(columnify(content, configuration))
 			}
+
 			return this
 		},
 
