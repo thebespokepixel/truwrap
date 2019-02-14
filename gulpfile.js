@@ -4,36 +4,14 @@
 const gulp = require('gulp')
 const rename = require('gulp-rename')
 const chmod = require('gulp-chmod')
-const strip = require('gulp-strip-comments')
 const rollup = require('gulp-better-rollup')
 const babel = require('rollup-plugin-babel')
+const resolve = require('rollup-plugin-node-resolve')
+const commonjs = require('rollup-plugin-commonjs')
+const json = require('rollup-plugin-json')
 const lodash = require('babel-plugin-lodash')
 
-const external = [
-	'path',
-	'fs',
-	'util',
-	'@thebespokepixel/meta',
-	'@thebespokepixel/n-selector',
-	'@thebespokepixel/string',
-	'term-ng',
-	'get-stdin',
-	'read-pkg-up',
-	'columnify',
-	'os-locale',
-	'verbosity',
-	'common-tags',
-	'deep-assign',
-	'lodash/min',
-	'lodash/max',
-	'lodash/split',
-	'lodash/forEach',
-	'semver',
-	'trucolor',
-	'yargs',
-	'ansi-regex',
-	'update-notifier'
-]
+const external = id => !id.startsWith('.') && !id.startsWith('/') && !id.startsWith('\0')
 
 const babelConfig = {
 	plugins: [lodash],
@@ -45,28 +23,26 @@ const babelConfig = {
 			}
 		}]
 	],
+	comments: false,
 	exclude: 'node_modules/**'
 }
 
 gulp.task('cjs', () =>
-	gulp.src('src/main.js')
-		.pipe(strip())
+	gulp.src('src/index.js')
 		.pipe(rollup({
 			external,
-			plugins: [babel(babelConfig)]
+			plugins: [resolve(), commonjs(), babel(babelConfig)]
 		}, {
 			format: 'cjs'
 		}))
-		.pipe(rename('index.js'))
 		.pipe(gulp.dest('.'))
 )
 
 gulp.task('es6', () =>
-	gulp.src('src/main.js')
-		.pipe(strip())
+	gulp.src('src/index.js')
 		.pipe(rollup({
 			external,
-			plugins: [babel(babelConfig)]
+			plugins: [resolve(), commonjs(), babel(babelConfig)]
 		}, {
 			format: 'es'
 		}))
@@ -75,11 +51,10 @@ gulp.task('es6', () =>
 )
 
 gulp.task('cli', () =>
-	gulp.src('src/cli/main.js')
-		.pipe(strip())
+	gulp.src('src/cli/index.js')
 		.pipe(rollup({
 			external,
-			plugins: [babel(babelConfig)]
+			plugins: [resolve(), json({preferConst: true}), commonjs(), babel(babelConfig)]
 		}, {
 			banner: '#! /usr/bin/env node',
 			format: 'cjs'

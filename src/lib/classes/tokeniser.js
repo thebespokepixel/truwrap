@@ -3,7 +3,7 @@
  ╰───────────────────┴───────────────────────────────────────────────────────── */
 
 import ansiRegex from 'ansi-regex'
-import {renderMode} from '../../main'
+import {renderMode} from '../..'
 
 const tabRegex = /\t/g
 const newlineRegex	= /\n/g

@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "author": "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)",
   "main": "index.js",
@@ -17,40 +17,43 @@
     "url": "https://github.com/MarkGriffiths/truwrap/issues"
   },
   "copyright": {
-    "year": "2018",
+    "year": "2019",
     "owner": "The Bespoke Pixel"
   },
   "scripts": {
     "test": "xo && nyc ava",
     "generate-test-fixtures": "scripts/generate-test-fixtures",
     "generate-test-widths": "scripts/generate-test-widths",
-    "doc-serve": "documentation serve --watch --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --name $npm_package_name  --project-version $npm_package_version src/index.js",
-    "doc-build": "documentation build --format html --output docs --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --name $npm_package_name  --project-version $npm_package_version src/index.js",
+    "doc-serve": "documentation serve --watch --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --project-name $npm_package_name  --project-version $npm_package_version src/index.js",
+    "doc-build": "documentation build --format html --output docs --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --project-name $npm_package_name  --project-version $npm_package_version src/index.js",
     "readme": "compile-readme -u src/docs/example.md src/docs/readme.md > readme.md",
     "coverage": "nyc ava && nyc report --reporter=lcov --report-dir test/coverage; open test/coverage/lcov-report/index.html"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "ava": "^0.25.0",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "acorn": "^6.1.0",
+    "ava": "^1.2.1",
     "babel-plugin-lodash": "^3.3.4",
-    "documentation": "^9.0.0",
-    "documentation-theme-bespoke": "^0.4.3",
+    "documentation": "^9.1.1",
+    "documentation-theme-bespoke": "^0.4.7",
     "gulp": "^4.0.0",
     "gulp-better-rollup": "^3.4.0",
     "gulp-chmod": "^2.0.0",
     "gulp-rename": "^1.4.0",
-    "gulp-strip-comments": "^2.5.2",
-    "nyc": "^12.0.2",
-    "rollup-plugin-babel": "^4.0.3",
+    "nyc": "^13.3.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
     "semver-regex": "^2.0.0",
     "shelljs": "^0.8.3",
-    "xo": "^0.23.0"
+    "xo": "^0.24.0"
   },
   "dependencies": {
-    "@thebespokepixel/meta": "^0.2.3",
-    "@thebespokepixel/n-selector": "^0.2.1",
-    "@thebespokepixel/string": "^0.5.2",
+    "@thebespokepixel/meta": "^0.2.4",
+    "@thebespokepixel/n-selector": "^0.2.3",
+    "@thebespokepixel/string": "^0.5.3",
     "ansi-regex": "^4.0.0",
     "columnify": "^1.5.4",
     "common-tags": "^1.8.0",
@@ -58,14 +61,14 @@
     "es6-promisify": "^6.0.1",
     "get-stdin": "^6.0.0",
     "lodash": "^4.17.11",
-    "os-locale": "^3.0.1",
+    "os-locale": "^3.1.0",
     "read-pkg-up": "^4.0.0",
     "semver": "^5.6.0",
-    "term-ng": "^0.8.1",
-    "trucolor": "^0.7.1",
+    "term-ng": "^0.8.4",
+    "trucolor": "^0.7.3",
     "update-notifier": "^2.5.0",
     "verbosity": "^0.10.0",
-    "yargs": "^12.0.1"
+    "yargs": "^13.1.0"
   },
   "engines": {
     "node": ">=8.0"
@@ -108,6 +111,7 @@
     "github": "MarkGriffiths",
     "npm": "thebespokepixel",
     "name": "truwrap",
+    "codeclimate": "e03a2055456023267873",
     "providers": {
       "status": {
         "text": "beta",
@@ -135,6 +139,7 @@
         ]
       ],
       "Developer": [
+        "greenkeeper",
         "david-dev",
         "rollup"
       ],

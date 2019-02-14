@@ -1,6 +1,6 @@
 /* ────────────╮
  │ truwrap CLI │
- ╰─────────────┴─────────────────────────────────────────────────────────────── */
+ ╰─────────────┴──────────────────────────────────────────────────────────────── */
 
 /** @module module:truwrap/cli/help */
 
@@ -8,7 +8,7 @@ import terminalFeatures from 'term-ng'
 import {stripIndent} from 'common-tags'
 
 import {clr, colorReplacer} from '../lib/colour'
-import {truwrap, metadata, createImage} from '../main'
+import {truwrap, metadata, createImage} from '..'
 
 const images = (function () {
 	if (terminalFeatures.images) {
@@ -21,6 +21,7 @@ const images = (function () {
 			})
 		}
 	}
+
 	return {
 		space: '',
 		cc: {
@@ -73,10 +74,10 @@ export default function help(yargs) {
 		align: 2
 	}))
 	container.write(header()).break()
-	container.write(`${clr.dark}${'–'.repeat(windowWidth)}${clr.dark.out}`).break()
+	container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`).break()
 	renderer.write(synopsis).break(2)
 	renderer.write(yargs.getUsageInstance().help()).break()
 	renderer.write(usage).break(2)
-	container.write(`${clr.dark}${'–'.repeat(windowWidth)}${clr.dark.out}`)
+	container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`)
 	renderer.write(epilogue).end()
 }

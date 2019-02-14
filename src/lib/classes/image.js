@@ -4,7 +4,7 @@
 
 import {readFileSync, statSync} from 'fs'
 import {basename, extname} from 'path'
-import {console} from '../../main'
+import {console} from '../..'
 
 const prefix = '\u001B]1337;File=inline=1;'
 const suffix = '\u0007'
@@ -52,6 +52,7 @@ class Image {
 					default:
 						console.error(error)
 				}
+
 				return broken
 			}
 		})()

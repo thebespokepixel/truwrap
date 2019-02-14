@@ -13,7 +13,6 @@ var _min = _interopDefault(require('lodash/min'));
 var _max = _interopDefault(require('lodash/max'));
 var _split = _interopDefault(require('lodash/split'));
 var _forEach = _interopDefault(require('lodash/forEach'));
-var readPkg = _interopDefault(require('read-pkg-up'));
 var columnify = _interopDefault(require('columnify'));
 var osLocale = _interopDefault(require('os-locale'));
 var verbosity = require('verbosity');
@@ -26,21 +25,197 @@ var getStdin = _interopDefault(require('get-stdin'));
 var updateNotifier = _interopDefault(require('update-notifier'));
 var string = require('@thebespokepixel/string');
 
-/* ──────────────────╮
- │ truwrap tokeniser │ Handle the tokenisation of source text
- ╰───────────────────┴───────────────────────────────────────────────────────── */
+const name = "truwrap";
+const version = "0.8.3";
+const description = "Smarter terminal text wrapping (handles 24bit color)";
+const author = "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)";
+const main = "index.js";
+const module$1 = "index.mjs";
+const bin = {
+	truwrap: "./bin/truwrap"
+};
+const files = [
+	"index.js",
+	"index.mjs",
+	"bin/"
+];
+const bugs = {
+	url: "https://github.com/MarkGriffiths/truwrap/issues"
+};
+const copyright = {
+	year: "2019",
+	owner: "The Bespoke Pixel"
+};
+const scripts = {
+	test: "xo && nyc ava",
+	"generate-test-fixtures": "scripts/generate-test-fixtures",
+	"generate-test-widths": "scripts/generate-test-widths",
+	"doc-serve": "documentation serve --watch --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --project-name $npm_package_name  --project-version $npm_package_version src/index.js",
+	"doc-build": "documentation build --format html --output docs --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --project-name $npm_package_name  --project-version $npm_package_version src/index.js",
+	readme: "compile-readme -u src/docs/example.md src/docs/readme.md > readme.md",
+	coverage: "nyc ava && nyc report --reporter=lcov --report-dir test/coverage; open test/coverage/lcov-report/index.html"
+};
+const devDependencies = {
+	"@babel/core": "^7.2.2",
+	"@babel/preset-env": "^7.3.1",
+	acorn: "^6.1.0",
+	ava: "^1.2.1",
+	"babel-plugin-lodash": "^3.3.4",
+	documentation: "^9.1.1",
+	"documentation-theme-bespoke": "^0.4.7",
+	gulp: "^4.0.0",
+	"gulp-better-rollup": "^3.4.0",
+	"gulp-chmod": "^2.0.0",
+	"gulp-rename": "^1.4.0",
+	nyc: "^13.3.0",
+	"rollup-plugin-babel": "^4.3.2",
+	"rollup-plugin-commonjs": "^9.2.0",
+	"rollup-plugin-json": "^3.1.0",
+	"rollup-plugin-node-resolve": "^4.0.0",
+	"semver-regex": "^2.0.0",
+	shelljs: "^0.8.3",
+	xo: "^0.24.0"
+};
+const dependencies = {
+	"@thebespokepixel/meta": "^0.2.4",
+	"@thebespokepixel/n-selector": "^0.2.3",
+	"@thebespokepixel/string": "^0.5.3",
+	"ansi-regex": "^4.0.0",
+	columnify: "^1.5.4",
+	"common-tags": "^1.8.0",
+	"deep-assign": "^3.0.0",
+	"es6-promisify": "^6.0.1",
+	"get-stdin": "^6.0.0",
+	lodash: "^4.17.11",
+	"os-locale": "^3.1.0",
+	"read-pkg-up": "^4.0.0",
+	semver: "^5.6.0",
+	"term-ng": "^0.8.4",
+	trucolor: "^0.7.3",
+	"update-notifier": "^2.5.0",
+	verbosity: "^0.10.0",
+	yargs: "^13.1.0"
+};
+const engines = {
+	node: ">=8.0"
+};
+const homepage = "https://github.com/MarkGriffiths/truwrap";
+const keywords = [
+	"text",
+	"wrap",
+	"terminal",
+	"tty",
+	"iTerm",
+	"xterm",
+	"24bit",
+	"SGR",
+	"ansi"
+];
+const license = "MIT";
+const repository = {
+	type: "git",
+	url: "git+https://github.com/MarkGriffiths/truwrap.git"
+};
+const ava = {
+	files: [
+		"test/*.js"
+	],
+	verbose: true
+};
+const xo = {
+	semicolon: false,
+	esnext: true,
+	ignores: [
+		"index.js",
+		"index.mjs",
+		"bin",
+		"docs",
+		"test/coverage/**"
+	]
+};
+const badges = {
+	github: "MarkGriffiths",
+	npm: "thebespokepixel",
+	name: "truwrap",
+	codeclimate: "e03a2055456023267873",
+	providers: {
+		status: {
+			text: "beta",
+			color: "blue"
+		},
+		aux1: {
+			title: "github",
+			text: "source",
+			color: "4E73B6",
+			link: "https://github.com/MarkGriffiths/truwrap"
+		}
+	},
+	readme: {
+		Status: [
+			[
+				"status",
+				"npm",
+				"travis",
+				"david"
+			],
+			[
+				"code-climate",
+				"code-climate-coverage",
+				"snyk"
+			]
+		],
+		Developer: [
+			"greenkeeper",
+			"david-dev",
+			"rollup"
+		],
+		Help: [
+			"inch",
+			"gitter"
+		]
+	},
+	docs: [
+		[
+			"aux1",
+			"travis"
+		],
+		[
+			"code-climate",
+			"code-climate-coverage"
+		],
+		[
+			"david"
+		]
+	]
+};
+var pkg = {
+	name: name,
+	version: version,
+	description: description,
+	author: author,
+	main: main,
+	module: module$1,
+	bin: bin,
+	files: files,
+	bugs: bugs,
+	copyright: copyright,
+	scripts: scripts,
+	devDependencies: devDependencies,
+	dependencies: dependencies,
+	engines: engines,
+	homepage: homepage,
+	keywords: keywords,
+	license: license,
+	repository: repository,
+	ava: ava,
+	xo: xo,
+	badges: badges
+};
+
 const tabRegex = /\t/g;
 const newlineRegex = /\n/g;
-/**
- * Tokenises text into words, taking into account newlines, punctuation and ANSI.
- * @private
- */
 
 class Tokeniser {
-  /**
-   * Create a new tokeniser
-   * @param  {Regexp} tokenisingRegex - The regex that forms the word boundaries.
-   */
   constructor(tokenisingRegex) {
     this.tokenisingRegex = tokenisingRegex || function () {
       switch (renderMode.selected) {
@@ -52,54 +227,23 @@ class Tokeniser {
       }
     }();
   }
-  /**
-   * Processes the source text into tokenised Arrays.
-   * @param  {string} source - The text to process
-   * @return {Array} An array of chuncked tokens.
-   */
-
 
   process(source) {
     return source.replace(newlineRegex, '\u0000>/\\//__<\u0000').replace(tabRegex, '\u0000>T/\\B<\u0000').replace(ansiRegex(), '\u0000$&\u0000').replace(this.tokenisingRegex, '\u0000$&\u0000').split('\u0000').filter(token => token !== '');
   }
-  /**
-   * Reconstruct the line, flush.ing any remaining tokens
-   * @param  {String} source - Line to process
-   * @return {String} - Process line
-   */
-
 
   restore(source) {
     return source.replace(/>\/\\\/\/__</g, '\n').trimRight();
   }
 
 }
-/**
- * Create a new Tokeniser instance
- * @private
- * @param {Regexp} tokenisingRegex - The regex that forms the word boundaries.
- * @see {@link Tokeniser}
- * @return {Tokeniser} A tokeniser instance.
- */
-
 
 var createTokeniser = (tokenisingRegex => new Tokeniser(tokenisingRegex));
 
-/* ─────────────────────╮
- │ truwrap line fitting │
- ╰──────────────────────┴────────────────────────────────────────────────────── */
 const newlineRegex$1 = /^>\/\\\/\/__<$/;
 const tabRegex$1 = /^>T\/\\B<$/;
-/**
- * Fit a line of text to settings
- * @private
- */
 
 class LineFitter {
-  /**
-   * Create a LineFitter instance
-   * @param  {number[]} options [margin, width, tab-width] as an array.
-   */
   constructor(options) {
     [this.margin, this.desiredWidth, this.tabWidth] = options;
     this.lineTokens = [this.margin];
@@ -107,11 +251,6 @@ class LineFitter {
     this.lineBlock = false;
     console.debug('[Line]', '▸', this.cursor);
   }
-  /**
-   * Add a [TAB] character token to the line.
-   * @return {string} Tab -> n-spaces.
-   */
-
 
   createTab() {
     const width = this.tabWidth - this.cursor % this.tabWidth || 4;
@@ -119,12 +258,6 @@ class LineFitter {
     console.debug('[TAB', width, ']', '▸', this.cursor);
     return ' '.repeat(width);
   }
-  /**
-   * Add a token to the line.
-   * @param {string} token The word token to add.
-   * @returns {Boolean} Causes newline.
-   */
-
 
   add(token) {
     if (newlineRegex$1.test(token)) {
@@ -181,45 +314,16 @@ class LineFitter {
         return false;
     }
   }
-  /**
-   * Return a string of the current line.
-   * @return {string} The current line.
-   */
-
 
   toString() {
     return this.lineTokens.join('');
   }
 
 }
-/**
- * Create a new line of wrapped text.
- * @private
- * @param  {String} margin   - The left margin, made up of spaces
- * @param  {Number} width    - The width the line can take up
- * @param  {Number} tabWidth - Desired TAB width
- * @return {LineFitter} The LineFitter instance.
- */
-
 
 var createLineFitter = ((margin, width, tabWidth) => new LineFitter([margin, width, tabWidth]));
 
-/* ────────╮
- │ truwrap │ WrapTool
- ╰─────────┴─────────────────────────────────────────────────────────────────── */
-/**
- * Class that actually wraps the text.
- * @private
- */
-
 class WrapTool {
-  /**
-   * Create a new line wrapping tool.
-   * @param  {options} $0 - The supplied options
-   * @param  {Number} $0.left       - The left margins
-   * @param  {Number} $0.width      - The width of the view, in chars
-   * @param  {Regex}  $0.tokenRegex - An optional regex passed to the Tokeniser
-   */
   constructor({
     left,
     width,
@@ -231,12 +335,6 @@ class WrapTool {
     this.tabWidth = tabWidth;
     this.tokeniser = createTokeniser(tokenRegex);
   }
-  /**
-   * Apply instance settings to source text.
-   * @param  {String} text - The text that require wrapping to the view.
-   * @return {String}      - Text with wrapping applied.
-   */
-
 
   wrap(text) {
     this.lines = [];
@@ -263,19 +361,9 @@ class WrapTool {
   }
 
 }
-/**
- * Create a WrapTool instance
- * @param  {options} options - Provided options
- * @private
- * @return {WrapTool} A configured tool.
- */
-
 
 var createWrapTool = (options => new WrapTool(options));
 
-/* ───────────────╮
- │ truwrap colour │ Colour handling, here for optimisation
- ╰────────────────┴──────────────────────────────────────────────────────────── */
 const clr = deepAssign(trucolor.simple({
   format: 'sgr'
 }), trucolor.palette({
@@ -286,28 +374,11 @@ const clr = deepAssign(trucolor.simple({
 }));
 const colorReplacer = new commonTags.TemplateTag(commonTags.replaceSubstitutionTransformer(/([a-zA-Z]+?)[:/|](.+)/, (match, colorName, content) => `${clr[colorName]}${content}${clr[colorName].out}`));
 
-/* ───────────────────╮
- │ truwrap cli images │
- ╰────────────────────┴──────────────────────────────────────────────────────── */
 const prefix = '\u001B]1337;File=inline=1;';
 const suffix = '\u0007';
 const broken = `${__dirname}/../media/broken.png`;
-/**
- * Provides an image formatted for inclusion in the TTY
- * @private
- */
 
 class Image {
-  /**
-   * Create a new image reference
-   * @param  {string} $0.file   - The filename of the image.
-   * @param  {string} $0.name   - The name of the image
-   *                              [will be taken from image if missing]
-   * @param  {String} $0.width  - Can be X(chars), Xpx(pixels),
-   *                              X%(% width of window) or 'auto'
-   * @param  {String} $0.height - Can be Y(chars), Ypx(pixels),
-   *                              Y%(% width of window) or 'auto'
-   */
   constructor({
     file,
     name,
@@ -338,17 +409,6 @@ class Image {
       }
     }();
   }
-  /**
-   * Load and render the image into the CLI
-   * @param  {Object} options    - The options to set
-   * @property {number} align    - The line count needed to realign the cursor.
-   * @property {Boolean} stretch - Do we stretch the image to match the width
-   *                               and height.
-   * @property {Boolean} nobreak - Do we clear the image with a newline?
-   * @return {string} The string to insert into the output buffer, with base64
-   *                  encoded image.
-   */
-
 
   render(options) {
     const {
@@ -364,24 +424,9 @@ class Image {
   }
 
 }
-/**
- * Create a new Image
- * @private
- * @param  {Object} source - Image options
- * @return {Image} A configured (but not yet loaded) image.
- */
-
 
 var createImage = (source => new Image(source));
 
-/**
- * Organise a block of delimited text into a panel
- * @private
- * @param  {string} buffer_ Input plain text.
- * @param  {string} delimiter_ Field delimiter.
- * @param  {Number} width_ Panel width.
- * @return {object} The columnify configuration.
- */
 function parsePanel (buffer_, delimiter_, width_) {
   let longIdx = 0;
   let maxCols = 0;
@@ -434,41 +479,16 @@ function parsePanel (buffer_, delimiter_, width_) {
   };
 }
 
-/* ────────╮
- │ truwrap │ Smarter 24bit SGR aware console text wrapping
- ╰─────────┴─────────────────────────────────────────────────────────────────── */
 const console = verbosity.createConsole({
   outStream: process.stderr
 });
-const {
-  pkg
-} = readPkg.sync(__dirname);
 const locale = osLocale.sync();
 const metadata = meta(__dirname);
 const renderMode = nSelector.createSelector(['soft', 'hard', 'keep', 'container'], 0, 'configuration_mode');
-/**
- * Throw a error if a method remains unimplemented
- * @private
- * @return {undefined}
- */
 
 function unimplemented() {
   throw new Error('Unimplemented.');
 }
-/**
- * Create a text wrapping instance.
- *
- * @param  {Object}          $0            options object
- * @param  {Number}          $0.left       Left margin.
- * @param  {Number}          $0.right      Right margin.
- * @param  {Number}          $0.width      Manually set view width.
- * @param  {mode}            $0.mode       [soft | hyphen | hard | keep | container]
- * @param  {Number}          $0.tabWidth   Desired width of TAB character.
- * @param  {Stream.writable} $0.outStream  Where to direct output.
- * @param  {Regexp}          $0.tokenRegex Override the tokenisers regexp.
- * @return {api} A truwrap api instance.
- */
-
 
 function truwrap({
   left = 2,
@@ -515,18 +535,8 @@ function truwrap({
 
     return {};
   }();
-  /**
-   * Truwap pulic API
-   * @public
-   */
-
 
   const api = {
-    /**
-     * End a block, setting blocking mode and flushing buffers if needed.
-     * @function
-     * @return {undefined} has side effect of writing to stream
-     */
     end() {
       if (outStream._isStdio) {
         outStream.write('\n');
@@ -535,20 +545,8 @@ function truwrap({
       }
     },
 
-    /**
-     * Fetch the width in characters of the wrapping view.
-     * @function
-     * @return {Number} wrapping width
-     */
     getWidth: unimplemented,
 
-    /**
-     * Create a multicolumn panel within this view
-     * @function
-     * @param {panelObject} content - Object for columnify
-     * @param {Object} configuration - Configuration for columnify
-     * @return {String} - The rendered panel.
-     */
     panel(content, configuration) {
       if (outStream._isStdio) {
         outStream.write(columnify(content, configuration));
@@ -557,33 +555,16 @@ function truwrap({
       return this;
     },
 
-    /**
-     * Generate linebreaks within this view
-     * @function
-     * @param {Number} newlines - number of new lines to add.
-     * @return {api} has side effect of writing to stream.
-     */
     break(newlines = 1) {
       outStream.write('\n'.repeat(newlines));
       return this;
     },
 
-    /**
-     * Similar to css' clear. Write a clearing newline to the stream.
-     * @function
-     * @return {api} has side effect of writing to stream.
-     */
     clear() {
       outStream.write('\n');
       return this;
     },
 
-    /**
-     * Write text via the wrapping logic
-     * @function
-     * @param {String} text - The raw, unwrapped test to wrap.
-     * @return {api} has side effect of writing to stream.
-     */
     write(text) {
       outStream.write(text);
       return this;
@@ -594,24 +575,12 @@ function truwrap({
   switch (true) {
     case !ttyActive:
       console.info(colorReplacer`${'yellow|Non-TTY'}: width: Infinity`);
-      /**
-       * @name noTTY
-       * @private
-       * @returns {api} - A version of the API when no TTY is connected.
-       */
-
       return Object.assign(Object.create(api), {
         getWidth: () => ttyWidth
       });
 
     case renderMode.selected === 'container':
       console.info(`Container: width: ${width}, render mode: ${renderMode.selected}`);
-      /**
-       * @name container
-       * @private
-       * @returns {api} - A zero-margin container that content can be flowed into.
-       */
-
       return Object.assign(Object.create(api), {
         getWidth: () => ttyWidth
       });
@@ -622,12 +591,6 @@ function truwrap({
 				  mode ▸ ${renderMode.selected} [${locale}]
 				  ┆ ${left} ◂├╌╌╌╌ ${viewWidth} ╌╌╌╌┤▸ ${right} ┆
 			`, '\n');
-      /**
-       * @name wrap
-       * @private
-       * @returns {api} - The wrapping API.
-       */
-
       return Object.assign(Object.create(api), {
         getWidth: () => viewWidth,
 
@@ -644,10 +607,6 @@ function truwrap({
       });
   }
 }
-
-/* ────────────╮
- │ truwrap CLI │
- ╰─────────────┴─────────────────────────────────────────────────────────────── */
 
 const images = function () {
   if (terminalFeatures.images) {
@@ -668,12 +627,6 @@ const images = function () {
     }
   };
 }();
-/**
- * Render help when asked for.
- * @param  {yargs} yargs - yargs object defined in cli
- * @return {undefined} Writes help to stdout.
- */
-
 
 function help(yargs$$1) {
   const header = () => commonTags.stripIndent(colorReplacer)`
@@ -712,17 +665,14 @@ function help(yargs$$1) {
     align: 2
   }));
   container.write(header()).break();
-  container.write(`${clr.dark}${'–'.repeat(windowWidth)}${clr.dark.out}`).break();
+  container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`).break();
   renderer.write(synopsis).break(2);
   renderer.write(yargs$$1.getUsageInstance().help()).break();
   renderer.write(usage).break(2);
-  container.write(`${clr.dark}${'–'.repeat(windowWidth)}${clr.dark.out}`);
+  container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`);
   renderer.write(epilogue).end();
 }
 
-/* ────────────╮
- │ truwrap CLI │
- ╰─────────────┴─────────────────────────────────────────────────────────────── */
 yargs.strict().help(false).version(false).options({
   h: {
     alias: 'help',

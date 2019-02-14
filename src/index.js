@@ -2,7 +2,6 @@
  │ truwrap │ Smarter 24bit SGR aware console text wrapping
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
 
-import readPkg from 'read-pkg-up'
 import columnify from 'columnify'
 import osLocale from 'os-locale'
 import {createConsole} from 'verbosity'
@@ -16,7 +15,6 @@ import createImage from './lib/classes/image'
 import parsePanel from './lib/classes/panel'
 
 export const console = createConsole({outStream: process.stderr})
-export const {pkg} = readPkg.sync(__dirname)
 export const locale = osLocale.sync()
 export const metadata = meta(__dirname)
 
@@ -39,14 +37,14 @@ function unimplemented() {
 /**
  * Create a text wrapping instance.
  *
- * @param  {Object}          $0            options object
- * @param  {Number}          $0.left       Left margin.
- * @param  {Number}          $0.right      Right margin.
- * @param  {Number}          $0.width      Manually set view width.
- * @param  {mode}            $0.mode       [soft | hyphen | hard | keep | container]
- * @param  {Number}          $0.tabWidth   Desired width of TAB character.
- * @param  {Stream.writable} $0.outStream  Where to direct output.
- * @param  {Regexp}          $0.tokenRegex Override the tokenisers regexp.
+ * @param  {Object}          options            options object
+ * @param  {Number}          options.left       Left margin.
+ * @param  {Number}          options.right      Right margin.
+ * @param  {Number}          options.width      Manually set view width.
+ * @param  {mode}            options.mode       [soft | hyphen | hard | keep | container]
+ * @param  {Number}          options.tabWidth   Desired width of TAB character.
+ * @param  {Stream.writable} options.outStream  Where to direct output.
+ * @param  {Regexp}          options.tokenRegex Override the tokenisers regexp.
  * @return {api} A truwrap api instance.
  */
 export function truwrap({
@@ -76,6 +74,7 @@ export function truwrap({
 		if (ttyWidth - left - right > 1) {
 			return ttyWidth - left - right
 		}
+
 		return 2
 	})()
 
@@ -90,6 +89,7 @@ export function truwrap({
 				tokenRegex
 			})
 		}
+
 		return {}
 	})()
 
@@ -129,6 +129,7 @@ export function truwrap({
 			if (outStream._isStdio) {
 				outStream.write(columnify(content, configuration))
 			}
+
 			return this
 		},
 
