@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "0.8.4",
+  "version": "1.0.0",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "author": "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)",
   "main": "index.js",
@@ -87,12 +87,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
-  },
-  "ava": {
-    "files": [
-      "test/*.js"
-    ],
-    "verbose": true
   },
   "xo": {
     "semicolon": false,

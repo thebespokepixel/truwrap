@@ -26,7 +26,7 @@ var updateNotifier = _interopDefault(require('update-notifier'));
 var string = require('@thebespokepixel/string');
 
 const name = "truwrap";
-const version = "0.8.4";
+const version = "1.0.0";
 const description = "Smarter terminal text wrapping (handles 24bit color)";
 const author = "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)";
 const main = "index.js";
@@ -73,12 +73,11 @@ const devDependencies = {
 	"rollup-plugin-json": "^3.1.0",
 	"rollup-plugin-node-resolve": "^4.0.0",
 	"semver-regex": "^2.0.0",
-	shelljs: "^0.8.3",
 	xo: "^0.24.0"
 };
 const dependencies = {
-	"@thebespokepixel/meta": "^0.2.5",
-	"@thebespokepixel/n-selector": "^0.2.3",
+	"@thebespokepixel/meta": "^1.0.0",
+	"@thebespokepixel/n-selector": "^1.0.0",
 	"@thebespokepixel/string": "^0.5.4",
 	"ansi-regex": "^4.0.0",
 	columnify: "^1.5.4",
@@ -89,11 +88,10 @@ const dependencies = {
 	lodash: "^4.17.11",
 	"os-locale": "^3.1.0",
 	"read-pkg-up": "^4.0.0",
-	semver: "^5.6.0",
-	"term-ng": "^0.8.5",
+	"term-ng": "^1.0.0",
 	trucolor: "^0.7.5",
 	"update-notifier": "^2.5.0",
-	verbosity: "^0.10.1",
+	verbosity: "^1.0.0",
 	yargs: "^13.2.0"
 };
 const engines = {
@@ -116,12 +114,6 @@ const repository = {
 	type: "git",
 	url: "git+https://github.com/MarkGriffiths/truwrap.git"
 };
-const ava = {
-	files: [
-		"test/*.js"
-	],
-	verbose: true
-};
 const xo = {
 	semicolon: false,
 	esnext: true,
@@ -139,10 +131,6 @@ const badges = {
 	name: "truwrap",
 	codeclimate: "e03a2055456023267873",
 	providers: {
-		status: {
-			text: "beta",
-			color: "blue"
-		},
 		aux1: {
 			title: "github",
 			text: "source",
@@ -153,7 +141,6 @@ const badges = {
 	readme: {
 		Status: [
 			[
-				"status",
 				"npm",
 				"travis",
 				"david"
@@ -207,7 +194,6 @@ var pkg = {
 	keywords: keywords,
 	license: license,
 	repository: repository,
-	ava: ava,
 	xo: xo,
 	badges: badges
 };
