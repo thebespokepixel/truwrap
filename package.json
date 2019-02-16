@@ -88,12 +88,6 @@
     "type": "git",
     "url": "git+https://github.com/MarkGriffiths/truwrap.git"
   },
-  "ava": {
-    "files": [
-      "test/*.js"
-    ],
-    "verbose": true
-  },
   "xo": {
     "semicolon": false,
     "esnext": true,
