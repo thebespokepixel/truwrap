@@ -51,7 +51,7 @@
     "xo": "^0.24.0"
   },
   "dependencies": {
-    "@thebespokepixel/meta": "^0.2.5",
+    "@thebespokepixel/meta": "^1.0.0",
     "@thebespokepixel/n-selector": "^0.2.3",
     "@thebespokepixel/string": "^0.5.4",
     "ansi-regex": "^4.0.0",
