@@ -67,7 +67,7 @@
     "term-ng": "^0.8.5",
     "trucolor": "^0.7.5",
     "update-notifier": "^2.5.0",
-    "verbosity": "^0.10.1",
+    "verbosity": "^1.0.0",
     "yargs": "^13.2.0"
   },
   "engines": {
