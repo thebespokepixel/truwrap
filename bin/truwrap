@@ -26,7 +26,7 @@ var updateNotifier = _interopDefault(require('update-notifier'));
 var string = require('@thebespokepixel/string');
 
 const name = "truwrap";
-const version = "1.0.0";
+const version = "1.0.1";
 const description = "Smarter terminal text wrapping (handles 24bit color)";
 const author = "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)";
 const main = "index.js";
@@ -62,7 +62,7 @@ const devDependencies = {
 	ava: "^1.2.1",
 	"babel-plugin-lodash": "^3.3.4",
 	documentation: "^9.1.1",
-	"documentation-theme-bespoke": "^0.4.10",
+	"documentation-theme-bespoke": "^0.4.11",
 	gulp: "^4.0.0",
 	"gulp-better-rollup": "^3.4.0",
 	"gulp-chmod": "^2.0.0",
@@ -76,9 +76,9 @@ const devDependencies = {
 	xo: "^0.24.0"
 };
 const dependencies = {
-	"@thebespokepixel/meta": "^1.0.0",
-	"@thebespokepixel/n-selector": "^1.0.0",
-	"@thebespokepixel/string": "^0.5.4",
+	"@thebespokepixel/meta": "^1.0.1",
+	"@thebespokepixel/n-selector": "^1.0.1",
+	"@thebespokepixel/string": "^0.5.5",
 	"ansi-regex": "^4.0.0",
 	columnify: "^1.5.4",
 	"common-tags": "^1.8.0",
@@ -88,11 +88,11 @@ const dependencies = {
 	lodash: "^4.17.11",
 	"os-locale": "^3.1.0",
 	"read-pkg-up": "^4.0.0",
-	"term-ng": "^1.0.0",
-	trucolor: "^0.7.5",
+	"term-ng": "^1.0.1",
+	trucolor: "^1.0.0",
 	"update-notifier": "^2.5.0",
-	verbosity: "^1.0.0",
-	yargs: "^13.2.0"
+	verbosity: "^1.0.1",
+	yargs: "^13.2.1"
 };
 const engines = {
 	node: ">=8.0"
