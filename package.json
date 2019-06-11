@@ -58,7 +58,7 @@
     "es6-promisify": "^6.0.1",
     "get-stdin": "^6.0.0",
     "lodash": "^4.17.11",
-    "os-locale": "^3.1.0",
+    "os-locale": "^4.0.0",
     "read-pkg-up": "^4.0.0",
     "term-ng": "^1.0.2",
     "trucolor": "^1.0.1",
