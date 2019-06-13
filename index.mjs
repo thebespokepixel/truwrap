@@ -1,18 +1,18 @@
+import columnify from 'columnify';
+import osLocale from 'os-locale';
+import { createConsole } from 'verbosity';
+import { TemplateTag, replaceSubstitutionTransformer, stripIndent } from 'common-tags';
+import meta from '@thebespokepixel/meta';
+import { createSelector } from '@thebespokepixel/n-selector';
 import ansiRegex from 'ansi-regex';
 import { simple, palette } from 'trucolor';
 import deepAssign from 'deep-assign';
-import { TemplateTag, replaceSubstitutionTransformer, stripIndent } from 'common-tags';
-import { readFileSync, statSync } from 'fs';
-import { basename, extname } from 'path';
+import { statSync, readFileSync } from 'fs';
+import { extname, basename } from 'path';
 import _min from 'lodash/min';
 import _max from 'lodash/max';
 import _split from 'lodash/split';
 import _forEach from 'lodash/forEach';
-import columnify from 'columnify';
-import osLocale from 'os-locale';
-import { createConsole } from 'verbosity';
-import meta from '@thebespokepixel/meta';
-import { createSelector } from '@thebespokepixel/n-selector';
 
 const tabRegex = /\t/g;
 const newlineRegex = /\n/g;
@@ -410,4 +410,4 @@ function truwrap({
   }
 }
 
-export { console, locale, metadata, renderMode, truwrap, image as createImage, panel as parsePanel };
+export { console, image as createImage, locale, metadata, panel as parsePanel, renderMode, truwrap };
