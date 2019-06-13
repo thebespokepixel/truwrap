@@ -4,21 +4,21 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var columnify = _interopDefault(require('columnify'));
+var osLocale = _interopDefault(require('os-locale'));
+var verbosity = require('verbosity');
+var commonTags = require('common-tags');
+var meta = _interopDefault(require('@thebespokepixel/meta'));
+var nSelector = require('@thebespokepixel/n-selector');
 var ansiRegex = _interopDefault(require('ansi-regex'));
 var trucolor = require('trucolor');
 var deepAssign = _interopDefault(require('deep-assign'));
-var commonTags = require('common-tags');
 var fs = require('fs');
 var path = require('path');
 var _min = _interopDefault(require('lodash/min'));
 var _max = _interopDefault(require('lodash/max'));
 var _split = _interopDefault(require('lodash/split'));
 var _forEach = _interopDefault(require('lodash/forEach'));
-var columnify = _interopDefault(require('columnify'));
-var osLocale = _interopDefault(require('os-locale'));
-var verbosity = require('verbosity');
-var meta = _interopDefault(require('@thebespokepixel/meta'));
-var nSelector = require('@thebespokepixel/n-selector');
 
 const tabRegex = /\t/g;
 const newlineRegex = /\n/g;
@@ -417,9 +417,9 @@ function truwrap({
 }
 
 exports.console = console;
+exports.createImage = image;
 exports.locale = locale;
 exports.metadata = metadata;
+exports.parsePanel = panel;
 exports.renderMode = renderMode;
 exports.truwrap = truwrap;
-exports.createImage = image;
-exports.parsePanel = panel;

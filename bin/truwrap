@@ -3,30 +3,30 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var util = require('util');
+var yargs = _interopDefault(require('yargs'));
+var getStdin = _interopDefault(require('get-stdin'));
+var updateNotifier = _interopDefault(require('update-notifier'));
+var commonTags = require('common-tags');
+var string = require('@thebespokepixel/string');
+var columnify = _interopDefault(require('columnify'));
+var osLocale = _interopDefault(require('os-locale'));
+var verbosity = require('verbosity');
+var meta = _interopDefault(require('@thebespokepixel/meta'));
+var nSelector = require('@thebespokepixel/n-selector');
 var ansiRegex = _interopDefault(require('ansi-regex'));
 var trucolor = require('trucolor');
 var deepAssign = _interopDefault(require('deep-assign'));
-var commonTags = require('common-tags');
 var fs = require('fs');
 var path = require('path');
 var _min = _interopDefault(require('lodash/min'));
 var _max = _interopDefault(require('lodash/max'));
 var _split = _interopDefault(require('lodash/split'));
 var _forEach = _interopDefault(require('lodash/forEach'));
-var columnify = _interopDefault(require('columnify'));
-var osLocale = _interopDefault(require('os-locale'));
-var verbosity = require('verbosity');
-var meta = _interopDefault(require('@thebespokepixel/meta'));
-var nSelector = require('@thebespokepixel/n-selector');
 var terminalFeatures = _interopDefault(require('term-ng'));
-var util = require('util');
-var yargs = _interopDefault(require('yargs'));
-var getStdin = _interopDefault(require('get-stdin'));
-var updateNotifier = _interopDefault(require('update-notifier'));
-var string = require('@thebespokepixel/string');
 
 const name = "truwrap";
-const version = "1.0.2";
+const version = "1.0.3";
 const description = "Smarter terminal text wrapping (handles 24bit color)";
 const author = "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)";
 const main = "index.js";
@@ -56,41 +56,42 @@ const scripts = {
 	coverage: "nyc ava && nyc report --reporter=lcov --report-dir test/coverage; open test/coverage/lcov-report/index.html"
 };
 const devDependencies = {
-	"@babel/core": "^7.2.2",
-	"@babel/preset-env": "^7.3.1",
-	ava: "^1.2.1",
+	"@babel/core": "^7.4.5",
+	"@babel/preset-env": "^7.4.5",
+	ava: "^2.1.0",
 	"babel-plugin-lodash": "^3.3.4",
-	"documentation-theme-bespoke": "^0.5.2",
-	gulp: "^4.0.0",
-	"gulp-better-rollup": "^3.4.0",
-	"gulp-chmod": "^2.0.0",
+	"documentation-theme-bespoke": "^0.5.6",
+	gulp: "^4.0.2",
+	"gulp-better-rollup": "^4.0.1",
+	"gulp-chmod": "^3.0.0",
 	"gulp-rename": "^1.4.0",
-	nyc: "^13.3.0",
+	nyc: "^14.1.1",
+	rollup: "^1.15.3",
 	"rollup-plugin-babel": "^4.3.2",
-	"rollup-plugin-commonjs": "^9.2.1",
-	"rollup-plugin-json": "^3.1.0",
-	"rollup-plugin-node-resolve": "^4.0.1",
-	"semver-regex": "^2.0.0",
+	"rollup-plugin-commonjs": "^10.0.0",
+	"rollup-plugin-json": "^4.0.0",
+	"rollup-plugin-node-resolve": "^5.0.2",
+	"semver-regex": "^3.1.0",
 	xo: "^0.24.0"
 };
 const dependencies = {
-	"@thebespokepixel/meta": "^1.0.2",
-	"@thebespokepixel/n-selector": "^1.0.2",
-	"@thebespokepixel/string": "^0.5.6",
-	"ansi-regex": "^4.0.0",
+	"@thebespokepixel/meta": "^1.0.3",
+	"@thebespokepixel/n-selector": "^1.0.3",
+	"@thebespokepixel/string": "^0.5.7",
+	"ansi-regex": "^4.1.0",
 	columnify: "^1.5.4",
 	"common-tags": "^1.8.0",
 	"deep-assign": "^3.0.0",
 	"es6-promisify": "^6.0.1",
-	"get-stdin": "^6.0.0",
+	"get-stdin": "^7.0.0",
 	lodash: "^4.17.11",
-	"os-locale": "^3.1.0",
-	"read-pkg-up": "^4.0.0",
-	"term-ng": "^1.0.2",
-	trucolor: "^1.0.1",
-	"update-notifier": "^2.5.0",
-	verbosity: "^1.0.2",
-	yargs: "^13.2.1"
+	"os-locale": "^4.0.0",
+	"read-pkg-up": "^6.0.0",
+	"term-ng": "^1.0.3",
+	trucolor: "^1.0.3",
+	"update-notifier": "^3.0.0",
+	verbosity: "^1.1.1",
+	yargs: "^13.2.4"
 };
 const engines = {
 	node: ">=8.0"
@@ -612,7 +613,7 @@ const images = function () {
   };
 }();
 
-function help(yargs$$1) {
+function help(yargs) {
   const header = () => commonTags.stripIndent(colorReplacer)`
 		${`title|${metadata.name}`}
 		${images.space}${metadata.description}
@@ -642,7 +643,7 @@ function help(yargs$$1) {
     outStream: process.stderr
   });
   const contentWidth = renderer.getWidth();
-  yargs$$1.wrap(contentWidth);
+  yargs.wrap(contentWidth);
   container.break();
   container.write(images.cc.render({
     nobreak: false,
@@ -651,7 +652,7 @@ function help(yargs$$1) {
   container.write(header()).break();
   container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`).break();
   renderer.write(synopsis).break(2);
-  renderer.write(yargs$$1.getUsageInstance().help()).break();
+  renderer.write(yargs.getUsageInstance().help()).break();
   renderer.write(usage).break(2);
   container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`);
   renderer.write(epilogue).end();
