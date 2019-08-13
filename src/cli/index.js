@@ -11,9 +11,9 @@ import updateNotifier from 'update-notifier'
 import {stripIndent} from 'common-tags'
 import {box} from '@thebespokepixel/string'
 import pkg from '../../package'
-import {truwrap, console, metadata, parsePanel} from '..'
 import {colorReplacer} from '../lib/colour'
 import help from './help'
+import {truwrap, console, metadata, parsePanel} from '..'
 
 yargs.strict().help(false).version(false).options({
 	h: {
