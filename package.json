@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "author": "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)",
   "main": "index.js",
@@ -14,7 +14,7 @@
     "bin/"
   ],
   "bugs": {
-    "url": "https://github.com/MarkGriffiths/truwrap/issues"
+    "url": "https://github.com/thebespokepixel/truwrap/issues"
   },
   "copyright": {
     "year": "2019",
@@ -30,9 +30,9 @@
     "coverage": "nyc ava && nyc report --reporter=lcov --report-dir test/coverage; open test/coverage/lcov-report/index.html"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "ava": "^2.1.0",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "ava": "^2.2.0",
     "babel-plugin-lodash": "^3.3.4",
     "documentation-theme-bespoke": "^0.5.6",
     "gulp": "^4.0.2",
@@ -40,37 +40,37 @@
     "gulp-chmod": "^3.0.0",
     "gulp-rename": "^1.4.0",
     "nyc": "^14.1.1",
-    "rollup": "^1.15.3",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup": "^1.19.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "semver-regex": "^3.1.0",
     "xo": "^0.24.0"
   },
   "dependencies": {
-    "@thebespokepixel/meta": "^1.0.3",
-    "@thebespokepixel/n-selector": "^1.0.3",
-    "@thebespokepixel/string": "^0.5.7",
+    "@thebespokepixel/meta": "^1.0.4",
+    "@thebespokepixel/n-selector": "^1.0.4",
+    "@thebespokepixel/string": "^0.5.8",
     "ansi-regex": "^4.1.0",
     "columnify": "^1.5.4",
     "common-tags": "^1.8.0",
     "deep-assign": "^3.0.0",
     "es6-promisify": "^6.0.1",
     "get-stdin": "^7.0.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "os-locale": "^4.0.0",
     "read-pkg-up": "^6.0.0",
-    "term-ng": "^1.0.3",
+    "term-ng": "^1.0.4",
     "trucolor": "^1.0.3",
-    "update-notifier": "^3.0.0",
-    "verbosity": "^1.1.1",
-    "yargs": "^13.2.4"
+    "update-notifier": "^3.0.1",
+    "verbosity": "^1.1.2",
+    "yargs": "^13.3.0"
   },
   "engines": {
     "node": ">=8.0"
   },
-  "homepage": "https://github.com/MarkGriffiths/truwrap",
+  "homepage": "https://github.com/thebespokepixel/truwrap",
   "keywords": [
     "text",
     "wrap",
@@ -85,7 +85,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarkGriffiths/truwrap.git"
+    "url": "git+https://github.com/thebespokepixel/truwrap.git"
   },
   "xo": {
     "semicolon": false,
@@ -99,16 +99,16 @@
     ]
   },
   "badges": {
-    "github": "MarkGriffiths",
+    "github": "thebespokepixel",
     "npm": "thebespokepixel",
     "name": "truwrap",
-    "codeclimate": "e03a2055456023267873",
+    "codeclimate": "5732d1aad01d74b6ef4a",
     "providers": {
       "aux1": {
         "title": "github",
         "text": "source",
         "color": "4E73B6",
-        "link": "https://github.com/MarkGriffiths/truwrap"
+        "link": "https://github.com/thebespokepixel/truwrap"
       }
     },
     "readme": {
@@ -130,8 +130,7 @@
         "rollup"
       ],
       "Help": [
-        "inch",
-        "gitter"
+        "inch"
       ]
     },
     "docs": [
