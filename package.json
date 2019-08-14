@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "author": "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)",
   "main": "index.js",
@@ -34,7 +34,7 @@
     "@babel/preset-env": "^7.5.5",
     "ava": "^2.2.0",
     "babel-plugin-lodash": "^3.3.4",
-    "documentation-theme-bespoke": "^0.5.6",
+    "documentation-theme-bespoke": "^1.0.0",
     "gulp": "^4.0.2",
     "gulp-better-rollup": "^4.0.1",
     "gulp-chmod": "^3.0.0",
@@ -62,7 +62,7 @@
     "os-locale": "^4.0.0",
     "read-pkg-up": "^6.0.0",
     "term-ng": "^1.0.4",
-    "trucolor": "^1.0.3",
+    "trucolor": "^1.0.6",
     "update-notifier": "^3.0.1",
     "verbosity": "^1.1.2",
     "yargs": "^13.3.0"
@@ -112,25 +112,34 @@
       }
     },
     "readme": {
-      "Status": [
+      "Publishing Status": [
         [
           "npm",
-          "travis",
           "david"
         ],
         [
-          "code-climate",
-          "code-climate-coverage",
-          "snyk"
+          "travis-com",
+          "rollup"
         ]
       ],
-      "Developer": [
-        "greenkeeper",
-        "david-dev",
-        "rollup"
+      "Development Status": [
+        [
+          "greenkeeper",
+          "travis-com-dev"
+        ],
+        [
+          "david-dev",
+          "david-devdeps-dev"
+        ],
+        [
+          "snyk",
+          "code-climate",
+          "code-climate-coverage"
+        ]
       ],
-      "Help": [
-        "inch"
+      "Documentation/Help": [
+        "inch",
+        "twitter"
       ]
     },
     "docs": [
@@ -143,6 +152,7 @@
         "code-climate-coverage"
       ],
       [
+        "snyk",
         "david"
       ]
     ]
