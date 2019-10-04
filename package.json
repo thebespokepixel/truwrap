@@ -52,7 +52,7 @@
     "@thebespokepixel/meta": "^1.0.4",
     "@thebespokepixel/n-selector": "^1.0.4",
     "@thebespokepixel/string": "^0.5.8",
-    "ansi-regex": "^4.1.0",
+    "ansi-regex": "^5.0.0",
     "columnify": "^1.5.4",
     "common-tags": "^1.8.0",
     "deep-assign": "^3.0.0",
