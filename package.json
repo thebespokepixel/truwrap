@@ -63,7 +63,7 @@
     "read-pkg-up": "^6.0.0",
     "term-ng": "^1.0.4",
     "trucolor": "^1.0.6",
-    "update-notifier": "^3.0.1",
+    "update-notifier": "^4.0.0",
     "verbosity": "^1.1.2",
     "yargs": "^13.3.0"
   },
