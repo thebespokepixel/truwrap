@@ -51,7 +51,7 @@
   "dependencies": {
     "@thebespokepixel/meta": "^1.0.4",
     "@thebespokepixel/n-selector": "^1.0.4",
-    "@thebespokepixel/string": "^0.5.8",
+    "@thebespokepixel/string": "^1.0.0",
     "ansi-regex": "^4.1.0",
     "columnify": "^1.5.4",
     "common-tags": "^1.8.0",
