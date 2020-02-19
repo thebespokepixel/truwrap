@@ -61,7 +61,7 @@
     "lodash": "^4.17.15",
     "os-locale": "^4.0.0",
     "read-pkg-up": "^6.0.0",
-    "term-ng": "^1.0.4",
+    "term-ng": "^2.0.0",
     "trucolor": "^1.0.6",
     "update-notifier": "^3.0.1",
     "verbosity": "^1.1.2",
