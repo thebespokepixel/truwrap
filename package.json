@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@thebespokepixel/meta": "^1.0.4",
-    "@thebespokepixel/n-selector": "^1.0.4",
+    "@thebespokepixel/n-selector": "^2.0.0",
     "@thebespokepixel/string": "^0.5.8",
     "ansi-regex": "^4.1.0",
     "columnify": "^1.5.4",
