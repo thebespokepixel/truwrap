@@ -35,7 +35,7 @@
     "@babel/preset-env": "^7.8.4",
     "ava": "^3.3.0",
     "babel-plugin-lodash": "^3.3.4",
-    "documentation-theme-bespoke": "^1.1.2",
+    "documentation-theme-bespoke": "^1.1.3",
     "gulp": "^4.0.2",
     "gulp-better-rollup": "^4.0.1",
     "gulp-chmod": "^3.0.0",
@@ -50,9 +50,9 @@
     "xo": "^0.26.1"
   },
   "dependencies": {
-    "@thebespokepixel/meta": "^2.0.1",
-    "@thebespokepixel/n-selector": "^2.0.0",
-    "@thebespokepixel/string": "^1.0.0",
+    "@thebespokepixel/meta": "^2.0.2",
+    "@thebespokepixel/n-selector": "^2.0.1",
+    "@thebespokepixel/string": "^1.0.1",
     "ansi-regex": "^5.0.0",
     "columnify": "^1.5.4",
     "common-tags": "^1.8.0",
@@ -62,10 +62,10 @@
     "lodash": "^4.17.15",
     "os-locale": "^4.0.0",
     "read-pkg-up": "^7.0.1",
-    "term-ng": "^2.0.0",
-    "trucolor": "^1.0.6",
+    "term-ng": "^2.0.1",
+    "trucolor": "^2.0.0",
     "update-notifier": "^4.1.0",
-    "verbosity": "^2.0.0",
+    "verbosity": "^2.0.1",
     "yargs": "^15.1.0"
   },
   "engines": {
