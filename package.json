@@ -1,6 +1,6 @@
 {
   "name": "truwrap",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "author": "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)",
   "main": "index.js",
@@ -63,7 +63,7 @@
     "os-locale": "^4.0.0",
     "read-pkg-up": "^7.0.1",
     "term-ng": "^2.0.1",
-    "trucolor": "^2.0.0",
+    "trucolor": "^2.0.1",
     "update-notifier": "^4.1.0",
     "verbosity": "^2.0.1",
     "yargs": "^15.1.0"
