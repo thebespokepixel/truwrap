@@ -63,7 +63,7 @@
     "os-locale": "^4.0.0",
     "read-pkg-up": "^7.0.1",
     "term-ng": "^2.0.0",
-    "trucolor": "^1.0.6",
+    "trucolor": "^2.0.0",
     "update-notifier": "^4.1.0",
     "verbosity": "^2.0.0",
     "yargs": "^15.1.0"
