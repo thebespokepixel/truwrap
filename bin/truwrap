@@ -26,7 +26,7 @@ var _split = _interopDefault(require('lodash/split'));
 var _forEach = _interopDefault(require('lodash/forEach'));
 
 const name = "truwrap";
-const version = "2.0.1";
+const version = "2.0.2";
 const description = "Smarter terminal text wrapping (handles 24bit color)";
 const author = "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)";
 const main = "index.js";
@@ -89,7 +89,7 @@ const dependencies = {
 	"os-locale": "^4.0.0",
 	"read-pkg-up": "^7.0.1",
 	"term-ng": "^2.0.1",
-	trucolor: "^2.0.0",
+	trucolor: "^2.0.1",
 	"update-notifier": "^4.1.0",
 	verbosity: "^2.0.1",
 	yargs: "^15.1.0"
