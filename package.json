@@ -51,7 +51,7 @@
   "dependencies": {
     "@thebespokepixel/meta": "^1.0.4",
     "@thebespokepixel/n-selector": "^1.0.4",
-    "@thebespokepixel/string": "^0.5.8",
+    "@thebespokepixel/string": "^1.0.0",
     "ansi-regex": "^4.1.0",
     "columnify": "^1.5.4",
     "common-tags": "^1.8.0",
@@ -61,10 +61,10 @@
     "lodash": "^4.17.15",
     "os-locale": "^4.0.0",
     "read-pkg-up": "^6.0.0",
-    "term-ng": "^1.0.4",
+    "term-ng": "^2.0.0",
     "trucolor": "^1.0.6",
     "update-notifier": "^3.0.1",
-    "verbosity": "^1.1.2",
+    "verbosity": "^2.0.0",
     "yargs": "^13.3.0"
   },
   "engines": {
