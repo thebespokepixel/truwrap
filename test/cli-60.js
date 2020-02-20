@@ -2,7 +2,7 @@ import path from 'path'
 import {readFileSync} from 'fs'
 import {exec} from 'child_process'
 import test from 'ava'
-import pkg from '../package'
+import pkg from '../package.json'
 
 const expectedVersion = pkg.version
 
@@ -16,7 +16,7 @@ test.cb(`Module name/version is '${pkg.name} v${expectedVersion}'.`, t => {
 
 const width = path.basename(__filename, '.js').split('-')[1] // 10, 20, 40, 60, 80, 100
 
-if ([40, 60, 80, 100].indexOf(Number(width)) !== -1) {
+if ([40, 60, 80, 100].includes(Number(width))) {
 	test.cb(`Panel: width = ${width} left = 0, right = 0`, t => {
 		const fixture = readFileSync(`./test/fixtures/out/panel-${width}-0-0.txt`, 'utf8')
 		exec(

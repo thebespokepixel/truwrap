@@ -1,3 +1,4 @@
+/* eslint unicorn/prefer-trim-start-end:0 */
 /* ──────────────────╮
  │ truwrap tokeniser │ Handle the tokenisation of source text
  ╰───────────────────┴───────────────────────────────────────────────────────── */

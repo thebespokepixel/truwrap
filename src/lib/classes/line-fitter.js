@@ -1,3 +1,4 @@
+/* eslint unicorn/prefer-trim-start-end:0,unicorn/prefer-string-slice:0 */
 /* ─────────────────────╮
  │ truwrap line fitting │
  ╰──────────────────────┴────────────────────────────────────────────────────── */
