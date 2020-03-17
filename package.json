@@ -66,7 +66,7 @@
     "trucolor": "^2.0.1",
     "update-notifier": "^4.1.0",
     "verbosity": "^2.0.1",
-    "yargs": "^15.1.0"
+    "yargs": "^15.3.0"
   },
   "engines": {
     "node": ">=10.0"
