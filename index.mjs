@@ -5,8 +5,8 @@ import { TemplateTag, replaceSubstitutionTransformer, stripIndent } from 'common
 import meta from '@thebespokepixel/meta';
 import { createSelector } from '@thebespokepixel/n-selector';
 import ansiRegex from 'ansi-regex';
+import _merge from 'lodash/merge';
 import { simple, palette } from 'trucolor';
-import deepAssign from 'deep-assign';
 import { statSync, readFileSync } from 'fs';
 import { join, extname, basename } from 'path';
 import _min from 'lodash/min';
@@ -172,14 +172,14 @@ function createWrapTool(options) {
   return new WrapTool(options);
 }
 
-const clr = deepAssign(simple({
+const clr = _merge(simple({
   format: 'sgr'
 }), palette({
   format: 'sgr'
-}, {
+}), {
   bright: 'bold rgb(255,255,255)',
   dark: '#333'
-}));
+});
 const colorReplacer = new TemplateTag(replaceSubstitutionTransformer(/([a-zA-Z]+?)[:/|](.+)/, (match, colorName, content) => `${clr[colorName]}${content}${clr[colorName].out}`));
 
 const prefix = '\u001B]1337;File=inline=1;';

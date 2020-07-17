@@ -11,8 +11,8 @@ var commonTags = require('common-tags');
 var meta = _interopDefault(require('@thebespokepixel/meta'));
 var nSelector = require('@thebespokepixel/n-selector');
 var ansiRegex = _interopDefault(require('ansi-regex'));
+var _merge = _interopDefault(require('lodash/merge'));
 var trucolor = require('trucolor');
-var deepAssign = _interopDefault(require('deep-assign'));
 var fs = require('fs');
 var path = require('path');
 var _min = _interopDefault(require('lodash/min'));
@@ -178,14 +178,14 @@ function createWrapTool(options) {
   return new WrapTool(options);
 }
 
-const clr = deepAssign(trucolor.simple({
+const clr = _merge(trucolor.simple({
   format: 'sgr'
 }), trucolor.palette({
   format: 'sgr'
-}, {
+}), {
   bright: 'bold rgb(255,255,255)',
   dark: '#333'
-}));
+});
 const colorReplacer = new commonTags.TemplateTag(commonTags.replaceSubstitutionTransformer(/([a-zA-Z]+?)[:/|](.+)/, (match, colorName, content) => `${clr[colorName]}${content}${clr[colorName].out}`));
 
 const prefix = '\u001B]1337;File=inline=1;';

@@ -2,14 +2,18 @@
  │ truwrap colour │ Colour handling, here for optimisation
  ╰────────────────┴──────────────────────────────────────────────────────────── */
 
+import _ from 'lodash'
 import {simple, palette} from 'trucolor'
-import deepAssign from 'deep-assign'
 import {TemplateTag, replaceSubstitutionTransformer} from 'common-tags'
 
-export const clr = deepAssign(simple({format: 'sgr'}), palette({format: 'sgr'}, {
-	bright: 'bold rgb(255,255,255)',
-	dark: '#333'
-}))
+export const clr = _.merge(
+	simple({format: 'sgr'}),
+	palette({format: 'sgr'}),
+	{
+		bright: 'bold rgb(255,255,255)',
+		dark: '#333'
+	}
+)
 
 export const colorReplacer = new TemplateTag(
 	replaceSubstitutionTransformer(
