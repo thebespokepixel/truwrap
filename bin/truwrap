@@ -82,7 +82,6 @@ const dependencies = {
 	"ansi-regex": "^5.0.0",
 	columnify: "^1.5.4",
 	"common-tags": "^1.8.0",
-	"deep-assign": "^3.0.0",
 	"es6-promisify": "^6.1.1",
 	"get-stdin": "^8.0.0",
 	lodash: "^4.17.19",
