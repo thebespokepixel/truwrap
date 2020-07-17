@@ -26,7 +26,7 @@ var _split = _interopDefault(require('lodash/split'));
 var _forEach = _interopDefault(require('lodash/forEach'));
 
 const name = "truwrap";
-const version = "2.0.3";
+const version = "2.0.4";
 const description = "Smarter terminal text wrapping (handles 24bit color)";
 const author = "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)";
 const main = "index.js";
