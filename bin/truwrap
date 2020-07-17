@@ -9,8 +9,8 @@ var getStdin = _interopDefault(require('get-stdin'));
 var updateNotifier = _interopDefault(require('update-notifier'));
 var commonTags = require('common-tags');
 var string = require('@thebespokepixel/string');
+var _merge = _interopDefault(require('lodash/merge'));
 var trucolor = require('trucolor');
-var deepAssign = _interopDefault(require('deep-assign'));
 var path = require('path');
 var terminalFeatures = _interopDefault(require('term-ng'));
 var columnify = _interopDefault(require('columnify'));
@@ -26,7 +26,7 @@ var _split = _interopDefault(require('lodash/split'));
 var _forEach = _interopDefault(require('lodash/forEach'));
 
 const name = "truwrap";
-const version = "2.0.2";
+const version = "2.0.3";
 const description = "Smarter terminal text wrapping (handles 24bit color)";
 const author = "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)";
 const main = "index.js";
@@ -211,14 +211,14 @@ var pkg = {
 	badges: badges
 };
 
-const clr = deepAssign(trucolor.simple({
+const clr = _merge(trucolor.simple({
   format: 'sgr'
 }), trucolor.palette({
   format: 'sgr'
-}, {
+}), {
   bright: 'bold rgb(255,255,255)',
   dark: '#333'
-}));
+});
 const colorReplacer = new commonTags.TemplateTag(commonTags.replaceSubstitutionTransformer(/([a-zA-Z]+?)[:/|](.+)/, (match, colorName, content) => `${clr[colorName]}${content}${clr[colorName].out}`));
 
 const tabRegex = /\t/g;
