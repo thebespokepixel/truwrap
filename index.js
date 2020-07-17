@@ -28,7 +28,7 @@ class Tokeniser {
     this.tokenisingRegex = tokenisingRegex || function () {
       switch (renderMode.selected) {
         case 'keep':
-          return /^.*$/mg;
+          return /^.*$/gm;
 
         default:
           return /\S+\s+/g;
@@ -46,7 +46,9 @@ class Tokeniser {
 
 }
 
-var createTokeniser = (tokenisingRegex => new Tokeniser(tokenisingRegex));
+function createTokeniser(tokenisingRegex) {
+  return new Tokeniser(tokenisingRegex);
+}
 
 const newlineRegex$1 = /^>\/\\\/\/__<$/;
 const tabRegex$1 = /^>T\/\\B<$/;
@@ -129,7 +131,9 @@ class LineFitter {
 
 }
 
-var createLineFitter = ((margin, width, tabWidth) => new LineFitter([margin, width, tabWidth]));
+function createLineFitter(margin, width, tabWidth) {
+  return new LineFitter([margin, width, tabWidth]);
+}
 
 class WrapTool {
   constructor({
@@ -165,12 +169,14 @@ class WrapTool {
     }
 
     this.lines.push(currentLine.toString());
-    return this.lines.map(this.tokeniser.restore).join('\n');
+    return this.lines.map(line => this.tokeniser.restore(line)).join('\n');
   }
 
 }
 
-var createWrapTool = (options => new WrapTool(options));
+function createWrapTool(options) {
+  return new WrapTool(options);
+}
 
 const clr = deepAssign(trucolor.simple({
   format: 'sgr'
@@ -184,7 +190,7 @@ const colorReplacer = new commonTags.TemplateTag(commonTags.replaceSubstitutionT
 
 const prefix = '\u001B]1337;File=inline=1;';
 const suffix = '\u0007';
-const broken = `${__dirname}/../media/broken.png`;
+const broken = path.join(__dirname, '/../media/broken.png');
 
 class Image {
   constructor({
@@ -233,9 +239,11 @@ class Image {
 
 }
 
-var image = (source => new Image(source));
+function createImage(source) {
+  return new Image(source);
+}
 
-function panel (buffer_, delimiter_, width_) {
+function panel(buffer_, delimiter_, width_) {
   let longIdx = 0;
   let maxCols = 0;
   const spacerCols = [];
@@ -417,7 +425,7 @@ function truwrap({
 }
 
 exports.console = console;
-exports.createImage = image;
+exports.createImage = createImage;
 exports.locale = locale;
 exports.metadata = metadata;
 exports.parsePanel = panel;

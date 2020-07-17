@@ -22,7 +22,7 @@ class Tokeniser {
 		this.tokenisingRegex = tokenisingRegex || (function () {
 			switch (renderMode.selected) {
 				case 'keep':
-					return /^.*$/mg
+					return /^.*$/gm
 				default:
 					return /\S+\s+/g
 			}
@@ -57,10 +57,12 @@ class Tokeniser {
 }
 
 /**
- * Create a new Tokeniser instance
+ * Creates a tokeniser.
  * @private
- * @param {Regexp} tokenisingRegex - The regex that forms the word boundaries.
+ * @param      {<type>}     tokenisingRegex  The tokenising regular expression
  * @see {@link Tokeniser}
- * @return {Tokeniser} A tokeniser instance.
+ * @return     {Tokeniser}  { A tokeniser instance. }
  */
-export default tokenisingRegex => new Tokeniser(tokenisingRegex)
+export default function createTokeniser(tokenisingRegex) {
+	return new Tokeniser(tokenisingRegex)
+}

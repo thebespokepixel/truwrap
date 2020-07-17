@@ -113,12 +113,13 @@ class LineFitter {
 }
 
 /**
- * Create a new line of wrapped text.
+ * Creates a line fitter - a new line of wrapped text..
  * @private
- * @param  {String} margin   - The left margin, made up of spaces
- * @param  {Number} width    - The width the line can take up
- * @param  {Number} tabWidth - Desired TAB width
- * @return {LineFitter} The LineFitter instance.
+ * @param      {String}      margin    The left margin, made up of spaces
+ * @param      {Number}      width     The width the line can take up
+ * @param      {Number}      tabWidth  Desired TAB width
+ * @return     {LineFitter}  The line fitter.
  */
-export default (margin, width, tabWidth) =>
-	new LineFitter([margin, width, tabWidth])
+export default function createLineFitter(margin, width, tabWidth) {
+	return new LineFitter([margin, width, tabWidth])
+}

@@ -3,13 +3,13 @@
  ╰────────────────────┴──────────────────────────────────────────────────────── */
 
 import {readFileSync, statSync} from 'fs'
-import {basename, extname} from 'path'
+import {basename, extname, join} from 'path'
 import {console} from '../..'
 
 const prefix = '\u001B]1337;File=inline=1;'
 const suffix = '\u0007'
 
-const broken = `${__dirname}/../media/broken.png`
+const broken = join(__dirname, '/../media/broken.png')
 
 /**
  * Provides an image formatted for inclusion in the TTY
@@ -84,9 +84,11 @@ class Image {
 }
 
 /**
- * Create a new Image
+ * Creates an image.
  * @private
- * @param  {Object} source - Image options
- * @return {Image} A configured (but not yet loaded) image.
+ * @param      {String}  source  The source
+ * @return     {Image}   A configured (but not yet loaded) image.
  */
-export default source => new Image(source)
+export default function createImage(source) {
+	return new Image(source)
+}
