@@ -3,7 +3,7 @@
  ╰─────────────┴──────────────────────────────────────────────────────────────── */
 
 /** @module module:truwrap/cli/help */
-
+import {join} from 'path'
 import terminalFeatures from 'term-ng'
 import {stripIndent} from 'common-tags'
 
@@ -16,7 +16,7 @@ const images = (function () {
 			space: '\t',
 			cc: createImage({
 				name: 'logo',
-				file: `${__dirname}/../media/CCLogo.png`,
+				file: join(__dirname, '/../media/CCLogo.png'),
 				height: 3
 			})
 		}

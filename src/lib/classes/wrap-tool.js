@@ -55,14 +55,16 @@ class WrapTool {
 		}
 
 		this.lines.push(currentLine.toString())
-		return this.lines.map(this.tokeniser.restore).join('\n')
+		return this.lines.map(line => this.tokeniser.restore(line)).join('\n')
 	}
 }
 
 /**
- * Create a WrapTool instance
- * @param  {options} options - Provided options
+ * Creates a wrap tool.
  * @private
- * @return {WrapTool} A configured tool.
+ * @param      {Object}    options  The options
+ * @return     {WrapTool}  The wrap tool.
  */
-export default options => new WrapTool(options)
+export default function createWrapTool(options) {
+	return new WrapTool(options)
+}

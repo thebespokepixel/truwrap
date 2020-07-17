@@ -9,8 +9,7 @@
 
 ##### Development Status
 
-[![Greenkeeper](https://badges.greenkeeper.io/thebespokepixel/truwrap.svg)](https://greenkeeper.io/ "Greenkeeper") [![Travis](https://img.shields.io/travis/com/thebespokepixel/truwrap/develop?logo=travis)](https://travis-ci.com/thebespokepixel/truwrap "Travis")  
- [![David](https://david-dm.org/thebespokepixel/truwrap/develop/status.svg)](https://david-dm.org/thebespokepixel/truwrap/develop "David") [![David-developer](https://david-dm.org/thebespokepixel/truwrap/develop/dev-status.svg)](https://david-dm.org/thebespokepixel/truwrap/develop?type=dev "David-developer")  
+[![Travis](https://img.shields.io/travis/com/thebespokepixel/truwrap/develop?logo=travis)](https://travis-ci.com/thebespokepixel/truwrap "Travis") [![David](https://david-dm.org/thebespokepixel/truwrap/develop/status.svg)](https://david-dm.org/thebespokepixel/truwrap/develop "David") [![David-developer](https://david-dm.org/thebespokepixel/truwrap/develop/dev-status.svg)](https://david-dm.org/thebespokepixel/truwrap/develop?type=dev "David-developer")  
  [![Snyk](https://snyk.io/test/github/thebespokepixel/truwrap/badge.svg)](https://snyk.io/test/github/thebespokepixel/truwrap "Snyk") [![Code-climate](https://api.codeclimate.com/v1/badges/5732d1aad01d74b6ef4a/maintainability)](https://codeclimate.com/github/thebespokepixel/truwrap/maintainability "Code-climate") [![Coverage](https://api.codeclimate.com/v1/badges/5732d1aad01d74b6ef4a/test_coverage)](https://codeclimate.com/github/thebespokepixel/truwrap/test_coverage "Coverage")   
 
 ##### Documentation/Help

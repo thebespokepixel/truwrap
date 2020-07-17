@@ -12,7 +12,7 @@ import _ from 'lodash'
  * @param  {Number} width_ Panel width.
  * @return {object} The columnify configuration.
  */
-export default function (buffer_, delimiter_, width_) {
+export default function panel(buffer_, delimiter_, width_) {
 	let longIdx = 0
 	let maxCols = 0
 	const spacerCols = []
