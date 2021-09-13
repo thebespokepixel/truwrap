@@ -53,7 +53,7 @@
     "@thebespokepixel/meta": "^2.0.4",
     "@thebespokepixel/n-selector": "^2.0.2",
     "@thebespokepixel/string": "^1.0.3",
-    "ansi-regex": "^5.0.0",
+    "ansi-regex": "^6.0.1",
     "columnify": "^1.5.4",
     "common-tags": "^1.8.0",
     "es6-promisify": "^6.1.1",
