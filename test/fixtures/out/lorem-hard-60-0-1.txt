@@ -1,9 +1,0 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-do eiusmod tempor incididunt ut labore et dolore magna aliqu
-a. Ut enim ad minim veniam, quis nostrud exercitation ullamc
-o laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit es
-se cillum dolore eu fugiat nulla pariatur. Excepteur sint oc
-caecat cupidatat non proident, sunt in culpa qui officia des
-erunt mollit anim id est laborum.

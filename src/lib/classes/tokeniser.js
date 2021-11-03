@@ -4,7 +4,7 @@
  ╰───────────────────┴───────────────────────────────────────────────────────── */
 
 import ansiRegex from 'ansi-regex'
-import {renderMode} from '../..'
+import {renderMode} from '../../index.js'
 
 const tabRegex = /\t/g
 const newlineRegex	= /\n/g
@@ -45,14 +45,14 @@ class Tokeniser {
 	}
 
 	/**
-	 * Reconstruct the line, flush.ing any remaining tokens
+	 * Reconstruct the line, flushing any remaining tokens
 	 * @param  {String} source - Line to process
 	 * @return {String} - Process line
 	 */
 	restore(source) {
 		return source
 			.replace(/>\/\\\/\/__</g, '\n')
-			.trimRight()
+			.trimEnd()
 	}
 }
 

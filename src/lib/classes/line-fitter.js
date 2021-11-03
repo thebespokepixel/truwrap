@@ -4,7 +4,7 @@
  ╰──────────────────────┴────────────────────────────────────────────────────── */
 
 import ansiRegex from 'ansi-regex'
-import {console, renderMode} from '../..'
+import {console, renderMode} from '../../index.js'
 
 const newlineRegex = /^>\/\\\/\/__<$/
 const tabRegex = /^>T\/\\B<$/
@@ -22,7 +22,7 @@ class LineFitter {
 		[
 			this.margin,
 			this.desiredWidth,
-			this.tabWidth
+			this.tabWidth,
 		] = options
 
 		this.lineTokens = [this.margin]
@@ -64,12 +64,12 @@ class LineFitter {
 			return false
 		}
 
-		const overlap = this.cursor + token.trimRight().length - this.desiredWidth
+		const overlap = this.cursor + token.trimEnd().length - this.desiredWidth
 
 		switch (renderMode.selected) {
 			case 'hard':
 				if (overlap > 0) {
-					const head = token.trimRight().substring(0, token.length - overlap)
+					const head = token.trimEnd().substring(0, token.length - overlap)
 					const tail = token.substring(token.length - overlap)
 					this.lineTokens.push(head)
 					this.cursor += head.length
@@ -90,10 +90,8 @@ class LineFitter {
 				return false
 
 			default:
-				if (overlap > 0) {
-					if (this.cursor > 0) {
-						return token
-					}
+				if (overlap > 0 && this.cursor > 0) {
+					return token
 				}
 
 				this.lineTokens.push(token)

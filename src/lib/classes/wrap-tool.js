@@ -2,9 +2,9 @@
  │ truwrap │ WrapTool
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
 
-import {console} from '../..'
-import createTokeniser from './tokeniser'
-import createLineFitter from './line-fitter'
+import {console} from '../../index.js'
+import createTokeniser from './tokeniser.js'
+import createLineFitter from './line-fitter.js'
 
 /**
  * Class that actually wraps the text.
@@ -22,7 +22,7 @@ class WrapTool {
 		left,
 		width,
 		tabWidth,
-		tokenRegex
+		tokenRegex,
 	}) {
 		this.margin = ' '.repeat(left)
 		this.desiredWidth = width
@@ -41,7 +41,7 @@ class WrapTool {
 
 		let currentLine = createLineFitter(this.margin, this.desiredWidth, this.tabWidth)
 
-		while (tokens.length) {
+		while (tokens.length > 0) {
 			const overflow = currentLine.add(tokens.shift())
 			if (overflow) {
 				this.lines.push(currentLine.toString())

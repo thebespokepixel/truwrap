@@ -6,99 +6,106 @@
 import {format} from 'util'
 
 import yargs from 'yargs'
+import {hideBin} from 'yargs/helpers' // eslint-disable-line node/file-extension-in-import
 import getStdin from 'get-stdin'
 import updateNotifier from 'update-notifier'
 import {stripIndent} from 'common-tags'
 import {box} from '@thebespokepixel/string'
-import pkg from '../../package.json'
+import {readPackageSync} from 'read-pkg'
 import {colorReplacer} from '../lib/colour'
-import help from './help'
-import {truwrap, console, metadata, parsePanel} from '..'
+import help from './help.js'
+import {truwrap, console, metadata, parsePanel} from '../index.js'
 
-yargs.strict().help(false).version(false).options({
-	h: {
-		alias: 'help',
-		describe: 'Display this help.'
-	},
-	v: {
-		alias: 'version',
-		count: true,
-		describe: 'Return the current version on stdout. -vv Return name & version.'
-	},
-	V: {
-		alias: 'verbose',
-		count: true,
-		describe: 'Be verbose. -VV Be loquacious.'
-	},
-	o: {
-		alias: 'stderr',
-		boolean: true,
-		describe: 'Use stderr rather than stdout',
-		default: false
-	},
-	l: {
-		alias: 'left',
-		describe: 'Left margin',
-		requiresArg: true,
-		default: 2
-	},
-	r: {
-		alias: 'right',
-		describe: 'Right margin',
-		requiresArg: true,
-		default: 2
-	},
-	w: {
-		alias: 'width',
-		describe: 'Set total width. Overrides terminal window’s width.',
-		requiresArg: true,
-		nargs: 1
-	},
-	t: {
-		alias: 'tab',
-		describe: 'Set tab width.',
-		requiresArg: true,
-		default: 2
-	},
-	m: {
-		alias: 'mode',
-		choices: ['hard', 'soft', 'keep', 'container'],
-		describe: 'Wrapping mode',
-		default: 'soft',
-		requiresArg: true
-	},
-	s: {
-		alias: 'stamp',
-		boolean: true,
-		describe: 'Print arguments rather than stdin. printf-style options supported.'
-	},
-	p: {
-		alias: 'panel',
-		boolean: true,
-		describe: 'Render a tabular panel into the available console width.'
-	},
-	c: {
-		alias: 'truncate',
-		boolean: true,
-		describe: 'Truncate panel cells.'
-	},
-	d: {
-		alias: 'delimiter',
-		describe: 'The column delimiter when reading data for a panel.',
-		requiresArg: true,
-		default: '|'
-	},
-	x: {
-		alias: 'regex',
-		describe: 'Character run selection regex.',
-		requiresArg: true
-	},
-	color: {
-		describe: 'Force color depth --color=256|16m. Disable with --no-color'
-	}
-}).showHelpOnFail(false, `Use 'truwrap --help' for help.`)
+const pkg = readPackageSync()
 
-const {argv} = yargs
+const yargsInstance = yargs(hideBin(process.argv))
+	.strictOptions()
+	.help(false)
+	.version(false)
+	.options({
+		h: {
+			alias: 'help',
+			describe: 'Display this help.'
+		},
+		v: {
+			alias: 'version',
+			count: true,
+			describe: 'Return the current version on stdout. -vv Return name & version.'
+		},
+		V: {
+			alias: 'verbose',
+			count: true,
+			describe: 'Be verbose. -VV Be loquacious.'
+		},
+		o: {
+			alias: 'stderr',
+			boolean: true,
+			describe: 'Use stderr rather than stdout',
+			default: false
+		},
+		l: {
+			alias: 'left',
+			describe: 'Left margin',
+			requiresArg: true,
+			default: 2
+		},
+		r: {
+			alias: 'right',
+			describe: 'Right margin',
+			requiresArg: true,
+			default: 2
+		},
+		w: {
+			alias: 'width',
+			describe: 'Set total width. Overrides terminal window’s width.',
+			requiresArg: true,
+			nargs: 1
+		},
+		t: {
+			alias: 'tab',
+			describe: 'Set tab width.',
+			requiresArg: true,
+			default: 2
+		},
+		m: {
+			alias: 'mode',
+			choices: ['hard', 'soft', 'keep', 'container'],
+			describe: 'Wrapping mode',
+			default: 'soft',
+			requiresArg: true
+		},
+		s: {
+			alias: 'stamp',
+			boolean: true,
+			describe: 'Print arguments rather than stdin. printf-style options supported.'
+		},
+		p: {
+			alias: 'panel',
+			boolean: true,
+			describe: 'Render a tabular panel into the available console width.'
+		},
+		c: {
+			alias: 'truncate',
+			boolean: true,
+			describe: 'Truncate panel cells.'
+		},
+		d: {
+			alias: 'delimiter',
+			describe: 'The column delimiter when reading data for a panel.',
+			requiresArg: true,
+			default: '|'
+		},
+		x: {
+			alias: 'regex',
+			describe: 'Character run selection regex.',
+			requiresArg: true
+		},
+		color: {
+			describe: 'Force color depth --color=256|16m. Disable with --no-color'
+		}
+	}).showHelpOnFail(false, `Use 'truwrap --help' for help.`)
+
+const {argv} = yargsInstance
 
 const outStream = argv.stderr ? process.stderr : process.stdout
 
@@ -143,14 +150,14 @@ if (argv.verbose) {
 }
 
 if (!(process.env.USER === 'root' && process.env.SUDO_USER !== process.env.USER)) {
-	updateNotifier({
-		pkg
-	}).notify()
+	updateNotifier({pkg}).notify()
 }
 
 if (argv.help) {
-	help(yargs)
-	process.exit(0)
+	(async () => {
+		await help(yargsInstance)
+		process.exit(0)
+	})()
 }
 
 const viewSettings = {

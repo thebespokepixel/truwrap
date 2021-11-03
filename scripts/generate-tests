@@ -1,0 +1,55 @@
+#! /bin/sh
+
+ask() {
+    # http://djm.me/ask
+    while true; do
+
+        if [ "${2:-}" = "Y" ]; then
+            prompt="Y/n"
+            default=Y
+        elif [ "${2:-}" = "N" ]; then
+            prompt="y/N"
+            default=N
+        else
+            prompt="y/n"
+            default=
+        fi
+
+        # Ask the question - use /dev/tty in case stdin is redirected from somewhere else
+        read -p "$1 [$prompt] " REPLY </dev/tty
+
+        # Default?
+        if [ -z "$REPLY" ]; then
+            REPLY=$default
+        fi
+
+        # Check if the reply is valid
+        case "$REPLY" in
+            Y*|y*) return 0 ;;
+            N*|n*) return 1 ;;
+        esac
+
+    done
+}
+
+echo "Generate test width copies."
+if ask "Are you sure?"; then
+    for width in 10 20 40 60 80
+    do
+        echo "Copying cli-*-100.js to cli-$width.js"
+        rm test/cli-$width-soft.js 2>/dev/null
+        rm test/cli-$width-soft-tabbed.js 2>/dev/null
+        rm test/cli-$width-hard.js 2>/dev/null
+        rm test/cli-$width-hard-tabbed.js 2>/dev/null
+        rm test/cli-$width-keep.js 2>/dev/null
+        rm test/cli-$width-panel.js 2>/dev/null
+        rm test/cli-$width-stamp.js 2>/dev/null
+        cp test/cli-100-soft.js test/cli-$width-soft.js
+        cp test/cli-100-soft-tabbed.js test/cli-$width-soft-tabbed.js
+        cp test/cli-100-hard.js test/cli-$width-hard.js
+        cp test/cli-100-hard-tabbed.js test/cli-$width-hard-tabbed.js
+        cp test/cli-100-keep.js test/cli-$width-keep.js
+        cp test/cli-100-panel.js test/cli-$width-panel.js
+        cp test/cli-100-stamp.js test/cli-$width-stamp.js
+    done
+fi

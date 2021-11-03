@@ -1,9 +1,11 @@
 /* ────────╮
  │ truwrap │ Smarter 24bit SGR aware console text wrapping
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
+import {dirname} from 'node:path'
+import {fileURLToPath} from 'node:url'
 
 import columnify from 'columnify'
-import osLocale from 'os-locale'
+import {osLocaleSync} from 'os-locale'
 import {createConsole} from 'verbosity'
 import {stripIndent} from 'common-tags'
 import meta from '@thebespokepixel/meta'
@@ -15,8 +17,8 @@ import createImage from './lib/classes/image'
 import parsePanel from './lib/classes/panel'
 
 export const console = createConsole({outStream: process.stderr})
-export const locale = osLocale.sync()
-export const metadata = meta(__dirname)
+export const locale = osLocaleSync()
+export const metadata = meta(dirname(fileURLToPath(import.meta.url)))
 
 export const renderMode = createSelector([
 	'soft',
@@ -37,12 +39,12 @@ function unimplemented() {
 /**
  * Create a text wrapping instance.
  *
- * @param  {Object}          options            options object
- * @param  {Number}          options.left       Left margin.
- * @param  {Number}          options.right      Right margin.
- * @param  {Number}          options.width      Manually set view width.
+ * @param  {object}          options            options object
+ * @param  {number}          options.left       Left margin.
+ * @param  {number}          options.right      Right margin.
+ * @param  {number}          options.width      Manually set view width.
  * @param  {mode}            options.mode       [soft | hyphen | hard | keep | container]
- * @param  {Number}          options.tabWidth   Desired width of TAB character.
+ * @param  {number}          options.tabWidth   Desired width of TAB character.
  * @param  {Stream.writable} options.outStream  Where to direct output.
  * @param  {Regexp}          options.tokenRegex Override the tokenisers regexp.
  * @return {api} A truwrap api instance.

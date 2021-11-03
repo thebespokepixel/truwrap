@@ -2,14 +2,15 @@
  │ truwrap cli images │
  ╰────────────────────┴──────────────────────────────────────────────────────── */
 
-import {readFileSync, statSync} from 'fs'
-import {basename, extname, join} from 'path'
-import {console} from '../..'
+import {Buffer} from 'node:buffer'
+import {fileURLToPath} from 'node:url'
+import {readFileSync, statSync} from 'node:fs'
+import {dirname, basename, extname, join} from 'node:path'
+import {console} from '../../index.js'
 
 const prefix = '\u001B]1337;File=inline=1;'
 const suffix = '\u0007'
-
-const broken = join(__dirname, '/../media/broken.png')
+const broken = join(dirname(fileURLToPath(import.meta.url)), '/media/broken.png')
 
 /**
  * Provides an image formatted for inclusion in the TTY
@@ -30,7 +31,7 @@ class Image {
 		file,
 		name,
 		width = 'auto',
-		height = 'auto'
+		height = 'auto',
 	}) {
 		const extName = extname(file)
 		const fileName = name || basename(file, extName)
