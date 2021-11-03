@@ -11,3 +11,13 @@ test(`Module name/version is '${pkg.name} v${expectedVersion}'.`, async t => {
 	const {stdout} = await execPromise('./truwrap.js -vv')
 	t.is(stdout.trim(), `${pkg.name} v${expectedVersion}`)
 })
+
+test('Module help with image', async t => {
+	const {stderr} = await execPromise('./truwrap.js --help --color=256')
+	t.snapshot(stderr)
+})
+
+test('Module help, no color', async t => {
+	const {stderr} = await execPromise('./truwrap.js --help --no-color')
+	t.snapshot(stderr)
+})

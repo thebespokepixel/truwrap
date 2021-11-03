@@ -45,7 +45,7 @@ class LineFitter {
 	/**
 	 * Add a token to the line.
 	 * @param {string} token The word token to add.
-	 * @returns {Boolean} Causes newline.
+	 * @returns {boolean} Causes newline.
 	 */
 	add(token) {
 		if (newlineRegex.test(token)) {
@@ -113,9 +113,9 @@ class LineFitter {
 /**
  * Creates a line fitter - a new line of wrapped text..
  * @private
- * @param      {String}      margin    The left margin, made up of spaces
- * @param      {Number}      width     The width the line can take up
- * @param      {Number}      tabWidth  Desired TAB width
+ * @param      {string}      margin    The left margin, made up of spaces
+ * @param      {number}      width     The width the line can take up
+ * @param      {number}      tabWidth  Desired TAB width
  * @return     {LineFitter}  The line fitter.
  */
 export default function createLineFitter(margin, width, tabWidth) {

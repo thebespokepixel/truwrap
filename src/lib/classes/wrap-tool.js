@@ -14,9 +14,9 @@ class WrapTool {
 	/**
 	 * Create a new line wrapping tool.
 	 * @param  {options} $0 - The supplied options
-	 * @param  {Number} $0.left       - The left margins
-	 * @param  {Number} $0.width      - The width of the view, in chars
-	 * @param  {Regex}  $0.tokenRegex - An optional regex passed to the Tokeniser
+	 * @param  {number} $0.left       - The left margins
+	 * @param  {number} $0.width      - The width of the view, in chars
+	 * @param  {RegExp}  $0.tokenRegex - An optional regex passed to the Tokeniser
 	 */
 	constructor({
 		left,
@@ -32,8 +32,8 @@ class WrapTool {
 
 	/**
 	 * Apply instance settings to source text.
-	 * @param  {String} text - The text that require wrapping to the view.
-	 * @return {String}      - Text with wrapping applied.
+	 * @param  {string} text - The text that require wrapping to the view.
+	 * @return {string}      - Text with wrapping applied.
 	 */
 	wrap(text) {
 		this.lines = []
@@ -62,7 +62,7 @@ class WrapTool {
 /**
  * Creates a wrap tool.
  * @private
- * @param      {Object}    options  The options
+ * @param      {object}    options  The options
  * @return     {WrapTool}  The wrap tool.
  */
 export default function createWrapTool(options) {

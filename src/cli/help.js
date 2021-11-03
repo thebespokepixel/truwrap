@@ -35,11 +35,11 @@ const images = (function () {
 /**
  * Render help when asked for.
  * @param  {yargs} yargsInstance - yargs object defined in cli
- * @return {undefined} Writes help to stdout.
+ * @return {null} Writes help to stdout.
  */
 export default async function help(yargsInstance) {
 	const header = () => stripIndent(colorReplacer)`
-		${`title| ${metadata.name}`}
+		${`title|${metadata.name}`}
 		${images.space}${metadata.description}
 		${images.space}${`grey|${metadata.version(3)}`}
 	`
@@ -75,6 +75,7 @@ export default async function help(yargsInstance) {
 	container.write(images.cc.render({
 		nobreak: false,
 		align: 2,
+		spacing: ' ',
 	}))
 	container.write(header()).break()
 	container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`).break()

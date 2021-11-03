@@ -10,7 +10,7 @@ import _ from 'lodash'
  * @private
  * @param  {string} buffer_ Input plain text.
  * @param  {string} delimiter_ Field delimiter.
- * @param  {Number} width_ Panel width.
+ * @param  {number} width_ Panel width.
  * @return {object} The columnify configuration.
  */
 export default function panel(buffer_, delimiter_, width_) {

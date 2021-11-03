@@ -69,7 +69,7 @@ export function truwrap({
 			return outStream.columns || outStream.getWindowSize()[0]
 		}
 
-		return Infinity
+		return 120
 	})()
 
 	const viewWidth = (function () {
@@ -116,7 +116,7 @@ export function truwrap({
 		/**
 		 * Fetch the width in characters of the wrapping view.
 		 * @function
-		 * @return {Number} wrapping width
+		 * @return {number} wrapping width
 		 */
 		getWidth: unimplemented,
 
@@ -124,8 +124,8 @@ export function truwrap({
 		 * Create a multicolumn panel within this view
 		 * @function
 		 * @param {panelObject} content - Object for columnify
-		 * @param {Object} configuration - Configuration for columnify
-		 * @return {String} - The rendered panel.
+		 * @param {object} configuration - Configuration for columnify
+		 * @return {string} - The rendered panel.
 		 */
 		panel(content, configuration) {
 			if (outStream._isStdio) {
@@ -138,7 +138,7 @@ export function truwrap({
 		/**
 		 * Generate linebreaks within this view
 		 * @function
-		 * @param {Number} newlines - number of new lines to add.
+		 * @param {number} newlines - number of new lines to add.
 		 * @return {api} has side effect of writing to stream.
 		 */
 		break(newlines = 1) {
@@ -159,7 +159,7 @@ export function truwrap({
 		/**
 		 * Write text via the wrapping logic
 		 * @function
-		 * @param {String} text - The raw, unwrapped test to wrap.
+		 * @param {string} text - The raw, unwrapped test to wrap.
 		 * @return {api} has side effect of writing to stream.
 		 */
 		write(text) {
@@ -170,7 +170,7 @@ export function truwrap({
 
 	switch (true) {
 		case !ttyActive:
-			console.info(colorReplacer`${'yellow|Non-TTY'}: width: Infinity`)
+			console.info(colorReplacer`${'yellow|Non-TTY'}: width: 120`)
 
 			/**
 			 * @name noTTY

@@ -1,7 +1,6 @@
 /* ────────────╮
  │ truwrap CLI │
  ╰─────────────┴─────────────────────────────────────────────────────────────── */
-/* eslint unicorn/no-process-exit:0,quotes:0 */
 
 import {format} from 'util'
 
@@ -156,43 +155,41 @@ if (!(process.env.USER === 'root' && process.env.SUDO_USER !== process.env.USER)
 if (argv.help) {
 	(async () => {
 		await help(yargsInstance)
-		process.exit(0)
 	})()
-}
-
-const viewSettings = {
-	left: argv.left,
-	right: argv.right,
-	mode: argv.mode,
-	tabWidth: argv.tab,
-	outStream
-}
-
-if (argv.regex) {
-	viewSettings.tokenRegex = new RegExp(argv.regex, 'g')
-}
-
-if (argv.width) {
-	viewSettings.width = argv.width
-}
-
-const renderer = truwrap(viewSettings)
-
-if (argv.stamp) {
-	renderer.write(format(...argv._))
-	process.exit(0)
-}
-
-getStdin().then(input => {
-	if (argv.panel) {
-		const panel = parsePanel(input, argv.delimiter, renderer.getWidth())
-		renderer.panel(panel.content, {
-			maxLineWidth: renderer.getWidth(),
-			showHeaders: false,
-			truncate: argv.truncate,
-			config: panel.configuration
-		})
-	} else {
-		renderer.write(input)
+} else {
+	const viewSettings = {
+		left: argv.left,
+		right: argv.right,
+		mode: argv.mode,
+		tabWidth: argv.tab,
+		outStream
 	}
-})
+
+	if (argv.regex) {
+		viewSettings.tokenRegex = new RegExp(argv.regex, 'g')
+	}
+
+	if (argv.width) {
+		viewSettings.width = argv.width
+	}
+
+	const renderer = truwrap(viewSettings)
+
+	if (argv.stamp) {
+		renderer.write(format(...argv._))
+	} else {
+		getStdin().then(input => {
+			if (argv.panel) {
+				const panel = parsePanel(input, argv.delimiter, renderer.getWidth())
+				renderer.panel(panel.content, {
+					maxLineWidth: renderer.getWidth(),
+					showHeaders: false,
+					truncate: argv.truncate,
+					config: panel.configuration
+				})
+			} else {
+				renderer.write(input)
+			}
+		})
+	}
+}

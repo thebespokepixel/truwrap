@@ -8,6 +8,7 @@ import meta from '@thebespokepixel/meta';
 import { createSelector } from '@thebespokepixel/n-selector';
 import _ from 'lodash';
 import { simple, palette } from 'trucolor';
+import { Buffer } from 'node:buffer';
 import { statSync, readFileSync } from 'node:fs';
 import ansiRegex from 'ansi-regex';
 
@@ -20,7 +21,7 @@ const newlineRegex$1	= /\n/g;
 class Tokeniser {
 	/**
 	 * Create a new tokeniser
-	 * @param  {Regexp} tokenisingRegex - The regex that forms the word boundaries.
+	 * @param  {RegExp} tokenisingRegex - The regex that forms the word boundaries.
 	 */
 	constructor(tokenisingRegex) {
 		this.tokenisingRegex = tokenisingRegex || (function () {
@@ -48,8 +49,8 @@ class Tokeniser {
 	}
 	/**
 	 * Reconstruct the line, flushing any remaining tokens
-	 * @param  {String} source - Line to process
-	 * @return {String} - Process line
+	 * @param  {string} source - Line to process
+	 * @return {string} - Process line
 	 */
 	restore(source) {
 		return source
@@ -60,7 +61,7 @@ class Tokeniser {
 /**
  * Creates a tokeniser.
  * @private
- * @param      {<type>}     tokenisingRegex  The tokenising regular expression
+ * @param      {RegExp}     tokenisingRegex  The tokenising regular expression
  * @see {@link Tokeniser}
  * @return     {Tokeniser}  { A tokeniser instance. }
  */
@@ -103,7 +104,7 @@ class LineFitter {
 	/**
 	 * Add a token to the line.
 	 * @param {string} token The word token to add.
-	 * @returns {Boolean} Causes newline.
+	 * @returns {boolean} Causes newline.
 	 */
 	add(token) {
 		if (newlineRegex.test(token)) {
@@ -161,9 +162,9 @@ class LineFitter {
 /**
  * Creates a line fitter - a new line of wrapped text..
  * @private
- * @param      {String}      margin    The left margin, made up of spaces
- * @param      {Number}      width     The width the line can take up
- * @param      {Number}      tabWidth  Desired TAB width
+ * @param      {string}      margin    The left margin, made up of spaces
+ * @param      {number}      width     The width the line can take up
+ * @param      {number}      tabWidth  Desired TAB width
  * @return     {LineFitter}  The line fitter.
  */
 function createLineFitter(margin, width, tabWidth) {
@@ -178,9 +179,9 @@ class WrapTool {
 	/**
 	 * Create a new line wrapping tool.
 	 * @param  {options} $0 - The supplied options
-	 * @param  {Number} $0.left       - The left margins
-	 * @param  {Number} $0.width      - The width of the view, in chars
-	 * @param  {Regex}  $0.tokenRegex - An optional regex passed to the Tokeniser
+	 * @param  {number} $0.left       - The left margins
+	 * @param  {number} $0.width      - The width of the view, in chars
+	 * @param  {RegExp}  $0.tokenRegex - An optional regex passed to the Tokeniser
 	 */
 	constructor({
 		left,
@@ -195,8 +196,8 @@ class WrapTool {
 	}
 	/**
 	 * Apply instance settings to source text.
-	 * @param  {String} text - The text that require wrapping to the view.
-	 * @return {String}      - Text with wrapping applied.
+	 * @param  {string} text - The text that require wrapping to the view.
+	 * @return {string}      - Text with wrapping applied.
 	 */
 	wrap(text) {
 		this.lines = [];
@@ -221,7 +222,7 @@ class WrapTool {
 /**
  * Creates a wrap tool.
  * @private
- * @param      {Object}    options  The options
+ * @param      {object}    options  The options
  * @return     {WrapTool}  The wrap tool.
  */
 function createWrapTool(options) {
@@ -231,11 +232,11 @@ function createWrapTool(options) {
 const clr = _.merge(
 	simple({format: 'sgr'}),
 	palette({format: 'sgr'},
-	{
-		title: 'bold #9994D1',
-		bright: 'bold rgb(255,255,255)',
-		dark: '#333',
-	}),
+		{
+			title: 'bold #9994D1',
+			bright: 'bold rgb(255,255,255)',
+			dark: '#333',
+		}),
 );
 const colorReplacer = new TemplateTag(
 	replaceSubstitutionTransformer(
@@ -257,9 +258,9 @@ class Image {
 	 * @param  {string} $0.file   - The filename of the image.
 	 * @param  {string} $0.name   - The name of the image
 	 *                              [will be taken from image if missing]
-	 * @param  {String} $0.width  - Can be X(chars), Xpx(pixels),
+	 * @param  {string} $0.width  - Can be X(chars), Xpx(pixels),
 	 *                              X%(% width of window) or 'auto'
-	 * @param  {String} $0.height - Can be Y(chars), Ypx(pixels),
+	 * @param  {string} $0.height - Can be Y(chars), Ypx(pixels),
 	 *                              Y%(% width of window) or 'auto'
 	 */
 	constructor({
@@ -291,29 +292,29 @@ class Image {
 	}
 	/**
 	 * Load and render the image into the CLI
-	 * @param  {Object} options    - The options to set
+	 * @param  {object} options    - The options to set
 	 * @property {number} align    - The line count needed to realign the cursor.
-	 * @property {Boolean} stretch - Do we stretch the image to match the width
+	 * @property {boolean} stretch - Do we stretch the image to match the width
 	 *                               and height.
-	 * @property {Boolean} nobreak - Do we clear the image with a newline?
+	 * @property {boolean} nobreak - Do we clear the image with a newline?
 	 * @return {string} The string to insert into the output buffer, with base64
 	 *                  encoded image.
 	 */
 	render(options) {
-		const {align, stretch = false, nobreak} = options;
+		const {align, stretch = false, nobreak, spacing = ''} = options;
 		const content = Buffer.from(readFileSync(this.filePath));
 		const aspect = stretch ? 'preserveAspectRatio=0;' : '';
 		const linebreak = nobreak ? '' : '\n';
 		const newline = align > 1 ? `\u001BH\u001B[${align}A` : linebreak;
 		return `${prefix}${aspect}size=${content.length}${this.config}:${
 			content.toString('base64')
-		}${suffix}${newline}`
+		}${suffix}${newline}${spacing}`
 	}
 }
 /**
  * Creates an image.
  * @private
- * @param      {String}  source  The source
+ * @param      {string}  source  The source
  * @return     {Image}   A configured (but not yet loaded) image.
  */
 function createImage(source) {
@@ -325,7 +326,7 @@ function createImage(source) {
  * @private
  * @param  {string} buffer_ Input plain text.
  * @param  {string} delimiter_ Field delimiter.
- * @param  {Number} width_ Panel width.
+ * @param  {number} width_ Panel width.
  * @return {object} The columnify configuration.
  */
 function panel(buffer_, delimiter_, width_) {
@@ -428,7 +429,7 @@ function truwrap({
 		if (outStream.isTTY) {
 			return outStream.columns || outStream.getWindowSize()[0]
 		}
-		return Infinity
+		return 120
 	})();
 	const viewWidth = (function () {
 		if (ttyWidth - left - right > 1) {
@@ -468,15 +469,15 @@ function truwrap({
 		/**
 		 * Fetch the width in characters of the wrapping view.
 		 * @function
-		 * @return {Number} wrapping width
+		 * @return {number} wrapping width
 		 */
 		getWidth: unimplemented,
 		/**
 		 * Create a multicolumn panel within this view
 		 * @function
 		 * @param {panelObject} content - Object for columnify
-		 * @param {Object} configuration - Configuration for columnify
-		 * @return {String} - The rendered panel.
+		 * @param {object} configuration - Configuration for columnify
+		 * @return {string} - The rendered panel.
 		 */
 		panel(content, configuration) {
 			if (outStream._isStdio) {
@@ -487,7 +488,7 @@ function truwrap({
 		/**
 		 * Generate linebreaks within this view
 		 * @function
-		 * @param {Number} newlines - number of new lines to add.
+		 * @param {number} newlines - number of new lines to add.
 		 * @return {api} has side effect of writing to stream.
 		 */
 		break(newlines = 1) {
@@ -506,7 +507,7 @@ function truwrap({
 		/**
 		 * Write text via the wrapping logic
 		 * @function
-		 * @param {String} text - The raw, unwrapped test to wrap.
+		 * @param {string} text - The raw, unwrapped test to wrap.
 		 * @return {api} has side effect of writing to stream.
 		 */
 		write(text) {
@@ -516,7 +517,7 @@ function truwrap({
 	};
 	switch (true) {
 		case !ttyActive:
-			console.info(colorReplacer`${'yellow|Non-TTY'}: width: Infinity`);
+			console.info(colorReplacer`${'yellow|Non-TTY'}: width: 120`);
 			/**
 			 * @name noTTY
 			 * @private

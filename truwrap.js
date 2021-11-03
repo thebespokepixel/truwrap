@@ -18,16 +18,17 @@ import { createConsole } from 'verbosity';
 import meta from '@thebespokepixel/meta';
 import { createSelector } from '@thebespokepixel/n-selector';
 import ansiRegex from 'ansi-regex';
+import { Buffer } from 'node:buffer';
 import { statSync, readFileSync } from 'node:fs';
 
 const clr = _.merge(
 	simple({format: 'sgr'}),
 	palette({format: 'sgr'},
-	{
-		title: 'bold #9994D1',
-		bright: 'bold rgb(255,255,255)',
-		dark: '#333',
-	}),
+		{
+			title: 'bold #9994D1',
+			bright: 'bold rgb(255,255,255)',
+			dark: '#333',
+		}),
 );
 const colorReplacer = new TemplateTag(
 	replaceSubstitutionTransformer(
@@ -209,14 +210,14 @@ class Image {
 		})();
 	}
 	render(options) {
-		const {align, stretch = false, nobreak} = options;
+		const {align, stretch = false, nobreak, spacing = ''} = options;
 		const content = Buffer.from(readFileSync(this.filePath));
 		const aspect = stretch ? 'preserveAspectRatio=0;' : '';
 		const linebreak = nobreak ? '' : '\n';
 		const newline = align > 1 ? `\u001BH\u001B[${align}A` : linebreak;
 		return `${prefix}${aspect}size=${content.length}${this.config}:${
 			content.toString('base64')
-		}${suffix}${newline}`
+		}${suffix}${newline}${spacing}`
 	}
 }
 function createImage(source) {
@@ -305,7 +306,7 @@ function truwrap({
 		if (outStream.isTTY) {
 			return outStream.columns || outStream.getWindowSize()[0]
 		}
-		return Infinity
+		return 120
 	})();
 	const viewWidth = (function () {
 		if (ttyWidth - left - right > 1) {
@@ -355,7 +356,7 @@ function truwrap({
 	};
 	switch (true) {
 		case !ttyActive:
-			console.info(colorReplacer`${'yellow|Non-TTY'}: width: Infinity`);
+			console.info(colorReplacer`${'yellow|Non-TTY'}: width: 120`);
 			return Object.assign(Object.create(api), {
 				getWidth: () => ttyWidth
 			})
@@ -404,7 +405,7 @@ const images = (function () {
 })();
 async function help(yargsInstance) {
 	const header = () => stripIndent(colorReplacer)`
-		${`title| ${metadata.name}`}
+		${`title|${metadata.name}`}
 		${images.space}${metadata.description}
 		${images.space}${`grey|${metadata.version(3)}`}
 	`;
@@ -418,7 +419,7 @@ async function help(yargsInstance) {
 	`;
 	const epilogue = stripIndent(colorReplacer)`
 		${`title|${metadata.name}`} ${`white|${metadata.copyright}`}. ${`grey|Released under the ${metadata.license} License.`}
-		${`grey|An Open Source component from ByteTree.com's terminal visualisation toolkit.`}
+		${'grey|An Open Source component from ByteTree.com\'s terminal visualisation toolkit'}
 		${`grey|Issues?: ${metadata.bugs}`}
 	`;
 	const container = truwrap({
@@ -436,6 +437,7 @@ async function help(yargsInstance) {
 	container.write(images.cc.render({
 		nobreak: false,
 		align: 2,
+		spacing: ' ',
 	}));
 	container.write(header()).break();
 	container.write(`${clr.dark}${'—'.repeat(windowWidth)}${clr.dark.out}`).break();
@@ -578,37 +580,37 @@ if (!(process.env.USER === 'root' && process.env.SUDO_USER !== process.env.USER)
 if (argv.help) {
 	(async () => {
 		await help(yargsInstance);
-		process.exit(0);
 	})();
-}
-const viewSettings = {
-	left: argv.left,
-	right: argv.right,
-	mode: argv.mode,
-	tabWidth: argv.tab,
-	outStream
-};
-if (argv.regex) {
-	viewSettings.tokenRegex = new RegExp(argv.regex, 'g');
-}
-if (argv.width) {
-	viewSettings.width = argv.width;
-}
-const renderer = truwrap(viewSettings);
-if (argv.stamp) {
-	renderer.write(format(...argv._));
-	process.exit(0);
-}
-getStdin().then(input => {
-	if (argv.panel) {
-		const panel$1 = panel(input, argv.delimiter, renderer.getWidth());
-		renderer.panel(panel$1.content, {
-			maxLineWidth: renderer.getWidth(),
-			showHeaders: false,
-			truncate: argv.truncate,
-			config: panel$1.configuration
-		});
-	} else {
-		renderer.write(input);
+} else {
+	const viewSettings = {
+		left: argv.left,
+		right: argv.right,
+		mode: argv.mode,
+		tabWidth: argv.tab,
+		outStream
+	};
+	if (argv.regex) {
+		viewSettings.tokenRegex = new RegExp(argv.regex, 'g');
 	}
-});
+	if (argv.width) {
+		viewSettings.width = argv.width;
+	}
+	const renderer = truwrap(viewSettings);
+	if (argv.stamp) {
+		renderer.write(format(...argv._));
+		process.exit(0);
+	}
+	getStdin().then(input => {
+		if (argv.panel) {
+			const panel$1 = panel(input, argv.delimiter, renderer.getWidth());
+			renderer.panel(panel$1.content, {
+				maxLineWidth: renderer.getWidth(),
+				showHeaders: false,
+				truncate: argv.truncate,
+				config: panel$1.configuration
+			});
+		} else {
+			renderer.write(input);
+		}
+	});
+}

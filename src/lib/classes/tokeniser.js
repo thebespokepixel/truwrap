@@ -16,7 +16,7 @@ const newlineRegex	= /\n/g
 class Tokeniser {
 	/**
 	 * Create a new tokeniser
-	 * @param  {Regexp} tokenisingRegex - The regex that forms the word boundaries.
+	 * @param  {RegExp} tokenisingRegex - The regex that forms the word boundaries.
 	 */
 	constructor(tokenisingRegex) {
 		this.tokenisingRegex = tokenisingRegex || (function () {
@@ -46,8 +46,8 @@ class Tokeniser {
 
 	/**
 	 * Reconstruct the line, flushing any remaining tokens
-	 * @param  {String} source - Line to process
-	 * @return {String} - Process line
+	 * @param  {string} source - Line to process
+	 * @return {string} - Process line
 	 */
 	restore(source) {
 		return source
@@ -59,7 +59,7 @@ class Tokeniser {
 /**
  * Creates a tokeniser.
  * @private
- * @param      {<type>}     tokenisingRegex  The tokenising regular expression
+ * @param      {RegExp}     tokenisingRegex  The tokenising regular expression
  * @see {@link Tokeniser}
  * @return     {Tokeniser}  { A tokeniser instance. }
  */
