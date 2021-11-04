@@ -4,45 +4,8 @@
 npm install --save @thebespokepixel/truwrap
 ```
 
-#### CLI
-
-```text
-  truwrap
-  Smarter terminal text wrapping (handles 24bit color)
-
-  Synopsis:
-    cat inputFile | truwrap [options]
-
-  Options:
-    -h, --help       Display this help.
-    -v, --version    Return the current version on stdout. -vv Return name & version.
-    -V, --verbose    Be verbose. -VV Be loquacious.
-    -o, --stderr     Use stderr rather than stdout
-    -l, --left       Left margin
-    -r, --right      Right margin
-    -w, --width      Set total width. Overrides terminal window’s width.
-    -t, --truncate   Truncate panel cells.
-    -m, --mode       Wrapping mode
-    -s, --stamp      Print arguments rather than stdin. printf-style options supported.
-    -p, --panel      Render a tabular panel into the available console width.
-    -d, --delimiter  The column delimiter when reading data for a panel.
-    -x, --regex      Character run selection regex.
-    --color          Force color depth --color=256|16m. Disable with --no-color
-
-  Usage:
-  Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.
-```
-
-To use, simply pipe in a body of text to wrap according to the supplied options.
-
-```shell
-  cat readme.md | truwrap --left 6 --right 6 --mode soft
-```
-
-#### Programmatic usage
-
 ```js
-var truwrap = require('truwrap')
+import {truwrap} from '@thebespokepixel/truwrap'
 
 var writer = truwrap({
   left: 2,
@@ -55,12 +18,69 @@ var contentWidth = writer.getWidth()
 
 writer.write("Some text to write...", "...and some more.")
 writer.write("A new paragraph, if not implicitly present.")
-writer.end()
+writer.end() // Close the stream
+```
+As `outStream` was specified, wrapped output is written directly to the stream. 
+
+### Images
+
+If your terminal suppots them, you can add images into the wrapped output ste 
+
+```js
+import {truwrap, createImage} from '@thebespokepixel/truwrap'
+
+const image = createImage({
+  name: 'test',
+  file: join(dirname(fileURLToPath(import.meta.url)), '../media/test.png'),
+  width: 'auto', // Number of chars wide you'd like image. 'auto' to take it from the image/set height.
+  height: 1,     // Number of lines the image will take
+  space: '   '   //  A text string that is printed under the image so you can flow the wrapped text around it.
+})
+
+var renderer = truwrap({
+  mode: 'container'
+})
+
+truwrap.write(image.render({
+  nobreak: true,  // Don't add a linebreak after the image.
+  stretch: false, // If true, distort the image the image to fit the width/height
+  align: 1        // How many lines to move back up after printing the image.
+  spacing: ' '    // A string to print after realigning the cursor after printing the image.
+}))
+
+console.log(truwrap.end())
 ```
 
-### Advanced use
+As no `outStream` was specified `truwrap.end()` returns the wrapped text. 
 
-To add. Containers, Tables, Panels and Images.
+### Panels
+
+```js
+import {truwrap, parsePanel} from '@thebespokepixel/truwrap'
+
+var writer = truwrap({
+  left: 2,
+  right: 2,
+  mode: 'soft',
+  outStream: process.stderr
+})
+
+const panelSource = parsePanel(
+  'One|Two|Three|Four', //Input text with column delimiters
+  '|',                  // Column delimiter
+  writer.getWidth()     // Total width (chars) to make columns across
+)
+
+const panelOptions = {
+  maxLineWidth: writer.getWidth(),    // Maximum line width
+  showHeaders: false,                 // Show colum headers
+  truncate: false,                    // Truncate columns if too wide
+  config: panelSource.configuration   // Get config information from parsePanel()
+}
+
+writer.panel(panelSource.content, panelOptions)
+writer.end() //Close stream
+```
 
 ### Related
 

@@ -37,19 +37,32 @@ if ask "Are you sure?"; then
     for width in 10 20 40 60 80
     do
         echo "Copying cli-*-100.js to cli-$width.js"
-        rm test/cli-$width-soft.js 2>/dev/null
-        rm test/cli-$width-soft-tabbed.js 2>/dev/null
-        rm test/cli-$width-hard.js 2>/dev/null
-        rm test/cli-$width-hard-tabbed.js 2>/dev/null
-        rm test/cli-$width-keep.js 2>/dev/null
-        rm test/cli-$width-panel.js 2>/dev/null
-        rm test/cli-$width-stamp.js 2>/dev/null
-        cp test/cli-100-soft.js test/cli-$width-soft.js
-        cp test/cli-100-soft-tabbed.js test/cli-$width-soft-tabbed.js
-        cp test/cli-100-hard.js test/cli-$width-hard.js
-        cp test/cli-100-hard-tabbed.js test/cli-$width-hard-tabbed.js
-        cp test/cli-100-keep.js test/cli-$width-keep.js
-        cp test/cli-100-panel.js test/cli-$width-panel.js
-        cp test/cli-100-stamp.js test/cli-$width-stamp.js
+        rm test/stream-$width-soft.js 2>/dev/null
+        rm test/stream-$width-soft-tabbed.js 2>/dev/null
+        rm test/stream-$width-hard.js 2>/dev/null
+        rm test/stream-$width-hard-tabbed.js 2>/dev/null
+        rm test/stream-$width-keep.js 2>/dev/null
+        rm test/stream-$width-panel.js 2>/dev/null
+        rm test/stream-$width-stamp.js 2>/dev/null
+        cp test/stream-100-soft.js test/stream-$width-soft.js
+        cp test/stream-100-soft-tabbed.js test/stream-$width-soft-tabbed.js
+        cp test/stream-100-hard.js test/stream-$width-hard.js
+        cp test/stream-100-hard-tabbed.js test/stream-$width-hard-tabbed.js
+        cp test/stream-100-keep.js test/stream-$width-keep.js
+        cp test/stream-100-panel.js test/stream-$width-panel.js
+
+        rm test/direct-$width-soft.js 2>/dev/null
+        rm test/direct-$width-soft-tabbed.js 2>/dev/null
+        rm test/direct-$width-hard.js 2>/dev/null
+        rm test/direct-$width-hard-tabbed.js 2>/dev/null
+        rm test/direct-$width-keep.js 2>/dev/null
+        rm test/direct-$width-panel.js 2>/dev/null
+        rm test/direct-$width-stamp.js 2>/dev/null
+        cp test/direct-100-soft.js test/direct-$width-soft.js
+        cp test/direct-100-soft-tabbed.js test/direct-$width-soft-tabbed.js
+        cp test/direct-100-hard.js test/direct-$width-hard.js
+        cp test/direct-100-hard-tabbed.js test/direct-$width-hard-tabbed.js
+        cp test/direct-100-keep.js test/direct-$width-keep.js
+        cp test/direct-100-panel.js test/direct-$width-panel.js
     done
 fi
