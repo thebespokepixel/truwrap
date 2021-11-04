@@ -1,21 +1,18 @@
-export const console: import("verbosity").Verbosity;
+export const console: any;
 /**
  * Creates an image.
  * @private
- * @param      {String}  source  The source
+ * @param      {string}  source  The source
  * @return     {Image}   A configured (but not yet loaded) image.
  */
 export function createImage(source: string): Image;
-export const locale: any;
+export const locale: string;
 export const metadata: {
     readonly name: string;
     readonly description: string;
     readonly copyright: any;
     readonly license: string;
-    readonly bugs: string; /**
-     * Tokenises text into words, taking into account newlines, punctuation and ANSI.
-     * @private
-     */
+    readonly bugs: string;
     readonly bin: string;
     version: (style?: number) => string;
 };
@@ -24,7 +21,7 @@ export const metadata: {
  * @private
  * @param  {string} buffer_ Input plain text.
  * @param  {string} delimiter_ Field delimiter.
- * @param  {Number} width_ Panel width.
+ * @param  {number} width_ Panel width.
  * @return {object} The columnify configuration.
  */
 declare function panel(buffer_: string, delimiter_: string, width_: number): object;
@@ -32,12 +29,12 @@ export const renderMode: import("@thebespokepixel/n-selector").NSelector;
 /**
  * Create a text wrapping instance.
  *
- * @param  {Object}          options            options object
- * @param  {Number}          options.left       Left margin.
- * @param  {Number}          options.right      Right margin.
- * @param  {Number}          options.width      Manually set view width.
+ * @param  {object}          options            options object
+ * @param  {number}          options.left       Left margin.
+ * @param  {number}          options.right      Right margin.
+ * @param  {number}          options.width      Manually set view width.
  * @param  {mode}            options.mode       [soft | hyphen | hard | keep | container]
- * @param  {Number}          options.tabWidth   Desired width of TAB character.
+ * @param  {number}          options.tabWidth   Desired width of TAB character.
  * @param  {Stream.writable} options.outStream  Where to direct output.
  * @param  {Regexp}          options.tokenRegex Override the tokenisers regexp.
  * @return {api} A truwrap api instance.
@@ -60,21 +57,21 @@ export function truwrap({ left, right, width, mode, tabWidth, outStream, tokenRe
     /**
      * Fetch the width in characters of the wrapping view.
      * @function
-     * @return {Number} wrapping width
+     * @return {number} wrapping width
      */
     getWidth: typeof unimplemented;
     /**
      * Create a multicolumn panel within this view
      * @function
      * @param {panelObject} content - Object for columnify
-     * @param {Object} configuration - Configuration for columnify
-     * @return {String} - The rendered panel.
+     * @param {object} configuration - Configuration for columnify
+     * @return {string} - The rendered panel.
      */
-    panel(content: any, configuration: any): string;
+    panel(content: any, configuration: object): string;
     /**
      * Generate linebreaks within this view
      * @function
-     * @param {Number} newlines - number of new lines to add.
+     * @param {number} newlines - number of new lines to add.
      * @return {api} has side effect of writing to stream.
      */
     break(newlines?: number): any;
@@ -87,7 +84,7 @@ export function truwrap({ left, right, width, mode, tabWidth, outStream, tokenRe
     /**
      * Write text via the wrapping logic
      * @function
-     * @param {String} text - The raw, unwrapped test to wrap.
+     * @param {string} text - The raw, unwrapped test to wrap.
      * @return {api} has side effect of writing to stream.
      */
     write(text: string): any;
@@ -102,25 +99,25 @@ declare class Image {
      * @param  {string} $0.file   - The filename of the image.
      * @param  {string} $0.name   - The name of the image
      *                              [will be taken from image if missing]
-     * @param  {String} $0.width  - Can be X(chars), Xpx(pixels),
+     * @param  {string} $0.width  - Can be X(chars), Xpx(pixels),
      *                              X%(% width of window) or 'auto'
-     * @param  {String} $0.height - Can be Y(chars), Ypx(pixels),
+     * @param  {string} $0.height - Can be Y(chars), Ypx(pixels),
      *                              Y%(% width of window) or 'auto'
      */
-    constructor({ file, name, width, height }: string);
+    constructor({ file, name, width, height, }: string);
     config: string;
     filePath: any;
     /**
      * Load and render the image into the CLI
-     * @param  {Object} options    - The options to set
+     * @param  {object} options    - The options to set
      * @property {number} align    - The line count needed to realign the cursor.
-     * @property {Boolean} stretch - Do we stretch the image to match the width
+     * @property {boolean} stretch - Do we stretch the image to match the width
      *                               and height.
-     * @property {Boolean} nobreak - Do we clear the image with a newline?
+     * @property {boolean} nobreak - Do we clear the image with a newline?
      * @return {string} The string to insert into the output buffer, with base64
      *                  encoded image.
      */
-    render(options: any): string;
+    render(options: object): string;
 }
 /**
  * Throw a error if a method remains unimplemented

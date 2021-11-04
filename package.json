@@ -35,6 +35,7 @@
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
+    "@types/estree": "^0.0.50",
     "ava": "^4.0.0-rc.1",
     "c8": "^7.10.0",
     "documentation-theme-bespoke": "^2.0.12",
@@ -60,7 +61,7 @@
     "term-ng": "^3.0.3",
     "trucolor": "^2.0.4",
     "update-notifier": "^5.1.0",
-    "verbosity": "^3.0.1",
+    "verbosity": "^3.0.2",
     "yargs": "^17.2.1"
   },
   "engines": {

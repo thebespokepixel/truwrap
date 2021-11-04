@@ -598,19 +598,19 @@ if (argv.help) {
 	const renderer = truwrap(viewSettings);
 	if (argv.stamp) {
 		renderer.write(format(...argv._));
-		process.exit(0);
+	} else {
+		getStdin().then(input => {
+			if (argv.panel) {
+				const panel$1 = panel(input, argv.delimiter, renderer.getWidth());
+				renderer.panel(panel$1.content, {
+					maxLineWidth: renderer.getWidth(),
+					showHeaders: false,
+					truncate: argv.truncate,
+					config: panel$1.configuration
+				});
+			} else {
+				renderer.write(input);
+			}
+		});
 	}
-	getStdin().then(input => {
-		if (argv.panel) {
-			const panel$1 = panel(input, argv.delimiter, renderer.getWidth());
-			renderer.panel(panel$1.content, {
-				maxLineWidth: renderer.getWidth(),
-				showHeaders: false,
-				truncate: argv.truncate,
-				config: panel$1.configuration
-			});
-		} else {
-			renderer.write(input);
-		}
-	});
 }
