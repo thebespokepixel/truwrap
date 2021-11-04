@@ -1,22 +1,16 @@
-import stream from 'node:stream'
+import {PassThrough} from 'node:stream'
 import test from 'ava'
 import semverRegex from 'semver-regex'
 import {readPackageSync} from 'read-pkg'
-import {truwrap, metadata} from '../index.js'
+import {truwrap} from '../index.js'
 
 const pkg = readPackageSync()
 
-const StreamProxy = new stream.PassThrough()
+const StreamProxy = new PassThrough()
 StreamProxy.setEncoding('utf8')
 
-const expectedVersion = pkg.version
-
-test(`Module version is '${expectedVersion}'.`, t => {
-	t.is(`${expectedVersion}`, metadata.version())
-})
-
 test(`Module version '${pkg.version}' is semver.`, t => {
-	t.truthy(semverRegex().test(metadata.version()))
+	t.truthy(semverRegex().test(pkg.version))
 })
 
 test('Returns renderer.', t => {
@@ -43,4 +37,19 @@ test('Consumes stream.', async t => {
 	})
 
 	t.is(buffered, '    Testing.')
+})
+
+test('Testing breaks', t => {
+	const tw = truwrap({
+		left: 4,
+		right: 4,
+		mode: 'soft',
+	})
+
+	tw.write('One').break()
+	tw.write('Two').break(2)
+	tw.write('Three').break(3)
+	tw.write('Clear').clear()
+
+	t.snapshot(tw.end())
 })

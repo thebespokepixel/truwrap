@@ -1,16 +1,11 @@
-import { join, dirname, extname, basename } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import columnify from 'columnify';
-import { osLocaleSync } from 'os-locale';
-import { createConsole } from 'verbosity';
-import { TemplateTag, replaceSubstitutionTransformer, stripIndent } from 'common-tags';
-import meta from '@thebespokepixel/meta';
 import { createSelector } from '@thebespokepixel/n-selector';
-import _ from 'lodash';
-import { simple, palette } from 'trucolor';
-import { Buffer } from 'node:buffer';
-import { statSync, readFileSync } from 'node:fs';
 import ansiRegex from 'ansi-regex';
+import { Buffer } from 'node:buffer';
+import { fileURLToPath } from 'node:url';
+import { statSync, readFileSync } from 'node:fs';
+import { join, dirname, extname, basename } from 'node:path';
+import _ from 'lodash';
 
 const tabRegex$1 = /\t/g;
 const newlineRegex$1	= /\n/g;
@@ -89,7 +84,6 @@ class LineFitter {
 		this.lineTokens = [this.margin];
 		this.cursor = 0;
 		this.lineBlock = false;
-		console.debug('[Line]', '▸', this.cursor);
 	}
 	/**
 	 * Add a [TAB] character token to the line.
@@ -98,7 +92,6 @@ class LineFitter {
 	createTab() {
 		const width = this.tabWidth - (this.cursor % this.tabWidth) || 4;
 		this.cursor += width;
-		console.debug('[TAB', width, ']', '▸', this.cursor);
 		return ' '.repeat(width)
 	}
 	/**
@@ -108,11 +101,9 @@ class LineFitter {
 	 */
 	add(token) {
 		if (newlineRegex.test(token)) {
-			console.debug('[Newline]', '▸', this.cursor);
 			return true
 		}
 		if (ansiRegex().test(token)) {
-			console.debug('[ANSI Token]', '▸', this.cursor);
 			this.lineTokens.push(token);
 			return false
 		}
@@ -128,18 +119,14 @@ class LineFitter {
 					const tail = token.substring(token.length - overlap);
 					this.lineTokens.push(head);
 					this.cursor += head.length;
-					console.debug('[Token][Head]', head, '▸', this.cursor);
-					console.debug('[Token][Tail]', tail);
 					return tail === ' ' ? '' : tail
 				}
 				this.lineTokens.push(token);
 				this.cursor += token.length;
-				console.debug('[Token]', token, '▸', this.cursor);
 				return false
 			case 'keep':
 				this.lineTokens.push(token);
 				this.cursor += token.length;
-				console.debug('[Token]', token, '▸', this.cursor);
 				return false
 			default:
 				if (overlap > 0 && this.cursor > 0) {
@@ -147,7 +134,6 @@ class LineFitter {
 				}
 				this.lineTokens.push(token);
 				this.cursor += token.length;
-				console.debug('[Token]', token, '▸', this.cursor);
 				return false
 		}
 	}
@@ -207,10 +193,8 @@ class WrapTool {
 			const overflow = currentLine.add(tokens.shift());
 			if (overflow) {
 				this.lines.push(currentLine.toString());
-				console.debug('Line complete:', currentLine.toString());
 				currentLine = createLineFitter(this.margin, this.desiredWidth, this.tabWidth);
 				if (overflow !== true && overflow !== false) {
-					console.debug('╰ Overflow:', overflow);
 					tokens.unshift(overflow);
 				}
 			}
@@ -222,28 +206,12 @@ class WrapTool {
 /**
  * Creates a wrap tool.
  * @private
- * @param      {object}    options  The options
+ * @param      {Object}    options  The options
  * @return     {WrapTool}  The wrap tool.
  */
 function createWrapTool(options) {
 	return new WrapTool(options)
 }
-
-const clr = _.merge(
-	simple({format: 'sgr'}),
-	palette({format: 'sgr'},
-		{
-			title: 'bold #9994D1',
-			bright: 'bold rgb(255,255,255)',
-			dark: '#333',
-		}),
-);
-const colorReplacer = new TemplateTag(
-	replaceSubstitutionTransformer(
-		/([a-zA-Z]+?)[:/|](.+)/,
-		(match, colorName, content) => `${clr[colorName]}${content}${clr[colorName].out}`,
-	),
-);
 
 const prefix = '\u001B]1337;File=inline=1;';
 const suffix = '\u0007';
@@ -281,7 +249,7 @@ class Image {
 			} catch (error) {
 				switch (error.code) {
 					case 'ENOENT':
-						console.warn('Warning:', `${file} not found.`);
+						console.error('Warning:', `${file} not found.`);
 						break
 					default:
 						console.error(error);
@@ -292,7 +260,7 @@ class Image {
 	}
 	/**
 	 * Load and render the image into the CLI
-	 * @param  {object} options    - The options to set
+	 * @param  {Object} options    - The options to set
 	 * @property {number} align    - The line count needed to realign the cursor.
 	 * @property {boolean} stretch - Do we stretch the image to match the width
 	 *                               and height.
@@ -327,7 +295,7 @@ function createImage(source) {
  * @param  {string} buffer_ Input plain text.
  * @param  {string} delimiter_ Field delimiter.
  * @param  {number} width_ Panel width.
- * @return {object} The columnify configuration.
+ * @return {Object} The columnify configuration.
  */
 function panel(buffer_, delimiter_, width_) {
 	let longIdx = 0;
@@ -382,9 +350,11 @@ function panel(buffer_, delimiter_, width_) {
 	}
 }
 
-const console = createConsole({outStream: process.stderr});
-const locale = osLocaleSync();
-const metadata = meta(dirname(fileURLToPath(import.meta.url)));
+/**
+ * Create an n-selector for module modes
+ *
+ * @type       {Function}
+ */
 const renderMode = createSelector([
 	'soft',
 	'hard',
@@ -392,173 +362,182 @@ const renderMode = createSelector([
 	'container'
 ], 0, 'configuration_mode');
 /**
- * Throw a error if a method remains unimplemented
- * @private
- * @return {undefined}
+ * Truwrap - take input from write() and composed a wrapped text block.
+ *
+ * @class      Truwrap (name)
  */
-function unimplemented() {
-	throw new Error('Unimplemented.')
+class Truwrap {
+	/**
+	 * The base Truwrap instance/api
+	 *
+	 * @param      {Object}           options                options object
+	 * @param      {number}           [options.left=2]       Left margin.
+	 * @param      {number}           [options.right=2]      Right margin.
+	 * @param      {number}           options.width          Manually set view width.
+	 * @param      {string}           [options.mode='soft']  [soft | hyphen | hard | keep | container
+	 * @param      {number}           [options.tabWidth=4]   Desired width of TAB character.
+	 * @param      {Stream.writable}  options.outStream      Where to direct output.
+	 * @param      {Regexp}           options.tokenRegex     Override the tokenisers regexp.
+	 */
+	constructor({
+		left = 2,
+		right = 2,
+		width,
+		mode = 'soft',
+		tabWidth = 4,
+		outStream,
+		tokenRegex
+	}) {
+		this.outStream = outStream;
+		this.buffer = '';
+		this.mode = mode;
+		this.ttyActive = Boolean(width || (outStream && outStream.isTTY) || /keep|container/.test(mode));
+		this.ttyWidth = (() => {
+			if (width) {
+				return width
+			}
+			if (outStream && outStream.isTTY) {
+				return outStream.columns || outStream.getWindowSize()[0]
+			}
+			return 80
+		})();
+		this.viewWidth = (() => {
+			if (this.ttyWidth - left - right > 1) {
+				return this.ttyWidth - left - right
+			}
+			return 2
+		})();
+		renderMode.select(mode);
+		this.viewHandler = (() => {
+			if (this.ttyActive && mode !== 'container') {
+				return createWrapTool({
+					left,
+					width: this.viewWidth,
+					tabWidth,
+					tokenRegex
+				})
+			}
+			return {}
+		})();
+	}
+	/**
+	 * End a block, setting blocking mode and flushing buffers if needed.
+	 *
+	 * @return     {string}  The wrapped output, has side effect of writing to stream if defined.
+	 */
+	end() {
+		if (this.outStream) {
+			this.outStream.end();
+		}
+		const output = this.buffer;
+		this.buffer='';
+		return output
+	}
+	/**
+	 * Fetch the width in characters of the wrapping view.
+	 *
+	 * @return     {number}  The width.
+	 */
+	getWidth() {
+		switch (true) {
+			case !this.ttyActive:
+				return this.ttyWidth
+			case renderMode.selected === 'container':
+				return this.ttyWidth
+			default:
+				return this.viewWidth
+		}
+	}
+	/**
+	 * Create a multicolumn panel within this view
+	 *
+	 * @param      {panelObject}  content_       Object for columnify
+	 * @param      {Object}       configuration  Configuration for columnify
+	 * @return     {Object}       this instance, to allow chaining
+	 */
+	panel(content_, configuration) {
+		const content = (() => {
+			switch (true) {
+				case !this.ttyActive:
+					return columnify(content_, configuration)
+				case renderMode.selected === 'container':
+					return columnify(content_, configuration)
+				default:
+					return this.viewHandler.wrap(columnify(content_, configuration))
+			}
+		})();
+		if (this.outStream) {
+			this.outStream.write(content);
+		}
+		this.buffer += content;
+		return this
+	}
+	/**
+	 * Generate linebreaks within this view
+	 *
+	 * @param  {number} newlines   number of new lines to add.
+	 * @return {Object} this instance, to allow chaining
+	 */
+	break(newlines = 1) {
+		const content = '\n'.repeat(newlines);
+		if (this.outStream) {
+			this.outStream.write(content);
+		}
+		this.buffer += content;
+		return this
+	}
+	/**
+	 * Similar to css' clear. Write a clearing newline to the stream.
+	 *
+	 * @return     {Object}  this instance, to allow chaining
+	 */
+	clear() {
+		const content = '\n';
+		if (this.outStream) {
+			this.outStream.write(content);
+		}
+		this.buffer += content;
+		return this
+	}
+	/**
+	 * Write text via the wrapping logic
+	 *
+	 * @param      {string}  content_  The content
+	 * @return     {Object}  this instance, to allow chaining
+	 */
+	write(content_) {
+		const content = (() => {
+			switch (true) {
+				case !this.ttyActive:
+					return content_
+				case renderMode.selected === 'container':
+					return content_
+				default:
+					return this.viewHandler.wrap(content_)
+			}
+		})();
+		if (this.outStream) {
+			this.outStream.write(content);
+		}
+		this.buffer += content;
+		return this
+	}
 }
 /**
  * Create a text wrapping instance.
  *
- * @param  {object}          options            options object
- * @param  {number}          options.left       Left margin.
- * @param  {number}          options.right      Right margin.
- * @param  {number}          options.width      Manually set view width.
- * @param  {mode}            options.mode       [soft | hyphen | hard | keep | container]
- * @param  {number}          options.tabWidth   Desired width of TAB character.
- * @param  {Stream.writable} options.outStream  Where to direct output.
- * @param  {Regexp}          options.tokenRegex Override the tokenisers regexp.
- * @return {api} A truwrap api instance.
+ * @param      {Object}           options                options object
+ * @param      {number}           [options.left=2]       Left margin.
+ * @param      {number}           [options.right=2]      Right margin.
+ * @param      {number}           options.width          Manually set view width.
+ * @param      {string}           [options.mode='soft']  [soft | hyphen | hard | keep | container
+ * @param      {number}           [options.tabWidth=4]   Desired width of TAB character.
+ * @param      {Stream.writable}  options.outStream      Where to direct output.
+ * @param      {Regexp}           options.tokenRegex     Override the tokenisers regexp.
+ * @return     {Truwrap}  { description_of_the_return_value }
  */
-function truwrap({
-	left = 2,
-	right = 2,
-	width,
-	mode = 'soft',
-	tabWidth = 4,
-	outStream = process.stdout,
-	tokenRegex
-}) {
-	const ttyActive = Boolean(width || outStream.isTTY || /keep|container/.test(mode));
-	const ttyWidth = (function () {
-		if (width) {
-			return width
-		}
-		if (outStream.isTTY) {
-			return outStream.columns || outStream.getWindowSize()[0]
-		}
-		return 120
-	})();
-	const viewWidth = (function () {
-		if (ttyWidth - left - right > 1) {
-			return ttyWidth - left - right
-		}
-		return 2
-	})();
-	renderMode.select(mode);
-	const viewHandler = (function () {
-		if (ttyActive && mode !== 'container') {
-			return createWrapTool({
-				left,
-				width: viewWidth,
-				tabWidth,
-				tokenRegex
-			})
-		}
-		return {}
-	})();
-	/**
-	 * Truwap pulic API
-	 * @public
-	 */
-	const api = {
-		/**
-		 * End a block, setting blocking mode and flushing buffers if needed.
-		 * @function
-		 * @return {undefined} has side effect of writing to stream
-		 */
-		end() {
-			if (outStream._isStdio) {
-				outStream.write('\n');
-			} else {
-				outStream.end();
-			}
-		},
-		/**
-		 * Fetch the width in characters of the wrapping view.
-		 * @function
-		 * @return {number} wrapping width
-		 */
-		getWidth: unimplemented,
-		/**
-		 * Create a multicolumn panel within this view
-		 * @function
-		 * @param {panelObject} content - Object for columnify
-		 * @param {object} configuration - Configuration for columnify
-		 * @return {string} - The rendered panel.
-		 */
-		panel(content, configuration) {
-			if (outStream._isStdio) {
-				outStream.write(columnify(content, configuration));
-			}
-			return this
-		},
-		/**
-		 * Generate linebreaks within this view
-		 * @function
-		 * @param {number} newlines - number of new lines to add.
-		 * @return {api} has side effect of writing to stream.
-		 */
-		break(newlines = 1) {
-			outStream.write('\n'.repeat(newlines));
-			return this
-		},
-		/**
-		 * Similar to css' clear. Write a clearing newline to the stream.
-		 * @function
-		 * @return {api} has side effect of writing to stream.
-		 */
-		clear() {
-			outStream.write('\n');
-			return this
-		},
-		/**
-		 * Write text via the wrapping logic
-		 * @function
-		 * @param {string} text - The raw, unwrapped test to wrap.
-		 * @return {api} has side effect of writing to stream.
-		 */
-		write(text) {
-			outStream.write(text);
-			return this
-		}
-	};
-	switch (true) {
-		case !ttyActive:
-			console.info(colorReplacer`${'yellow|Non-TTY'}: width: 120`);
-			/**
-			 * @name noTTY
-			 * @private
-			 * @returns {api} - A version of the API when no TTY is connected.
-			 */
-			return Object.assign(Object.create(api), {
-				getWidth: () => ttyWidth
-			})
-		case renderMode.selected === 'container':
-			console.info(`Container: width: ${width}, render mode: ${renderMode.selected}`);
-			/**
-			 * @name container
-			 * @private
-			 * @returns {api} - A zero-margin container that content can be flowed into.
-			 */
-			return Object.assign(Object.create(api), {
-				getWidth: () => ttyWidth
-			})
-		default:
-			console.info(stripIndent(colorReplacer)`
-				${'green|Renderer'}:
-				  mode ▸ ${renderMode.selected} [${locale}]
-				  ┆ ${left} ◂├╌╌╌╌ ${viewWidth} ╌╌╌╌┤▸ ${right} ┆
-			`, '\n');
-			/**
-			 * @name wrap
-			 * @private
-			 * @returns {api} - The wrapping API.
-			 */
-			return Object.assign(Object.create(api), {
-				getWidth: () => viewWidth,
-				panel(content, configuration) {
-					outStream.write(viewHandler.wrap(columnify(content, configuration)));
-					return this
-				},
-				write(text) {
-					outStream.write(viewHandler.wrap(text));
-					return this
-				}
-			})
-	}
+function truwrap(options) {
+	return new Truwrap(options)
 }
 
-export { console, createImage, locale, metadata, panel as parsePanel, renderMode, truwrap };
+export { Truwrap, createImage, panel as parsePanel, renderMode, truwrap };

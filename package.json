@@ -6,9 +6,6 @@
   "main": "index.js",
   "types": "index.d.ts",
   "type": "module",
-  "bin": {
-    "truwrap": "./truwrap.js"
-  },
   "files": [
     "index.js",
     "index.d.ts",
@@ -22,7 +19,7 @@
     "owner": "The Bespoke Pixel"
   },
   "scripts": {
-    "build": "rollup -c && chmod 755 truwrap.js && npm run readme",
+    "build": "rollup -c && npm run readme",
     "test": "xo && c8 --reporter=text ava --timeout 2m",
     "doc-serve": "documentation serve --watch --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --project-name $npm_package_name  --project-version $npm_package_version src/index.js",
     "doc-build": "documentation build --format html --output docs --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --project-name $npm_package_name  --project-version $npm_package_version src/index.js",
@@ -33,16 +30,13 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@types/estree": "^0.0.50",
     "ava": "^4.0.0-rc.1",
     "c8": "^7.10.0",
     "documentation-theme-bespoke": "^2.0.12",
-    "nyc": "^15.1.0",
     "rollup": "^2.59.0",
     "rollup-plugin-cleanup": "^3.2.1",
-    "semver-regex": "^4.0.2",
     "xo": "^0.46.3"
   },
   "dependencies": {
@@ -51,18 +45,8 @@
     "@thebespokepixel/string": "^2.0.1",
     "ansi-regex": "^6.0.1",
     "columnify": "^1.5.4",
-    "common-tags": "^1.8.0",
-    "es6-promisify": "^7.0.0",
-    "get-stdin": "^9.0.0",
     "lodash": "^4.17.21",
-    "os-locale": "^6.0.1",
-    "read-pkg": "^7.0.0",
-    "read-pkg-up": "^9.0.0",
-    "term-ng": "^3.0.3",
-    "trucolor": "^2.0.4",
-    "update-notifier": "^5.1.0",
-    "verbosity": "^3.0.2",
-    "yargs": "^17.2.1"
+    "read-pkg": "^7.0.0"
   },
   "engines": {
     "node": ">=14.0"
@@ -89,7 +73,6 @@
     "esnext": true,
     "ignores": [
       "index.js",
-      "truwrap.js",
       "index.d.ts",
       "docs/**",
       "coverage/**"
