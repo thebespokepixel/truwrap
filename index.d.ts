@@ -1,4 +1,78 @@
-export const console: any;
+/**
+ * Truwrap - take input from write() and composed a wrapped text block.
+ *
+ * @class      Truwrap (name)
+ */
+export class Truwrap {
+    /**
+     * The base Truwrap instance/api
+     *
+     * @param      {Object}           options                options object
+     * @param      {number}           [options.left=2]       Left margin.
+     * @param      {number}           [options.right=2]      Right margin.
+     * @param      {number}           options.width          Manually set view width.
+     * @param      {string}           [options.mode='soft']  [soft | hyphen | hard | keep | container
+     * @param      {number}           [options.tabWidth=4]   Desired width of TAB character.
+     * @param      {Stream.writable}  options.outStream      Where to direct output.
+     * @param      {Regexp}           options.tokenRegex     Override the tokenisers regexp.
+     */
+    constructor({ left, right, width, mode, tabWidth, outStream, tokenRegex }: {
+        left?: number;
+        right?: number;
+        width: number;
+        mode?: string;
+        tabWidth?: number;
+        outStream: any;
+        tokenRegex: any;
+    });
+    outStream: any;
+    buffer: string;
+    mode: string;
+    ttyActive: boolean;
+    ttyWidth: any;
+    viewWidth: number;
+    viewHandler: {};
+    /**
+     * End a block, setting blocking mode and flushing buffers if needed.
+     *
+     * @return     {string}  The wrapped output, has side effect of writing to stream if defined.
+     */
+    end(): string;
+    /**
+     * Fetch the width in characters of the wrapping view.
+     *
+     * @return     {number}  The width.
+     */
+    getWidth(): number;
+    /**
+     * Create a multicolumn panel within this view
+     *
+     * @param      {panelObject}  content_       Object for columnify
+     * @param      {Object}       configuration  Configuration for columnify
+     * @return     {Object}       this instance, to allow chaining
+     */
+    panel(content_: any, configuration: any): any;
+    /**
+     * Generate linebreaks within this view
+     *
+     * @param  {number} newlines   number of new lines to add.
+     * @return {Object} this instance, to allow chaining
+     */
+    break(newlines?: number): any;
+    /**
+     * Similar to css' clear. Write a clearing newline to the stream.
+     *
+     * @return     {Object}  this instance, to allow chaining
+     */
+    clear(): any;
+    /**
+     * Write text via the wrapping logic
+     *
+     * @param      {string}  content_  The content
+     * @return     {Object}  this instance, to allow chaining
+     */
+    write(content_: string): any;
+}
 /**
  * Creates an image.
  * @private
@@ -6,89 +80,43 @@ export const console: any;
  * @return     {Image}   A configured (but not yet loaded) image.
  */
 export function createImage(source: string): Image;
-export const locale: string;
-export const metadata: {
-    readonly name: string;
-    readonly description: string;
-    readonly copyright: any;
-    readonly license: string;
-    readonly bugs: string;
-    readonly bin: string;
-    version: (style?: number) => string;
-};
 /**
  * Organise a block of delimited text into a panel
  * @private
  * @param  {string} buffer_ Input plain text.
  * @param  {string} delimiter_ Field delimiter.
  * @param  {number} width_ Panel width.
- * @return {object} The columnify configuration.
+ * @return {Object} The columnify configuration.
  */
-declare function panel(buffer_: string, delimiter_: string, width_: number): object;
-export const renderMode: import("@thebespokepixel/n-selector").NSelector;
+declare function panel(buffer_: string, delimiter_: string, width_: number): any;
+/**
+ * Create an n-selector for module modes
+ *
+ * @type       {Function}
+ */
+export const renderMode: Function;
 /**
  * Create a text wrapping instance.
  *
- * @param  {object}          options            options object
- * @param  {number}          options.left       Left margin.
- * @param  {number}          options.right      Right margin.
- * @param  {number}          options.width      Manually set view width.
- * @param  {mode}            options.mode       [soft | hyphen | hard | keep | container]
- * @param  {number}          options.tabWidth   Desired width of TAB character.
- * @param  {Stream.writable} options.outStream  Where to direct output.
- * @param  {Regexp}          options.tokenRegex Override the tokenisers regexp.
- * @return {api} A truwrap api instance.
+ * @param      {Object}           options                options object
+ * @param      {number}           [options.left=2]       Left margin.
+ * @param      {number}           [options.right=2]      Right margin.
+ * @param      {number}           options.width          Manually set view width.
+ * @param      {string}           [options.mode='soft']  [soft | hyphen | hard | keep | container
+ * @param      {number}           [options.tabWidth=4]   Desired width of TAB character.
+ * @param      {Stream.writable}  options.outStream      Where to direct output.
+ * @param      {Regexp}           options.tokenRegex     Override the tokenisers regexp.
+ * @return     {Truwrap}  { description_of_the_return_value }
  */
-export function truwrap({ left, right, width, mode, tabWidth, outStream, tokenRegex }: {
-    left: number;
-    right: number;
+export function truwrap(options: {
+    left?: number;
+    right?: number;
     width: number;
-    mode: any;
-    tabWidth: number;
+    mode?: string;
+    tabWidth?: number;
     outStream: any;
     tokenRegex: any;
-}): {
-    /**
-     * End a block, setting blocking mode and flushing buffers if needed.
-     * @function
-     * @return {undefined} has side effect of writing to stream
-     */
-    end(): undefined;
-    /**
-     * Fetch the width in characters of the wrapping view.
-     * @function
-     * @return {number} wrapping width
-     */
-    getWidth: typeof unimplemented;
-    /**
-     * Create a multicolumn panel within this view
-     * @function
-     * @param {panelObject} content - Object for columnify
-     * @param {object} configuration - Configuration for columnify
-     * @return {string} - The rendered panel.
-     */
-    panel(content: any, configuration: object): string;
-    /**
-     * Generate linebreaks within this view
-     * @function
-     * @param {number} newlines - number of new lines to add.
-     * @return {api} has side effect of writing to stream.
-     */
-    break(newlines?: number): any;
-    /**
-     * Similar to css' clear. Write a clearing newline to the stream.
-     * @function
-     * @return {api} has side effect of writing to stream.
-     */
-    clear(): any;
-    /**
-     * Write text via the wrapping logic
-     * @function
-     * @param {string} text - The raw, unwrapped test to wrap.
-     * @return {api} has side effect of writing to stream.
-     */
-    write(text: string): any;
-};
+}): Truwrap;
 /**
  * Provides an image formatted for inclusion in the TTY
  * @private
@@ -109,7 +137,7 @@ declare class Image {
     filePath: any;
     /**
      * Load and render the image into the CLI
-     * @param  {object} options    - The options to set
+     * @param  {Object} options    - The options to set
      * @property {number} align    - The line count needed to realign the cursor.
      * @property {boolean} stretch - Do we stretch the image to match the width
      *                               and height.
@@ -117,12 +145,6 @@ declare class Image {
      * @return {string} The string to insert into the output buffer, with base64
      *                  encoded image.
      */
-    render(options: object): string;
+    render(options: any): string;
 }
-/**
- * Throw a error if a method remains unimplemented
- * @private
- * @return {undefined}
- */
-declare function unimplemented(): undefined;
 export { panel as parsePanel };
