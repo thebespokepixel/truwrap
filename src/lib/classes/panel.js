@@ -1,6 +1,7 @@
 /* ─────────────────────╮
  │ truwrap panel writer │
  ╰──────────────────────┴────────────────────────────────────────────────────── */
+/* eslint unicorn/no-array-for-each:0 */
 
 import _ from 'lodash'
 
@@ -9,7 +10,7 @@ import _ from 'lodash'
  * @private
  * @param  {string} buffer_ Input plain text.
  * @param  {string} delimiter_ Field delimiter.
- * @param  {Number} width_ Panel width.
+ * @param  {number} width_ Panel width.
  * @return {object} The columnify configuration.
  */
 export default function panel(buffer_, delimiter_, width_) {
@@ -42,32 +43,33 @@ export default function panel(buffer_, delimiter_, width_) {
 
 	const setSpacer = (spacerSize, min) =>
 		_.max([
-			Math.floor((width_ -
-				(spacerCols.length * spacerSize)) /
-				(maxCols - spacerCols.length + 1)
+			Math.floor((width_
+				- (spacerCols.length * spacerSize))
+				/ (maxCols - spacerCols.length + 1),
 			),
-			min
+			min,
 		]) - 1
 
 	const configuration = {}
 	const max = setSpacer(16, 5)
 	const min = setSpacer(4, 3)
 
-	Object.keys(tableData[longIdx]).forEach(idx => {
+	for (const idx of Object.keys(tableData[longIdx])) {
 		if (idx.includes('spacer')) {
 			configuration[idx] = {
 				maxWidth: 16,
-				minWidth: 4
+				minWidth: 4,
 			}
 		} else {
 			configuration[idx] = {
 				maxWidth: _.max([min, max]),
-				minWidth: _.min([min, max])
+				minWidth: _.min([min, max]),
 			}
 		}
-	})
+	}
+
 	return {
 		content: tableData,
-		configuration
+		configuration,
 	}
 }

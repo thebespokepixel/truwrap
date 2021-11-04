@@ -1,9 +1,11 @@
 /* ────────╮
  │ truwrap │ Smarter 24bit SGR aware console text wrapping
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
+import {dirname} from 'node:path'
+import {fileURLToPath} from 'node:url'
 
 import columnify from 'columnify'
-import osLocale from 'os-locale'
+import {osLocaleSync} from 'os-locale'
 import {createConsole} from 'verbosity'
 import {stripIndent} from 'common-tags'
 import meta from '@thebespokepixel/meta'
@@ -15,8 +17,8 @@ import createImage from './lib/classes/image'
 import parsePanel from './lib/classes/panel'
 
 export const console = createConsole({outStream: process.stderr})
-export const locale = osLocale.sync()
-export const metadata = meta(__dirname)
+export const locale = osLocaleSync()
+export const metadata = meta(dirname(fileURLToPath(import.meta.url)))
 
 export const renderMode = createSelector([
 	'soft',
@@ -37,12 +39,12 @@ function unimplemented() {
 /**
  * Create a text wrapping instance.
  *
- * @param  {Object}          options            options object
- * @param  {Number}          options.left       Left margin.
- * @param  {Number}          options.right      Right margin.
- * @param  {Number}          options.width      Manually set view width.
+ * @param  {object}          options            options object
+ * @param  {number}          options.left       Left margin.
+ * @param  {number}          options.right      Right margin.
+ * @param  {number}          options.width      Manually set view width.
  * @param  {mode}            options.mode       [soft | hyphen | hard | keep | container]
- * @param  {Number}          options.tabWidth   Desired width of TAB character.
+ * @param  {number}          options.tabWidth   Desired width of TAB character.
  * @param  {Stream.writable} options.outStream  Where to direct output.
  * @param  {Regexp}          options.tokenRegex Override the tokenisers regexp.
  * @return {api} A truwrap api instance.
@@ -67,7 +69,7 @@ export function truwrap({
 			return outStream.columns || outStream.getWindowSize()[0]
 		}
 
-		return Infinity
+		return 120
 	})()
 
 	const viewWidth = (function () {
@@ -114,7 +116,7 @@ export function truwrap({
 		/**
 		 * Fetch the width in characters of the wrapping view.
 		 * @function
-		 * @return {Number} wrapping width
+		 * @return {number} wrapping width
 		 */
 		getWidth: unimplemented,
 
@@ -122,8 +124,8 @@ export function truwrap({
 		 * Create a multicolumn panel within this view
 		 * @function
 		 * @param {panelObject} content - Object for columnify
-		 * @param {Object} configuration - Configuration for columnify
-		 * @return {String} - The rendered panel.
+		 * @param {object} configuration - Configuration for columnify
+		 * @return {string} - The rendered panel.
 		 */
 		panel(content, configuration) {
 			if (outStream._isStdio) {
@@ -136,7 +138,7 @@ export function truwrap({
 		/**
 		 * Generate linebreaks within this view
 		 * @function
-		 * @param {Number} newlines - number of new lines to add.
+		 * @param {number} newlines - number of new lines to add.
 		 * @return {api} has side effect of writing to stream.
 		 */
 		break(newlines = 1) {
@@ -157,7 +159,7 @@ export function truwrap({
 		/**
 		 * Write text via the wrapping logic
 		 * @function
-		 * @param {String} text - The raw, unwrapped test to wrap.
+		 * @param {string} text - The raw, unwrapped test to wrap.
 		 * @return {api} has side effect of writing to stream.
 		 */
 		write(text) {
@@ -168,7 +170,7 @@ export function truwrap({
 
 	switch (true) {
 		case !ttyActive:
-			console.info(colorReplacer`${'yellow|Non-TTY'}: width: Infinity`)
+			console.info(colorReplacer`${'yellow|Non-TTY'}: width: 120`)
 
 			/**
 			 * @name noTTY

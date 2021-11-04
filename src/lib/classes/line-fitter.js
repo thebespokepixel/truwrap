@@ -4,7 +4,7 @@
  ╰──────────────────────┴────────────────────────────────────────────────────── */
 
 import ansiRegex from 'ansi-regex'
-import {console, renderMode} from '../..'
+import {console, renderMode} from '../../index.js'
 
 const newlineRegex = /^>\/\\\/\/__<$/
 const tabRegex = /^>T\/\\B<$/
@@ -22,7 +22,7 @@ class LineFitter {
 		[
 			this.margin,
 			this.desiredWidth,
-			this.tabWidth
+			this.tabWidth,
 		] = options
 
 		this.lineTokens = [this.margin]
@@ -45,7 +45,7 @@ class LineFitter {
 	/**
 	 * Add a token to the line.
 	 * @param {string} token The word token to add.
-	 * @returns {Boolean} Causes newline.
+	 * @returns {boolean} Causes newline.
 	 */
 	add(token) {
 		if (newlineRegex.test(token)) {
@@ -64,12 +64,12 @@ class LineFitter {
 			return false
 		}
 
-		const overlap = this.cursor + token.trimRight().length - this.desiredWidth
+		const overlap = this.cursor + token.trimEnd().length - this.desiredWidth
 
 		switch (renderMode.selected) {
 			case 'hard':
 				if (overlap > 0) {
-					const head = token.trimRight().substring(0, token.length - overlap)
+					const head = token.trimEnd().substring(0, token.length - overlap)
 					const tail = token.substring(token.length - overlap)
 					this.lineTokens.push(head)
 					this.cursor += head.length
@@ -90,10 +90,8 @@ class LineFitter {
 				return false
 
 			default:
-				if (overlap > 0) {
-					if (this.cursor > 0) {
-						return token
-					}
+				if (overlap > 0 && this.cursor > 0) {
+					return token
 				}
 
 				this.lineTokens.push(token)
@@ -115,9 +113,9 @@ class LineFitter {
 /**
  * Creates a line fitter - a new line of wrapped text..
  * @private
- * @param      {String}      margin    The left margin, made up of spaces
- * @param      {Number}      width     The width the line can take up
- * @param      {Number}      tabWidth  Desired TAB width
+ * @param      {string}      margin    The left margin, made up of spaces
+ * @param      {number}      width     The width the line can take up
+ * @param      {number}      tabWidth  Desired TAB width
  * @return     {LineFitter}  The line fitter.
  */
 export default function createLineFitter(margin, width, tabWidth) {

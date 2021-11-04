@@ -1,74 +1,71 @@
 {
   "name": "truwrap",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "description": "Smarter terminal text wrapping (handles 24bit color)",
   "author": "Mark Griffiths <mark@thebespokepixel.com> (http://thebespokepixel.com/)",
   "main": "index.js",
-  "module": "index.mjs",
+  "types": "index.d.ts",
+  "type": "module",
   "bin": {
-    "truwrap": "./bin/truwrap"
+    "truwrap": "./truwrap.js"
   },
   "files": [
     "index.js",
-    "index.mjs",
-    "bin/"
+    "index.d.ts",
+    "media"
   ],
   "bugs": {
     "url": "https://github.com/thebespokepixel/truwrap/issues"
   },
   "copyright": {
-    "year": "2020",
+    "year": "2021",
     "owner": "The Bespoke Pixel"
   },
   "scripts": {
-    "test": "xo && nyc ava",
-    "generate-test-fixtures": "scripts/generate-test-fixtures",
-    "generate-test-widths": "scripts/generate-test-widths",
+    "build": "rollup -c && chmod 755 truwrap.js && npm run readme",
+    "test": "xo && c8 --reporter=text ava --timeout 2m",
     "doc-serve": "documentation serve --watch --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --project-name $npm_package_name  --project-version $npm_package_version src/index.js",
     "doc-build": "documentation build --format html --output docs --theme node_modules/documentation-theme-bespoke --github --config src/docs/documentation.yml --project-name $npm_package_name  --project-version $npm_package_version src/index.js",
     "readme": "compile-readme -u src/docs/example.md src/docs/readme.md > readme.md",
-    "coverage": "nyc ava && nyc report --reporter=lcov --report-dir test/coverage; open test/coverage/lcov-report/index.html"
+    "coverage": "c8 --reporter=lcov ava --timeout 2m; open coverage/lcov-report/index.html",
+    "prepublishOnly": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly",
+    "generate-tests": "scripts/generate-tests && ava --timeout 2m"
   },
   "devDependencies": {
-    "@ava/babel": "^1.0.1",
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "ava": "^3.10.1",
-    "babel-plugin-lodash": "^3.3.4",
-    "documentation-theme-bespoke": "^1.1.6",
-    "gulp": "^4.0.2",
-    "gulp-better-rollup": "^4.0.1",
-    "gulp-chmod": "^3.0.0",
-    "gulp-rename": "^2.0.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@types/estree": "^0.0.50",
+    "ava": "^4.0.0-rc.1",
+    "c8": "^7.10.0",
+    "documentation-theme-bespoke": "^2.0.12",
     "nyc": "^15.1.0",
-    "rollup": "^2.21.0",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "semver-regex": "^3.1.1",
-    "xo": "^0.32.1"
+    "rollup": "^2.59.0",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "semver-regex": "^4.0.2",
+    "xo": "^0.46.3"
   },
   "dependencies": {
-    "@thebespokepixel/meta": "^2.0.4",
-    "@thebespokepixel/n-selector": "^2.0.2",
-    "@thebespokepixel/string": "^1.0.3",
-    "ansi-regex": "^5.0.0",
+    "@thebespokepixel/meta": "^3.0.4",
+    "@thebespokepixel/n-selector": "^3.0.2",
+    "@thebespokepixel/string": "^2.0.1",
+    "ansi-regex": "^6.0.1",
     "columnify": "^1.5.4",
     "common-tags": "^1.8.0",
-    "es6-promisify": "^6.1.1",
-    "get-stdin": "^8.0.0",
-    "lodash": "^4.17.19",
-    "os-locale": "^5.0.0",
-    "read-pkg-up": "^7.0.1",
-    "term-ng": "^2.0.2",
-    "trucolor": "^2.0.2",
-    "update-notifier": "^4.1.0",
-    "verbosity": "^2.0.2",
-    "yargs": "^15.4.1"
+    "es6-promisify": "^7.0.0",
+    "get-stdin": "^9.0.0",
+    "lodash": "^4.17.21",
+    "os-locale": "^6.0.1",
+    "read-pkg": "^7.0.0",
+    "read-pkg-up": "^9.0.0",
+    "term-ng": "^3.0.3",
+    "trucolor": "^2.0.4",
+    "update-notifier": "^5.1.0",
+    "verbosity": "^3.0.2",
+    "yargs": "^17.2.1"
   },
   "engines": {
-    "node": ">=10.0"
+    "node": ">=14.0"
   },
   "homepage": "https://github.com/thebespokepixel/truwrap",
   "keywords": [
@@ -92,21 +89,16 @@
     "esnext": true,
     "ignores": [
       "index.js",
-      "index.mjs",
-      "bin",
-      "docs",
-      "test/coverage/**"
-    ]
-  },
-  "ava": {
-    "babel": true,
-    "files": [
-      "test/*.js"
+      "truwrap.js",
+      "index.d.ts",
+      "docs/**",
+      "coverage/**"
     ]
   },
   "badges": {
     "github": "thebespokepixel",
     "npm": "thebespokepixel",
+    "libraries-io": "TheBespokePixel",
     "name": "truwrap",
     "codeclimate": "5732d1aad01d74b6ef4a",
     "providers": {
@@ -121,7 +113,7 @@
       "Publishing Status": [
         [
           "npm",
-          "david"
+          "libraries-io-npm"
         ],
         [
           "travis-com",
@@ -131,8 +123,7 @@
       "Development Status": [
         [
           "travis-com-dev",
-          "david-dev",
-          "david-devdeps-dev"
+          "libraries-io-github"
         ],
         [
           "snyk",
@@ -156,7 +147,7 @@
       ],
       [
         "snyk",
-        "david"
+        "libraries-io-npm"
       ]
     ]
   }

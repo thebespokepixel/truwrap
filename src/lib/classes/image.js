@@ -2,14 +2,15 @@
  │ truwrap cli images │
  ╰────────────────────┴──────────────────────────────────────────────────────── */
 
-import {readFileSync, statSync} from 'fs'
-import {basename, extname, join} from 'path'
-import {console} from '../..'
+import {Buffer} from 'node:buffer'
+import {fileURLToPath} from 'node:url'
+import {readFileSync, statSync} from 'node:fs'
+import {dirname, basename, extname, join} from 'node:path'
+import {console} from '../../index.js'
 
 const prefix = '\u001B]1337;File=inline=1;'
 const suffix = '\u0007'
-
-const broken = join(__dirname, '/../media/broken.png')
+const broken = join(dirname(fileURLToPath(import.meta.url)), '/media/broken.png')
 
 /**
  * Provides an image formatted for inclusion in the TTY
@@ -21,16 +22,16 @@ class Image {
 	 * @param  {string} $0.file   - The filename of the image.
 	 * @param  {string} $0.name   - The name of the image
 	 *                              [will be taken from image if missing]
-	 * @param  {String} $0.width  - Can be X(chars), Xpx(pixels),
+	 * @param  {string} $0.width  - Can be X(chars), Xpx(pixels),
 	 *                              X%(% width of window) or 'auto'
-	 * @param  {String} $0.height - Can be Y(chars), Ypx(pixels),
+	 * @param  {string} $0.height - Can be Y(chars), Ypx(pixels),
 	 *                              Y%(% width of window) or 'auto'
 	 */
 	constructor({
 		file,
 		name,
 		width = 'auto',
-		height = 'auto'
+		height = 'auto',
 	}) {
 		const extName = extname(file)
 		const fileName = name || basename(file, extName)
@@ -60,16 +61,16 @@ class Image {
 
 	/**
 	 * Load and render the image into the CLI
-	 * @param  {Object} options    - The options to set
+	 * @param  {object} options    - The options to set
 	 * @property {number} align    - The line count needed to realign the cursor.
-	 * @property {Boolean} stretch - Do we stretch the image to match the width
+	 * @property {boolean} stretch - Do we stretch the image to match the width
 	 *                               and height.
-	 * @property {Boolean} nobreak - Do we clear the image with a newline?
+	 * @property {boolean} nobreak - Do we clear the image with a newline?
 	 * @return {string} The string to insert into the output buffer, with base64
 	 *                  encoded image.
 	 */
 	render(options) {
-		const {align, stretch = false, nobreak} = options
+		const {align, stretch = false, nobreak, spacing = ''} = options
 
 		const content = Buffer.from(readFileSync(this.filePath))
 
@@ -79,14 +80,14 @@ class Image {
 
 		return `${prefix}${aspect}size=${content.length}${this.config}:${
 			content.toString('base64')
-		}${suffix}${newline}`
+		}${suffix}${newline}${spacing}`
 	}
 }
 
 /**
  * Creates an image.
  * @private
- * @param      {String}  source  The source
+ * @param      {string}  source  The source
  * @return     {Image}   A configured (but not yet loaded) image.
  */
 export default function createImage(source) {

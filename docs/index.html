@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>truwrap 2.0.4 | Documentation</title>
+  <title>truwrap 3.0.0 | Documentation</title>
   <meta name='description' content='Smarter terminal text wrapping (handles 24bit color)'>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="assets/css/ace.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
     <div id='split-left' class='overflow-auto fs0 height-viewport-100 sidebar'>
       <div class='py1 px2'>
         <h3 class="m0 no-anchor">truwrap</h3>
-        <div class="mb1"><code>2.0.4</code></div>
+        <div class="mb1"><code>3.0.0</code></div>
         <input
           placeholder="Filter"
           id="filter-input"
@@ -113,11 +113,11 @@
             
           </ul>
         </div>
-        <div class="badges"><p><p><a href="https://github.com/thebespokepixel/truwrap" title="Github"><img src="https://img.shields.io/badge/github-source-4E73B6" alt="Github"></a> <a href="https://travis-ci.org/thebespokepixel/truwrap" title="Travis"><img src="https://img.shields.io/travis/thebespokepixel/truwrap/master?logo=travis" alt="Travis"></a> <br>
-</p> <p><a href="https://codeclimate.com/github/thebespokepixel/truwrap/maintainability" title="Code-climate"><img src="https://api.codeclimate.com/v1/badges/5732d1aad01d74b6ef4a/maintainability" alt="Code-climate"></a> <a href="https://codeclimate.com/github/thebespokepixel/truwrap/test_coverage" title="Coverage"><img src="https://api.codeclimate.com/v1/badges/5732d1aad01d74b6ef4a/test_coverage" alt="Coverage"></a> <br>
-</p> <p><a href="https://snyk.io/test/github/thebespokepixel/truwrap" title="Snyk"><img src="https://snyk.io/test/github/thebespokepixel/truwrap/badge.svg" alt="Snyk"></a> <a href="https://david-dm.org/thebespokepixel/truwrap/master" title="David"><img src="https://david-dm.org/thebespokepixel/truwrap/master/status.svg" alt="David"></a> <br>
-</p> <br>
-</p></div>
+        <div class="badges"><p><p><p><a href="https://github.com/thebespokepixel/truwrap" title="github"><img src="https://img.shields.io/badge/github-source-4E73B6" alt="github" title="github"></a> </p><p><a href="https://travis-ci.com/thebespokepixel/truwrap" title="Travis"><img src="https://img.shields.io/travis/com/thebespokepixel/truwrap/master?logo=travis" alt="Travis" title="Travis"></a> </p><br>
+</p><p><p><a href="https://codeclimate.com/github/thebespokepixel/truwrap/maintainability" title="Code-Climate"><img src="https://api.codeclimate.com/v1/badges/5732d1aad01d74b6ef4a/maintainability" alt="Code-Climate" title="Code-Climate"></a> </p><p><a href="https://codeclimate.com/github/thebespokepixel/truwrap/test_coverage" title="Code-Climate Coverage"><img src="https://api.codeclimate.com/v1/badges/5732d1aad01d74b6ef4a/test_coverage" alt="Code-Climate Coverage" title="Code-Climate Coverage"></a> </p><br>
+</p><p><p><a href="https://snyk.io/test/github/thebespokepixel/truwrap" title="Snyk"><img src="https://snyk.io/test/github/thebespokepixel/truwrap/badge.svg" alt="Snyk" title="Snyk"></a> </p><p><a href="https://libraries.io/github/thebespokepixel/truwrap" title="Libraries.io"><img src="https://img.shields.io/librariesio/release/npm/truwrap/latest?&#x26;logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01Ljk5OTMxNDIyLDE1LjI3NyBMNiwyMyBDNiwyMy41NTIyODQ3IDUuNTUyMjg0NzUsMjQgNSwyNCBMMiwyNCBDMS40NDc3MTUyNSwyNCAxLDIzLjU1MjI4NDcgMSwyMyBMMC45OTkzMTQyMjIsMTkuMTg0IEw1Ljk5OTMxNDIyLDE1LjI3NyBaIE0xNC40OTkzMTQyLDguNjM2IEwxNC41LDIzIEMxNC41LDIzLjU1MjI4NDcgMTQuMDUyMjg0NywyNCAxMy41LDI0IEwxMC41LDI0IEM5Ljk0NzcxNTI1LDI0IDkuNSwyMy41NTIyODQ3IDkuNSwyMyBMOS40OTkzMTQyMiwxMi41NDMgTDE0LjQ5OTMxNDIsOC42MzYgWiBNMTcuOTk5MzE0Miw4LjMzNCBMMjIuOTk5MzE0MiwxMi4xMDIgTDIzLDIzIEMyMywyMy41NTIyODQ3IDIyLjU1MjI4NDcsMjQgMjIsMjQgTDE5LDI0IEMxOC40NDc3MTUzLDI0IDE4LDIzLjU1MjI4NDcgMTgsMjMgTDE3Ljk5OTMxNDIsOC4zMzQgWiBNNSwwIEM1LjU1MjI4NDc1LDAgNiwwLjQ0NzcxNTI1IDYsMSBMNS45OTkzMTQyMiwxMS40NzEgTDAuOTk5MzE0MjIyLDE1LjM3OCBMMSwxIEMxLDAuNDQ3NzE1MjUgMS40NDc3MTUyNSwwIDIsMCBMNSwwIFogTTEzLjUsMCBDMTQuMDUyMjg0NywwIDE0LjUsMC40NDc3MTUyNSAxNC41LDEgTDE0LjQ5OTMxNDIsNC44MzEgTDkuNDk5MzE0MjIsOC43MzcgTDkuNSwxIEM5LjUsMC40NDc3MTUyNSA5Ljk0NzcxNTI1LDAgMTAuNSwwIEwxMy41LDAgWiBNMjIsMCBDMjIuNTUyMjg0NywwIDIzLDAuNDQ3NzE1MjUgMjMsMSBMMjIuOTk5MzE0Miw4LjM0NyBMMTcuOTk5MzE0Miw0LjU3OSBMMTgsMSBDMTgsMC40NDc3MTUyNSAxOC40NDc3MTUzLDAgMTksMCBMMjIsMCBaIi8%2BCjwvc3ZnPgo%3D" alt="Libraries.io" title="Libraries.io"></a> </p><br>
+</p></p>
+</div>
         <div class="mt1 h6 quiet">
           <a href="http://documentation.js.org/reading-documentation.html">Need help reading this?</a>
         </div>
@@ -135,7 +135,6 @@
 	</h2>
 	
 		
-
 	
 	
 		<h4>Installation</h4>
@@ -168,20 +167,20 @@
 <p>To use, simply pipe in a body of text to wrap according to the supplied options.</p>
 <pre class='hljs'>  cat readme.md | truwrap --left 6 --right 6 --mode soft</pre>
 <h4>Programmatic usage</h4>
-<pre class='hljs'><span class="hljs-keyword">var</span> truwrap = <span class="hljs-built_in">require</span>(<span class="hljs-string">'truwrap'</span>)
+<pre class='hljs'><span class="hljs-keyword">var</span> truwrap = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;truwrap&#x27;</span>)
 
-<span class="hljs-keyword">var</span> writer = truwrap({
+<span class="hljs-keyword">var</span> writer = <span class="hljs-title function_">truwrap</span>({
   <span class="hljs-attr">left</span>: <span class="hljs-number">2</span>,
   <span class="hljs-attr">right</span>: <span class="hljs-number">2</span>,
-  <span class="hljs-attr">mode</span>: <span class="hljs-string">'soft'</span>,
-  <span class="hljs-attr">outStream</span>: process.stderr
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;soft&#x27;</span>,
+  <span class="hljs-attr">outStream</span>: process.<span class="hljs-property">stderr</span>
 })
 
-<span class="hljs-keyword">var</span> contentWidth = writer.getWidth()
+<span class="hljs-keyword">var</span> contentWidth = writer.<span class="hljs-title function_">getWidth</span>()
 
-writer.write(<span class="hljs-string">"Some text to write..."</span>, <span class="hljs-string">"...and some more."</span>)
-writer.write(<span class="hljs-string">"A new paragraph, if not implicitly present."</span>)
-writer.end()</pre>
+writer.<span class="hljs-title function_">write</span>(<span class="hljs-string">&quot;Some text to write...&quot;</span>, <span class="hljs-string">&quot;...and some more.&quot;</span>)
+writer.<span class="hljs-title function_">write</span>(<span class="hljs-string">&quot;A new paragraph, if not implicitly present.&quot;</span>)
+writer.<span class="hljs-title function_">end</span>()</pre>
 <h3>Advanced use</h3>
 <p>To add. Containers, Tables, Panels and Images.</p>
 <h3>Related</h3>
@@ -199,7 +198,6 @@ writer.end()</pre>
 	</h2>
 	
 		
-
 	
 	
 </section>
@@ -220,7 +218,7 @@ writer.end()</pre>
     </h3>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/ffb24eeaafa93c08d1301533ee95f648888ffd8d/src/index.js#L50-L218'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L52-L220'>
       <span>src/index.js</span>
       </a>
     
@@ -230,7 +228,7 @@ writer.end()</pre>
   <p>Create a text wrapping instance.</p>
 
 
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>truwrap(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>) → <a href="#api">api</a></div>
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>truwrap(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>) → <a href="#api">api</a></div>
   
   
 
@@ -247,7 +245,7 @@ writer.end()</pre>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
       options object
 
           </div>
@@ -266,7 +264,7 @@ writer.end()</pre>
             <tbody class='mt1'>
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.left</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  <td class='break-word'><span class='code bold'>options.left</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   
     (default <code>2</code>)
   </td>
@@ -277,7 +275,7 @@ writer.end()</pre>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.right</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  <td class='break-word'><span class='code bold'>options.right</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   
     (default <code>2</code>)
   </td>
@@ -288,7 +286,7 @@ writer.end()</pre>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.width</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  <td class='break-word'><span class='code bold'>options.width</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   </td>
   <td class='break-word'><span>Manually set view width.
 </span></td>
@@ -308,7 +306,7 @@ writer.end()</pre>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.tabWidth</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>
+  <td class='break-word'><span class='code bold'>options.tabWidth</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>
   
     (default <code>4</code>)
   </td>
@@ -383,7 +381,7 @@ writer.end()</pre>
     </h3>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/ffb24eeaafa93c08d1301533ee95f648888ffd8d/src/index.js#L100-L167'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L102-L169'>
       <span>src/index.js</span>
       </a>
     
@@ -432,7 +430,7 @@ writer.end()</pre>
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/ffb24eeaafa93c08d1301533ee95f648888ffd8d/src/index.js#L107-L113'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L109-L115'>
       <span>src/index.js</span>
       </a>
     
@@ -495,7 +493,7 @@ writer.end()</pre>
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/ffb24eeaafa93c08d1301533ee95f648888ffd8d/src/index.js#L119-L119'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L121-L121'>
       <span>src/index.js</span>
       </a>
     
@@ -505,7 +503,7 @@ writer.end()</pre>
   <p>Fetch the width in characters of the wrapping view.</p>
 
 
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>getWidth() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></div>
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>getWidth() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
   
   
 
@@ -523,7 +521,7 @@ writer.end()</pre>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></code>:
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
         wrapping width
 
       
@@ -558,7 +556,7 @@ writer.end()</pre>
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/ffb24eeaafa93c08d1301533ee95f648888ffd8d/src/index.js#L128-L134'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L130-L136'>
       <span>src/index.js</span>
       </a>
     
@@ -568,7 +566,7 @@ writer.end()</pre>
   <p>Create a multicolumn panel within this view</p>
 
 
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>panel(content: panelObject, configuration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>) → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></div>
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>panel(content: panelObject, configuration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>) → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
   
   
 
@@ -594,7 +592,7 @@ writer.end()</pre>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>configuration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+            <span class='code bold'>configuration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
       Configuration for columnify
 
           </div>
@@ -609,7 +607,7 @@ writer.end()</pre>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>:
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
         The rendered panel.
 
       
@@ -644,7 +642,7 @@ writer.end()</pre>
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/ffb24eeaafa93c08d1301533ee95f648888ffd8d/src/index.js#L142-L145'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L144-L147'>
       <span>src/index.js</span>
       </a>
     
@@ -654,7 +652,7 @@ writer.end()</pre>
   <p>Generate linebreaks within this view</p>
 
 
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>break(newlines: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>) → <a href="#api">api</a></div>
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>break(newlines: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>) → <a href="#api">api</a></div>
   
   
 
@@ -671,7 +669,7 @@ writer.end()</pre>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>newlines</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            <span class='code bold'>newlines</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
             = <code>1</code>)</code>
       number of new lines to add.
 
@@ -722,7 +720,7 @@ writer.end()</pre>
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/ffb24eeaafa93c08d1301533ee95f648888ffd8d/src/index.js#L152-L155'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L154-L157'>
       <span>src/index.js</span>
       </a>
     
@@ -785,7 +783,7 @@ writer.end()</pre>
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/ffb24eeaafa93c08d1301533ee95f648888ffd8d/src/index.js#L163-L166'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L165-L168'>
       <span>src/index.js</span>
       </a>
     
@@ -795,7 +793,7 @@ writer.end()</pre>
   <p>Write text via the wrapping logic</p>
 
 
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>write(text: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>) → <a href="#api">api</a></div>
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>write(text: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>) → <a href="#api">api</a></div>
   
   
 
@@ -812,7 +810,7 @@ writer.end()</pre>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>text</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+            <span class='code bold'>text</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
       The raw, unwrapped test to wrap.
 
           </div>
