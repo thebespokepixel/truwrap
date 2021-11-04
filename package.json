@@ -37,6 +37,7 @@
     "documentation-theme-bespoke": "^2.0.12",
     "rollup": "^2.59.0",
     "rollup-plugin-cleanup": "^3.2.1",
+    "semver-regex": "^4.0.2",
     "xo": "^0.46.3"
   },
   "dependencies": {
