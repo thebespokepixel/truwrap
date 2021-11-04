@@ -5,7 +5,7 @@ import {truwrap, createImage} from '../index.js'
 
 const image = createImage({
 	name: 'test',
-	file: join(dirname(fileURLToPath(import.meta.url)), '/media/test.png'),
+	file: join(dirname(fileURLToPath(import.meta.url)), '../media/test.png'),
 	height: 1,
 })
 
@@ -18,6 +18,8 @@ test('Testing image handling', t => {
 		nobreak: false,
 		align: 1,
 	}))
+
+	tw.write('Image')
 
 	t.snapshot(tw.end())
 })
