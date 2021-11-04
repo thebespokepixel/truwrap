@@ -1,6 +1,5 @@
 import {join, dirname} from 'node:path'
 import {fileURLToPath} from 'node:url'
-import {PassThrough} from 'node:stream'
 import test from 'ava'
 import {truwrap, createImage} from '../index.js'
 
