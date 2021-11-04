@@ -59,13 +59,17 @@ As `outStream` was specified, wrapped output is written directly to the stream.
 
 ### Images
 
+If your terminal suppots them, you can add images into the wrapped output ste 
+
 ```js
 import {truwrap, createImage} from '@thebespokepixel/truwrap'
 
 const image = createImage({
   name: 'test',
   file: join(dirname(fileURLToPath(import.meta.url)), '../media/test.png'),
-  height: 1,
+  width: 'auto', // Number of chars wide you'd like image. 'auto' to take it from the image/set height.
+  height: 1,     // Number of lines the image will take
+  space: '   '   //  A text string that is printed under the image so you can flow the wrapped text around it.
 })
 
 var renderer = truwrap({
@@ -73,8 +77,10 @@ var renderer = truwrap({
 })
 
 truwrap.write(image.render({
-  nobreak: false,
-  align: 1
+  nobreak: true,  // Don't add a linebreak after the image.
+  stretch: false, // If true, distort the image the image to fit the width/height
+  align: 1        // How many lines to move back up after printing the image.
+  spacing: ' '    // A string to print after realigning the cursor after printing the image.
 }))
 
 console.log(truwrap.end())

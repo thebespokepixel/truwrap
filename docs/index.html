@@ -46,9 +46,9 @@
             
               
               <li><a
-                href="#truwrap"
+                href="#rendermode"
                 class="">
-                truwrap
+                renderMode
                 
               </a>
               
@@ -56,58 +56,68 @@
             
               
               <li><a
-                href="#api"
+                href="#truwrap"
                 class=" toggle-sibling">
-                api
+                Truwrap
                 <span class="icon">▸</span>
               </a>
               
               <div class="toggle-target display-none">
                 
-                <ul class="list-reset py1-ul pl1">
-                  <li class="h5"><span>Static members</span></li>
-                  
+                
+                  <ul class="list-reset py1-ul pl1">
+                    <li class="h5"><span>Instance members</span></li>
+                    
                     <li><a
-                      href="#api.end"
+                      href="#Truwrap#end"
                       class="regular pre-open">
-                      .end
+                      #end
                     </a></li>
-                  
+                    
                     <li><a
-                      href="#api.getWidth"
+                      href="#Truwrap#getWidth"
                       class="regular pre-open">
-                      .getWidth
+                      #getWidth
                     </a></li>
-                  
+                    
                     <li><a
-                      href="#api.panel"
+                      href="#Truwrap#panel"
                       class="regular pre-open">
-                      .panel
+                      #panel
                     </a></li>
-                  
+                    
                     <li><a
-                      href="#api.break"
+                      href="#Truwrap#break"
                       class="regular pre-open">
-                      .break
+                      #break
                     </a></li>
-                  
+                    
                     <li><a
-                      href="#api.clear"
+                      href="#Truwrap#clear"
                       class="regular pre-open">
-                      .clear
+                      #clear
                     </a></li>
-                  
+                    
                     <li><a
-                      href="#api.write"
+                      href="#Truwrap#write"
                       class="regular pre-open">
-                      .write
+                      #write
                     </a></li>
-                  
+                    
                   </ul>
                 
                 
-                
               </div>
+              
+              </li>
+            
+              
+              <li><a
+                href="#truwrap"
+                class="">
+                truwrap
+                
+              </a>
               
               </li>
             
@@ -139,35 +149,7 @@
 	
 		<h4>Installation</h4>
 <pre class='hljs'>npm install --save @thebespokepixel/truwrap</pre>
-<h4>CLI</h4>
-<pre class='hljs'>  truwrap
-  Smarter terminal text wrapping (handles 24bit color)
-
-  Synopsis:
-    cat inputFile | truwrap [options]
-
-  Options:
-    -h, --help       Display this help.
-    -v, --version    Return the current version on stdout. -vv Return name &amp; version.
-    -V, --verbose    Be verbose. -VV Be loquacious.
-    -o, --stderr     Use stderr rather than stdout
-    -l, --left       Left margin
-    -r, --right      Right margin
-    -w, --width      Set total width. Overrides terminal window’s width.
-    -t, --truncate   Truncate panel cells.
-    -m, --mode       Wrapping mode
-    -s, --stamp      Print arguments rather than stdin. printf-style options supported.
-    -p, --panel      Render a tabular panel into the available console width.
-    -d, --delimiter  The column delimiter when reading data for a panel.
-    -x, --regex      Character run selection regex.
-    --color          Force color depth --color=256|16m. Disable with --no-color
-
-  Usage:
-  Reads unformatted text from stdin and typographically applies paragraph wrapping it for the currently active tty.</pre>
-<p>To use, simply pipe in a body of text to wrap according to the supplied options.</p>
-<pre class='hljs'>  cat readme.md | truwrap --left 6 --right 6 --mode soft</pre>
-<h4>Programmatic usage</h4>
-<pre class='hljs'><span class="hljs-keyword">var</span> truwrap = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;truwrap&#x27;</span>)
+<pre class='hljs'><span class="hljs-keyword">import</span> {truwrap} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@thebespokepixel/truwrap&#x27;</span>
 
 <span class="hljs-keyword">var</span> writer = <span class="hljs-title function_">truwrap</span>({
   <span class="hljs-attr">left</span>: <span class="hljs-number">2</span>,
@@ -180,9 +162,58 @@
 
 writer.<span class="hljs-title function_">write</span>(<span class="hljs-string">&quot;Some text to write...&quot;</span>, <span class="hljs-string">&quot;...and some more.&quot;</span>)
 writer.<span class="hljs-title function_">write</span>(<span class="hljs-string">&quot;A new paragraph, if not implicitly present.&quot;</span>)
-writer.<span class="hljs-title function_">end</span>()</pre>
-<h3>Advanced use</h3>
-<p>To add. Containers, Tables, Panels and Images.</p>
+writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment">// Close the stream</span></pre>
+<p>As <code>outStream</code> was specified, wrapped output is written directly to the stream.</p>
+<h3>Images</h3>
+<p>If your terminal suppots them, you can add images into the wrapped output ste</p>
+<pre class='hljs'><span class="hljs-keyword">import</span> {truwrap, createImage} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@thebespokepixel/truwrap&#x27;</span>
+
+<span class="hljs-keyword">const</span> image = <span class="hljs-title function_">createImage</span>({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;test&#x27;</span>,
+  <span class="hljs-attr">file</span>: <span class="hljs-title function_">join</span>(<span class="hljs-title function_">dirname</span>(<span class="hljs-title function_">fileURLToPath</span>(<span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">url</span>)), <span class="hljs-string">&#x27;../media/test.png&#x27;</span>),
+  <span class="hljs-attr">width</span>: <span class="hljs-string">&#x27;auto&#x27;</span>, <span class="hljs-comment">// Number of chars wide you&#x27;d like image. &#x27;auto&#x27; to take it from the image/set height.</span>
+  <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,     <span class="hljs-comment">// Number of lines the image will take</span>
+  <span class="hljs-attr">space</span>: <span class="hljs-string">&#x27;   &#x27;</span>   <span class="hljs-comment">//  A text string that is printed under the image so you can flow the wrapped text around it.</span>
+})
+
+<span class="hljs-keyword">var</span> renderer = <span class="hljs-title function_">truwrap</span>({
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;container&#x27;</span>
+})
+
+truwrap.<span class="hljs-title function_">write</span>(image.<span class="hljs-title function_">render</span>({
+  <span class="hljs-attr">nobreak</span>: <span class="hljs-literal">true</span>,  <span class="hljs-comment">// Don&#x27;t add a linebreak after the image.</span>
+  <span class="hljs-attr">stretch</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// If true, distort the image the image to fit the width/height</span>
+  <span class="hljs-attr">align</span>: <span class="hljs-number">1</span>        <span class="hljs-comment">// How many lines to move back up after printing the image.</span>
+  <span class="hljs-attr">spacing</span>: <span class="hljs-string">&#x27; &#x27;</span>    <span class="hljs-comment">// A string to print after realigning the cursor after printing the image.</span>
+}))
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(truwrap.<span class="hljs-title function_">end</span>())</pre>
+<p>As no <code>outStream</code> was specified <code>truwrap.end()</code> returns the wrapped text.</p>
+<h3>Panels</h3>
+<pre class='hljs'><span class="hljs-keyword">import</span> {truwrap, parsePanel} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@thebespokepixel/truwrap&#x27;</span>
+
+<span class="hljs-keyword">var</span> writer = <span class="hljs-title function_">truwrap</span>({
+  <span class="hljs-attr">left</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">right</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;soft&#x27;</span>,
+  <span class="hljs-attr">outStream</span>: process.<span class="hljs-property">stderr</span>
+})
+
+<span class="hljs-keyword">const</span> panelSource = <span class="hljs-title function_">parsePanel</span>(
+  <span class="hljs-string">&#x27;One|Two|Three|Four&#x27;</span>, <span class="hljs-comment">//Input text with column delimiters</span>
+  <span class="hljs-string">&#x27;|&#x27;</span>,                  <span class="hljs-comment">// Column delimiter</span>
+  writer.<span class="hljs-title function_">getWidth</span>()     <span class="hljs-comment">// Total width (chars) to make columns across</span>
+)
+
+<span class="hljs-keyword">const</span> panelOptions = {
+  <span class="hljs-attr">maxLineWidth</span>: writer.<span class="hljs-title function_">getWidth</span>(),    <span class="hljs-comment">// Maximum line width</span>
+  <span class="hljs-attr">showHeaders</span>: <span class="hljs-literal">false</span>,                 <span class="hljs-comment">// Show colum headers</span>
+  <span class="hljs-attr">truncate</span>: <span class="hljs-literal">false</span>,                    <span class="hljs-comment">// Truncate columns if too wide</span>
+  <span class="hljs-attr">config</span>: panelSource.<span class="hljs-property">configuration</span>   <span class="hljs-comment">// Get config information from parsePanel()</span>
+}
+
+writer.<span class="hljs-title function_">panel</span>(panelSource.<span class="hljs-property">content</span>, panelOptions)
+writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment">//Close stream</span></pre>
 <h3>Related</h3>
 <p>For advanced 24bit colour handling see <a href="https://github.com/thebespokepixel/trucolor">thebespokepixel/trucolor</a> and <a href="https://www.npmjs.com/package/trucolor">npm trucolor</a>.</p>
 
@@ -210,25 +241,80 @@ writer.<span class="hljs-title function_">end</span>()</pre>
   
   <div class='clearfix'>
     
-    <h3 class='left m0 panel-title' id='truwrap'>
-      truwrap
-      
-      <span> → <a href="#api">api</a></span>
+    <h3 class='left m0 panel-title' id='rendermode'>
+      renderMode
       
     </h3>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L52-L220'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L16-L21'>
       <span>src/index.js</span>
       </a>
     
   </div>
   
 
-  <p>Create a text wrapping instance.</p>
+  <p>Create an n-selector for module modes</p>
 
 
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>truwrap(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>) → <a href="#api">api</a></div>
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>renderMode</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+        
+      
+        
+          <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='left m0 panel-title' id='truwrap'>
+      Truwrap
+      
+    </h3>
+    
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L28-L216'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Truwrap - take input from write() and composed a wrapped text block.</p>
+
+
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>new Truwrap($0: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
   
   
 
@@ -245,7 +331,599 @@ writer.<span class="hljs-title function_">end</span>()</pre>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+            <span class='code bold'>$0</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+      
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>$0.left</span> <code class='quiet'>any</code>
+  
+    (default <code>2</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>$0.right</span> <code class='quiet'>any</code>
+  
+    (default <code>2</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>$0.width</span> <code class='quiet'>any</code>
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>$0.mode</span> <code class='quiet'>any</code>
+  
+    (default <code>&#39;soft&#39;</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>$0.tabWidth</span> <code class='quiet'>any</code>
+  
+    (default <code>4</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>$0.outStream</span> <code class='quiet'>any</code>
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>$0.tokenRegex</span> <code class='quiet'>any</code>
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+      options object
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='Truwrap#end'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>end()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L97-L111'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>End a block, setting blocking mode and flushing buffers if needed.</p>
+
+
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>end() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        The wrapped output, has side effect of writing to stream if defined.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Truwrap#getWidth'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getWidth()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L118-L127'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Fetch the width in characters of the wrapping view.</p>
+
+
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>getWidth() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        The width.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Truwrap#panel'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>panel(content_, configuration)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L136-L155'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Create a multicolumn panel within this view</p>
+
+
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>panel(content_: panelObject, configuration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>) → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>content_</span> <code class='quiet'>(panelObject)</code>
+      Object for columnify
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>configuration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+      Configuration for columnify
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        this instance, to allow chaining
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Truwrap#break'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>break(newlines)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L163-L172'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Generate linebreaks within this view</p>
+
+
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>break(newlines: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>) → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>newlines</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+            = <code>1</code>)</code>
+      number of new lines to add.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        this instance, to allow chaining
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Truwrap#clear'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>clear()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L179-L188'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Similar to css' clear. Write a clearing newline to the stream.</p>
+
+
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>clear() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        this instance, to allow chaining
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Truwrap#write'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>write(content_)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L196-L215'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Write text via the wrapping logic</p>
+
+
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>write(content_: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>) → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>content_</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+      The content
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        this instance, to allow chaining
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+        
+      
+        
+          <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='left m0 panel-title' id='truwrap'>
+      truwrap
+      
+      <span> → <a href="#truwrap">Truwrap</a></span>
+      
+    </h3>
+    
+    
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/69968d44e1357706354f44fe2568d2e970e990f8/src/index.js#L232-L234'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Create a text wrapping instance.</p>
+
+
+  <div class='pre p1 bg-darken-1 mt0 rounded signature'>truwrap(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>) → <a href="#truwrap">Truwrap</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
       options object
 
           </div>
@@ -295,11 +973,11 @@ writer.<span class="hljs-title function_">end</span>()</pre>
 
               
                 <tr>
-  <td class='break-word'><span class='code bold'>options.mode</span> <code class='quiet'>mode</code>
+  <td class='break-word'><span class='code bold'>options.mode</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
   
     (default <code>&#39;soft&#39;</code>)
   </td>
-  <td class='break-word'><span>[soft | hyphen | hard | keep | container]
+  <td class='break-word'><span>[soft | hyphen | hard | keep | container
 </span></td>
 </tr>
 
@@ -318,8 +996,6 @@ writer.<span class="hljs-title function_">end</span>()</pre>
               
                 <tr>
   <td class='break-word'><span class='code bold'>options.outStream</span> <code class='quiet'><a href="https://nodejs.org/api/stream.html#stream_class_stream_writable">Stream.writable</a></code>
-  
-    (default <code>process.stdout</code>)
   </td>
   <td class='break-word'><span>Where to direct output.
 </span></td>
@@ -349,8 +1025,8 @@ writer.<span class="hljs-title function_">end</span>()</pre>
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#api">api</a></code>:
-        A truwrap api instance.
+      <code><a href="#truwrap">Truwrap</a></code>:
+        { description_of_the_return_value }
 
       
     
@@ -359,494 +1035,6 @@ writer.<span class="hljs-title function_">end</span>()</pre>
   
 
   
-
-  
-
-  
-
-  
-</section>
-
-        
-      
-        
-          <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='left m0 panel-title' id='api'>
-      api
-      
-    </h3>
-    
-    
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L102-L169'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Truwap pulic API</p>
-
-
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>api</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Static Members</div>
-    <div class="clearfix">
-  
-    <div class='border-bottom' id='api.end'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>end()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L109-L115'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>End a block, setting blocking mode and flushing buffers if needed.</p>
-
-
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>end() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></code>:
-        has side effect of writing to stream
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='api.getWidth'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>getWidth()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L121-L121'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Fetch the width in characters of the wrapping view.</p>
-
-
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>getWidth() → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
-        wrapping width
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='api.panel'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>panel(content, configuration)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L130-L136'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Create a multicolumn panel within this view</p>
-
-
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>panel(content: panelObject, configuration: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>) → <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>content</span> <code class='quiet'>(panelObject)</code>
-      Object for columnify
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>configuration</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
-      Configuration for columnify
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
-        The rendered panel.
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='api.break'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>break(newlines)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L144-L147'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Generate linebreaks within this view</p>
-
-
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>break(newlines: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>) → <a href="#api">api</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>newlines</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
-            = <code>1</code>)</code>
-      number of new lines to add.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#api">api</a></code>:
-        has side effect of writing to stream.
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='api.clear'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>clear()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L154-L157'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Similar to css' clear. Write a clearing newline to the stream.</p>
-
-
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>clear() → <a href="#api">api</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#api">api</a></code>:
-        has side effect of writing to stream.
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='api.write'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>write(text)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/b295bb088c7dd0c7b74889825f273ee39c7cf6d1/src/index.js#L165-L168'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Write text via the wrapping logic</p>
-
-
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>write(text: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>) → <a href="#api">api</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>text</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-      The raw, unwrapped test to wrap.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="#api">api</a></code>:
-        has side effect of writing to stream.
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-</div>
 
   
 
