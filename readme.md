@@ -19,6 +19,8 @@
 [![Inch.io](https://inch-ci.org/github/thebespokepixel/truwrap.svg?branch=master\&style=shields "Inch.io")](https://inch-ci.org/github/thebespokepixel/truwrap "Inch.io")&#x20;[![Twitter](https://img.shields.io/twitter/follow/thebespokepixel?style=social "Twitter")](https://twitter.com/thebespokepixel "Twitter")&#x20;  
 
 
+> **v4 Breaking change** The CLI command has been seperated into it's own repo [`truwrap-cli`][2]
+
 Many current tty text wrapping solutions have issues with the 'long' and currently 'non-standard' RGB SGR codes (i.e `^[[38;2;204;51;66m`). This meant that, while it's possible to have wonderful, rich, full gamut colours and the aesthetic data visualisations it entails, it comes at the price of painful typography and corrupted console displays as text is broken up, unnaturally wrapped and becoming unreadable as the SGR codes are dashed against the rocks of 1980's shortsightedness, confusing your terminal and ever so slightly breaking the heart of design aware coders and administrators everywhere.
 
 _Clearly this is unnacceptable!_
@@ -27,11 +29,7 @@ Previously, the only solution was to take a last, long whistful look at how grea
 
 But weep no more!
 
-Developed as part of our internal data visualisation system, where having the fidelity of 24 bit colour and embedded images (currently OS X iTerm 3 only) was a huge advantage.
-
-Usable within your own node.js cli projects and an npm module or directly from the command line as a shell scripting command.
-
-![Screengrab][grab]
+Developed as part of our internal data visualisation system, where having the fidelity of 24 bit colour and embedded images (currently macOS iTerm only) was a huge advantage.
 
 ## Usage
 
@@ -55,12 +53,63 @@ var contentWidth = writer.getWidth()
 
 writer.write("Some text to write...", "...and some more.")
 writer.write("A new paragraph, if not implicitly present.")
-writer.end()
+writer.end() // Close the stream
+```
+As `outStream` was specified, wrapped output is written directly to the stream. 
+
+### Images
+
+```js
+import {truwrap, createImage} from '@thebespokepixel/truwrap'
+
+const image = createImage({
+  name: 'test',
+  file: join(dirname(fileURLToPath(import.meta.url)), '../media/test.png'),
+  height: 1,
+})
+
+var renderer = truwrap({
+  mode: 'container'
+})
+
+truwrap.write(image.render({
+  nobreak: false,
+  align: 1
+}))
+
+console.log(truwrap.end())
 ```
 
-### Advanced use
+As no `outStream` was specified `truwrap.end()` returns the wrapped text. 
 
-To add. Containers, Tables, Panels and Images.
+### Panels
+
+```js
+import {truwrap, parsePanel} from '@thebespokepixel/truwrap'
+
+var writer = truwrap({
+  left: 2,
+  right: 2,
+  mode: 'soft',
+  outStream: process.stderr
+})
+
+const panelSource = parsePanel(
+  'One|Two|Three|Four', //Input text with column delimiters
+  '|',                  // Column delimiter
+  writer.getWidth()     // Total width (chars) to make columns across
+)
+
+const panelOptions = {
+  maxLineWidth: writer.getWidth(),    // Maximum line width
+  showHeaders: false,                 // Show colum headers
+  truncate: false,                    // Truncate columns if too wide
+  config: panelSource.configuration   // Get config information from parsePanel()
+}
+
+writer.panel(panelSource.content, panelOptions)
+writer.end() //Close stream
+```
 
 ### Related
 
@@ -71,4 +120,4 @@ For advanced 24bit colour handling see [thebespokepixel/trucolor](https://github
 Full documentation can be found at [https://thebespokepixel.github.io/truwrap/][1]
 
 [1]: https://thebespokepixel.github.io/truwrap/
-[grab]: https://raw.githubusercontent.com/thebespokepixel/truwrap/master/media/truwrap.png
+[2]: https://github.com/thebespokepixel/truwrap-cli

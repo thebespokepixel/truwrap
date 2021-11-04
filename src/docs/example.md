@@ -18,12 +18,63 @@ var contentWidth = writer.getWidth()
 
 writer.write("Some text to write...", "...and some more.")
 writer.write("A new paragraph, if not implicitly present.")
-writer.end()
+writer.end() // Close the stream
+```
+As `outStream` was specified, wrapped output is written directly to the stream. 
+
+### Images
+
+```js
+import {truwrap, createImage} from '@thebespokepixel/truwrap'
+
+const image = createImage({
+  name: 'test',
+  file: join(dirname(fileURLToPath(import.meta.url)), '../media/test.png'),
+  height: 1,
+})
+
+var renderer = truwrap({
+  mode: 'container'
+})
+
+truwrap.write(image.render({
+  nobreak: false,
+  align: 1
+}))
+
+console.log(truwrap.end())
 ```
 
-### Advanced use
+As no `outStream` was specified `truwrap.end()` returns the wrapped text. 
 
-To add. Containers, Tables, Panels and Images.
+### Panels
+
+```js
+import {truwrap, parsePanel} from '@thebespokepixel/truwrap'
+
+var writer = truwrap({
+  left: 2,
+  right: 2,
+  mode: 'soft',
+  outStream: process.stderr
+})
+
+const panelSource = parsePanel(
+  'One|Two|Three|Four', //Input text with column delimiters
+  '|',                  // Column delimiter
+  writer.getWidth()     // Total width (chars) to make columns across
+)
+
+const panelOptions = {
+  maxLineWidth: writer.getWidth(),    // Maximum line width
+  showHeaders: false,                 // Show colum headers
+  truncate: false,                    // Truncate columns if too wide
+  config: panelSource.configuration   // Get config information from parsePanel()
+}
+
+writer.panel(panelSource.content, panelOptions)
+writer.end() //Close stream
+```
 
 ### Related
 
