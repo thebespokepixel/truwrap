@@ -2,12 +2,8 @@ import {basename} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import {readFileSync} from 'node:fs'
 import {PassThrough} from 'node:stream'
-import {promisify} from 'node:util'
-import {exec} from 'node:child_process'
 import test from 'ava'
 import {truwrap, parsePanel} from '../index.js'
-
-const execPromise = promisify(exec)
 
 const width = basename(fileURLToPath(import.meta.url), '.js').split('-')[1] // 10, 20, 40, 60, 80, 100
 
@@ -23,7 +19,7 @@ if ([40, 60, 80, 100].includes(Number(width))) {
 			right: 0,
 			width,
 			mode: 'soft',
-			outStream: StreamProxy
+			outStream: StreamProxy,
 		})
 
 		const panelSource = parsePanel(panel, '|', renderer.getWidth())
@@ -32,7 +28,7 @@ if ([40, 60, 80, 100].includes(Number(width))) {
 			maxLineWidth: renderer.getWidth(),
 			showHeaders: false,
 			truncate: false,
-			config: panelSource.configuration
+			config: panelSource.configuration,
 		}
 
 		const buffered = await new Promise(resolve => {

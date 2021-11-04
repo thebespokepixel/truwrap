@@ -2,12 +2,8 @@ import {basename} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import {readFileSync} from 'node:fs'
 import {PassThrough} from 'node:stream'
-import {promisify} from 'node:util'
-import {exec} from 'node:child_process'
 import test from 'ava'
 import {truwrap} from '../index.js'
-
-const execPromise = promisify(exec)
 
 const width = basename(fileURLToPath(import.meta.url), '.js').split('-')[1] // 10, 20, 40, 60, 80, 100
 
@@ -24,7 +20,7 @@ for (const right of [0, 1, 5]) {
 				right,
 				width,
 				mode: 'keep',
-				outStream: StreamProxy
+				outStream: StreamProxy,
 			})
 
 			const buffered = await new Promise(resolve => {
