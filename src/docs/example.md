@@ -32,7 +32,9 @@ As `outStream` was specified, wrapped output is written directly to the stream.
 
 ### Images
 
-If your terminal suppots them, you can add images into the wrapped output ste 
+If your terminal suppots them, you can add images into the wrapped output text.
+
+To ensure that images are not used by default you need to set the env var `TERM_IMAGES=enabled` in your shell. See [`term-ng`](https://github.com/thebespokepixel/term-ng) for details.
 
 ```js
 import {truwrap, createImage} from '@thebespokepixel/truwrap'

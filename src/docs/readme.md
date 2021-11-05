@@ -1,6 +1,6 @@
 # truwrap
 
-> A node module and CLI for text wrapping, panels & tables that supports 24bit color SGR codes.
+> A node module for text wrapping into streams that supports 24bit color SGR codes.
 
 ${badges}
 
