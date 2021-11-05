@@ -18,15 +18,17 @@ class WrapTool {
 	 * @param  {RegExp}  $0.tokenRegex - An optional regex passed to the Tokeniser
 	 */
 	constructor({
+		mode,
 		left,
 		width,
 		tabWidth,
 		tokenRegex,
 	}) {
+		this.mode = mode
 		this.margin = ' '.repeat(left)
 		this.desiredWidth = width
 		this.tabWidth = tabWidth
-		this.tokeniser = createTokeniser(tokenRegex)
+		this.tokeniser = createTokeniser(mode, tokenRegex)
 	}
 
 	/**
@@ -38,13 +40,13 @@ class WrapTool {
 		this.lines = []
 		const tokens = this.tokeniser.process(text)
 
-		let currentLine = createLineFitter(this.margin, this.desiredWidth, this.tabWidth)
+		let currentLine = createLineFitter(this.mode, this.margin, this.desiredWidth, this.tabWidth)
 
 		while (tokens.length > 0) {
 			const overflow = currentLine.add(tokens.shift())
 			if (overflow) {
 				this.lines.push(currentLine.toString())
-				currentLine = createLineFitter(this.margin, this.desiredWidth, this.tabWidth)
+				currentLine = createLineFitter(this.mode, this.margin, this.desiredWidth, this.tabWidth)
 				if (overflow !== true && overflow !== false) {
 					tokens.unshift(overflow)
 				}

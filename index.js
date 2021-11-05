@@ -1,5 +1,4 @@
 import columnify from 'columnify';
-import { createSelector } from '@thebespokepixel/n-selector';
 import ansiRegex from 'ansi-regex';
 import { Buffer } from 'node:buffer';
 import { fileURLToPath } from 'node:url';
@@ -18,9 +17,9 @@ class Tokeniser {
 	 * Create a new tokeniser
 	 * @param  {RegExp} tokenisingRegex - The regex that forms the word boundaries.
 	 */
-	constructor(tokenisingRegex) {
+	constructor(mode, tokenisingRegex) {
 		this.tokenisingRegex = tokenisingRegex || (function () {
-			switch (renderMode.selected) {
+			switch (mode) {
 				case 'keep':
 					return /^.*$/gm
 				default:
@@ -77,6 +76,7 @@ class LineFitter {
 	 */
 	constructor(options) {
 		[
+			this.mode,
 			this.margin,
 			this.desiredWidth,
 			this.tabWidth,
@@ -112,7 +112,7 @@ class LineFitter {
 			return false
 		}
 		const overlap = this.cursor + token.trimEnd().length - this.desiredWidth;
-		switch (renderMode.selected) {
+		switch (this.mode) {
 			case 'hard':
 				if (overlap > 0) {
 					const head = token.trimEnd().substring(0, token.length - overlap);
@@ -148,13 +148,14 @@ class LineFitter {
 /**
  * Creates a line fitter - a new line of wrapped text..
  * @private
+ * @param      {string}      mode      The wrapping mode
  * @param      {string}      margin    The left margin, made up of spaces
  * @param      {number}      width     The width the line can take up
  * @param      {number}      tabWidth  Desired TAB width
  * @return     {LineFitter}  The line fitter.
  */
-function createLineFitter(margin, width, tabWidth) {
-	return new LineFitter([margin, width, tabWidth])
+function createLineFitter(mode, margin, width, tabWidth) {
+	return new LineFitter([mode, margin, width, tabWidth])
 }
 
 /**
@@ -170,15 +171,17 @@ class WrapTool {
 	 * @param  {RegExp}  $0.tokenRegex - An optional regex passed to the Tokeniser
 	 */
 	constructor({
+		mode,
 		left,
 		width,
 		tabWidth,
 		tokenRegex,
 	}) {
+		this.mode = mode;
 		this.margin = ' '.repeat(left);
 		this.desiredWidth = width;
 		this.tabWidth = tabWidth;
-		this.tokeniser = createTokeniser(tokenRegex);
+		this.tokeniser = createTokeniser(mode);
 	}
 	/**
 	 * Apply instance settings to source text.
@@ -188,12 +191,12 @@ class WrapTool {
 	wrap(text) {
 		this.lines = [];
 		const tokens = this.tokeniser.process(text);
-		let currentLine = createLineFitter(this.margin, this.desiredWidth, this.tabWidth);
+		let currentLine = createLineFitter(this.mode, this.margin, this.desiredWidth, this.tabWidth);
 		while (tokens.length > 0) {
 			const overflow = currentLine.add(tokens.shift());
 			if (overflow) {
 				this.lines.push(currentLine.toString());
-				currentLine = createLineFitter(this.margin, this.desiredWidth, this.tabWidth);
+				currentLine = createLineFitter(this.mode, this.margin, this.desiredWidth, this.tabWidth);
 				if (overflow !== true && overflow !== false) {
 					tokens.unshift(overflow);
 				}
@@ -351,17 +354,6 @@ function panel(buffer_, delimiter_, width_) {
 }
 
 /**
- * Create an n-selector for module modes
- *
- * @type       {Function}
- */
-const renderMode = createSelector([
-	'soft',
-	'hard',
-	'keep',
-	'container'
-], 0, 'configuration_mode');
-/**
  * Truwrap - take input from write() and composed a wrapped text block.
  *
  * @class      Truwrap (name)
@@ -407,10 +399,10 @@ class Truwrap {
 			}
 			return 2
 		})();
-		renderMode.select(mode);
 		this.viewHandler = (() => {
 			if (this.ttyActive && mode !== 'container') {
 				return createWrapTool({
+					mode: this.mode,
 					left,
 					width: this.viewWidth,
 					tabWidth,
@@ -442,7 +434,7 @@ class Truwrap {
 		switch (true) {
 			case !this.ttyActive:
 				return this.ttyWidth
-			case renderMode.selected === 'container':
+			case this.mode === 'container':
 				return this.ttyWidth
 			default:
 				return this.viewWidth
@@ -460,7 +452,7 @@ class Truwrap {
 			switch (true) {
 				case !this.ttyActive:
 					return columnify(content_, configuration)
-				case renderMode.selected === 'container':
+				case this.mode === 'container':
 					return columnify(content_, configuration)
 				default:
 					return this.viewHandler.wrap(columnify(content_, configuration))
@@ -510,7 +502,7 @@ class Truwrap {
 			switch (true) {
 				case !this.ttyActive:
 					return content_
-				case renderMode.selected === 'container':
+				case this.mode === 'container':
 					return content_
 				default:
 					return this.viewHandler.wrap(content_)
@@ -540,4 +532,4 @@ function truwrap(options) {
 	return new Truwrap(options)
 }
 
-export { Truwrap, createImage, panel as parsePanel, renderMode, truwrap };
+export { Truwrap, createImage, panel as parsePanel, truwrap };

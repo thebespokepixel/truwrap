@@ -4,7 +4,6 @@
  ╰───────────────────┴───────────────────────────────────────────────────────── */
 
 import ansiRegex from 'ansi-regex'
-import {renderMode} from '../index.js'
 
 const tabRegex = /\t/g
 const newlineRegex	= /\n/g
@@ -18,9 +17,9 @@ class Tokeniser {
 	 * Create a new tokeniser
 	 * @param  {RegExp} tokenisingRegex - The regex that forms the word boundaries.
 	 */
-	constructor(tokenisingRegex) {
+	constructor(mode, tokenisingRegex) {
 		this.tokenisingRegex = tokenisingRegex || (function () {
-			switch (renderMode.selected) {
+			switch (mode) {
 				case 'keep':
 					return /^.*$/gm
 				default:

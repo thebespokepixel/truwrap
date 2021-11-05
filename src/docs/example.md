@@ -20,6 +20,14 @@ writer.write("Some text to write...", "...and some more.")
 writer.write("A new paragraph, if not implicitly present.")
 writer.end() // Close the stream
 ```
+
+`mode` can be set to the following values:
+
+- `soft`: words are broken before the column width, giving a left justified appearance.
+- `hard`: words are split at the column width.
+- `keep`: lines longer than the column width are kept.
+- `container`: left and right margins are ignored, giving a full width line.
+
 As `outStream` was specified, wrapped output is written directly to the stream. 
 
 ### Images
@@ -34,7 +42,7 @@ const image = createImage({
   file: join(dirname(fileURLToPath(import.meta.url)), '../media/test.png'),
   width: 'auto', // Number of chars wide you'd like image. 'auto' to take it from the image/set height.
   height: 1,     // Number of lines the image will take
-  space: '   '   //  A text string that is printed under the image so you can flow the wrapped text around it.
+  space: '   '   // A text string that is printed under the image so you can flow the wrapped text around it.
 })
 
 var renderer = truwrap({

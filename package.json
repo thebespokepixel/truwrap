@@ -41,9 +41,6 @@
     "xo": "^0.46.3"
   },
   "dependencies": {
-    "@thebespokepixel/meta": "^3.0.4",
-    "@thebespokepixel/n-selector": "^3.0.2",
-    "@thebespokepixel/string": "^2.0.1",
     "ansi-regex": "^6.0.1",
     "columnify": "^1.5.4",
     "lodash": "^4.17.21",
