@@ -3,22 +3,9 @@
  ╰─────────┴─────────────────────────────────────────────────────────────────── */
 
 import columnify from 'columnify'
-import {createSelector} from '@thebespokepixel/n-selector'
 import createWrapTool from './lib/wrap-tool.js'
 import createImage from './lib/image.js'
 import parsePanel from './lib/panel.js'
-
-/**
- * Create an n-selector for module modes
- *
- * @type       {Function}
- */
-export const renderMode = createSelector([
-	'soft',
-	'hard',
-	'keep',
-	'container'
-], 0, 'configuration_mode')
 
 /**
  * Truwrap - take input from write() and composed a wrapped text block.
@@ -73,11 +60,10 @@ export class Truwrap {
 			return 2
 		})()
 
-		renderMode.select(mode)
-
 		this.viewHandler = (() => {
 			if (this.ttyActive && mode !== 'container') {
 				return createWrapTool({
+					mode: this.mode,
 					left,
 					width: this.viewWidth,
 					tabWidth,
@@ -119,7 +105,7 @@ export class Truwrap {
 		switch (true) {
 			case !this.ttyActive:
 				return this.ttyWidth
-			case renderMode.selected === 'container':
+			case this.mode === 'container':
 				return this.ttyWidth
 			default:
 				return this.viewWidth
@@ -138,7 +124,7 @@ export class Truwrap {
 			switch (true) {
 				case !this.ttyActive:
 					return columnify(content_, configuration)
-				case renderMode.selected === 'container':
+				case this.mode === 'container':
 					return columnify(content_, configuration)
 				default:
 					return this.viewHandler.wrap(columnify(content_, configuration))
@@ -198,7 +184,7 @@ export class Truwrap {
 			switch (true) {
 				case !this.ttyActive:
 					return content_
-				case renderMode.selected === 'container':
+				case this.mode === 'container':
 					return content_
 				default:
 					return this.viewHandler.wrap(content_)

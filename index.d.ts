@@ -90,12 +90,6 @@ export function createImage(source: string): Image;
  */
 declare function panel(buffer_: string, delimiter_: string, width_: number): any;
 /**
- * Create an n-selector for module modes
- *
- * @type       {Function}
- */
-export const renderMode: Function;
-/**
  * Create a text wrapping instance.
  *
  * @param      {Object}           options                options object

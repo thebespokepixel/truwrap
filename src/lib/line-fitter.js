@@ -4,7 +4,6 @@
  ╰──────────────────────┴────────────────────────────────────────────────────── */
 
 import ansiRegex from 'ansi-regex'
-import {renderMode} from '../index.js'
 
 const newlineRegex = /^>\/\\\/\/__<$/
 const tabRegex = /^>T\/\\B<$/
@@ -20,6 +19,7 @@ class LineFitter {
 	 */
 	constructor(options) {
 		[
+			this.mode,
 			this.margin,
 			this.desiredWidth,
 			this.tabWidth,
@@ -62,7 +62,7 @@ class LineFitter {
 
 		const overlap = this.cursor + token.trimEnd().length - this.desiredWidth
 
-		switch (renderMode.selected) {
+		switch (this.mode) {
 			case 'hard':
 				if (overlap > 0) {
 					const head = token.trimEnd().substring(0, token.length - overlap)
@@ -104,11 +104,12 @@ class LineFitter {
 /**
  * Creates a line fitter - a new line of wrapped text..
  * @private
+ * @param      {string}      mode      The wrapping mode
  * @param      {string}      margin    The left margin, made up of spaces
  * @param      {number}      width     The width the line can take up
  * @param      {number}      tabWidth  Desired TAB width
  * @return     {LineFitter}  The line fitter.
  */
-export default function createLineFitter(margin, width, tabWidth) {
-	return new LineFitter([margin, width, tabWidth])
+export default function createLineFitter(mode, margin, width, tabWidth) {
+	return new LineFitter([mode, margin, width, tabWidth])
 }
