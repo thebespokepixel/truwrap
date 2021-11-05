@@ -18,7 +18,6 @@ ratings:
   paths:
   - "src/**.js"
 exclude_paths:
-- test/
 - docs/
 - media/
 - scripts/
