@@ -1,6 +1,6 @@
 # truwrap
 
-> A node module and CLI for text wrapping, panels & tables that supports 24bit color SGR codes.
+> A node module for text wrapping into streams that supports 24bit color SGR codes.
 
 ##### Publishing Status
 
@@ -16,7 +16,7 @@
 
 ##### Documentation/Help
 
-[![Inch.io](https://inch-ci.org/github/thebespokepixel/truwrap.svg?branch=master\&style=shields "Inch.io")](https://inch-ci.org/github/thebespokepixel/truwrap "Inch.io")&#x20;[![Twitter](https://img.shields.io/twitter/follow/thebespokepixel?style=social "Twitter")](https://twitter.com/thebespokepixel "Twitter")&#x20;  
+[![Twitter](https://img.shields.io/twitter/follow/thebespokepixel?style=social "Twitter")](https://twitter.com/thebespokepixel "Twitter")&#x20;  
 
 
 > **v4 Breaking change** The CLI command has been seperated into it's own repo [`truwrap-cli`][2]
@@ -67,7 +67,9 @@ As `outStream` was specified, wrapped output is written directly to the stream.
 
 ### Images
 
-If your terminal suppots them, you can add images into the wrapped output ste 
+If your terminal suppots them, you can add images into the wrapped output text.
+
+To ensure that images are not used by default you need to set the env var `TERM_IMAGES=enabled` in your shell. See [`term-ng`](https://github.com/thebespokepixel/term-ng) for details.
 
 ```js
 import {truwrap, createImage} from '@thebespokepixel/truwrap'

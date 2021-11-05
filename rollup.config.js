@@ -4,7 +4,7 @@ import cleanup from 'rollup-plugin-cleanup'
 
 const external = id => !id.startsWith('src') && !id.startsWith('.') && !id.startsWith('/') && !id.startsWith('\0')
 
-const config = [{
+const config = {
 	external,
 	plugins: [resolve(), commonjs(), cleanup({comments: [/^\*\*/]})],
 	input: 'src/index.js',
@@ -12,6 +12,6 @@ const config = [{
 		file: 'index.js',
 		format: 'es',
 	},
-}]
+}
 
 export default config
