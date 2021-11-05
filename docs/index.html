@@ -46,16 +46,6 @@
             
               
               <li><a
-                href="#rendermode"
-                class="">
-                renderMode
-                
-              </a>
-              
-              </li>
-            
-              
-              <li><a
                 href="#truwrap"
                 class=" toggle-sibling">
                 Truwrap
@@ -163,6 +153,13 @@
 writer.<span class="hljs-title function_">write</span>(<span class="hljs-string">&quot;Some text to write...&quot;</span>, <span class="hljs-string">&quot;...and some more.&quot;</span>)
 writer.<span class="hljs-title function_">write</span>(<span class="hljs-string">&quot;A new paragraph, if not implicitly present.&quot;</span>)
 writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment">// Close the stream</span></pre>
+<p><code>mode</code> can be set to the following values:</p>
+<ul>
+<li><code>soft</code>: words are broken before the column width, giving a left justified appearance.</li>
+<li><code>hard</code>: words are split at the column width.</li>
+<li><code>keep</code>: lines longer than the column width are kept.</li>
+<li><code>container</code>: left and right margins are ignored, giving a full width line.</li>
+</ul>
 <p>As <code>outStream</code> was specified, wrapped output is written directly to the stream.</p>
 <h3>Images</h3>
 <p>If your terminal suppots them, you can add images into the wrapped output ste</p>
@@ -173,7 +170,7 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
   <span class="hljs-attr">file</span>: <span class="hljs-title function_">join</span>(<span class="hljs-title function_">dirname</span>(<span class="hljs-title function_">fileURLToPath</span>(<span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">url</span>)), <span class="hljs-string">&#x27;../media/test.png&#x27;</span>),
   <span class="hljs-attr">width</span>: <span class="hljs-string">&#x27;auto&#x27;</span>, <span class="hljs-comment">// Number of chars wide you&#x27;d like image. &#x27;auto&#x27; to take it from the image/set height.</span>
   <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,     <span class="hljs-comment">// Number of lines the image will take</span>
-  <span class="hljs-attr">space</span>: <span class="hljs-string">&#x27;   &#x27;</span>   <span class="hljs-comment">//  A text string that is printed under the image so you can flow the wrapped text around it.</span>
+  <span class="hljs-attr">space</span>: <span class="hljs-string">&#x27;   &#x27;</span>   <span class="hljs-comment">// A text string that is printed under the image so you can flow the wrapped text around it.</span>
 })
 
 <span class="hljs-keyword">var</span> renderer = <span class="hljs-title function_">truwrap</span>({
@@ -241,70 +238,13 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
   
   <div class='clearfix'>
     
-    <h3 class='left m0 panel-title' id='rendermode'>
-      renderMode
-      
-    </h3>
-    
-    
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L16-L21'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Create an n-selector for module modes</p>
-
-
-  <div class='pre p1 bg-darken-1 mt0 rounded signature'>renderMode</div>
-  
-    <p>
-      Type:
-      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a>
-    </p>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-        
-      
-        
-          <section class='p2 pl3 mb2 ml2 mr2 clearfix bg-white rounded minishadow'>
-
-  
-  <div class='clearfix'>
-    
     <h3 class='left m0 panel-title' id='truwrap'>
       Truwrap
       
     </h3>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L28-L216'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/8f4f8d05943ec1ef486df54963fec076e0e8d00a/src/index.js#L15-L202'>
       <span>src/index.js</span>
       </a>
     
@@ -457,7 +397,7 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L97-L111'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/8f4f8d05943ec1ef486df54963fec076e0e8d00a/src/index.js#L83-L97'>
       <span>src/index.js</span>
       </a>
     
@@ -520,7 +460,7 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L118-L127'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/8f4f8d05943ec1ef486df54963fec076e0e8d00a/src/index.js#L104-L113'>
       <span>src/index.js</span>
       </a>
     
@@ -583,7 +523,7 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L136-L155'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/8f4f8d05943ec1ef486df54963fec076e0e8d00a/src/index.js#L122-L141'>
       <span>src/index.js</span>
       </a>
     
@@ -669,7 +609,7 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L163-L172'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/8f4f8d05943ec1ef486df54963fec076e0e8d00a/src/index.js#L149-L158'>
       <span>src/index.js</span>
       </a>
     
@@ -747,7 +687,7 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L179-L188'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/8f4f8d05943ec1ef486df54963fec076e0e8d00a/src/index.js#L165-L174'>
       <span>src/index.js</span>
       </a>
     
@@ -810,7 +750,7 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
   <div class='clearfix'>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L196-L215'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/8f4f8d05943ec1ef486df54963fec076e0e8d00a/src/index.js#L182-L201'>
       <span>src/index.js</span>
       </a>
     
@@ -896,7 +836,7 @@ writer.<span class="hljs-title function_">end</span>() <span class="hljs-comment
     </h3>
     
     
-      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/35bd1e2ad55be3dd622b3be0879ad9ea19b50fcb/src/index.js#L232-L234'>
+      <a class='pl3 pr1 right rounded github' href='https://github.com/thebespokepixel/truwrap/blob/8f4f8d05943ec1ef486df54963fec076e0e8d00a/src/index.js#L218-L220'>
       <span>src/index.js</span>
       </a>
     
