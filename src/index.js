@@ -82,12 +82,11 @@ export class Truwrap {
 	 */
 	end() {
 		if (this.outStream) {
-			this.outStream.end()
-			// if (this.outStream._isStdio) {
-			// 	this.outStream.write('\n')
-			// } else {
-			// 	this.outStream.end()
-			// }
+			if (this.outStream._isStdio) {
+				this.outStream.write('\n')
+			} else {
+				this.outStream.end()
+			}
 		}
 
 		const output = this.buffer
