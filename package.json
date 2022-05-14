@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "ansi-regex": "^6.0.1",
-    "columnify": "^1.5.4",
+    "columnify": "^1.6.0",
     "lodash": "^4.17.21"
   },
   "engines": {
